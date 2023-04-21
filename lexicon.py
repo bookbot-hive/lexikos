@@ -22,13 +22,10 @@ class Lexicon(UserDict):
         if isinstance(dictionaries_dir, str):
             dictionaries_dir = Path(dictionaries_dir)
 
-        self._files = list(dictionaries_dir.rglob("*/*.tsv"))
-        mapping: Dict[str, Set[str]] = self._load_files(self._files)
+        files = list(dictionaries_dir.rglob("*/*.tsv"))
+        dicts = [self._parse_tsv(file) for file in files]
+        mapping: Dict[str, Set[str]] = self._merge_dicts(dicts)
         super().__init__(mapping)
-
-    def _load_files(self, files: List[Path]):
-        lex = self._merge_dicts([self._parse_tsv(file) for file in files])
-        return lex
 
     def _parse_tsv(self, file: Union[Path, str]) -> Dict[str, Set[str]]:
         lex = {}
