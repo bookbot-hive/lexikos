@@ -122,7 +122,7 @@ Then to evaluate:
 
 ```diff
 python eval.py \
-+   --model bookbot/$PRETRAINED_MODEL \
++   --model $PRETRAINED_MODEL \
 +   --dataset_name $DATASET_NAME \
     --source_text_column_name source \
     --target_text_column_name target \
