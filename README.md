@@ -6,6 +6,19 @@ A collection of pronunciation dictionaries and neural grapheme-to-phoneme models
     <img src="./assets/lexikos.png" alt="logo" width="300"/>
 </p>
 
+## Usage
+
+```py
+>>> from lexikos import Lexicon
+>>> lexicon = Lexicon()
+>>> print(lexicon["added"])
+{'ˈæ d ə d', 'a d ɪ d', 'æ d ɪ d', 'a d ə d', 'æ ɾ ə d', 'ˈa d ə d', 'æ d ə d', 'ˈæ d ɪ d', 'ˈa d ɪ d', 'ˈæ ɾ ɪ d', 'æ ɾ ɪ d', 'ˈæ ɾ ə d'}
+>>> print(lexicon["runner"])
+{'ɹ ʌ n ɚ', 'ˈr ʌ n ɝ', 'ɹ ʌ n ə'}
+>>> print(lexicon["water"])
+{'w ɑ ɾ ɚ', 'ˈw oː t ə', 'w ɑ t ə ɹ', 'w ɔ ɾ ɚ', 'ˈw oː ɾ ə', 'w ɔː t ə', 'ˈw ɔ t ɝ', 'w ɔ t ə ɹ'}
+```
+
 ## Dictionaries & Models
 
 ### English `(en)`

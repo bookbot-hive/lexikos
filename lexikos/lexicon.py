@@ -15,10 +15,13 @@
 from collections import UserDict
 from pathlib import Path
 from typing import Any, Dict, List, Set, Union
+import os
+
+DICTIONARIES_DIR = os.path.join(os.path.dirname(__file__), "dict")
 
 
 class Lexicon(UserDict):
-    def __init__(self, dictionaries_dir: Union[Path, str]):
+    def __init__(self, dictionaries_dir: Union[Path, str] = DICTIONARIES_DIR):
         if isinstance(dictionaries_dir, str):
             dictionaries_dir = Path(dictionaries_dir)
 
@@ -52,7 +55,7 @@ class Lexicon(UserDict):
 
 
 if __name__ == "__main__":
-    lexicon = Lexicon("dict")
+    lexicon = Lexicon()
     print(lexicon["added"])
     print(lexicon["runner"])
     print(lexicon["water"])
