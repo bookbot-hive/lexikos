@@ -17,11 +17,11 @@ from pathlib import Path
 from typing import Any, Dict, List, Set, Union
 import os
 
-DICTIONARIES_DIR = os.path.join(os.path.dirname(__file__), "dict")
+DICTIONARIES = os.path.join(os.path.join(os.path.dirname(__file__), os.pardir), "dict")
 
 
 class Lexicon(UserDict):
-    def __init__(self, dictionaries_dir: Union[Path, str] = DICTIONARIES_DIR):
+    def __init__(self, dictionaries_dir: Union[Path, str] = DICTIONARIES):
         if isinstance(dictionaries_dir, str):
             dictionaries_dir = Path(dictionaries_dir)
 

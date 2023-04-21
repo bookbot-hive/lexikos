@@ -19,5 +19,4 @@ if __name__ == "__main__":
         packages=find_packages(),
         include_package_data=True,
         platforms=["linux", "unix", "windows"],
-        python_requires=">=3.7",
     )
