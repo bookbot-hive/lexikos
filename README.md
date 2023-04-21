@@ -6,6 +6,21 @@ A collection of pronunciation dictionaries and neural grapheme-to-phoneme models
     <img src="https://github.com/bookbot-hive/lexikos/raw/main/assets/lexikos.png" alt="logo" width="300"/>
 </p>
 
+## Install Lexikos
+
+Install from PyPI
+
+```sh
+pip install lexikos
+```
+
+Editable install from Source
+
+```sh
+git clone https://github.com/bookbot-hive/lexikos.git
+pip install -e lexikos
+```
+
 ## Usage
 
 ```py
