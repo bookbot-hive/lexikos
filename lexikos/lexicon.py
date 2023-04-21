@@ -17,7 +17,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Set, Union
 import os
 
-DICTIONARIES = os.path.join(os.path.dirname(os.path.dirname(__file__)), "dict")
+DICTIONARIES = os.path.join(os.path.dirname(__file__), "dict")
 
 
 class Lexicon(UserDict):

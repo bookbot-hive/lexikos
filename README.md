@@ -23,9 +23,9 @@ A collection of pronunciation dictionaries and neural grapheme-to-phoneme models
 
 ### English `(en)`
 
-| Language | Dictionary | Phone Set | Corpus                               | G2P Model |
-| -------- | ---------- | --------- | ------------------------------------ | --------- |
-| en       | Wikipron   | IPA       | [Link](./dict/wikipron/eng_latn.tsv) |           |
+| Language | Dictionary | Phone Set | Corpus                                       | G2P Model |
+| -------- | ---------- | --------- | -------------------------------------------- | --------- |
+| en       | Wikipron   | IPA       | [Link](./lexikos/dict/wikipron/eng_latn.tsv) |           |
 
 ### English `(en-US)`
 
@@ -47,10 +47,10 @@ A collection of pronunciation dictionaries and neural grapheme-to-phoneme models
 
 ### English `(en-AU)`
 
-| Language       | Dictionary | Phone Set | Corpus                                         | G2P Model                                                                                                             |
-| -------------- | ---------- | --------- | ---------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| en-AU (Broad)  | Wikipron   | IPA       | [Link](./dict/wikipron/eng_latn_au_broad.tsv)  | [bookbot/byt5-small-wikipron-eng-latn-au-broad](https://huggingface.co/bookbot/byt5-small-wikipron-eng-latn-au-broad) |
-| en-AU (Narrow) | Wikipron   | IPA       | [Link](./dict/wikipron/eng_latn_au_narrow.tsv) |                                                                                                                       |
+| Language       | Dictionary | Phone Set | Corpus                                                 | G2P Model                                                                                                             |
+| -------------- | ---------- | --------- | ------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- |
+| en-AU (Broad)  | Wikipron   | IPA       | [Link](./lexikos/dict/wikipron/eng_latn_au_broad.tsv)  | [bookbot/byt5-small-wikipron-eng-latn-au-broad](https://huggingface.co/bookbot/byt5-small-wikipron-eng-latn-au-broad) |
+| en-AU (Narrow) | Wikipron   | IPA       | [Link](./lexikos/dict/wikipron/eng_latn_au_narrow.tsv) |                                                                                                                       |
 
 ## Training G2P Model
 
