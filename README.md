@@ -10,33 +10,34 @@ A collection of pronunciation dictionaries and neural grapheme-to-phoneme models
 
 ### English `(en)`
 
-| Language | Dictionary | Corpus                               | G2P Model |
-| -------- | ---------- | ------------------------------------ | --------- |
-| en       | Wikipron   | [Link](./dict/wikipron/eng_latn.tsv) |           |
+| Language | Dictionary | Phone Set | Corpus                               | G2P Model |
+| -------- | ---------- | --------- | ------------------------------------ | --------- |
+| en       | Wikipron   | IPA       | [Link](./dict/wikipron/eng_latn.tsv) |           |
 
 ### English `(en-US)`
 
-| Language       | Dictionary   | Corpus                                                                                                  | G2P Model                                                                                                             |
-| -------------- | ------------ | ------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| en-US          | CMU Dict IPA | [External Link](https://github.com/menelik3/cmudict-ipa/blob/master/cmudict-0.7b-ipa.txt)               | [bookbot/byt5-small-cmudict](https://huggingface.co/bookbot/byt5-small-cmudict)                                       |
-| en-US          | CharsiuG2P   | [External Link](https://github.com/lingjzhu/CharsiuG2P/blob/main/dicts/eng-us.tsv)                      | [charsiu/g2p_multilingual_byT5_small_100](https://huggingface.co/charsiu/g2p_multilingual_byT5_small_100)             |
-| en-US (Broad)  | Wikipron     | [External Link](https://github.com/CUNY-CL/wikipron/blob/master/data/scrape/tsv/eng_latn_us_broad.tsv)  | [bookbot/byt5-small-wikipron-eng-latn-us-broad](https://huggingface.co/bookbot/byt5-small-wikipron-eng-latn-us-broad) |
-| en-US (Narrow) | Wikipron     | [External Link](https://github.com/CUNY-CL/wikipron/blob/master/data/scrape/tsv/eng_latn_us_narrow.tsv) |
+| Language       | Dictionary   | Phone Set | Corpus                                                                                                                     | G2P Model                                                                                                             |
+| -------------- | ------------ | --------- | -------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| en-US          | CMU Dict     | ARPA      | [External Link](https://github.com/microsoft/CNTK/blob/master/Examples/SequenceToSequence/CMUDict/Data/cmudict-0.7b.train) | [bookbot/byt5-small-cmudict](https://huggingface.co/bookbot/byt5-small-cmudict)                                       |
+| en-US          | CMU Dict IPA | IPA       | [External Link](https://github.com/menelik3/cmudict-ipa/blob/master/cmudict-0.7b-ipa.txt)                                  |                                                                                                                       |
+| en-US          | CharsiuG2P   | IPA       | [External Link](https://github.com/lingjzhu/CharsiuG2P/blob/main/dicts/eng-us.tsv)                                         | [charsiu/g2p_multilingual_byT5_small_100](https://huggingface.co/charsiu/g2p_multilingual_byT5_small_100)             |
+| en-US (Broad)  | Wikipron     | IPA       | [External Link](https://github.com/CUNY-CL/wikipron/blob/master/data/scrape/tsv/eng_latn_us_broad.tsv)                     | [bookbot/byt5-small-wikipron-eng-latn-us-broad](https://huggingface.co/bookbot/byt5-small-wikipron-eng-latn-us-broad) |
+| en-US (Narrow) | Wikipron     | IPA       | [External Link](https://github.com/CUNY-CL/wikipron/blob/master/data/scrape/tsv/eng_latn_us_narrow.tsv)                    |
 
 ### English `(en-UK)`
 
-| Language       | Dictionary | Corpus                                                                                                  | G2P Model                                                                                                             |
-| -------------- | ---------- | ------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| en-UK          | CharsiuG2P | [External Link](https://github.com/lingjzhu/CharsiuG2P/blob/main/dicts/eng-uk.tsv)                      | [charsiu/g2p_multilingual_byT5_small_100](https://huggingface.co/charsiu/g2p_multilingual_byT5_small_100)             |
-| en-UK (Broad)  | Wikipron   | [External Link](https://github.com/CUNY-CL/wikipron/blob/master/data/scrape/tsv/eng_latn_uk_broad.tsv)  | [bookbot/byt5-small-wikipron-eng-latn-uk-broad](https://huggingface.co/bookbot/byt5-small-wikipron-eng-latn-uk-broad) |
-| en-UK (Narrow) | Wikipron   | [External Link](https://github.com/CUNY-CL/wikipron/blob/master/data/scrape/tsv/eng_latn_uk_narrow.tsv) |                                                                                                                       |
+| Language       | Dictionary | Phone Set | Corpus                                                                                                  | G2P Model                                                                                                             |
+| -------------- | ---------- | --------- | ------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| en-UK          | CharsiuG2P | IPA       | [External Link](https://github.com/lingjzhu/CharsiuG2P/blob/main/dicts/eng-uk.tsv)                      | [charsiu/g2p_multilingual_byT5_small_100](https://huggingface.co/charsiu/g2p_multilingual_byT5_small_100)             |
+| en-UK (Broad)  | Wikipron   | IPA       | [External Link](https://github.com/CUNY-CL/wikipron/blob/master/data/scrape/tsv/eng_latn_uk_broad.tsv)  | [bookbot/byt5-small-wikipron-eng-latn-uk-broad](https://huggingface.co/bookbot/byt5-small-wikipron-eng-latn-uk-broad) |
+| en-UK (Narrow) | Wikipron   | IPA       | [External Link](https://github.com/CUNY-CL/wikipron/blob/master/data/scrape/tsv/eng_latn_uk_narrow.tsv) |                                                                                                                       |
 
 ### English `(en-AU)`
 
-| Language       | Dictionary | Corpus                                         | G2P Model                                                                                                             |
-| -------------- | ---------- | ---------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| en-AU (Broad)  | Wikipron   | [Link](./dict/wikipron/eng_latn_au_broad.tsv)  | [bookbot/byt5-small-wikipron-eng-latn-au-broad](https://huggingface.co/bookbot/byt5-small-wikipron-eng-latn-au-broad) |
-| en-AU (Narrow) | Wikipron   | [Link](./dict/wikipron/eng_latn_au_narrow.tsv) |                                                                                                                       |
+| Language       | Dictionary | Phone Set | Corpus                                         | G2P Model                                                                                                             |
+| -------------- | ---------- | --------- | ---------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| en-AU (Broad)  | Wikipron   | IPA       | [Link](./dict/wikipron/eng_latn_au_broad.tsv)  | [bookbot/byt5-small-wikipron-eng-latn-au-broad](https://huggingface.co/bookbot/byt5-small-wikipron-eng-latn-au-broad) |
+| en-AU (Narrow) | Wikipron   | IPA       | [Link](./dict/wikipron/eng_latn_au_narrow.tsv) |                                                                                                                       |
 
 ## Training G2P Model
 
@@ -72,7 +73,7 @@ python run_translation.py \
     --use_auth_token
 ```
 
-### Example: Fine-tune ByT5 on CMU Dict IPA
+### Example: Fine-tune ByT5 on CMU Dict
 
 ```sh
 python run_translation.py \
@@ -116,7 +117,7 @@ python eval.py \
     --batch_size 64
 ```
 
-### Example: Evaluate ByT5 on CMU Dict IPA
+### Example: Evaluate ByT5 on CMU Dict
 
 ```sh
 python eval.py \
@@ -148,6 +149,7 @@ python eval.py \
 ## Resources
 
 - [CharsiuG2P](https://github.com/lingjzhu/CharsiuG2P)
+- [Microsoft CNTK](https://github.com/microsoft/CNTK/tree/master)
 - [CMU Pronouncing Dictionary - IPA](https://github.com/menelik3/cmudict-ipa)
 - [Wikipron](https://github.com/CUNY-CL/wikipron/tree/master)
 
