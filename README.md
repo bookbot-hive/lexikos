@@ -3,7 +3,7 @@
 A collection of pronunciation dictionaries and neural grapheme-to-phoneme models.
 
 <p align="center">
-    <img src="./assets/lexikos.png" alt="logo" width="300"/>
+    <img src="https://github.com/bookbot-hive/lexikos/raw/main/assets/lexikos.png" alt="logo" width="300"/>
 </p>
 
 ## Usage
