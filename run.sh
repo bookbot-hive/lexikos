@@ -1,0 +1,25 @@
+python run_translation.py \
+    --model_name_or_path google/byt5-small \
+    --dataset_name bookbot/cmudict-0.7b \
+    --output_dir ./byt5-small-cmudict \
+    --per_device_train_batch_size 128 \
+    --per_device_eval_batch_size 32 \
+    --learning_rate 2e-4 \
+    --lr_scheduler_type linear \
+    --warmup_ratio 0.1 \
+    --num_train_epochs 10 \
+    --evaluation_strategy epoch \
+    --save_strategy epoch \
+    --logging_strategy epoch \
+    --max_source_length 64 \
+    --max_target_length 64 \
+    --val_max_target_length 64 \
+    --pad_to_max_length True \
+    --overwrite_output_dir \
+    --do_train --do_eval \
+    --bf16 \
+    --predict_with_generate \
+    --report_to tensorboard \
+    --push_to_hub \
+    --hub_model_id bookbot/byt5-small-cmudict \
+    --use_auth_token
