@@ -27,11 +27,11 @@ pip install -e lexikos
 >>> from lexikos import Lexicon
 >>> lexicon = Lexicon()
 >>> print(lexicon["added"])
-{'ˈæ d ə d', 'a d ɪ d', 'æ d ɪ d', 'a d ə d', 'æ ɾ ə d', 'ˈa d ə d', 'æ d ə d', 'ˈæ d ɪ d', 'ˈa d ɪ d', 'ˈæ ɾ ɪ d', 'æ ɾ ɪ d', 'ˈæ ɾ ə d'}
+{'ˈæ ɾ ɪ d', 'æ ɾ ɪ d', 'ˈæ d ɪ d', 'a d ɪ d', 'a d ə d', 'ˈæ ɾ ə d', 'ˈæ d ə d', 'æ d ɪ d', 'æ ɾ ə d', 'æ d ə d', 'ˈa d ɪ d', 'ˈa d ə d'}
 >>> print(lexicon["runner"])
-{'ɹ ʌ n ɚ', 'ˈr ʌ n ɝ', 'ɹ ʌ n ə'}
+{'ɹ ʌ n ə', 'ɹ ʌ n ɚ', 'ˈr ʌ n ɝ'}
 >>> print(lexicon["water"])
-{'w ɑ ɾ ɚ', 'ˈw oː t ə', 'w ɑ t ə ɹ', 'w ɔ ɾ ɚ', 'ˈw oː ɾ ə', 'w ɔː t ə', 'ˈw ɔ t ɝ', 'w ɔ t ə ɹ'}
+{'ˈw oː t ə', 'w ɔ t ə ɹ', 'ˈw ɑ t ə ɹ', 'w ɑ ɾ ɚ', 'ˈw ɔ t ɝ', 'ˈw ɑ ɾ ɚ', 'ˈʋ ɔ ʈ ə r', 'ˈʋ aː ʈ ə r ɯ', 'w ɔ ɾ ɚ', 'w ɑ t ə ɹ', 'ˈw aː ʈ ə r ɯ', 'ˈw ɔ ʈ ə r', 'ˈw oː ɾ ə', 'w ɔː t ə'}
 ```
 
 ## Dictionaries & Models
@@ -66,6 +66,28 @@ pip install -e lexikos
 | -------------- | ---------- | --------- | ------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- |
 | en-AU (Broad)  | Wikipron   | IPA       | [Link](./lexikos/dict/wikipron/eng_latn_au_broad.tsv)  | [bookbot/byt5-small-wikipron-eng-latn-au-broad](https://huggingface.co/bookbot/byt5-small-wikipron-eng-latn-au-broad) |
 | en-AU (Narrow) | Wikipron   | IPA       | [Link](./lexikos/dict/wikipron/eng_latn_au_narrow.tsv) |                                                                                                                       |
+
+### English `(en-CA)`
+
+| Language       | Dictionary | Phone Set | Corpus                                                 | G2P Model |
+| -------------- | ---------- | --------- | ------------------------------------------------------ | --------- |
+| en-CA (Broad)  | Wikipron   | IPA       | [Link](./lexikos/dict/wikipron/eng_latn_ca_broad.tsv)  |           |
+| en-CA (Narrow) | Wikipron   | IPA       | [Link](./lexikos/dict/wikipron/eng_latn_ca_narrow.tsv) |           |
+
+### English `(en-NZ)`
+
+| Language       | Dictionary | Phone Set | Corpus                                                 | G2P Model |
+| -------------- | ---------- | --------- | ------------------------------------------------------ | --------- |
+| en-NZ (Broad)  | Wikipron   | IPA       | [Link](./lexikos/dict/wikipron/eng_latn_nz_broad.tsv)  |           |
+| en-NZ (Narrow) | Wikipron   | IPA       | [Link](./lexikos/dict/wikipron/eng_latn_nz_narrow.tsv) |           |
+
+### English `(en-IN)`
+
+| Language       | Dictionary | Phone Set | Corpus                                                 | G2P Model |
+| -------------- | ---------- | --------- | ------------------------------------------------------ | --------- |
+| en-IN (Broad)  | Wikipron   | IPA       | [Link](./lexikos/dict/wikipron/eng_latn_in_broad.tsv)  |           |
+| en-IN (Narrow) | Wikipron   | IPA       | [Link](./lexikos/dict/wikipron/eng_latn_in_narrow.tsv) |           |
+
 
 ## Training G2P Model
 
@@ -168,11 +190,11 @@ python eval.py \
 | East Asian English     | en-CN, en-HK, en-JP, en-KR, en-TW | China, Hong Kong, Japan, South Korea, Taiwan          |        |           |
 | European English       | en-UK, en-HU, en-IE               | United Kingdom, Hungary, Ireland                      |        |           |
 | Mexican English        | en-MX                             | Mexico                                                |        |           |
-| New Zealand English    | en-NZ                             | New Zealand                                           |        |           |
-| North American         | en-CA, en-US                      | Canada, United States                                 |        |           |
+| New Zealand English    | en-NZ                             | New Zealand                                           |   ✅    |           |
+| North American         | en-CA, en-US                      | Canada, United States                                 |   ✅    |           |
 | Middle Eastern English | en-EG, en-IL                      | Egypt, Israel                                         |        |           |
 | Southeast Asian        | en-TH, en-ID, en-MY, en-PH, en-SG | Thailand, Indonesia, Malaysia, Philippines, Singapore |        |           |
-| South Asian English    | en-IN                             | India                                                 |        |           |
+| South Asian English    | en-IN                             | India                                                 |   ✅    |           |
   
 ## Resources
 
@@ -203,11 +225,11 @@ python eval.py \
 
 ```bibtex
 @misc{zhu2022byt5,
-      title={ByT5 model for massively multilingual grapheme-to-phoneme conversion}, 
-      author={Jian Zhu and Cong Zhang and David Jurgens},
-      year={2022},
-      eprint={2204.03067},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL}
+    title={ByT5 model for massively multilingual grapheme-to-phoneme conversion}, 
+    author={Jian Zhu and Cong Zhang and David Jurgens},
+    year={2022},
+    eprint={2204.03067},
+    archivePrefix={arXiv},
+    primaryClass={cs.CL}
 }
 ```
