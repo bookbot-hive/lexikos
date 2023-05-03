@@ -23,6 +23,8 @@ pip install -e lexikos
 
 ## Usage
 
+### Lexicon
+
 ```py
 >>> from lexikos import Lexicon
 >>> lexicon = Lexicon()
@@ -32,6 +34,21 @@ pip install -e lexikos
 {'ɹ ʌ n ə', 'ɹ ʌ n ɚ', 'ˈr ʌ n ɝ'}
 >>> print(lexicon["water"])
 {'ˈw oː t ə', 'w ɔ t ə ɹ', 'ˈw ɑ t ə ɹ', 'w ɑ ɾ ɚ', 'ˈw ɔ t ɝ', 'ˈw ɑ ɾ ɚ', 'ˈʋ ɔ ʈ ə r', 'ˈʋ aː ʈ ə r ɯ', 'w ɔ ɾ ɚ', 'w ɑ t ə ɹ', 'ˈw aː ʈ ə r ɯ', 'ˈw ɔ ʈ ə r', 'ˈw oː ɾ ə', 'w ɔː t ə'}
+```
+
+### Phonemization
+
+```py
+>>> from transformers import pipeline
+>>> import torch
+>>> g2p = pipeline(
+...     model="bookbot/byt5-small-wikipron-eng-latn-us-broad",
+...     device=0 if torch.cuda.is_available() else -1,
+... )
+>>> g2p("phonemizing", max_length=200)[0]['generated_text']
+'f o ʊ n ə m a ɪ z ɪ ŋ'
+>>> g2p("imposimpable", max_length=200)[0]['generated_text']
+'ɪ m p ə z ɪ m p ə b ə l'
 ```
 
 ## Dictionaries & Models
