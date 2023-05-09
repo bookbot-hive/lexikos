@@ -21,21 +21,30 @@ DICTIONARIES = os.path.join(os.path.dirname(__file__), "dict")
 
 
 class Lexicon(UserDict):
-    def __init__(self, dictionaries_dir: Union[Path, str] = DICTIONARIES):
+    def __init__(
+        self,
+        normalize_phonemes: bool = False,
+        dictionaries_dir: Union[Path, str] = DICTIONARIES,
+    ):
         if isinstance(dictionaries_dir, str):
             dictionaries_dir = Path(dictionaries_dir)
 
         files = list(dictionaries_dir.rglob("*/*.tsv"))
-        dicts = [self._parse_tsv(file) for file in files]
+        dicts = [self._parse_tsv(file, normalize_phonemes) for file in files]
         mapping: Dict[str, Set[str]] = self._merge_dicts(dicts)
         super().__init__(mapping)
 
-    def _parse_tsv(self, file: Union[Path, str]) -> Dict[str, Set[str]]:
+    def _parse_tsv(
+        self, file: Union[Path, str], normalize_phonemes: bool
+    ) -> Dict[str, Set[str]]:
         lex = {}
         with open(file, "r") as f:
             for line in f.readlines():
                 word, phonemes = line.strip().split("\t")
-                phonemes = [phonemes.replace(" . ", " ")]
+                phonemes = phonemes.replace(" . ", " ")
+                if normalize_phonemes:
+                    phonemes = self._normalize_phonemes(phonemes)
+                phonemes = [phonemes]
                 word = word.lower()
                 if word in lex:
                     lex[word] = lex[word].union(phonemes)
@@ -52,6 +61,16 @@ class Lexicon(UserDict):
                 else:
                     output_dict[k] = v
         return output_dict
+
+    def _normalize_phonemes(self, phonemes: str) -> str:
+        """
+        Modified from: [Michael McAuliffe](https://memcauliffe.com/speaker-dictionaries-and-multilingual-ipa.html#multilingual-ipa-mode)
+        """
+        diacritics = ["ː", "ˑ", "̆", "̯", "͡", "‿", "͜", "̩", "ˈ", "ˌ"]
+        for d in diacritics:
+            phonemes = phonemes.replace(d, "")
+        phonemes = " ".join([p for p in phonemes if p != " "]).strip()
+        return phonemes
 
 
 if __name__ == "__main__":

@@ -29,11 +29,24 @@ pip install -e lexikos
 >>> from lexikos import Lexicon
 >>> lexicon = Lexicon()
 >>> print(lexicon["added"])
-{'ˈæ ɾ ɪ d', 'æ ɾ ɪ d', 'ˈæ d ɪ d', 'a d ɪ d', 'a d ə d', 'ˈæ ɾ ə d', 'ˈæ d ə d', 'æ d ɪ d', 'æ ɾ ə d', 'æ d ə d', 'ˈa d ɪ d', 'ˈa d ə d'}
+{'ˈæ d ɪ d', 'ˈæ ɾ ə d', 'æ ɾ ɪ d', 'a d ɪ d', 'ˈa d ɪ d', 'æ ɾ ə d', 'ˈa d ə d', 'a d ə d', 'ˈæ d ə d', 'æ d ə d', 'æ d ɪ d', 'ˈæ ɾ ɪ d'}
 >>> print(lexicon["runner"])
-{'ɹ ʌ n ə', 'ɹ ʌ n ɚ', 'ˈr ʌ n ɝ'}
+{'ɹ ʌ n ɚ', 'ɹ ʌ n ə', 'ɹ ʌ n ɝ', 'ˈr ʌ n ɝ'}
 >>> print(lexicon["water"])
-{'ˈw oː t ə', 'w ɔ t ə ɹ', 'ˈw ɑ t ə ɹ', 'w ɑ ɾ ɚ', 'ˈw ɔ t ɝ', 'ˈw ɑ ɾ ɚ', 'ˈʋ ɔ ʈ ə r', 'ˈʋ aː ʈ ə r ɯ', 'w ɔ ɾ ɚ', 'w ɑ t ə ɹ', 'ˈw aː ʈ ə r ɯ', 'ˈw ɔ ʈ ə r', 'ˈw oː ɾ ə', 'w ɔː t ə'}
+{'ˈʋ aː ʈ ə r ɯ', 'ˈw oː t ə', 'w ɑ t ə ɹ', 'ˈw aː ʈ ə r ɯ', 'ˈw ɔ t ɝ', 'w ɔ t ə ɹ', 'ˈw ɑ t ə ɹ', 'w ɔ t ɝ', 'w ɑ ɾ ɚ', 'ˈw ɑ ɾ ɚ', 'ˈʋ ɔ ʈ ə r', 'w ɔ ɾ ɚ', 'w ɔː t ə', 'ˈw oː ɾ ə', 'ˈw ɔ ʈ ə r'}
+```
+
+To get a lexicon where phonemes are normalized (diacritics removed, digraphs split):
+
+```py
+>>> from lexikos import Lexicon
+>>> lexicon = Lexicon(normalize_phonemes=True)
+>>> print(lexicon["added"])
+{'æ ɾ ɪ d', 'a d ɪ d', 'a d ə d', 'æ ɾ ə d', 'æ d ə d', 'æ d ɪ d'}
+>>> print(lexicon["runner"])
+{'ɹ ʌ n ɚ', 'ɹ ʌ n ə', 'r ʌ n ɝ', 'ɹ ʌ n ɝ'}
+>>> print(lexicon["water"])
+{'w o ɾ ə', 'w ɔ t ə', 'ʋ ɔ ʈ ə r', 'w a ʈ ə r ɯ', 'w ɔ t ə ɹ', 'ʋ a ʈ ə r ɯ', 'w ɑ ɾ ɚ', 'w o t ə', 'w ɔ t ɝ', 'w ɔ ʈ ə r', 'w ɔ ɾ ɚ', 'w ɑ t ə ɹ'}
 ```
 
 ### Phonemization
