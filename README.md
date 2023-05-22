@@ -81,6 +81,7 @@ To get a lexicon where phonemes are normalized (diacritics removed, digraphs spl
 | en-US          | CharsiuG2P   | IPA       | [External Link](https://github.com/lingjzhu/CharsiuG2P/blob/main/dicts/eng-us.tsv)                                         | [charsiu/g2p_multilingual_byT5_small_100](https://huggingface.co/charsiu/g2p_multilingual_byT5_small_100)             |
 | en-US (Broad)  | Wikipron     | IPA       | [External Link](https://github.com/CUNY-CL/wikipron/blob/master/data/scrape/tsv/eng_latn_us_broad.tsv)                     | [bookbot/byt5-small-wikipron-eng-latn-us-broad](https://huggingface.co/bookbot/byt5-small-wikipron-eng-latn-us-broad) |
 | en-US (Narrow) | Wikipron     | IPA       | [External Link](https://github.com/CUNY-CL/wikipron/blob/master/data/scrape/tsv/eng_latn_us_narrow.tsv)                    |
+| en-US          | LibriSpeech  | IPA       | [Link](./lexikos/dict/cmudict-ipa/librispeech-lexicon-200k-allothers-g2p-ipa.tsv)                                          |                                                                                                                       |
 
 ### English `(en-UK)`
 
@@ -92,10 +93,12 @@ To get a lexicon where phonemes are normalized (diacritics removed, digraphs spl
 
 ### English `(en-AU)`
 
-| Language       | Dictionary | Phone Set | Corpus                                                 | G2P Model                                                                                                             |
-| -------------- | ---------- | --------- | ------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- |
-| en-AU (Broad)  | Wikipron   | IPA       | [Link](./lexikos/dict/wikipron/eng_latn_au_broad.tsv)  | [bookbot/byt5-small-wikipron-eng-latn-au-broad](https://huggingface.co/bookbot/byt5-small-wikipron-eng-latn-au-broad) |
-| en-AU (Narrow) | Wikipron   | IPA       | [Link](./lexikos/dict/wikipron/eng_latn_au_narrow.tsv) |                                                                                                                       |
+| Language       | Dictionary  | Phone Set | Corpus                                                 | G2P Model                                                                                                             |
+| -------------- | ----------- | --------- | ------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- |
+| en-AU (Broad)  | Wikipron    | IPA       | [Link](./lexikos/dict/wikipron/eng_latn_au_broad.tsv)  | [bookbot/byt5-small-wikipron-eng-latn-au-broad](https://huggingface.co/bookbot/byt5-small-wikipron-eng-latn-au-broad) |
+| en-AU (Narrow) | Wikipron    | IPA       | [Link](./lexikos/dict/wikipron/eng_latn_au_narrow.tsv) |                                                                                                                       |
+| en-AU          | AusTalk (§) | IPA       | [Link](./lexikos/dict/synthetic/austalk_en_au.tsv)     |                                                                                                                       |
+| en-AU          | SC-CW (§)   | IPA       | [Link](./lexikos/dict/synthetic/sc_cw_en_au.tsv)       |                                                                                                                       |
 
 ### English `(en-CA)`
 
@@ -218,10 +221,10 @@ python eval.py \
 | African English        | en-ZA                             | South Africa                                          |        |           |
 | Australian English     | en-AU                             | Australia                                             |   ✅    |     ✅     |
 | East Asian English     | en-CN, en-HK, en-JP, en-KR, en-TW | China, Hong Kong, Japan, South Korea, Taiwan          |        |           |
-| European English       | en-UK, en-HU, en-IE               | United Kingdom, Hungary, Ireland                      |        |           |
+| European English       | en-UK, en-HU, en-IE               | United Kingdom, Hungary, Ireland                      |   🚧    |     🚧     |
 | Mexican English        | en-MX                             | Mexico                                                |        |           |
 | New Zealand English    | en-NZ                             | New Zealand                                           |   ✅    |           |
-| North American         | en-CA, en-US                      | Canada, United States                                 |   ✅    |           |
+| North American         | en-CA, en-US                      | Canada, United States                                 |   ✅    |     🚧     |
 | Middle Eastern English | en-EG, en-IL                      | Egypt, Israel                                         |        |           |
 | Southeast Asian        | en-TH, en-ID, en-MY, en-PH, en-SG | Thailand, Indonesia, Malaysia, Philippines, Singapore |        |           |
 | South Asian English    | en-IN                             | India                                                 |   ✅    |           |
