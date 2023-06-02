@@ -35,9 +35,15 @@ def main(args):
     ort_model = ORTModelForSeq2SeqLM.from_pretrained(args.model_name)
     model_dir = ort_model.model_save_dir
 
-    encoder_quantizer = ORTQuantizer.from_pretrained(model_dir, file_name="encoder_model.onnx")
-    decoder_quantizer = ORTQuantizer.from_pretrained(model_dir, file_name="decoder_model.onnx")
-    decoder_wp_quantizer = ORTQuantizer.from_pretrained(model_dir, file_name="decoder_with_past_model.onnx")
+    if (model_dir / "encoder_model_optimized.onnx").exists():
+        encoder_quantizer = ORTQuantizer.from_pretrained(model_dir, file_name="encoder_model_optimized.onnx")
+        decoder_quantizer = ORTQuantizer.from_pretrained(model_dir, file_name="decoder_model_optimized.onnx")
+        decoder_wp_quantizer = ORTQuantizer.from_pretrained(model_dir, file_name="decoder_with_past_model_optimized.onnx")
+    else:
+        encoder_quantizer = ORTQuantizer.from_pretrained(model_dir, file_name="encoder_model.onnx")
+        decoder_quantizer = ORTQuantizer.from_pretrained(model_dir, file_name="decoder_model.onnx")
+        decoder_wp_quantizer = ORTQuantizer.from_pretrained(model_dir, file_name="decoder_with_past_model.onnx")
+        
     quantizer = [encoder_quantizer, decoder_quantizer, decoder_wp_quantizer]
 
     q_kwargs = {"is_static": False, "per_channel": False}
