@@ -22,10 +22,10 @@ def log_results(result: Dataset, args):
     logging_dir = f"{args.logging_dir}/{model_id}"
     os.makedirs(logging_dir, exist_ok=True)
 
-    with open(f"{logging_dir}/metrics_{args.source}_{args.target}.txt", "w") as f:
+    with open(f"{logging_dir}/metrics.txt", "w") as f:
         f.write(result_str)
 
-    with open(f"{logging_dir}/log_{args.source}_{args.target}.json", "w") as f:
+    with open(f"{logging_dir}/log.json", "w") as f:
         data = [
             {"prediction": p, "target": t}
             for p, t in zip(result["prediction"], result["target"])
