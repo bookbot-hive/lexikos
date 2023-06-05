@@ -27,11 +27,10 @@ def measure_latency(pipe):
 dt = datetime.now()
 payload = "Hello my name is Philipp. I am getting in touch with you because i didn't get a response from you."
 onnx_models = [
-    "bookbot/onnx-byt5-small-wikipron-eng-latn-uk-broad",
-    "bookbot/onnx-byt5-small-wikipron-eng-latn-uk-broad-optimized",
-    "bookbot/onnx-byt5-small-wikipron-eng-latn-uk-broad-quantized-arm64",
-    "bookbot/onnx-byt5-small-wikipron-eng-latn-uk-broad-quantized-avx512_vnni",
-    "bookbot/onnx-byt5-small-wikipron-eng-latn-uk-broad-optimized-quantized-arm64"
+    "bookbot/onnx-byt5-small-wikipron-eng-latn-us-broad",
+    "bookbot/onnx-byt5-small-wikipron-eng-latn-us-broad-optimized",
+    "bookbot/onnx-byt5-small-wikipron-eng-latn-us-broad-quantized-avx512_vnni",
+    "bookbot/onnx-byt5-small-wikipron-eng-latn-us-broad-optimized-quantized-avx512_vnni"
 ]
 
 vanilla_model = "bookbot/byt5-small-wikipron-eng-latn-uk-broad"

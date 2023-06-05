@@ -20,6 +20,7 @@ import os
 from nltk.tokenize import TweetTokenizer
 
 from normalizer import normalize_numbers
+from t5 import T5
 
 DICTIONARIES = Path(os.path.join(os.path.dirname(__file__), "dict"))
 
@@ -29,6 +30,7 @@ class G2p:
         self, lang: str = "en-us", backend: str = "wikipron", narrow: bool = False
     ):
         self.lexicon = self._get_dictionary(lang, backend, narrow)
+        self.t5 = self._get_t5_model(lang, backend, narrow)
         self.tokenizer = TweetTokenizer()
 
     def __call__(self, text: str, keep_punctuations: bool = False) -> List[str]:
@@ -53,8 +55,8 @@ class G2p:
             phoneme = self.lexicon[token][-1]
             return phoneme
         except KeyError:
-            # TODO: pass to NN-based phonemizer
-            return token
+            phoneme = self.t5(token)
+            return phoneme
 
     def _normalize_text(self, text: str) -> str:
         text = normalize_numbers(text)
@@ -91,7 +93,37 @@ class G2p:
 
         return lexicon
 
+    def _get_t5_model(self, lang: str, backend: str, narrow: bool) -> T5:
+        _MODELS = {
+            "wikipron": {
+                "en-uk": {
+                    "broad": "bookbot/onnx-byt5-small-wikipron-eng-latn-uk-broad-quantized-avx512_vnni"
+                },
+                "en-us": {
+                    "broad": "bookbot/onnx-byt5-small-wikipron-eng-latn-us-broad-quantized-avx512_vnni"
+                },
+                "en-au": {
+                    "broad": "bookbot/onnx-byt5-small-wikipron-eng-latn-au-broad-quantized-avx512_vnni",
+                }
+            }
+        }
+        _SUPPORTED_BACKENDS = ["wikipron"]
+        _SUPPORTED_LANGUAGES = ["en-au", "en-uk", "en-us"]
+
+        if backend not in _SUPPORTED_BACKENDS:
+            raise ValueError(f"Backend {backend} is not supported!")
+
+        if lang not in _SUPPORTED_LANGUAGES:
+            raise ValueError(f"Language {lang} is not supported!")
+        
+        if narrow:
+            raise ValueError("Narrow model is not supported!")
+
+        t5 = T5(_MODELS[backend][lang]['narrow' if narrow else 'broad'])
+
+        return t5
+
 
 if __name__ == "__main__":
-    g2p = G2p()
+    g2p = G2p(lang="en-us")
     print(g2p("Hello there! $100 is not a lot of money in 2023."))

@@ -1,4 +1,4 @@
 inflect
 nltk
 onnxruntime
-git+https://github.com/huggingface/optimum.git
+optimum
