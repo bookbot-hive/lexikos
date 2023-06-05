@@ -24,6 +24,7 @@ def main(args):
     save_dir = Path(f"{model_name}-optimized")
 
     ort_model = ORTModelForSeq2SeqLM.from_pretrained(args.model_name)
+    model_dir = ort_model.model_save_dir
     
     # monkeypatch for https://github.com/microsoft/onnxruntime/issues/14886
     ort_model.config.num_heads = 0
@@ -36,6 +37,10 @@ def main(args):
         optimize_for_gpu=False,
     )
     optimizer.optimize(save_dir=save_dir, optimization_config=optimization_config)
+
+    # copy generation_config.json
+    generation_config = "generation_config.json"
+    shutil.copy(model_dir / generation_config, save_dir / generation_config)
 
     ort_model.push_to_hub(str(save_dir), repository_id=args.hub_model_id)
 

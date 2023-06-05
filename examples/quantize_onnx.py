@@ -61,6 +61,10 @@ def main(args):
 
     for q in quantizer:
         q.quantize(save_dir=save_dir, quantization_config=dqconfig)
+    
+    # copy generation_config.json
+    generation_config = "generation_config.json"
+    shutil.copy(model_dir / generation_config, save_dir / generation_config)
 
     ort_model.push_to_hub(str(save_dir), repository_id=args.hub_model_id)
 
