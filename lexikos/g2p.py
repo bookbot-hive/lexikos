@@ -19,8 +19,8 @@ import os
 
 from nltk.tokenize import TweetTokenizer
 
-from normalizer import normalize_numbers
-from t5 import T5
+from .normalizer import normalize_numbers
+from .t5 import T5
 
 DICTIONARIES = Path(os.path.join(os.path.dirname(__file__), "dict"))
 
@@ -81,7 +81,7 @@ class G2p:
         path = DICTIONARIES / backend / fname
         lexicon = {}
 
-        with open(path, "r") as f:
+        with open(path, "r") as  f:
             for line in f.readlines():
                 word, phonemes = line.strip().split("\t")
                 phonemes = [phonemes.replace(" . ", " ")]
