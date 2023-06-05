@@ -12,22 +12,27 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from typing import Dict, List
+from typing import Dict, List, Optional
 from pathlib import Path
 import string
 import os
 
 from nltk.tokenize import TweetTokenizer
 
+from .utils import logger
 from .normalizer import normalize_numbers
 from .t5 import T5
 
-DICTIONARIES = Path(os.path.join(os.path.dirname(__file__), "dict"))
+_SUPPORTED_BACKENDS = ["wikipron"]
+_SUPPORTED_LANGUAGES = ["en", "en-au", "en-ca", "en-in", "en-nz", "en-uk", "en-us"]
 
 
 class G2p:
     def __init__(
-        self, lang: str = "en-us", backend: str = "wikipron", narrow: bool = False
+        self,
+        lang: str = "en-us",
+        backend: str = "wikipron",
+        narrow: Optional[bool] = None,
     ):
         self.lexicon = self._get_dictionary(lang, backend, narrow)
         self.t5 = self._get_t5_model(lang, backend, narrow)
@@ -65,10 +70,9 @@ class G2p:
         return text
 
     def _get_dictionary(
-        self, lang: str, backend: str, narrow: bool
+        self, lang: str, backend: str, narrow: Optional[bool] = None
     ) -> Dict[str, List[str]]:
-        _SUPPORTED_BACKENDS = ["wikipron"]
-        _SUPPORTED_LANGUAGES = ["en-au", "en-ca", "en-in", "en-nz", "en-uk", "en-us"]
+        _DICTIONARIES = Path(os.path.join(os.path.dirname(__file__), "dict"))
 
         if backend not in _SUPPORTED_BACKENDS:
             raise ValueError(f"Backend {backend} is not supported!")
@@ -76,12 +80,22 @@ class G2p:
         if lang not in _SUPPORTED_LANGUAGES:
             raise ValueError(f"Language {lang} is not supported!")
 
-        _, region = lang.split("-")
-        fname = f"eng_latn_{region}_{'narrow' if narrow else 'broad'}.tsv"
-        path = DICTIONARIES / backend / fname
+        if lang == "en":
+            fname = "eng_latn.tsv"
+        else:
+            if narrow is None:
+                logger.info(
+                    "Neither narrow nor broad pronunciation was specified, defaulting to broad pronunciation."
+                )
+                narrow = False
+
+            _, region = lang.split("-")
+            fname = f"eng_latn_{region}_{'narrow' if narrow else 'broad'}.tsv"
+
+        path = _DICTIONARIES / backend / fname
         lexicon = {}
 
-        with open(path, "r") as  f:
+        with open(path, "r") as f:
             for line in f.readlines():
                 word, phonemes = line.strip().split("\t")
                 phonemes = [phonemes.replace(" . ", " ")]
@@ -96,11 +110,14 @@ class G2p:
     def _get_t5_model(self, lang: str, backend: str, narrow: bool) -> T5:
         _MODELS = {
             "wikipron": {
+                "en": {
+                    "broad": "bookbot/onnx-byt5-small-wikipron-eng-latn-quantized-avx512_vnni",
+                },
                 "en-uk": {
-                    "broad": "bookbot/onnx-byt5-small-wikipron-eng-latn-uk-broad-quantized-avx512_vnni"
+                    "broad": "bookbot/onnx-byt5-small-wikipron-eng-latn-uk-broad-quantized-avx512_vnni",
                 },
                 "en-us": {
-                    "broad": "bookbot/onnx-byt5-small-wikipron-eng-latn-us-broad-quantized-avx512_vnni"
+                    "broad": "bookbot/onnx-byt5-small-wikipron-eng-latn-us-broad-quantized-avx512_vnni",
                 },
                 "en-au": {
                     "broad": "bookbot/onnx-byt5-small-wikipron-eng-latn-au-broad-quantized-avx512_vnni",
@@ -113,22 +130,20 @@ class G2p:
                 },
                 "en-in": {
                     "broad": "bookbot/onnx-byt5-small-wikipron-eng-latn-in-broad-quantized-avx512_vnni",
-                }
+                },
             }
         }
-        _SUPPORTED_BACKENDS = ["wikipron"]
-        _SUPPORTED_LANGUAGES = ["en-au", "en-uk", "en-us", "en-ca", "en-nz", "en-in"]
 
         if backend not in _SUPPORTED_BACKENDS:
             raise ValueError(f"Backend {backend} is not supported!")
 
         if lang not in _SUPPORTED_LANGUAGES:
             raise ValueError(f"Language {lang} is not supported!")
-        
+
         if narrow:
             raise ValueError("Narrow model is not supported!")
 
-        t5 = T5(_MODELS[backend][lang]['narrow' if narrow else 'broad'])
+        t5 = T5(_MODELS[backend][lang]["narrow" if narrow else "broad"])
 
         return t5
 
