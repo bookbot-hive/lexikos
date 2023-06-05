@@ -110,11 +110,14 @@ class G2p:
                 },
                 "en-nz": {
                     "broad": "bookbot/onnx-byt5-small-wikipron-eng-latn-nz-broad-quantized-avx512_vnni",
+                },
+                "en-in": {
+                    "broad": "bookbot/onnx-byt5-small-wikipron-eng-latn-in-broad-quantized-avx512_vnni",
                 }
             }
         }
         _SUPPORTED_BACKENDS = ["wikipron"]
-        _SUPPORTED_LANGUAGES = ["en-au", "en-uk", "en-us", "en-ca", "en-nz"]
+        _SUPPORTED_LANGUAGES = ["en-au", "en-uk", "en-us", "en-ca", "en-nz", "en-in"]
 
         if backend not in _SUPPORTED_BACKENDS:
             raise ValueError(f"Backend {backend} is not supported!")
