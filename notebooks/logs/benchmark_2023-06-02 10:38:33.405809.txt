@@ -1,0 +1,6 @@
+bookbot/byt5-small-wikipron-eng-latn-uk-broad: P95 latency (ms) - 455.5545175501038; Average latency (ms) - 416.44 +\- 20.83;
+bookbot/onnx-byt5-small-wikipron-eng-latn-uk-broad: P95 latency (ms) - 301.38177089975215; Average latency (ms) - 272.54 +\- 19.28;Improvement: 1.51x
+bookbot/onnx-byt5-small-wikipron-eng-latn-uk-broad-optimized: P95 latency (ms) - 298.119652350033; Average latency (ms) - 268.50 +\- 17.92;Improvement: 1.53x
+bookbot/onnx-byt5-small-wikipron-eng-latn-uk-broad-quantized-arm64: P95 latency (ms) - 222.16092500020747; Average latency (ms) - 183.73 +\- 21.53;Improvement: 2.05x
+bookbot/onnx-byt5-small-wikipron-eng-latn-uk-broad-quantized-avx512_vnni: P95 latency (ms) - 202.7018074000125; Average latency (ms) - 172.98 +\- 19.04;Improvement: 2.25x
+bookbot/onnx-byt5-small-wikipron-eng-latn-uk-broad-optimized-quantized-arm64: P95 latency (ms) - 217.46001234985215; Average latency (ms) - 182.17 +\- 18.61;Improvement: 2.09x

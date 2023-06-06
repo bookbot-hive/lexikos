@@ -1,0 +1,4002 @@
+[
+  {
+    "prediction": "f \u0252 d",
+    "target": "f \u0252 d"
+  },
+  {
+    "prediction": "k \u0252 l \u0259 n i",
+    "target": "k \u0252 l \u0259 n i"
+  },
+  {
+    "prediction": "f e \u026a s p \u0254\u02d0 m",
+    "target": "f e \u026a s p \u0251\u02d0 l m"
+  },
+  {
+    "prediction": "\u026a n \u0279 \u0259 \u028a d",
+    "target": "\u026a n \u0279 \u0259 \u028a d"
+  },
+  {
+    "prediction": "b \u00e6 \u0283 \u026a z",
+    "target": "b \u00e6 \u0283 \u026a z"
+  },
+  {
+    "prediction": "s l \u00e6 t k \u0259 \u028a",
+    "target": "s l \u00e6 t k \u0259 \u028a"
+  },
+  {
+    "prediction": "k l i\u02d0 k",
+    "target": "k l i\u02d0 k"
+  },
+  {
+    "prediction": "e \u026a k \u0259 z",
+    "target": "e \u026a k \u0259 z"
+  },
+  {
+    "prediction": "b \u028c t \u0279 \u026a s",
+    "target": "b \u028c t \u0279 \u0259 s"
+  },
+  {
+    "prediction": "t \u028c \u0261 d",
+    "target": "t \u028c \u0261 d"
+  },
+  {
+    "prediction": "t e \u026a p \u026a s t",
+    "target": "t e \u026a p \u026a s t"
+  },
+  {
+    "prediction": "\u0259 h \u025b d",
+    "target": "\u0259 h \u025b d"
+  },
+  {
+    "prediction": "t \u0252 m",
+    "target": "t u\u02d0 m"
+  },
+  {
+    "prediction": "k \u0259 \u0279 \u026a b i\u02d0 \u0259 n",
+    "target": "k \u00e6 \u0279 \u026a b i\u02d0 \u0259 n"
+  },
+  {
+    "prediction": "\u0259 \u0279 \u00e6 k j \u028a l \u0259",
+    "target": "\u0254\u02d0 \u0279 \u00e6 k j u\u02d0 l \u0259"
+  },
+  {
+    "prediction": "b \u00e6 n",
+    "target": "b \u00e6 n"
+  },
+  {
+    "prediction": "\u025b k s t \u0279 \u0259 m \u026a s t",
+    "target": "\u026a k s t \u0279 i\u02d0 m \u026a s t"
+  },
+  {
+    "prediction": "m \u026a \u0283 p \u0252 x \u0259",
+    "target": "m \u026a \u0283 p u\u02d0 x \u0259"
+  },
+  {
+    "prediction": "k \u00e6 f t \u0259 n",
+    "target": "k \u00e6 f t \u00e6 n"
+  },
+  {
+    "prediction": "\u0259 b \u0252 t s i",
+    "target": "\u00e6 b \u0259 t s i"
+  },
+  {
+    "prediction": "d i\u02d0 j \u0251\u02d0 \u0279 i",
+    "target": "d \u026a \u0259 r i\u02d0"
+  },
+  {
+    "prediction": "k \u0259 \u0279 \u025b n",
+    "target": "k \u0259 \u0279 \u025b n"
+  },
+  {
+    "prediction": "k w \u026a f",
+    "target": "k w \u026a f"
+  },
+  {
+    "prediction": "p \u026a \u0261 m \u0259 n t",
+    "target": "p \u026a \u0261 m \u0259 n t"
+  },
+  {
+    "prediction": "a \u026a s \u0259 \u028a s i\u02d0 l i\u02d0 z",
+    "target": "a \u026a s \u0252 s \u0259 l i\u02d0 z"
+  },
+  {
+    "prediction": "b \u025b d",
+    "target": "b \u025b d"
+  },
+  {
+    "prediction": "l \u00e6 n j e \u026a",
+    "target": "l e \u026a n j \u0259 \u0279"
+  },
+  {
+    "prediction": "s l a \u026a m i",
+    "target": "s l a \u026a m i"
+  },
+  {
+    "prediction": "\u0254\u02d0 k \u0259",
+    "target": "\u0254\u02d0 k \u0259"
+  },
+  {
+    "prediction": "m \u026a s \u026a v",
+    "target": "m \u026a s \u026a v"
+  },
+  {
+    "prediction": "d a \u026a \u0259 s t \u0259 \u028a l",
+    "target": "d a \u026a \u00e6 s t \u0259 l i"
+  },
+  {
+    "prediction": "k \u0279 \u026a p t \u0259 \u028a v a \u026a \u0279 \u0259 s",
+    "target": "k \u0279 \u026a p t \u0259 \u028a v a \u026a \u0279 \u0259 s"
+  },
+  {
+    "prediction": "\u0261 u\u02d0 n a \u026a",
+    "target": "\u0261 \u028c n a \u026a"
+  },
+  {
+    "prediction": "p \u00e6 \u0279 \u0259 l \u025b l",
+    "target": "p \u00e6 \u0279 \u0259 l \u025b l"
+  },
+  {
+    "prediction": "k \u00e6 f",
+    "target": "k \u0251\u02d0 f"
+  },
+  {
+    "prediction": "\u0279 e \u026a k t",
+    "target": "\u0279 e \u026a k t"
+  },
+  {
+    "prediction": "f \u0259 \u028a k w e \u026a",
+    "target": "f \u0259 \u028a k w e \u026a"
+  },
+  {
+    "prediction": "t \u026a \u0259 \u0279 i \u0259 n",
+    "target": "t \u025b \u0279 \u026a \u0259 n"
+  },
+  {
+    "prediction": "k \u00e6 b u k i\u02d0 t\u0361\u0283 \u0259 \u028a",
+    "target": "k \u0259 b u\u02d0 k i\u02d0 t\u0361\u0283 o \u028a"
+  },
+  {
+    "prediction": "t a \u026a t \u0259 n \u0252 m \u0259 k i",
+    "target": "t a \u026a t \u0259 n \u0252 m \u0259 k i"
+  },
+  {
+    "prediction": "\u0254\u02d0 l n \u026a k",
+    "target": "\u00e6 n \u026a k"
+  },
+  {
+    "prediction": "\u03b8 \u0259 \u0279 \u00e6 s \u026a k",
+    "target": "\u03b8 \u0259 \u0279 \u00e6 s \u026a k"
+  },
+  {
+    "prediction": "t \u0251\u02d0 d \u026a s",
+    "target": "t \u0251\u02d0 d \u026a s"
+  },
+  {
+    "prediction": "k \u028c n",
+    "target": "k \u028c n"
+  },
+  {
+    "prediction": "\u026a k s \u025b p \u0283 \u0259 n",
+    "target": "\u0259 k s \u025b p \u0283 \u0259 n"
+  },
+  {
+    "prediction": "\u0279 \u025b t \u0279 \u0259 \u028a f \u0259 \u0279 \u026a n d\u0361\u0292 i \u0259 l",
+    "target": "\u0279 \u025b t \u0279 \u0259 \u028a f a \u0279 \u026a n d\u0361\u0292 i\u02d0 \u0259 l"
+  },
+  {
+    "prediction": "\u025b p \u026a l \u0252 \u0261",
+    "target": "\u025b p \u026a l \u0252 \u0261"
+  },
+  {
+    "prediction": "p \u025b l \u0259 \u0261 \u0279 \u0259",
+    "target": "p \u026a l a \u0261 \u0279 \u0259"
+  },
+  {
+    "prediction": "h e \u026a \u0261 \u0259 n",
+    "target": "h \u0251\u02d0 \u0261 \u0259 n"
+  },
+  {
+    "prediction": "t \u00e6 m \u0259 \u0261 \u0252 t\u0361\u0283 i",
+    "target": "t a m \u0259 \u0261 \u0252 t \u0283 \u026a"
+  },
+  {
+    "prediction": "b \u025c\u02d0 \u03b8",
+    "target": "b \u025c\u02d0 \u00f0"
+  },
+  {
+    "prediction": "s \u0259 b s t \u026a t\u0361\u0283 u \u0259 n d",
+    "target": "s \u028c b s t \u026a t\u0361\u0283 u \u0259 n d"
+  },
+  {
+    "prediction": "\u0259 b d \u0252 m \u026a n \u0259 l",
+    "target": "\u00e6 b d \u0252 m \u0259 n l\u0329"
+  },
+  {
+    "prediction": "\u0279 u\u02d0 \u03b8 i\u02d0 n i \u0259 m",
+    "target": "\u0279 u\u02d0 \u03b8 i\u02d0 n i \u0259 m"
+  },
+  {
+    "prediction": "b \u025b \u0259 \u0279 f \u028a t",
+    "target": "b \u025b \u0259 f \u028a t"
+  },
+  {
+    "prediction": "h a \u026a p \u0259 \u0279 \u025b \u0261 j \u028a l e \u026a t",
+    "target": "h a \u026a p \u0259 \u0279 \u025b \u0261 j u\u02d0 l e \u026a t"
+  },
+  {
+    "prediction": "t \u0279 \u00e6 k \u026a d\u0361\u0292",
+    "target": "t \u0279 \u00e6 k \u026a d \u0292"
+  },
+  {
+    "prediction": "\u025b l \u0259 f \u00e6 n t i\u02d0 n",
+    "target": "\u025b l \u0259 f \u0259 n t a \u026a n"
+  },
+  {
+    "prediction": "\u0259 \u028a v \u0259 s l i\u02d0 p",
+    "target": "\u0259 \u028a v \u0259 \u0279 s l i\u02d0 p"
+  },
+  {
+    "prediction": "k \u00e6 m \u0259 \u0279 \u0259 w \u025c\u02d0 k",
+    "target": "k \u00e6 m \u0259 \u0279 \u0259 w \u025c\u02d0 k"
+  },
+  {
+    "prediction": "\u0261 \u028c m z",
+    "target": "\u0261 \u028c m z"
+  },
+  {
+    "prediction": "d i\u02d0 m \u0259 \u028a b \u026a l a \u026a z e \u026a \u0283 \u0259 n",
+    "target": "d i\u02d0 m \u0259 \u028a b \u026a l a \u026a z e \u026a \u0283 \u0259 n"
+  },
+  {
+    "prediction": "f i\u02d0",
+    "target": "\u025b f"
+  },
+  {
+    "prediction": "\u0261 \u0279 \u00e6 n i",
+    "target": "\u0261 \u0279 \u00e6 n i"
+  },
+  {
+    "prediction": "k l a \u026a \u0259 m \u025b t \u0279 \u026a k s",
+    "target": "k l i\u02d0 \u0259 \u028a m \u025b t \u0279 \u026a k s"
+  },
+  {
+    "prediction": "f \u0279 i\u02d0 l \u0259 \u028a d",
+    "target": "f \u0279 i\u02d0 l o \u028a d"
+  },
+  {
+    "prediction": "d \u026a \u0279 e \u026a t",
+    "target": "d i\u02d0 \u0279 e \u026a t"
+  },
+  {
+    "prediction": "p \u00e6 \u0279 \u0259 d \u026a z i \u00e6 k",
+    "target": "p \u00e6 \u0279 \u0259 d \u026a z i \u00e6 k"
+  },
+  {
+    "prediction": "s \u025b n t i\u02d0 n \u0259 \u0279 i",
+    "target": "s \u0259 n t i\u02d0 n r i"
+  },
+  {
+    "prediction": "l \u026a z b \u0259 n",
+    "target": "l \u026a z b \u0259 n"
+  },
+  {
+    "prediction": "s \u025b l t \u0259 m e \u026a n i \u0259",
+    "target": "k \u025b l t \u0259 \u028a m e \u026a n i \u0259"
+  },
+  {
+    "prediction": "\u0259 \u028a n \u0259 s",
+    "target": "\u0259 \u028a n \u0259 s"
+  },
+  {
+    "prediction": "\u0279 \u00e6 k",
+    "target": "\u0279 \u00e6 k"
+  },
+  {
+    "prediction": "m \u026a k t \u026a k",
+    "target": "m \u026a k t \u026a k"
+  },
+  {
+    "prediction": "m \u00e6 n \u026a p \u0259 \u0279",
+    "target": "m \u0259 n \u026a p \u028a \u0279"
+  },
+  {
+    "prediction": "\u0279 \u025b m \u0259 n s t \u0279 e \u026a t",
+    "target": "\u0279 \u025b m \u0259 n s t \u0279 e \u026a t"
+  },
+  {
+    "prediction": "\u025b \u0259 \u0261 \u00e6 z \u0259 m",
+    "target": "\u025b \u0259 \u0261 a z \u0259 m"
+  },
+  {
+    "prediction": "p \u0279 i\u02d0 \u00e6 m b j \u028a l \u0259 t \u0279 i",
+    "target": "p \u0279 i\u02d0 \u00e6 m b j \u028a l e \u026a t \u0259 \u0279 i"
+  },
+  {
+    "prediction": "n u\u02d0 \u0283 e \u026a t \u0259 l",
+    "target": "n \u025c\u02d0 \u0283 \u00e6 t \u025b l"
+  },
+  {
+    "prediction": "\u0259 \u03b8 i\u02d0 n \u0259",
+    "target": "\u0259 \u03b8 i\u02d0 n \u0259"
+  },
+  {
+    "prediction": "p \u0279 i\u02d0 \u026a t \u025c\u02d0 n \u026a t i",
+    "target": "p \u0279 i\u02d0 \u026a t \u025c\u02d0 \u0279 n \u026a t i"
+  },
+  {
+    "prediction": "\u0283 \u026a \u0283",
+    "target": "\u0283 \u026a \u0283"
+  },
+  {
+    "prediction": "\u026a \u0279 \u026a s p a \u026a \u0279 \u0259 b \u0259 l",
+    "target": "\u026a \u0279 \u026a s p a \u026a \u0279 \u0259 b \u0259 l"
+  },
+  {
+    "prediction": "d\u0361\u0292 \u025b s \u026a z",
+    "target": "d\u0361\u0292 \u025b s \u026a z"
+  },
+  {
+    "prediction": "\u025b n",
+    "target": "i\u02d0 \u025b n"
+  },
+  {
+    "prediction": "b \u026a \u0261 \u0259 \u028a n",
+    "target": "b a \u026a \u0261 \u0252 n"
+  },
+  {
+    "prediction": "h \u0259 p \u0254\u02d0 \u03b8",
+    "target": "h e \u026a p \u0259 \u0279 \u03b8"
+  },
+  {
+    "prediction": "d \u025b n s \u026a t i",
+    "target": "d \u025b n s \u0259 t i"
+  },
+  {
+    "prediction": "p \u0251\u02d0 s t s",
+    "target": "p \u0251\u02d0 s t s"
+  },
+  {
+    "prediction": "\u025b m j \u028a l e \u026a \u0283 \u0259 n",
+    "target": "\u025b m j \u028a l e \u026a\u032f \u0283 \u0259 n"
+  },
+  {
+    "prediction": "b \u025b t \u026a \u014b z",
+    "target": "b \u025b t \u026a \u014b z"
+  },
+  {
+    "prediction": "\u0251\u02d0 f t \u0259 n u\u02d0 n",
+    "target": "\u0251\u02d0 f t \u0259 n u\u02d0 n"
+  },
+  {
+    "prediction": "d \u025c\u02d0 m \u0259 t \u0259 \u028a p l \u00e6 s t \u026a k",
+    "target": "d \u025d m \u00e6 t \u0259 p l \u00e6 s t \u026a k"
+  },
+  {
+    "prediction": "j \u0254 \u014b n \u026a \u014b",
+    "target": "j \u0254 \u014b n \u026a \u014b"
+  },
+  {
+    "prediction": "d i\u02d0 f l e \u026a \u0283 \u0259 n \u026a s t",
+    "target": "d \u026a f l e \u026a \u0283 \u0259 n \u026a s t"
+  },
+  {
+    "prediction": "l w \u0251\u02d0",
+    "target": "l \u0254 \u026a \u0259 \u0279"
+  },
+  {
+    "prediction": "d a \u026a t \u026a d",
+    "target": "d a \u026a t \u0259 d"
+  },
+  {
+    "prediction": "f \u025c\u02d0 t e \u026a",
+    "target": "f i j \u025b \u0279 t e \u026a"
+  },
+  {
+    "prediction": "z j u\u02d0 \u0261 m \u0259",
+    "target": "z u\u02d0 \u0261 m \u0259"
+  },
+  {
+    "prediction": "\u0259 b \u0251\u02d0 t",
+    "target": "\u0259 b \u0251\u02d0 t"
+  },
+  {
+    "prediction": "\u0261 \u0279 \u00e6 p \u0259",
+    "target": "\u0261 \u0279 \u00e6 p \u0259"
+  },
+  {
+    "prediction": "\u00e6 n t \u0252 n \u026a m i",
+    "target": "\u00e6 n t \u0259 n \u026a m i"
+  },
+  {
+    "prediction": "t\u0361\u0283 \u025c\u02d0",
+    "target": "t\u0361\u0283 \u025c\u02d0"
+  },
+  {
+    "prediction": "t\u0361\u0283 \u0259 p \u00e6 \u0279 \u0259 l",
+    "target": "t\u0361\u0283 \u00e6 p \u0259 \u0279 \u00e6 l"
+  },
+  {
+    "prediction": "h \u00e6 s t e \u026a t",
+    "target": "h \u00e6 s t e \u026a t"
+  },
+  {
+    "prediction": "d \u0279 \u00e6 \u0261 \u0259 n \u025b t",
+    "target": "d \u0279 \u00e6 \u0261 \u0259 n \u025b t"
+  },
+  {
+    "prediction": "t w \u026a s \u0259 l",
+    "target": "t w \u026a s \u0259 l"
+  },
+  {
+    "prediction": "f \u0279 \u026a \u0292 \u0259 n",
+    "target": "f \u0279 \u026a z i \u0259 n"
+  },
+  {
+    "prediction": "\u0279 \u026a p \u028c \u0261 n \u0259 n t",
+    "target": "\u0279 \u026a p \u028c \u0261 n \u0259 n t"
+  },
+  {
+    "prediction": "\u0279 a \u026a t \u0259",
+    "target": "\u0279 \u028c \u026a t \u0259"
+  },
+  {
+    "prediction": "k \u026a l t \u0259 n",
+    "target": "k \u026a l t \u0259 n"
+  },
+  {
+    "prediction": "p \u0279 \u026a v \u025b n \u0283 \u0259 n",
+    "target": "p \u0279 \u026a v \u025b n \u0283 \u0259 n"
+  },
+  {
+    "prediction": "\u00e6 l b i n \u0259 s",
+    "target": "\u00e6 l b a \u026a n \u025b s"
+  },
+  {
+    "prediction": "d \u0259 \u028a n \u0259",
+    "target": "d \u0259 \u028a n \u0259"
+  },
+  {
+    "prediction": "w \u025c\u02d0 s t \u0259 \u0283 \u0259 \u0279",
+    "target": "w \u028a s t \u0259 \u0279 \u0283 \u0259 \u0279"
+  },
+  {
+    "prediction": "\u0261 \u0279 i\u02d0 m",
+    "target": "\u0261 \u0279 e \u026a \u0259 m"
+  },
+  {
+    "prediction": "k u\u02d0 s k \u0259 s",
+    "target": "k u\u02d0 s k u\u02d0 s"
+  },
+  {
+    "prediction": "k a \u026a n d z",
+    "target": "k a \u026a n d z"
+  },
+  {
+    "prediction": "s a \u026a k \u0259 \u028a",
+    "target": "s a \u026a\u032f k \u0259 \u028a\u032f"
+  },
+  {
+    "prediction": "k \u0254\u02d0 d",
+    "target": "k \u0254\u02d0 d"
+  },
+  {
+    "prediction": "\u0279 i\u02d0 t \u026a \u0259",
+    "target": "\u0279 i\u02d0 t \u025b \u0259 \u0279"
+  },
+  {
+    "prediction": "\u0261 w \u0251\u02d0 d \u0259 l u\u02d0 p",
+    "target": "\u0261 w \u0251\u02d0 d \u0259 l u\u02d0 p"
+  },
+  {
+    "prediction": "k \u026a s",
+    "target": "k \u026a s"
+  },
+  {
+    "prediction": "\u0259 k \u0279 \u0251\u02d0",
+    "target": "\u00e6 k \u0279 \u0259"
+  },
+  {
+    "prediction": "k w \u0252 d \u0279 u\u02d0 p \u0259 l",
+    "target": "k w \u0252 d \u0279 \u028a p \u0259 l"
+  },
+  {
+    "prediction": "p \u0251\u02d0 p \u0259",
+    "target": "p \u0259 p \u0251\u02d0"
+  },
+  {
+    "prediction": "\u026a t \u0259 \u0279 \u0259 t \u026a v",
+    "target": "\u026a t \u0259 \u0279 e \u026a t \u026a v"
+  },
+  {
+    "prediction": "t \u025b n d",
+    "target": "t \u025b n d"
+  },
+  {
+    "prediction": "k \u0252 \u0279 \u0259 l e \u026a t",
+    "target": "k \u0252 \u0279 \u0259 l \u0259 t"
+  },
+  {
+    "prediction": "\u0259 l \u00e6 n \u026a k",
+    "target": "\u0259 l \u0251\u02d0 n \u026a k"
+  },
+  {
+    "prediction": "\u026a n \u00e6 k \u0283 \u0259 n",
+    "target": "\u026a n \u00e6 k \u0283 \u0259 n"
+  },
+  {
+    "prediction": "\u026a m b \u0279 e \u026a s t",
+    "target": "\u025b m b \u0279 e \u026a s t"
+  },
+  {
+    "prediction": "s \u0259 \u028a t \u0259 \u028a",
+    "target": "s u t u"
+  },
+  {
+    "prediction": "s k \u0252 t",
+    "target": "s k \u0252 t"
+  },
+  {
+    "prediction": "\u026a k s p l \u0254\u02d0 \u0279 \u0259 t \u0259 \u0279 i",
+    "target": "\u025b k s p l \u0252 \u0279 \u0259 t \u0279 i"
+  },
+  {
+    "prediction": "k l \u0252 k w \u025c\u02d0 k",
+    "target": "k l \u0252 k w \u025c\u02d0 k"
+  },
+  {
+    "prediction": "d \u026a z m i",
+    "target": "d a \u026a m"
+  },
+  {
+    "prediction": "\u0261 \u0259 \u028a \u0279 \u0259 \u028a",
+    "target": "\u0261 a \u028a \u0279 o \u028a"
+  },
+  {
+    "prediction": "\u0261 \u0279 \u00e6 n d p \u0259",
+    "target": "\u0261 \u0279 \u00e6 m p \u0251\u02d0"
+  },
+  {
+    "prediction": "m \u028c \u0261 i",
+    "target": "m \u028c \u0261 i"
+  },
+  {
+    "prediction": "t s \u0259 \u0279 \u025b v n \u0259",
+    "target": "t s \u0251\u02d0 \u0279 \u025b v n \u0259"
+  },
+  {
+    "prediction": "\u00e6 n",
+    "target": "\u0259 n"
+  },
+  {
+    "prediction": "\u0261 \u0279 \u00e6 n",
+    "target": "\u0261 \u0279 \u00e6 n"
+  },
+  {
+    "prediction": "\u0259 b d\u0361\u0292 \u025b k t h \u028a d",
+    "target": "\u0252 b d\u0361\u0292 e k t h \u028a d"
+  },
+  {
+    "prediction": "e \u026a z j \u028a \u0259",
+    "target": "\u00e6 \u0292 \u0259"
+  },
+  {
+    "prediction": "\u026a m j u\u02d0 n \u0259 \u028a t a \u026a p \u026a \u014b",
+    "target": "\u026a m j \u028a n o \u028a t a \u026a p \u026a \u014b"
+  },
+  {
+    "prediction": "d i\u02d0 k \u0259 l i\u02d0 t",
+    "target": "d \u026a k \u0252 l \u0259 t e \u026a"
+  },
+  {
+    "prediction": "b j \u028a \u0279 u\u02d0",
+    "target": "b \u0259 \u0279 u\u02d0"
+  },
+  {
+    "prediction": "d \u026a k l \u00e6 \u0279 \u0259 t \u0254\u02d0 \u0279 \u026a l i",
+    "target": "d \u026a k l \u00e6 \u0279 \u0259 t \u0254\u02d0 \u0279 \u026a l i"
+  },
+  {
+    "prediction": "n \u025c\u02d0 t \u0283 \u0259 \u0279 \u0259 n s",
+    "target": "n \u0259\u02d0 t \u0283 \u0259 \u0279 \u0259 n s"
+  },
+  {
+    "prediction": "h \u025b s p \u026a \u0259 \u0279 \u026a \u0259",
+    "target": "h \u025b s p \u026a \u0259 \u0279 i \u0259"
+  },
+  {
+    "prediction": "\u0259 \u0279 \u026a \u0259 z",
+    "target": "\u0259 \u0279 \u026a \u0259 \u0279 z"
+  },
+  {
+    "prediction": "k \u00e6 t s",
+    "target": "k \u00e6 t s"
+  },
+  {
+    "prediction": "d \u028c n i",
+    "target": "d \u028c n i"
+  },
+  {
+    "prediction": "f \u025b d \u026a v \u025c\u02d0 s",
+    "target": "f \u025b d \u026a v \u025c\u02d0 \u0279 s"
+  },
+  {
+    "prediction": "m \u025b t \u0259 s a \u026a k \u026a k",
+    "target": "m \u025b t \u0259 s a \u026a k \u026a k"
+  },
+  {
+    "prediction": "\u025b \u0261 z \u0254\u02d0 s \u026a s t",
+    "target": "\u025b k s \u0254\u02d0 s \u026a s t"
+  },
+  {
+    "prediction": "m a \u026a \u0279 \u026a s t \u026a l b \u025b n z \u026a l m \u0254\u02d0 f i\u02d0 n",
+    "target": "m \u026a \u0279 \u026a s t \u026a l b \u025b n z \u026a l m \u0254\u02d0 \u0279 f i\u02d0 n"
+  },
+  {
+    "prediction": "\u0279 i\u02d0 d \u026a n t \u026a \u0261 \u0279 e \u026a \u0283 \u0259 n",
+    "target": "\u0279 \u026a d \u026a n t \u026a \u0261 \u0279 e \u026a \u0283 \u0259 n"
+  },
+  {
+    "prediction": "s \u026a n f \u0259 n i \u025b t \u0259",
+    "target": "s \u026a n f \u0259 \u028a n j \u025b t \u0259"
+  },
+  {
+    "prediction": "m \u0252 m \u0259 n t \u025b \u0279 \u026a l i",
+    "target": "m \u0259 \u028a m \u0259 n t \u025b \u0279 \u026a l \u026a i"
+  },
+  {
+    "prediction": "\u00e6 b s \u0259 l u\u02d0 \u0283 \u0259 n",
+    "target": "\u00e6 b s \u0259 l j u\u02d0 \u0283 n\u0329"
+  },
+  {
+    "prediction": "p l e \u026a \u0279 a \u026a t",
+    "target": "p l e \u026a \u0279 a \u026a t"
+  },
+  {
+    "prediction": "\u026a n k l u\u02d0 \u0292 \u0259 n \u0259 \u0279 i",
+    "target": "\u026a n k l u\u02d0 \u0292 \u0259 n \u025b \u0279 i"
+  },
+  {
+    "prediction": "d \u00e6 n e \u026a d",
+    "target": "d \u0259 n e \u026a \u026a d"
+  },
+  {
+    "prediction": "s \u028c b n \u0254\u02d0 m \u00e6 l \u026a t i",
+    "target": "s \u028c b n \u0254\u02d0 m \u00e6 l \u026a t \u026a"
+  },
+  {
+    "prediction": "\u0259 \u028a m a \u026a k \u0279 \u0252 n",
+    "target": "\u0252 m \u026a k \u0279 \u0259 n"
+  },
+  {
+    "prediction": "b \u028a k s t \u0251\u02d0 f",
+    "target": "b \u028a k s t \u00e6 f"
+  },
+  {
+    "prediction": "t \u0252 l p \u0279 \u0252 p \u0259 m i\u02d0 n",
+    "target": "t \u0252 l p \u0279 \u0259 \u028a p \u0259 m i\u02d0 n"
+  },
+  {
+    "prediction": "\u0259 m e \u026a n",
+    "target": "\u0259 m e \u026a n"
+  },
+  {
+    "prediction": "s \u025b m \u026a p \u025c\u02d0 m i \u0259 b \u0259 l",
+    "target": "s \u025b m i p \u025c\u02d0 \u0279 m i \u0259 b \u0259 l"
+  },
+  {
+    "prediction": "d \u026a \u0279 \u025b k t \u0259 \u0279 i",
+    "target": "d a \u026a \u0279 \u025b k t \u0259 \u0279 i"
+  },
+  {
+    "prediction": "p \u025b \u0279 \u026a \u025c\u02d0 d\u0361\u0292 \u0259",
+    "target": "p \u025b \u0279 i \u025c\u02d0 d\u0361\u0292 i \u0259"
+  },
+  {
+    "prediction": "\u00f0 e \u026a \u0259 \u0279",
+    "target": "\u00f0 \u025b\u02d0 \u0279"
+  },
+  {
+    "prediction": "w \u025c\u02d0 m",
+    "target": "w \u025c\u02d0 m"
+  },
+  {
+    "prediction": "s \u026a s \u026a l i \u0259",
+    "target": "s \u026a s i\u02d0 l i \u0259"
+  },
+  {
+    "prediction": "\u0259 f \u026a \u0283 \u0259 l",
+    "target": "\u0259 f \u026a \u0283 \u0259 l"
+  },
+  {
+    "prediction": "n \u026a \u0261 e \u026a t",
+    "target": "n \u026a \u0261 e \u026a t"
+  },
+  {
+    "prediction": "b w \u0251\u02d0 n \u0259",
+    "target": "b w \u0251\u02d0 n \u0259"
+  },
+  {
+    "prediction": "d \u0279 i\u02d0",
+    "target": "d \u0279 e \u026a"
+  },
+  {
+    "prediction": "k \u025c\u02d0",
+    "target": "k \u025c\u02d0"
+  },
+  {
+    "prediction": "\u026a n t \u00e6 l j \u0259 \u028a",
+    "target": "\u026a n t \u00e6 l j \u0259 \u028a"
+  },
+  {
+    "prediction": "f \u025c\u02d0",
+    "target": "f \u025c\u02d0 \u0279"
+  },
+  {
+    "prediction": "p \u0279 \u0259 \u028a p \u0279 i\u02d0 t \u0259 \u0283 \u026a p",
+    "target": "p \u0279 \u0259 \u028a p \u0279 i\u02d0 t \u0254\u02d0 \u0283 \u026a p"
+  },
+  {
+    "prediction": "d a \u026a l \u00e6 p \u026a d e \u026a t",
+    "target": "d \u026a l \u00e6 p \u026a d e \u026a t"
+  },
+  {
+    "prediction": "m \u026a s l \u028c k",
+    "target": "m \u026a s l \u028c k"
+  },
+  {
+    "prediction": "l \u0252 p s a \u026a d \u026a d",
+    "target": "l \u0252 p s a \u026a d \u0259 d"
+  },
+  {
+    "prediction": "b \u028c k \u026a \u014b z",
+    "target": "b \u028c k \u026a \u014b z"
+  },
+  {
+    "prediction": "h \u028a k l \u0259 t",
+    "target": "h \u028a k l \u026a t"
+  },
+  {
+    "prediction": "s \u026a l v \u0259 p \u0251\u02d0 s t \u0283 \u0259",
+    "target": "s \u026a l v \u0259 p \u00e6 s t \u0283 \u0259 \u0279"
+  },
+  {
+    "prediction": "k a \u026a l \u0259",
+    "target": "k a \u026a l \u0259"
+  },
+  {
+    "prediction": "n \u025b t b \u0254\u02d0 l \u026a \u014b",
+    "target": "n \u025b t b \u0254\u02d0 l \u026a \u014b"
+  },
+  {
+    "prediction": "\u00e6 b s \u026a s t",
+    "target": "\u0259 b s \u026a s t"
+  },
+  {
+    "prediction": "z \u0259 \u028a \u0259",
+    "target": "z \u0259 \u028a \u0259"
+  },
+  {
+    "prediction": "\u0283 \u0254\u02d0 t k \u028c t",
+    "target": "\u0283 \u0254\u02d0 t k \u028c t"
+  },
+  {
+    "prediction": "k \u0251\u02d0 v \u0259",
+    "target": "k e \u026a v \u0259"
+  },
+  {
+    "prediction": "k \u0252 n s t \u00e6 n t \u026a n \u0259 p \u0252 l \u026a t \u0259 n",
+    "target": "k \u0252 n s t \u00e6 n t \u0268 n \u0275 p \u0252 l \u0268 t \u0259 n"
+  },
+  {
+    "prediction": "k \u0259 n d\u0361\u0292 \u0254 \u026a n",
+    "target": "k \u0259 n d\u0361\u0292 \u0254 \u026a n"
+  },
+  {
+    "prediction": "n \u025b t \u0259",
+    "target": "n \u025b t \u0259"
+  },
+  {
+    "prediction": "p \u0279 \u026a n d \u0259 l",
+    "target": "p \u0279 \u026a n d l\u0329"
+  },
+  {
+    "prediction": "\u0261 l u\u02d0 k \u0259 \u028a n i \u0259 d\u0361\u0292 \u025b n \u026a k",
+    "target": "\u0261 l u\u02d0 k \u0259 \u028a n i\u02d0 \u0259 \u028a d\u0361\u0292 \u025b n \u026a k"
+  },
+  {
+    "prediction": "p \u00e6 t \u0259 n",
+    "target": "p a t n\u0329"
+  },
+  {
+    "prediction": "b \u026a t k \u0254 \u026a n",
+    "target": "b \u026a t k \u0254 \u026a n"
+  },
+  {
+    "prediction": "a \u026a v i",
+    "target": "a \u026a v i"
+  },
+  {
+    "prediction": "d \u025b m \u026a m \u0252 n d",
+    "target": "d \u025b m i\u02d0 m \u0252 n d"
+  },
+  {
+    "prediction": "h a \u028a d \u0259",
+    "target": "h a \u028a d \u0259"
+  },
+  {
+    "prediction": "n \u0252 l",
+    "target": "n \u0259 \u028a l"
+  },
+  {
+    "prediction": "\u026a n \u0261 \u0279 \u00e6 t \u026a t j u\u02d0 d",
+    "target": "\u026a n \u0261 \u0279 \u00e6 t \u026a t \u0283 u\u02d0 d"
+  },
+  {
+    "prediction": "k \u0252 n t \u0279 \u0251\u02d0 l t \u0259 \u028a",
+    "target": "k \u0252 n t \u0279 \u00e6 l t \u0259 \u028a"
+  },
+  {
+    "prediction": "b \u0259 l j \u025b",
+    "target": "b j u\u02d0 l i"
+  },
+  {
+    "prediction": "s t \u00e6 n d f i\u02d0 l d",
+    "target": "s t \u00e6 n d f i\u02d0 l d"
+  },
+  {
+    "prediction": "\u0279 i\u02d0 m \u0251\u02d0 k",
+    "target": "\u0279 i\u02d0 m \u0251\u02d0 k"
+  },
+  {
+    "prediction": "t \u026a p",
+    "target": "t \u026a p"
+  },
+  {
+    "prediction": "\u00e6 n t a \u026a p \u0279 \u025b f \u0259 m e \u026a \u0283 \u0259 n \u026a s t",
+    "target": "a n t i p \u0279 i\u02d0 f \u0254\u02d0 m e \u026a \u0283 n\u0329 \u026a s t"
+  },
+  {
+    "prediction": "t\u0361\u0283 \u0251\u02d0 n s",
+    "target": "t\u0361\u0283 \u0251\u02d0 n s"
+  },
+  {
+    "prediction": "v \u026a \u0292 \u0259 n",
+    "target": "v \u026a \u0292 \u0259 n"
+  },
+  {
+    "prediction": "m \u00e6 \u0261 \u0259 z i\u02d0 n z",
+    "target": "m \u00e6 \u0261 \u0259 z i\u02d0 n z"
+  },
+  {
+    "prediction": "\u026a n f \u0259 m \u0259 t a \u026a z e \u026a \u0283 \u0259 n",
+    "target": "\u026a n f \u0259 \u0279 m a t a \u026a z e \u026a \u0283 \u0259 n"
+  },
+  {
+    "prediction": "\u0279 \u0259 \u0279 a \u026a m \u0259",
+    "target": "\u0279 \u0259 \u028a \u0279 a \u026a m \u0259"
+  },
+  {
+    "prediction": "\u026a n \u026a k w \u0252 l \u026a t i",
+    "target": "\u026a n \u026a k w \u0252 l \u026a t i"
+  },
+  {
+    "prediction": "\u0279 \u026a s t \u0254\u02d0 \u0279 \u0259 t \u025c\u02d0",
+    "target": "\u0279 \u025b s t \u0259 \u0279 \u0259 t \u025c\u02d0"
+  },
+  {
+    "prediction": "t\u0361\u0283 \u026a l \u0259 k w a \u026a l z",
+    "target": "t\u0361\u0283 i l \u0259 k i l e \u026a s"
+  },
+  {
+    "prediction": "f e \u026a n \u026a \u014b",
+    "target": "f e \u026a n \u026a \u014b"
+  },
+  {
+    "prediction": "n j u\u02d0 k \u0251\u02d0 s \u0259 l",
+    "target": "n j u\u02d0 k \u0251\u02d0 s l\u0329"
+  },
+  {
+    "prediction": "\u0259 n \u0251\u02d0 k \u026a k",
+    "target": "\u00e6 n \u0251\u02d0 k \u026a k"
+  },
+  {
+    "prediction": "\u025b l d \u026a s t",
+    "target": "\u025b l d \u026a s t"
+  },
+  {
+    "prediction": "p \u0279 \u0259 s \u025b d\u0361\u0292 \u0259 \u0279 \u0259 l",
+    "target": "p r \u0259 s i\u02d0 d\u0361\u0292 \u0259 r \u0259 l"
+  },
+  {
+    "prediction": "b a \u028a n s \u026a z",
+    "target": "b a \u028a n s \u026a z"
+  },
+  {
+    "prediction": "d\u0361\u0292 a \u026a v d",
+    "target": "d\u0361\u0292 a \u026a v d"
+  },
+  {
+    "prediction": "w \u00e6 k",
+    "target": "w \u00e6 k"
+  },
+  {
+    "prediction": "d\u0361\u0292 \u026a t",
+    "target": "d\u0361\u0292 \u026a t"
+  },
+  {
+    "prediction": "s t i\u02d0 t \u0259 \u0279 i\u02d0 \u0259",
+    "target": "s t i\u02d0 \u0259 t \u0259 \u0279 i\u02d0 \u0259"
+  },
+  {
+    "prediction": "f \u025c\u02d0 \u00f0 \u026a s t",
+    "target": "f \u025c\u02d0 \u0279 \u00f0 \u026a s t"
+  },
+  {
+    "prediction": "p \u0259 p \u0259 \u028a s l i",
+    "target": "p \u025c\u02d0 p \u0259 s l i"
+  },
+  {
+    "prediction": "j \u00e6 b i",
+    "target": "j \u00e6 b i"
+  },
+  {
+    "prediction": "p \u0259 v \u025c\u02d0 s",
+    "target": "p \u0259 v \u025c\u02d0 s"
+  },
+  {
+    "prediction": "k \u025b n t v \u026a l",
+    "target": "k \u025b n t v \u026a l"
+  },
+  {
+    "prediction": "\u026a \u0259 \u0279",
+    "target": "\u025b \u0259"
+  },
+  {
+    "prediction": "m \u0259 h a \u028a n d",
+    "target": "m \u0259 h u\u02d0 n d"
+  },
+  {
+    "prediction": "d \u026a v \u026a d \u025b n d",
+    "target": "d \u026a v \u026a d \u025b n d"
+  },
+  {
+    "prediction": "d \u025b z \u026a n \u0259 n s",
+    "target": "d \u025b s \u026a n \u0259 n s"
+  },
+  {
+    "prediction": "d \u0252 k",
+    "target": "d \u0252 k"
+  },
+  {
+    "prediction": "\u03b8 \u0279 \u028c \u0283 \u026a z",
+    "target": "\u03b8 \u0279 \u028c \u0283 \u0259 z"
+  },
+  {
+    "prediction": "t \u025b s \u026a s",
+    "target": "t \u025b s \u0251 \u026a s"
+  },
+  {
+    "prediction": "\u0259 \u028a \u0259 \u0261 \u0259 \u028a n",
+    "target": "\u0259 \u028a \u0259 \u0261 \u0259 \u028a n"
+  },
+  {
+    "prediction": "k w \u025b l",
+    "target": "k w \u025b l"
+  },
+  {
+    "prediction": "f \u0279 \u025b t f \u0259 l",
+    "target": "f \u0279 \u025b t f \u0259 l"
+  },
+  {
+    "prediction": "p \u00e6 l \u0259 t a \u026a z",
+    "target": "p \u00e6 l \u026a t a \u026a z"
+  },
+  {
+    "prediction": "p \u0279 \u0259 \u028a k \u0279 i e \u026a t",
+    "target": "p \u0279 \u0259 \u028a k \u0279 i e \u026a t"
+  },
+  {
+    "prediction": "b \u00e6 k t \u026a \u0259 \u0279 i \u0259 \u028a t \u0252 k s \u026a n",
+    "target": "b \u00e6 k t \u026a \u0259 \u0279 \u026a \u0259 \u028a t \u0252 k s \u026a n"
+  },
+  {
+    "prediction": "s \u0251\u02d0 m e \u026a \u0283 \u0259 n",
+    "target": "s \u0251\u02d0 \u0279 m e \u026a \u0283 i \u0259"
+  },
+  {
+    "prediction": "n i\u02d0 v",
+    "target": "n i\u02d0 v"
+  },
+  {
+    "prediction": "\u0259 s p \u025b k t s",
+    "target": "\u00e6 s p \u025b k t s"
+  },
+  {
+    "prediction": "k \u0251\u02d0 b \u0259 m \u00e6 z \u026a p i\u02d0 n",
+    "target": "k \u0251\u02d0 b \u0259 m e \u026a z \u026a p i\u02d0 n"
+  },
+  {
+    "prediction": "s \u025b t l\u0329 \u0259 z",
+    "target": "s \u025b t l \u0259 z"
+  },
+  {
+    "prediction": "k w \u026a k \u0259 \u0279",
+    "target": "k w \u026a k \u0259"
+  },
+  {
+    "prediction": "b u\u02d0 \u03b8 s",
+    "target": "b u\u02d0 \u03b8 s"
+  },
+  {
+    "prediction": "p \u00e6 n t \u0259 \u028a",
+    "target": "p \u00e6 n t \u0259 \u028a"
+  },
+  {
+    "prediction": "d\u0361\u0292 \u00e6 k s \u0259",
+    "target": "d\u0361\u0292 \u00e6 k s \u0259"
+  },
+  {
+    "prediction": "f a \u026a \u0259 f a \u026a t \u0259",
+    "target": "f a \u026a \u0259 \u0279 f a \u026a t \u0259 \u0279"
+  },
+  {
+    "prediction": "\u0251\u02d0 n \u0259 m u\u02d0",
+    "target": "\u0259 n \u0251\u02d0 m u"
+  },
+  {
+    "prediction": "p l u\u02d0 v i \u0259 \u028a s",
+    "target": "p l u\u02d0 v i \u0259 \u028a s"
+  },
+  {
+    "prediction": "f \u026a l z",
+    "target": "f \u026a l s"
+  },
+  {
+    "prediction": "\u0259 \u0279 \u025b k s \u026a s",
+    "target": "\u0259 \u0279 \u025b k s \u026a s"
+  },
+  {
+    "prediction": "s \u026a \u014b k t \u0283 \u0259",
+    "target": "s \u026a \u014b k t\u0361\u0283 \u0259 \u0279"
+  },
+  {
+    "prediction": "d \u026a b a \u028a t\u0361\u0283",
+    "target": "d \u026a b a \u028a t\u0361\u0283"
+  },
+  {
+    "prediction": "s a \u028a \u03b8 w \u0259 d",
+    "target": "s \u028c \u00f0 \u0259 d"
+  },
+  {
+    "prediction": "\u00e6 n t \u0251\u02d0 k t \u026a k \u0259",
+    "target": "\u00e6 n t \u0251\u02d0 k t \u026a k \u0259"
+  },
+  {
+    "prediction": "\u0251\u02d0 m \u026a n d \u0259",
+    "target": "\u0251\u02d0 \u0279 m \u026a n d \u0259"
+  },
+  {
+    "prediction": "d i\u02d0 d e \u026a l i \u0259 n",
+    "target": "d \u026a d e \u026a l i \u0259 n"
+  },
+  {
+    "prediction": "\u0261 \u0279 \u00e6 n d",
+    "target": "\u0261 \u0279 \u00e6 n d"
+  },
+  {
+    "prediction": "f \u028c l f \u026a l",
+    "target": "f \u0259 f \u026a l"
+  },
+  {
+    "prediction": "\u025b \u0261 z \u00e6 m",
+    "target": "\u026a \u0261 z \u00e6 m"
+  },
+  {
+    "prediction": "s \u00e6 \u014b k \u0259 \u028a",
+    "target": "s \u00e6 n t\u0361\u0283 o \u028a"
+  },
+  {
+    "prediction": "m \u00e6 d\u0361\u0292 \u0259 s t i",
+    "target": "m \u00e6 d\u0361\u0292 \u026a s t i"
+  },
+  {
+    "prediction": "p \u0279 \u0259 l \u0252 \u014b d",
+    "target": "p \u0279 \u0259 \u028a l \u0252 \u014b d"
+  },
+  {
+    "prediction": "\u0283 \u028c t \u0259 b \u028c \u0261",
+    "target": "\u0283 \u028c t \u0259 b \u028c \u0261"
+  },
+  {
+    "prediction": "\u0259 \u028a n a \u026a \u0279 \u0259 n \u0254\u02d0 t \u026a k s",
+    "target": "\u0259 \u028a n a \u026a \u0279 \u0259 n \u0254\u02d0 t \u026a k s"
+  },
+  {
+    "prediction": "b \u00e6 k s l \u00e6 \u014b",
+    "target": "b \u00e6 k s l \u00e6 \u014b"
+  },
+  {
+    "prediction": "\u026a n d \u026a \u0279 \u025b k t",
+    "target": "\u026a n d \u026a \u0279 \u025b k t"
+  },
+  {
+    "prediction": "d\u0361\u0292 \u0251\u02d0 \u0261 \u0259 l",
+    "target": "d\u0361\u0292 \u0251\u02d0 \u0279 \u0261 \u0259 l"
+  },
+  {
+    "prediction": "k l \u028c t s \u026a \u0283",
+    "target": "k l \u028c t s \u026a \u0283"
+  },
+  {
+    "prediction": "b \u026a s p \u0279 \u025b n d\u0361\u0292",
+    "target": "b \u026a s p \u0279 \u025b n d\u0361\u0292"
+  },
+  {
+    "prediction": "d\u0361\u0292 \u025b n \u0259 \u0279 \u0259 l",
+    "target": "d\u0361\u0292 \u025b n \u0279 \u0259 l"
+  },
+  {
+    "prediction": "k \u0259 n f l \u026a k t",
+    "target": "k \u0252 n f l \u026a k t"
+  },
+  {
+    "prediction": "v \u026a z \u026a d\u0361\u0292",
+    "target": "v \u026a s \u0251 d\u0361\u0292"
+  },
+  {
+    "prediction": "f \u0252 s \u0259",
+    "target": "f \u0252 s \u0259"
+  },
+  {
+    "prediction": "z \u0259 b e \u026a \u0259 \u028a n",
+    "target": "z \u00e6 b a \u026a \u0259 \u028a n \u026a"
+  },
+  {
+    "prediction": "h e \u026a l a \u026a t",
+    "target": "h \u00e6 l a \u026a t"
+  },
+  {
+    "prediction": "f \u0251\u02d0 \u03b8 \u0259 l",
+    "target": "f \u0251\u02d0 \u0279 \u00f0 \u0259 l"
+  },
+  {
+    "prediction": "\u025b p \u026a d\u0361\u0292 a \u026a n",
+    "target": "\u025b p \u026a d\u0361\u0292 a \u026a n"
+  },
+  {
+    "prediction": "s \u026a l \u00e6 b \u026a k",
+    "target": "s \u026a l \u00e6 b \u026a k"
+  },
+  {
+    "prediction": "t \u00e6 k s \u026a s",
+    "target": "t \u00e6 k s \u026a s"
+  },
+  {
+    "prediction": "\u00e6 p \u0259 \u0279 e \u026a t \u0259 s",
+    "target": "\u00e6 p \u0259 \u0279 e \u026a t \u0259 s"
+  },
+  {
+    "prediction": "\u00e6 m \u026a k \u0259 s",
+    "target": "\u00e6 m \u026a k \u0259 s"
+  },
+  {
+    "prediction": "d \u026a s \u026a d j u \u0252 s \u026a t i",
+    "target": "d \u025b s \u026a d \u0292 \u028a \u0252 s \u026a t i"
+  },
+  {
+    "prediction": "p \u028c \u0261 w \u0252 \u0283",
+    "target": "p \u028c \u0261 w \u0252 \u0283"
+  },
+  {
+    "prediction": "t \u025b l \u0259 n \u025c\u02d0 s \u026a \u014b",
+    "target": "t \u025b l \u026a n \u025c\u02d0 s \u026a \u014b"
+  },
+  {
+    "prediction": "n \u0259 v \u00e6 \u0279",
+    "target": "n \u0259 v \u0251\u02d0 \u0279"
+  },
+  {
+    "prediction": "\u00e6 n \u03b8 \u0279 \u0259 p \u0259 s \u0252 f \u026a k \u0259 l",
+    "target": "\u00e6 n \u03b8 \u0279 \u0259 p \u0259 s \u0252 f \u026a k \u0259 l"
+  },
+  {
+    "prediction": "\u00e6 f \u0259 d",
+    "target": "\u0259 f \u0254\u02d0 d"
+  },
+  {
+    "prediction": "m \u025b k s \u026a k \u0259 n",
+    "target": "m \u025b k s \u026a k \u0259 n"
+  },
+  {
+    "prediction": "l \u0251\u02d0 s k",
+    "target": "l \u0251\u02d0 s k"
+  },
+  {
+    "prediction": "m \u025b \u03b8 \u026a p \u0279 a \u026a l \u0252 n",
+    "target": "m \u025b \u03b8 \u026a p \u0279 a \u026a l \u0252 n"
+  },
+  {
+    "prediction": "\u026a m p \u0252 n d \u0259 \u0279 \u0259 b \u0259 l",
+    "target": "\u026a m p \u0252 n d \u0259 \u0279 \u0259 b l"
+  },
+  {
+    "prediction": "\u0283 u\u02d0",
+    "target": "\u0283 \u0259 \u028a"
+  },
+  {
+    "prediction": "d \u026a s m a \u028a n t",
+    "target": "d \u026a s m a \u028a n t"
+  },
+  {
+    "prediction": "\u0259 \u028a h i\u02d0 \u0259",
+    "target": "\u0259 \u028a h i\u02d0 \u0259"
+  },
+  {
+    "prediction": "i\u02d0 \u00f0",
+    "target": "i\u02d0 \u03b8 i\u02d0"
+  },
+  {
+    "prediction": "f j u\u02d0 k s \u026a n",
+    "target": "f u \u0283 \u026a n"
+  },
+  {
+    "prediction": "\u025b s \u025b k s",
+    "target": "\u025b s \u026a k s"
+  },
+  {
+    "prediction": "s \u028c l f \u0259 s \u00e6 l \u0259 z i\u02d0 n",
+    "target": "s \u028c l f \u0259 s \u00e6 l \u0259 z i\u02d0 n"
+  },
+  {
+    "prediction": "d\u0361\u0292 \u026a \u0261 \u026a t",
+    "target": "d\u0361\u0292 \u026a \u0261 \u0259 t"
+  },
+  {
+    "prediction": "v i\u02d0 z e \u026a",
+    "target": "v i\u02d0 z e \u026a"
+  },
+  {
+    "prediction": "\u0279 \u025b k t \u00e6 \u014b \u0261 \u0259 l",
+    "target": "r \u025b k t \u00e6 \u014b \u0261 l\u0329"
+  },
+  {
+    "prediction": "\u0261 u\u02d0 f t",
+    "target": "\u0261 u\u02d0 f t"
+  },
+  {
+    "prediction": "d\u0361\u0292 \u025b n t \u00e6 m \u026a s \u026a n",
+    "target": "d\u0361\u0292 \u025b n t \u0259 m a \u026a s \u026a n"
+  },
+  {
+    "prediction": "m \u0252 s i",
+    "target": "m \u0252 s i"
+  },
+  {
+    "prediction": "m a \u028a t\u0361\u0283 \u0259 d",
+    "target": "m u\u02d0 \u0283 \u0251\u02d0"
+  },
+  {
+    "prediction": "s t \u028c d \u026a \u014b s e \u026a l",
+    "target": "s t \u028c d \u026a \u014b s e \u026a l"
+  },
+  {
+    "prediction": "d \u0279 i\u02d0 m t a \u026a m",
+    "target": "d \u0279 i\u02d0 m t a \u026a m"
+  },
+  {
+    "prediction": "\u025c\u02d0 n t",
+    "target": "\u025c\u02d0 n t"
+  },
+  {
+    "prediction": "l u\u02d0 s \u0259 f \u0259 \u028a n",
+    "target": "l u\u02d0 s \u0259 f \u0259 \u028a n"
+  },
+  {
+    "prediction": "t \u0252 l \u0259 \u0279 e \u026a t \u0259",
+    "target": "t \u0252 l \u0259 \u0279 e \u026a t \u0259 \u0279"
+  },
+  {
+    "prediction": "h a \u026a t",
+    "target": "h a \u026a t"
+  },
+  {
+    "prediction": "\u028c n t e \u026a k \u0259 b \u0259 l",
+    "target": "\u028c n t e \u026a k \u0259 b l\u0329"
+  },
+  {
+    "prediction": "b \u00e6 \u014b \u0261 \u0259 \u0279 \u00e6 \u014b",
+    "target": "b \u00e6 \u014b \u0259 \u0279 \u00e6 \u014b"
+  },
+  {
+    "prediction": "\u0252 b d j \u028a \u0259 \u0279 e \u026a t",
+    "target": "\u0252 b d j \u028a \u0279 \u026a t"
+  },
+  {
+    "prediction": "\u0279 u\u02d0 d i",
+    "target": "\u0279 u\u02d0 d i"
+  },
+  {
+    "prediction": "t \u025b m p t \u0279 \u026a s",
+    "target": "t \u025b m p t \u0279 \u025b s"
+  },
+  {
+    "prediction": "\u026a n t \u0259 m i\u02d0 d i \u0259 \u0279 i",
+    "target": "\u026a n t \u0259 \u0279 m i\u02d0 d j \u0259 \u0279 i"
+  },
+  {
+    "prediction": "\u028c \u00f0 \u0259 \u0279 \u026a \u014b",
+    "target": "\u028c \u00f0 \u0279 \u026a \u014b"
+  },
+  {
+    "prediction": "f l \u026a p",
+    "target": "f l \u026a p"
+  },
+  {
+    "prediction": "\u026a m p \u026a t \u0279 e \u026a t",
+    "target": "\u026a m p \u026a t \u0279 e \u026a t"
+  },
+  {
+    "prediction": "d\u0361\u0292 a \u026a",
+    "target": "d\u0361\u0292 a \u026a"
+  },
+  {
+    "prediction": "\u0279 i\u02d0 \u0279 \u026a t \u0259 n",
+    "target": "\u0279 i \u0279 \u026a t \u0259 n"
+  },
+  {
+    "prediction": "k j u\u02d0 p \u0259 l e \u026a \u0283 \u0259 n",
+    "target": "k j u\u02d0 p \u0259 l e \u026a \u0283 \u0259 n"
+  },
+  {
+    "prediction": "d \u026a k i z",
+    "target": "d \u026a k i z"
+  },
+  {
+    "prediction": "f a \u026a d \u025b p \u0279 \u0259 m \u026a s \u0259 \u0279",
+    "target": "f a \u026a d i\u02d0 p \u0279 \u0259 \u028a m \u026a s \u0254\u02d0 \u0279"
+  },
+  {
+    "prediction": "m \u00e6 \u014b \u0261 \u00e6 l \u026a k \u0259",
+    "target": "m \u0251 \u014b \u0261 \u0259 l i\u02d0 t s \u0259"
+  },
+  {
+    "prediction": "t\u0361\u0283 \u00e6 m",
+    "target": "k \u00e6 m"
+  },
+  {
+    "prediction": "d\u0361\u0292 \u0254\u02d0 n s",
+    "target": "d\u0361\u0292 \u0254\u02d0 n s"
+  },
+  {
+    "prediction": "n j u\u02d0 \u0259",
+    "target": "n u\u02d0 \u0259"
+  },
+  {
+    "prediction": "s \u026a l i \u0259 l e \u026a t",
+    "target": "s \u026a l i \u0259 l \u0259 t"
+  },
+  {
+    "prediction": "\u0251\u02d0 f t \u0259 k \u025b \u0259",
+    "target": "\u0251\u02d0 f t \u0259 \u0279 k \u025b \u0259"
+  },
+  {
+    "prediction": "s \u00e6 s i w \u028a d",
+    "target": "s \u00e6 s i w \u028a d"
+  },
+  {
+    "prediction": "\u0259 f \u0254\u02d0 d \u026a d",
+    "target": "\u0259 f \u0254\u02d0 d \u026a d"
+  },
+  {
+    "prediction": "w e \u026a d",
+    "target": "w e \u026a d"
+  },
+  {
+    "prediction": "m i\u02d0 n \u0259 n \u025b t",
+    "target": "m \u026a n j \u0259 n \u025b t"
+  },
+  {
+    "prediction": "s k \u0251\u02d0 d",
+    "target": "s k \u0251\u02d0 \u0279 d"
+  },
+  {
+    "prediction": "h a \u028a s w a \u026a v",
+    "target": "h a \u028a s w a \u026a v"
+  },
+  {
+    "prediction": "k w \u026a n t j \u028a p l \u0259 t",
+    "target": "k w \u026a n t j u\u02d0 p l \u0259 t"
+  },
+  {
+    "prediction": "d\u0361\u0292 a \u026a \u0259 n t",
+    "target": "d\u0361\u0292 a \u026a \u0259 n t"
+  },
+  {
+    "prediction": "\u026a n d \u026a d \u0292 \u026a n i\u02d0 \u0259 t i",
+    "target": "\u026a n d \u026a d\u0361\u0292 \u0259 n e \u026a \u026a t i"
+  },
+  {
+    "prediction": "\u0259 \u028a n \u0259 \u028a s \u025b k \u0259 n d",
+    "target": "o \u028a n o \u028a s \u025b k \u0259 n d"
+  },
+  {
+    "prediction": "\u0259 m a \u028a n d",
+    "target": "\u0259 m a \u028a n d"
+  },
+  {
+    "prediction": "p e \u026a l z",
+    "target": "p e \u026a l z"
+  },
+  {
+    "prediction": "m \u0251\u02d0 \u0261 i",
+    "target": "m e \u026a \u0261 a \u026a"
+  },
+  {
+    "prediction": "v a \u028a d",
+    "target": "v a \u028a d"
+  },
+  {
+    "prediction": "b \u028c n d t",
+    "target": "b \u028c n t"
+  },
+  {
+    "prediction": "n a \u026a k \u0259 \u028a t a \u026a n \u0254 \u026a d",
+    "target": "n \u026a k \u0259 t \u026a n \u0254 \u026a d"
+  },
+  {
+    "prediction": "k l \u00e6 \u0279 \u026a n \u026a t \u026a s t",
+    "target": "k l \u00e6 \u0279 \u026a n \u025b t \u026a s t"
+  },
+  {
+    "prediction": "b \u0251\u02d0 f a \u026a t",
+    "target": "b \u0251\u02d0 \u0279 f a \u026a t"
+  },
+  {
+    "prediction": "l u\u02d0 d",
+    "target": "l u\u02d0 d"
+  },
+  {
+    "prediction": "b \u0259 \u028a h \u0259 \u028a l",
+    "target": "b \u0259 \u028a h \u0254\u02d0 l"
+  },
+  {
+    "prediction": "l a \u026a n \u0259 \u028a \u03b8 \u0254\u02d0 \u0279 \u00e6 k s",
+    "target": "l i\u02d0 n o \u028a \u03b8 \u0254\u02d0 \u0279 \u00e6 k s"
+  },
+  {
+    "prediction": "n \u0254\u02d0 t\u0361\u0283",
+    "target": "n \u0254\u02d0 t\u0361\u0283"
+  },
+  {
+    "prediction": "m \u00e6 k \u0259 \u028a",
+    "target": "m \u00e6 k \u0259 \u028a"
+  },
+  {
+    "prediction": "d a \u026a \u0259 l \u0252 d \u0292 \u026a k \u0259 l",
+    "target": "d a \u026a \u0259 l \u0252 d\u0361\u0292 \u026a k \u0259 \u026b"
+  },
+  {
+    "prediction": "m a \u026a \u0252 t \u0259 m i",
+    "target": "m a \u026a \u0252 t \u0259 m i"
+  },
+  {
+    "prediction": "l \u025b k t\u0361\u0283 \u0259 \u0279 \u0259",
+    "target": "l \u025b k t \u0283 \u0259 \u0279 \u0259"
+  },
+  {
+    "prediction": "m \u00e6 \u0279 \u026a n \u025b t",
+    "target": "m \u025b \u0279 i n e t"
+  },
+  {
+    "prediction": "\u025b s \u0259 m p l \u00e6 s t \u026a k",
+    "target": "\u025b s \u025b m p l \u00e6 s t \u026a k"
+  },
+  {
+    "prediction": "\u028c n d \u0259 v \u025c\u02d0 s",
+    "target": "\u028c n d \u0259 \u0279 v \u025c\u02d0 \u0279 s"
+  },
+  {
+    "prediction": "f \u0279 \u00e6 k \u0283 \u0259 n a \u026a z",
+    "target": "f \u0279 \u00e6 k \u0283 \u0259 n a \u026a z"
+  },
+  {
+    "prediction": "d \u025b k \u0259 n",
+    "target": "d \u025b k \u0259 n"
+  },
+  {
+    "prediction": "f \u026a z \u026a \u0283 \u0259 n",
+    "target": "f \u026a z \u026a \u0283 \u0259 n"
+  },
+  {
+    "prediction": "f a \u026a l \u026a \u014b",
+    "target": "f a \u026a l \u026a \u014b"
+  },
+  {
+    "prediction": "\u00e6 b d\u0361\u0292 \u025b k t l i",
+    "target": "\u00e6 b d\u0361\u0292 \u025b k t l i"
+  },
+  {
+    "prediction": "u\u02d0 d \u0259 l z",
+    "target": "u\u02d0 d l z"
+  },
+  {
+    "prediction": "\u0259 p \u026a \u0283 \u0259 n",
+    "target": "\u0259 p \u026a \u0283 \u0259 n"
+  },
+  {
+    "prediction": "m \u00e6 \u014b k s i",
+    "target": "m \u00e6 \u014b k s i"
+  },
+  {
+    "prediction": "\u026a n j u\u02d0 \u026a t",
+    "target": "\u026a n \u028a \u026a t"
+  },
+  {
+    "prediction": "\u03b8 \u026a \u014b k \u026a \u014b",
+    "target": "\u03b8 \u026a \u014b k \u026a \u014b"
+  },
+  {
+    "prediction": "h \u0254\u02d0 t \u0259 l b \u025b \u0279 i",
+    "target": "h \u025c\u02d0 t l\u0329 b \u0259 \u0279 i"
+  },
+  {
+    "prediction": "\u025b k s t \u0259 s i",
+    "target": "\u025b k s t \u0259 s i"
+  },
+  {
+    "prediction": "\u026a m b \u0279 \u026a t \u0259 l m \u0259 n t",
+    "target": "\u025b m b \u0279 \u026a t l\u0329 m \u0259 n t"
+  },
+  {
+    "prediction": "s \u025b l",
+    "target": "s \u025b l"
+  },
+  {
+    "prediction": "\u0259 n \u026a m j \u028a t e \u026a \u0283 \u0259 n",
+    "target": "\u00e6 n \u026a m j u t e \u026a \u0283 \u0259 n"
+  },
+  {
+    "prediction": "p j u\u02d0 d \u026a b \u028c n d",
+    "target": "p j u\u02d0 d \u026a b \u028c n d"
+  },
+  {
+    "prediction": "w e \u026a l i",
+    "target": "w e \u026a l i"
+  },
+  {
+    "prediction": "s l \u00e6 v \u026a k",
+    "target": "s l \u0251\u02d0 v \u026a k"
+  },
+  {
+    "prediction": "w \u026a m p",
+    "target": "w \u026a m p"
+  },
+  {
+    "prediction": "m a \u028a n t",
+    "target": "m a \u028a n t"
+  },
+  {
+    "prediction": "m \u0251\u02d0 d\u0361\u0292 \u0252 \u014b",
+    "target": "m \u0251\u02d0 \u0292 \u0252 \u014b"
+  },
+  {
+    "prediction": "t\u0361\u0283 \u0254\u02d0 s \u0259 \u0279 \u026a z \u0259 m",
+    "target": "t\u0361\u0283 \u0254\u02d0 s \u0259 \u0279 \u026a z \u0259 m"
+  },
+  {
+    "prediction": "\u00e6 l p \u0279 e \u026a z \u0259 l \u00e6 m",
+    "target": "a l p \u0279 e \u026a z \u0259 \u028a l a m"
+  },
+  {
+    "prediction": "\u0259 d\u0361\u0292 u\u02d0 s t i \u0259",
+    "target": "\u0259 \u0261 j u\u02d0 s t \u026a \u0259"
+  },
+  {
+    "prediction": "k \u0279 \u026a \u014b \u026a \u014b z",
+    "target": "k \u0279 \u026a n d\u0361\u0292 \u026a \u014b z"
+  },
+  {
+    "prediction": "n \u0252 m \u026a n \u0259 t \u026a v",
+    "target": "n \u0252 m \u026a n \u0259 t \u026a v"
+  },
+  {
+    "prediction": "\u00e6 p \u0259 t j \u028a \u0259 \u0279",
+    "target": "a p \u0259 t\u0361\u0283 \u0259"
+  },
+  {
+    "prediction": "m \u026a l w \u0254\u02d0 l",
+    "target": "m \u026a l w \u0254\u02d0 l"
+  },
+  {
+    "prediction": "d \u025b t \u0259 n e \u026a t \u0259",
+    "target": "d \u025b t \u0259 n e \u026a t \u0259 \u0279"
+  },
+  {
+    "prediction": "\u025b n \u0259 m k l \u0254\u02d0",
+    "target": "i n \u028c m k l \u0254"
+  },
+  {
+    "prediction": "d\u0361\u0292 i\u02d0 \u0252 \u0261 \u0279 \u0259 f i",
+    "target": "d \u0292 \u026a \u0252 \u0261 \u0279 \u0259 f i"
+  },
+  {
+    "prediction": "b a \u026a f \u025b p \u0279 \u028a n \u0252 k s",
+    "target": "b \u026a f \u025b p \u0279 \u0259 n \u0252 k s"
+  },
+  {
+    "prediction": "l \u00e6 s",
+    "target": "l \u0251\u02d0 z"
+  },
+  {
+    "prediction": "\u0259 s t \u0279 \u028c t",
+    "target": "\u0259 s t \u0279 \u028c t"
+  },
+  {
+    "prediction": "\u00e6 n t \u025b s \u026a d \u0259 n t",
+    "target": "\u00e6 n t \u026a s i\u02d0 d \u0259 n t"
+  },
+  {
+    "prediction": "s \u0259 \u028a n \u0259",
+    "target": "s o \u028a n \u0251\u02d0 \u0279"
+  },
+  {
+    "prediction": "d\u0361\u0292 \u00e6 z",
+    "target": "d\u0361\u0292 \u00e6 z"
+  },
+  {
+    "prediction": "i\u02d0 v d \u0279 \u0252 p",
+    "target": "i\u02d0 v d \u0279 \u0252 p"
+  },
+  {
+    "prediction": "s \u0251\u02d0 m",
+    "target": "s \u0251\u02d0 m"
+  },
+  {
+    "prediction": "d\u0361\u0292 i\u02d0 k \u0252 k",
+    "target": "d\u0361\u0292 e \u026a k \u0252 k"
+  },
+  {
+    "prediction": "m \u0259 k \u026a z m \u0259 \u028a",
+    "target": "m \u0259 k \u026a z m \u0259 \u028a"
+  },
+  {
+    "prediction": "k \u0251\u02d0 t l \u0259 \u028a d z",
+    "target": "k \u0251\u02d0 t l \u0259 \u028a d z"
+  },
+  {
+    "prediction": "\u0261 l \u0254\u02d0 \u0279 i \u0259",
+    "target": "\u0261 l \u0254\u02d0 \u0279 i\u02d0 \u0259"
+  },
+  {
+    "prediction": "h e \u026a v",
+    "target": "h \u00e6 f"
+  },
+  {
+    "prediction": "b u\u02d0 t i\u02d0 k",
+    "target": "b u\u02d0 t i\u02d0 k"
+  },
+  {
+    "prediction": "\u0259 \u028a e \u026a s \u026a s",
+    "target": "\u0259 \u028a e \u026a s \u0259 s"
+  },
+  {
+    "prediction": "w \u026a \u00f0 i z",
+    "target": "w \u026a \u00f0 i z"
+  },
+  {
+    "prediction": "\u00e6 \u0261 n \u00e6 \u03b8 \u0259 s",
+    "target": "\u00e6 \u0261 n \u0259 \u03b8 \u0259 z"
+  },
+  {
+    "prediction": "t \u0279 \u00e6 n s f \u0259 \u0279 \u0259 n s",
+    "target": "t \u0279 \u0251\u02d0 n z f \u0259 \u0279 \u0259 n s"
+  },
+  {
+    "prediction": "k w \u0252 k \u0259",
+    "target": "k w \u0252 k \u0259"
+  },
+  {
+    "prediction": "l i\u02d0 l \u0259 \u028a",
+    "target": "l a \u026a l \u0259 \u028a"
+  },
+  {
+    "prediction": "\u0252 k t \u026a l j \u0259 n",
+    "target": "\u0252 k t \u026a l i\u02d0 \u0259 n"
+  },
+  {
+    "prediction": "m \u0259 k \u0251\u02d0 d\u0361\u0292 w \u0259 l",
+    "target": "m \u00e6 k \u0259 w \u025b l"
+  },
+  {
+    "prediction": "w a \u026a \u00f0",
+    "target": "w \u026a \u03b8"
+  },
+  {
+    "prediction": "j \u0259 \u028a \u0261 \u0259\u02d0 t",
+    "target": "j \u0252 \u0261 \u0259 t"
+  },
+  {
+    "prediction": "m \u028c l t \u026a b \u026a l j \u0259 n",
+    "target": "m \u028c l t i b \u026a l j \u0259 n"
+  },
+  {
+    "prediction": "t\u0361\u0283 e \u026a m b \u0259",
+    "target": "t \u0283 e \u026a m b \u0259 \u0279"
+  },
+  {
+    "prediction": "d \u026a \u0279 a \u026a v",
+    "target": "d \u0259 \u0279 a \u026a v"
+  },
+  {
+    "prediction": "\u026a n t \u0259 \u0279 d\u0361\u0292 \u025b k \u0283 \u0259 n",
+    "target": "\u026a n t \u0259 d \u0292 \u025b k \u0283 \u0259 n"
+  },
+  {
+    "prediction": "l \u025b n z",
+    "target": "l \u025b n z"
+  },
+  {
+    "prediction": "s \u026a l \u0259 d\u0361\u0292 \u026a z \u0259 m",
+    "target": "s \u026a l \u0259 d \u0292 \u026a z \u0259 m"
+  },
+  {
+    "prediction": "p \u00e6 \u0279 i \u026a d \u0252 l \u026a k",
+    "target": "p \u00e6 \u0279 a \u026a d \u0259 \u028a l \u026a k"
+  },
+  {
+    "prediction": "n \u00e6 \u014b \u0261 \u0279 i",
+    "target": "n \u00e6 \u014b \u0261 \u0279 i"
+  },
+  {
+    "prediction": "t\u0361\u0283 \u026a l i \u0259 n",
+    "target": "t\u0361\u0283 \u026a l i\u02d0 \u0259 n"
+  },
+  {
+    "prediction": "f \u0254\u02d0 l t \u0259",
+    "target": "f \u0254\u02d0 l t \u0259 r"
+  },
+  {
+    "prediction": "d j u\u02d0 p s",
+    "target": "d j u\u02d0 p s"
+  },
+  {
+    "prediction": "\u0259 \u028a k e \u026a",
+    "target": "\u0259 \u028a k e \u026a"
+  },
+  {
+    "prediction": "\u026a n f j u\u02d0 \u0292 \u0259 n",
+    "target": "\u026a n f j u\u02d0 \u0292 \u0259 n"
+  },
+  {
+    "prediction": "\u0279 a \u028a d\u0361\u0292 d",
+    "target": "\u0279 u\u02d0 \u0292 d"
+  },
+  {
+    "prediction": "v a \u026a s \u0279 \u026a \u0261 \u0254\u02d0 l",
+    "target": "v a \u026a s \u0279 i\u02d0 \u0261 \u0259 l"
+  },
+  {
+    "prediction": "f \u0279 \u025b n d l i n \u0259 s",
+    "target": "f \u0279 \u025b n d l i n \u0259 s"
+  },
+  {
+    "prediction": "t\u0361\u0283 \u028c k \u026a \u014b",
+    "target": "t\u0361\u0283 \u028c k \u026a \u014b"
+  },
+  {
+    "prediction": "h \u028c s k s",
+    "target": "h \u028c s k s"
+  },
+  {
+    "prediction": "s \u028c b s t \u0279 e \u026a t",
+    "target": "s \u028c b s t \u0279 e \u026a t"
+  },
+  {
+    "prediction": "s a \u026a t \u026a d",
+    "target": "s a \u026a t \u0259 d"
+  },
+  {
+    "prediction": "k \u0259 n s t \u0279 \u028c k t",
+    "target": "k \u0259 n s t \u0279 \u028c k t"
+  },
+  {
+    "prediction": "f l \u0254\u02d0",
+    "target": "f l \u0254\u02d0"
+  },
+  {
+    "prediction": "t \u0279 e \u026a t \u0259",
+    "target": "t \u0279 e \u026a t \u0259 \u0279"
+  },
+  {
+    "prediction": "t a \u026a l",
+    "target": "t a \u026a l"
+  },
+  {
+    "prediction": "p \u025c\u02d0 k j \u028a t e \u026a n i \u0259 s",
+    "target": "p \u025c\u02d0 k j u\u02d0 t e \u026a n \u026a \u0259 s"
+  },
+  {
+    "prediction": "b \u025b n \u0259 f \u026a \u0283 \u0259 l",
+    "target": "b \u025b n \u0259 f \u026a \u0283 \u0259 l"
+  },
+  {
+    "prediction": "\u0283 i\u02d0 \u00f0",
+    "target": "\u0283 i\u02d0 \u00f0"
+  },
+  {
+    "prediction": "\u026a \u0261 z \u026a m i \u0259 s",
+    "target": "\u025b \u0261 z \u026a m \u026a \u0259 s"
+  },
+  {
+    "prediction": "p \u026a d \u0259 l",
+    "target": "p \u026a d l\u0329"
+  },
+  {
+    "prediction": "s n u\u02d0 z f \u025b s t",
+    "target": "s n u\u02d0 z f \u025b s t"
+  },
+  {
+    "prediction": "b \u0279 e \u026a v \u026a \u014b z",
+    "target": "b \u0279 e \u026a v \u026a \u014b z"
+  },
+  {
+    "prediction": "\u0279 i\u02d0 d",
+    "target": "\u0279 i\u02d0 d"
+  },
+  {
+    "prediction": "s \u026a m p l \u026a s t \u026a k",
+    "target": "s \u026a m p l \u026a s t \u026a k"
+  },
+  {
+    "prediction": "w \u0254\u02d0 l d m a \u026a s t \u0259",
+    "target": "w \u0254\u02d0 l d m a \u026a s t \u0259 \u0279"
+  },
+  {
+    "prediction": "w \u0254\u02d0 v z",
+    "target": "h w \u0254\u02d0 \u0279 v z"
+  },
+  {
+    "prediction": "\u00e6 d\u0361\u0292 \u026a t e \u026a t \u026a d",
+    "target": "\u00e6 d\u0361\u0292 \u026a t e \u026a t \u026a d"
+  },
+  {
+    "prediction": "\u028c n \u00e6 s \u0259 t e \u026a n \u0259 b \u0259 l",
+    "target": "\u028c n \u00e6 s \u0259 t e \u026a n \u0259 b l\u0329"
+  },
+  {
+    "prediction": "j \u0252 k",
+    "target": "j \u0252 k"
+  },
+  {
+    "prediction": "p \u0259 p \u026a l \u0259 n",
+    "target": "p \u00e6 p \u026a l \u0252 n"
+  },
+  {
+    "prediction": "k \u028a k i",
+    "target": "k \u028a k i"
+  },
+  {
+    "prediction": "\u0259 k \u0252 m p l \u026a \u0283 t",
+    "target": "\u0259 k \u0252 m p l \u026a \u0283 t"
+  },
+  {
+    "prediction": "m \u0259 d \u028c l \u0259",
+    "target": "m \u025b d \u028c l \u0259"
+  },
+  {
+    "prediction": "k \u0279 \u028c \u0283 \u026a \u014b",
+    "target": "k \u0279 \u028c \u0283 \u026a \u014b"
+  },
+  {
+    "prediction": "h e \u026a z \u0259 l n \u028c t",
+    "target": "h e \u026a z \u0259 l n \u028c t"
+  },
+  {
+    "prediction": "d\u0361\u0292 \u0259 d u\u02d0 \u0261 \u0259",
+    "target": "d\u0361\u0292 \u0251\u02d0 d u\u02d0 \u0261 \u0259 \u0279"
+  },
+  {
+    "prediction": "\u026a k s t \u025b n j u e \u026a \u0283 \u0259 n",
+    "target": "\u025b k s t \u025b n j \u028a e \u026a \u0283 \u0259 n"
+  },
+  {
+    "prediction": "l \u0254\u02d0 d \u0283 \u026a p",
+    "target": "l \u0254\u02d0 d \u0283 \u026a p"
+  },
+  {
+    "prediction": "v a \u026a \u0259 l \u0259 n t l i",
+    "target": "v a \u026a \u0259 l \u0259 n t l i"
+  },
+  {
+    "prediction": "\u0254\u02d0 t \u0259 \u0279 \u025b d \u026a \u0279 \u025b k \u0283 \u0259 n",
+    "target": "\u0254\u02d0 t \u0259 \u028a \u0279 i\u02d0 d \u026a \u0279 \u025b k \u0283 \u0259 n"
+  },
+  {
+    "prediction": "v \u025b \u0279 \u026a t i",
+    "target": "v \u025b \u0279 \u026a t i"
+  },
+  {
+    "prediction": "l \u025b v \u026a t \u0259 s",
+    "target": "l \u025b v \u026a t \u0259 s"
+  },
+  {
+    "prediction": "\u0254\u02d0 s t \u026a n",
+    "target": "\u0252 s t \u026a n"
+  },
+  {
+    "prediction": "p \u026a p \u0279 \u0259 d \u0252 l",
+    "target": "p \u026a p \u0279 \u0259 d \u0252 l"
+  },
+  {
+    "prediction": "f \u028c l k \u0279 \u0259 m",
+    "target": "f \u028c l k \u0279 \u0259 m"
+  },
+  {
+    "prediction": "k j u\u02d0 b \u026a z \u0259 m",
+    "target": "k j u\u02d0 b \u026a z \u0259 m"
+  },
+  {
+    "prediction": "k \u028c d w \u025c\u02d0 \u03b8",
+    "target": "k \u028a d \u025c\u02d0 r \u03b8"
+  },
+  {
+    "prediction": "h \u0259 \u028a l d",
+    "target": "h \u0259 \u028a l d"
+  },
+  {
+    "prediction": "k \u026a t i",
+    "target": "k \u026a t i"
+  },
+  {
+    "prediction": "\u0259 b s \u025c\u02d0 d \u0259 m",
+    "target": "\u00e6 b s \u025d d m\u0329"
+  },
+  {
+    "prediction": "f l \u028c d \u026a d\u0361\u0292",
+    "target": "f l \u028c d \u026a d\u0361\u0292"
+  },
+  {
+    "prediction": "d \u0279 \u0254 \u026a t w \u026a t\u0361\u0283",
+    "target": "d \u0279 \u0254 \u026a t w \u026a t\u0361\u0283"
+  },
+  {
+    "prediction": "l \u026a m",
+    "target": "l \u026a m"
+  },
+  {
+    "prediction": "t i\u02d0 b u\u02d0",
+    "target": "t i\u02d0 \u0259 b u\u02d0"
+  },
+  {
+    "prediction": "\u0279 \u025b z \u026a d \u0259 n s",
+    "target": "\u0279 \u025b z \u026a d \u0259 n s"
+  },
+  {
+    "prediction": "w a \u026a d \u0259",
+    "target": "h w \u026a d \u0259"
+  },
+  {
+    "prediction": "k \u0259 n e \u026a",
+    "target": "k \u0259 n a \u026a"
+  },
+  {
+    "prediction": "\u0259 d j u\u02d0",
+    "target": "\u0259 d j \u025c\u02d0 z"
+  },
+  {
+    "prediction": "b \u026a k l i",
+    "target": "b \u026a k l i"
+  },
+  {
+    "prediction": "\u0279 \u026a v \u025c\u02d0 t \u0259 n t",
+    "target": "\u0279 \u026a v \u025c\u02d0 \u0279 t \u0259 n t"
+  },
+  {
+    "prediction": "\u026a n \u0254\u02d0 m \u026a t i",
+    "target": "\u026a n \u0254\u02d0 m \u026a t i"
+  },
+  {
+    "prediction": "k e \u026a t",
+    "target": "k e \u026a t"
+  },
+  {
+    "prediction": "\u028c n b \u026a s i\u02d0 m",
+    "target": "\u028c n b \u026a s i\u02d0 m"
+  },
+  {
+    "prediction": "d e b j u\u02d0 t \u0251\u02d0 n t",
+    "target": "d e b y t \u0251\u0303 t"
+  },
+  {
+    "prediction": "\u00e6 b d \u026a k e \u026a t",
+    "target": "\u00e6 b d \u026a k e \u026a t"
+  },
+  {
+    "prediction": "\u0259 k w a \u026a \u0259 m \u0259 n t",
+    "target": "\u0259 k w a \u026a \u0259 \u0279 m \u0259 n t"
+  },
+  {
+    "prediction": "k \u0259 z \u00e6 k s t \u0251\u02d0 n",
+    "target": "k \u0251\u02d0 z \u0259 k s t \u0251\u02d0 n"
+  },
+  {
+    "prediction": "b \u025b \u0259 h \u025b d \u026a d n \u0259 s",
+    "target": "b \u025b \u0259 \u0279 h \u025b d \u026a d n \u0259 s"
+  },
+  {
+    "prediction": "s i\u02d0 v",
+    "target": "s i\u02d0 v"
+  },
+  {
+    "prediction": "t \u0279 a \u026a \u0252 k s a \u026a d",
+    "target": "t r \u028c \u026a \u0252 k s \u028c \u026a d"
+  },
+  {
+    "prediction": "f \u025b k l \u0259 s",
+    "target": "f \u025b k l \u0259 s"
+  },
+  {
+    "prediction": "\u028c s k m \u0259 \u03b8",
+    "target": "\u028c s k m \u0259 \u03b8"
+  },
+  {
+    "prediction": "t\u0361\u0283 \u00e6 p l \u0259 t \u026a d",
+    "target": "t\u0361\u0283 \u00e6 p l \u0268 \u027e \u0268 d"
+  },
+  {
+    "prediction": "\u00e6 \u0261 \u0259 p i\u02d0",
+    "target": "\u0259 \u0261 \u0251 p a \u026a"
+  },
+  {
+    "prediction": "m e \u026a k \u0279 \u0252 n",
+    "target": "m \u00e6 k \u0279 \u0252 n"
+  },
+  {
+    "prediction": "\u028c n d a \u026a",
+    "target": "\u028c n d i"
+  },
+  {
+    "prediction": "d i\u02d0 \u0279 \u025b \u0261 j \u0259 l \u0259 t \u0279 i",
+    "target": "d i\u02d0 \u0279 \u025b \u0261 j \u0259 l \u0259 t \u0279 i"
+  },
+  {
+    "prediction": "m \u0259 \u028a b a \u026a l",
+    "target": "m \u0259 \u028a b i\u02d0 l"
+  },
+  {
+    "prediction": "n \u026a k \u0259 l \u0259 s",
+    "target": "n \u026a k l \u0259 s"
+  },
+  {
+    "prediction": "d\u0361\u0292 u\u02d0 d",
+    "target": "d\u0361\u0292 u\u02d0 d"
+  },
+  {
+    "prediction": "k \u0259 m \u026a \u0283 \u0259 n",
+    "target": "k \u0259 m \u026a \u0283 \u0259 n"
+  },
+  {
+    "prediction": "m \u028c \u014b \u0261 \u0259",
+    "target": "m \u028c \u014b \u0261 \u0259 \u0279"
+  },
+  {
+    "prediction": "h a \u028a s w a \u026a f \u0259 \u0279 i",
+    "target": "h a \u028a s w \u026a f \u0259 \u0279 i"
+  },
+  {
+    "prediction": "\u0259 b d \u028c k t \u026a d",
+    "target": "\u00e6 b d \u028c k t \u026a d"
+  },
+  {
+    "prediction": "s \u025b n s \u026a t \u026a v \u026a t i",
+    "target": "s \u025b n s \u026a t \u026a v \u026a t i"
+  },
+  {
+    "prediction": "s u\u02d0 n i\u02d0 t \u0259",
+    "target": "s u\u02d0 n i\u02d0 t \u0259"
+  },
+  {
+    "prediction": "d j u\u02d0 \u0259 \u028a d i\u02d0 n \u0259 \u0279 i",
+    "target": "d j u\u02d0 \u0259 d \u025b n \u0259 \u0279 i"
+  },
+  {
+    "prediction": "b \u0254\u02d0 l d \u0259 d \u00e6 \u0283",
+    "target": "b \u0254\u02d0 l d \u0259 d \u00e6 \u0283"
+  },
+  {
+    "prediction": "n u\u02d0 d\u0361\u0292 j \u00e6 \u014b",
+    "target": "n u\u02d0 d\u0361\u0292 i \u00e6 \u014b"
+  },
+  {
+    "prediction": "\u00e6 d\u0361\u0292 \u025b k t \u026a v",
+    "target": "\u00e6 d\u0361\u0292 \u0259 t \u026a v"
+  },
+  {
+    "prediction": "z \u025b k \u0259 \u028a",
+    "target": "z \u025b k o \u028a"
+  },
+  {
+    "prediction": "p l \u00e6 \u0261 \u026a n \u0259 s",
+    "target": "p l e \u026a \u0261 \u026a n \u0259 s"
+  },
+  {
+    "prediction": "s \u028c b e \u026a k w i \u0259 s",
+    "target": "s \u028c b e \u026a k w i \u0259 s"
+  },
+  {
+    "prediction": "m i\u02d0 d i \u0259 m",
+    "target": "m i\u02d0 d i \u0259 m"
+  },
+  {
+    "prediction": "\u0252 b v i e \u026a \u0283 \u0259 n",
+    "target": "\u0252 b v i e \u026a \u0283 \u0259 n"
+  },
+  {
+    "prediction": "k \u028c m f \u0259 t \u0259 b \u026a l \u026a t i",
+    "target": "k \u028c m f \u0259 t \u0259 b \u026a l \u026a t i"
+  },
+  {
+    "prediction": "m \u025b \u0279 \u026a l i",
+    "target": "m \u025b \u0279 \u026a l i"
+  },
+  {
+    "prediction": "n \u0251\u02d0 s \u0259",
+    "target": "n \u00e6 s \u0259"
+  },
+  {
+    "prediction": "m \u0252 n t \u0259 n i\u02d0 \u0261 \u0279 \u0259 \u028a",
+    "target": "m \u0252 n t \u026a n \u025b \u0261 \u0279 \u0259 \u028a"
+  },
+  {
+    "prediction": "p \u0279 i\u02d0 m \u0259 l \u026a \u0261 n \u0259 n t",
+    "target": "p \u0279 i m \u0259 l \u026a \u0261 n \u0259 n t"
+  },
+  {
+    "prediction": "d i\u02d0 b \u028c n t\u0361\u0283 \u026a \u014b",
+    "target": "d i\u02d0 b \u028c n t \u0283 \u026a \u014b"
+  },
+  {
+    "prediction": "t \u00e6 \u0279 \u0259 n t a \u026a n",
+    "target": "t \u00e6 \u0279 \u0259 n t a \u026a n"
+  },
+  {
+    "prediction": "k \u0279 \u0252 s b \u0279 i\u02d0 d",
+    "target": "k \u0279 \u0251\u02d0 s b \u0279 i\u02d0 d"
+  },
+  {
+    "prediction": "p e \u026a d\u0361\u0292 \u0259",
+    "target": "p e \u026a d\u0361\u0292 \u0259 \u0279"
+  },
+  {
+    "prediction": "t \u0279 \u00e6 n z l \u026a t \u0259 \u0279 e \u026a \u0283 \u0259 n",
+    "target": "t \u0279 \u00e6 n z l \u026a t \u0259 \u0279 e \u026a \u0283 \u0259 n"
+  },
+  {
+    "prediction": "s \u025b d\u0361\u0292 u\u02d0 l",
+    "target": "s \u025b d j u\u02d0 l"
+  },
+  {
+    "prediction": "h \u025c\u02d0 t",
+    "target": "h \u025c\u02d0 t"
+  },
+  {
+    "prediction": "h \u025b n p \u025b k",
+    "target": "h \u025b n p \u025b k"
+  },
+  {
+    "prediction": "k \u0259 \u028a t \u026a \u014b",
+    "target": "k \u0259 \u028a t \u026a \u014b"
+  },
+  {
+    "prediction": "h \u025c\u02d0 b \u0259 \u0279 t",
+    "target": "h \u025c\u02d0 b \u0259 t"
+  },
+  {
+    "prediction": "d \u026a t e \u026a l d",
+    "target": "d \u026a t e \u026a l d"
+  },
+  {
+    "prediction": "m a \u028a z \u0259",
+    "target": "m a \u028a s \u0259 \u0279"
+  },
+  {
+    "prediction": "d\u0361\u0292 \u026a p",
+    "target": "d\u0361\u0292 \u026a p"
+  },
+  {
+    "prediction": "a \u028a t \u0279 \u028c n",
+    "target": "a \u028a t \u0279 \u028c n"
+  },
+  {
+    "prediction": "\u00e6 n \u0259 s \u03b8 \u025b t \u026a s t",
+    "target": "\u0259 n i\u02d0 s \u03b8 \u0259 t \u026a s t"
+  },
+  {
+    "prediction": "p i\u02d0 l",
+    "target": "p i\u02d0 l"
+  },
+  {
+    "prediction": "\u00e6 l m a \u026a \u0279 \u0252 s",
+    "target": "\u0251 l m \u026a \u0279 \u0252 s"
+  },
+  {
+    "prediction": "p \u0251\u02d0 k \u0259",
+    "target": "p \u0251\u02d0 k \u028a \u0259"
+  },
+  {
+    "prediction": "\u0259 \u028a \u0283 i \u0252 s \u026a t i",
+    "target": "o \u028a d i\u02d0 \u0252 s \u0259 d i\u02d0"
+  },
+  {
+    "prediction": "f \u025b l i",
+    "target": "f \u025b l l i"
+  },
+  {
+    "prediction": "p \u0279 \u025b p",
+    "target": "p \u0279 \u025b p"
+  },
+  {
+    "prediction": "k \u028c n t b \u0254 \u026a",
+    "target": "k \u028c n t b \u0254 \u026a"
+  },
+  {
+    "prediction": "h \u00e6 k l u\u02d0 t",
+    "target": "h \u00e6 k l \u028a t"
+  },
+  {
+    "prediction": "f \u0279 \u00e6 n s w \u0251\u02d0",
+    "target": "f \u0279 \u00e6 n s w \u0251"
+  },
+  {
+    "prediction": "t\u0361\u0283 \u0251\u02d0 v \u0259",
+    "target": "t\u0361\u0283 \u0251\u02d0 v \u0259"
+  },
+  {
+    "prediction": "b \u00e6 f \u0259 l m \u0259 n t",
+    "target": "b a f \u0259 l m \u0259 n t"
+  },
+  {
+    "prediction": "l e \u026a p \u0259 l",
+    "target": "l \u0259 p \u025b l"
+  },
+  {
+    "prediction": "m \u0259 f i\u02d0 \u0259",
+    "target": "m \u00e6 f i \u0259"
+  },
+  {
+    "prediction": "d \u026a \u014b k i",
+    "target": "d \u026a \u014b k i"
+  },
+  {
+    "prediction": "\u0261 l \u0252 b s t \u0259",
+    "target": "\u0261 l \u0252 b s t \u0259"
+  },
+  {
+    "prediction": "f \u026a l \u0252 s \u0259 f \u028c \u014b k j \u028a l \u026a s t",
+    "target": "f \u026a l \u0252 s \u0259 f \u028c \u014b k j \u028a l \u026a s t"
+  },
+  {
+    "prediction": "m \u025b \u0279 \u026a t \u0252 k \u0279 \u0259 s i",
+    "target": "m \u025b \u0279 \u026a t \u0252 k \u0279 \u0259 s i"
+  },
+  {
+    "prediction": "p \u0259 p j \u028a \u0259 \u0279 i \u0259 l",
+    "target": "p \u025c\u02d0 p j \u028a \u0259 \u0279 \u026a \u0259 l"
+  },
+  {
+    "prediction": "\u026a m \u026a \u0261 \u0279 e \u026a t",
+    "target": "\u026a m \u026a \u0261 \u0279 e \u026a t"
+  },
+  {
+    "prediction": "j \u0259 \u028a d \u025b l",
+    "target": "j \u0259 \u028a d \u0259 l"
+  },
+  {
+    "prediction": "s \u0259 d\u0361\u0292 \u026a t \u0259 l",
+    "target": "s \u0259 d\u0361\u0292 \u026a t \u0259 l"
+  },
+  {
+    "prediction": "j u\u02d0 \u0292 \u0254\u02d0 \u0279 i \u0259 s",
+    "target": "j u\u02d0 \u0292 u\u02d0 \u0279 \u026a \u0259 s"
+  },
+  {
+    "prediction": "m \u026a d m \u0259 \u028a s t",
+    "target": "m \u026a d m \u0259 \u028a s t"
+  },
+  {
+    "prediction": "j u\u02d0 k \u026a p",
+    "target": "j u\u02d0 k \u026a p"
+  },
+  {
+    "prediction": "n \u028c t \u026a \u014b",
+    "target": "n \u028c t \u026a \u014b"
+  },
+  {
+    "prediction": "b \u026a h \u025b d \u0259 l",
+    "target": "b \u026a h \u025b d \u0259 l"
+  },
+  {
+    "prediction": "w \u028a d \u0279 \u028c f",
+    "target": "w \u028a d \u0279 \u028c f"
+  },
+  {
+    "prediction": "h \u0254\u02d0 \u026a k",
+    "target": "h \u0254 \u026a k"
+  },
+  {
+    "prediction": "\u0261 \u0279 i\u02d0 s w \u028a d",
+    "target": "\u0261 \u0279 i\u02d0 s w \u028a d"
+  },
+  {
+    "prediction": "m \u0259 \u028a l d w \u0254\u02d0 p",
+    "target": "m \u0259 \u028a l d w \u0254\u02d0 p"
+  },
+  {
+    "prediction": "\u03b8 \u0279 \u0252 m b \u026a n",
+    "target": "\u03b8 \u0279 \u0252 m b \u026a n"
+  },
+  {
+    "prediction": "p i\u02d0 k \u026a \u014b z",
+    "target": "p i\u02d0 k \u026a \u014b z"
+  },
+  {
+    "prediction": "t i\u02d0 s a \u026a d",
+    "target": "t i\u02d0 z s a \u026a d"
+  },
+  {
+    "prediction": "f \u0279 i\u02d0 k \u0259",
+    "target": "f \u0279 i\u02d0 k \u025b"
+  },
+  {
+    "prediction": "s \u0252 m \u0259 t \u026a s t",
+    "target": "s \u0259 \u028a m \u00e6 t \u026a s t"
+  },
+  {
+    "prediction": "k \u0259 n t \u0279 a \u026a t",
+    "target": "k \u0259 n t \u0279 a \u026a t"
+  },
+  {
+    "prediction": "t e \u026a n t",
+    "target": "t e \u026a n t"
+  },
+  {
+    "prediction": "k \u0279 \u00e6 m p \u0259 n",
+    "target": "k \u0279 \u00e6 m p \u0259 n"
+  },
+  {
+    "prediction": "\u0259 \u028a v \u0259 k \u026a l",
+    "target": "\u0259 \u028a v \u0259 k \u026a l"
+  },
+  {
+    "prediction": "\u0261 j u\u02d0 l z",
+    "target": "\u0261 j u\u02d0 l z"
+  },
+  {
+    "prediction": "d \u0279 \u028c m",
+    "target": "d \u0279 \u028c m"
+  },
+  {
+    "prediction": "k e \u026a k s",
+    "target": "k e \u026a k s"
+  },
+  {
+    "prediction": "h \u0251\u02d0 v \u0259 s t",
+    "target": "h \u0251\u02d0 \u0279 v \u026a s t"
+  },
+  {
+    "prediction": "m j u\u02d0 l j \u0259",
+    "target": "m j u\u02d0 l \u026a \u0259"
+  },
+  {
+    "prediction": "d i\u02d0 \u0261 l \u0259 \u028a b \u0259 l a \u026a z e \u026a \u0283 \u0259 n",
+    "target": "d i\u02d0 \u0261 l \u0259 \u028a b \u0259 l a \u026a z e \u026a \u0283 \u0259 n"
+  },
+  {
+    "prediction": "t \u0279 \u0252 l \u0259 p",
+    "target": "t \u0279 \u0252 l \u0259 p"
+  },
+  {
+    "prediction": "b \u0279 e \u026a z",
+    "target": "b \u0279 e \u026a z"
+  },
+  {
+    "prediction": "s \u0259\u02d0 f \u00e6 k t \u0259 n t",
+    "target": "s \u0259 \u0279 f \u00e6 k t \u0259 n t"
+  },
+  {
+    "prediction": "d \u0279 \u028c m f a \u026a \u0259",
+    "target": "d \u0279 \u028c m f a \u026a \u0259 \u0279"
+  },
+  {
+    "prediction": "d \u025b \u0283 \u0259 b \u026a l",
+    "target": "d \u025b z \u0259 b \u026a \u0259 l"
+  },
+  {
+    "prediction": "m u\u02d0 z",
+    "target": "m u\u02d0 z"
+  },
+  {
+    "prediction": "d i\u02d0 k \u0259 \u028a d",
+    "target": "d i\u02d0 k \u0259 \u028a d"
+  },
+  {
+    "prediction": "\u0279 \u0254\u02d0",
+    "target": "\u0279 \u0254\u02d0"
+  },
+  {
+    "prediction": "s \u00e6 n d w \u026a k",
+    "target": "s \u00e6 n d w \u026a k"
+  },
+  {
+    "prediction": "\u0279 \u026a k l u\u02d0 z",
+    "target": "\u0279 \u025b k l u\u02d0 s"
+  },
+  {
+    "prediction": "p \u025b k \u0259",
+    "target": "p \u025b k \u0259 \u0279"
+  },
+  {
+    "prediction": "d \u026a s \u0259 s \u025b m b l i",
+    "target": "d \u026a s \u0259 s \u025b m b l i"
+  },
+  {
+    "prediction": "\u0259 l \u025b k s e \u026a",
+    "target": "\u0259 l \u025b k s e \u026a"
+  },
+  {
+    "prediction": "\u0259 \u028a m \u0259 n",
+    "target": "\u0259 m \u0251\u02d0 n"
+  },
+  {
+    "prediction": "b \u00e6 m b u\u02d0",
+    "target": "b \u00e6 m b u"
+  },
+  {
+    "prediction": "\u0261 \u028c t \u0259 l",
+    "target": "\u0261 \u028c t l\u0329"
+  },
+  {
+    "prediction": "f \u026a \u014b \u0261 \u0259 z",
+    "target": "f \u026a \u014b \u0261 \u0259 z"
+  },
+  {
+    "prediction": "l \u025b p \u026a d",
+    "target": "l \u025b p \u026a d"
+  },
+  {
+    "prediction": "s \u028c m p t j u \u0259 s",
+    "target": "s \u028c m p t\u0361\u0283 u \u0259 s"
+  },
+  {
+    "prediction": "\u026a d\u0361\u0292 \u025b k \u0283 \u0259 n",
+    "target": "\u0259 d\u0361\u0292 \u025b k \u0283 \u0259 n"
+  },
+  {
+    "prediction": "\u00e6 z \u0259 \u0279 b a \u026a d\u0361\u0292 \u0259 n",
+    "target": "\u0259 z \u025b\u02d0 \u0279 b a \u026a d \u0292 \u0251\u02d0 n"
+  },
+  {
+    "prediction": "f l \u0259 \u028a",
+    "target": "f l \u0259 \u028a"
+  },
+  {
+    "prediction": "\u03b8 i\u02d0 \u0259",
+    "target": "\u03b8 i\u02d0 \u0259"
+  },
+  {
+    "prediction": "d i\u02d0 k \u0259 m p \u00e6 k t \u026a f \u026a k e \u026a \u0283 \u0259 n",
+    "target": "d i\u02d0 k \u0259 m p \u00e6 k t \u026a f \u026a k e \u026a \u0283 \u0259 n"
+  },
+  {
+    "prediction": "p \u0279 \u0259 l \u0252 \u0261",
+    "target": "p \u0279 \u0259 \u028a l \u0252 \u0261"
+  },
+  {
+    "prediction": "p \u0259 \u028a s t m \u0259 n",
+    "target": "p \u0259 \u028a s t m \u0259 n"
+  },
+  {
+    "prediction": "w \u025b \u0259 \u03b8 \u0279 \u0259",
+    "target": "w \u025b\u02d0 \u03b8 \u0279 u\u02d0"
+  },
+  {
+    "prediction": "m \u028c s \u0259 l d \u0259 m",
+    "target": "m \u028c s \u0259 l d \u0259 m"
+  },
+  {
+    "prediction": "\u0261 \u0279 e \u026a l",
+    "target": "\u0261 \u0279 e \u026a l"
+  },
+  {
+    "prediction": "k \u0259 m \u025b n t s",
+    "target": "k \u0252 m \u025b n t s"
+  },
+  {
+    "prediction": "h \u026a s t \u0259 \u0279 i",
+    "target": "h \u026a s t \u0279 \u026a"
+  },
+  {
+    "prediction": "s m a \u026a l i",
+    "target": "s m a \u026a l i"
+  },
+  {
+    "prediction": "m \u0254\u02d0 t \u0259 l \u026a s t",
+    "target": "m \u0254\u02d0 t \u0259 l \u026a s t"
+  },
+  {
+    "prediction": "l \u00e6 \u0283 \u0259 s",
+    "target": "l \u00e6 \u0283 \u0259 s"
+  },
+  {
+    "prediction": "p \u0252 z \u026a t \u026a v \u026a t i",
+    "target": "p \u0252 z \u026a t \u026a v \u026a t i"
+  },
+  {
+    "prediction": "\u026a s t\u0361\u0283 i\u02d0 t m \u0259 n t",
+    "target": "\u026a s t\u0361\u0283 i\u02d0 t m \u0259 n t"
+  },
+  {
+    "prediction": "\u0259 f \u025b n d",
+    "target": "\u0259 f \u025b n d"
+  },
+  {
+    "prediction": "\u0279 \u026a z i\u02d0 t",
+    "target": "\u0279 i\u02d0 s i\u02d0 t"
+  },
+  {
+    "prediction": "p e \u026a p \u0259 b a \u026a l",
+    "target": "p \u0259 p \u0251\u02d0 b \u026a l e \u026a"
+  },
+  {
+    "prediction": "k \u0259 n t \u025b m p t \u0283 u \u0259 s",
+    "target": "k \u0259 n t \u025b m p t j u \u0259 s"
+  },
+  {
+    "prediction": "t \u0259 \u028a b i\u02d0 t",
+    "target": "t \u0259 b i\u02d0 t"
+  },
+  {
+    "prediction": "n \u0259 \u028a b \u0252 d i",
+    "target": "n \u0259 \u028a b \u0259 d i"
+  },
+  {
+    "prediction": "k \u00e6 m p \u028a \u014b",
+    "target": "k \u028c m p \u0254\u02d0 \u014b"
+  },
+  {
+    "prediction": "\u026a n \u028c \u014b k \u0283 \u0259 n",
+    "target": "\u026a n \u028c \u014b k \u0283 \u0259 n"
+  },
+  {
+    "prediction": "w \u0254\u02d0 n \u0259",
+    "target": "w \u0254\u02d0 \u0279 n \u0259 \u0279"
+  },
+  {
+    "prediction": "s t \u025c\u02d0 k w \u026a l \u026a n \u0259 s",
+    "target": "s t \u025c\u02d0 \u0279 k w \u026a l \u026a n \u0259 s"
+  },
+  {
+    "prediction": "m \u00e6 n \u0283 \u026a p",
+    "target": "m \u00e6 n \u0283 \u026a p"
+  },
+  {
+    "prediction": "d \u0254\u02d0 l h a \u028a z i",
+    "target": "d \u00e6 l h a \u028a z i"
+  },
+  {
+    "prediction": "s k \u0254\u02d0 p",
+    "target": "s k \u0254\u02d0 p"
+  },
+  {
+    "prediction": "p j \u028a \u0259 \u0279 \u026a f a \u026a d",
+    "target": "p j \u0254\u02d0 \u0279 \u026a f a \u026a \u026a \u014b"
+  },
+  {
+    "prediction": "s \u028c b \u00e6 l t \u0259 n e \u026a t",
+    "target": "s \u0259 b \u0254\u02d0 l t \u0259 \u0279 n \u0259 t"
+  },
+  {
+    "prediction": "f \u0254\u02d0 m j \u028a l i\u02d0",
+    "target": "f \u0254\u02d0 \u0279 m j \u0259 l a \u026a"
+  },
+  {
+    "prediction": "m \u0259 z u\u02d0 m \u0259",
+    "target": "m \u0259 z u\u02d0 m \u0259"
+  },
+  {
+    "prediction": "p \u0279 \u026a s k \u0279 a \u026a b",
+    "target": "p \u0279 \u026a s k \u0279 a \u026a b"
+  },
+  {
+    "prediction": "\u026a n d \u028c s t \u0279 i \u0259 l",
+    "target": "\u026a n d \u028c s t \u0279 \u026a \u0259 l"
+  },
+  {
+    "prediction": "p \u026a t\u0361\u0283 \u026a \u014b",
+    "target": "p \u026a t\u0361\u0283 \u026a \u014b"
+  },
+  {
+    "prediction": "s u\u02d0 d \u0259 \u028a \u026a f i\u02d0 d \u0279 i\u02d0 n",
+    "target": "s j u\u02d0 d \u0259 \u028a \u025b f \u0259 d \u0279 i\u02d0 n"
+  },
+  {
+    "prediction": "\u028c n j u\u02d0 s f \u0259 l",
+    "target": "\u028c n j u\u02d0 s f \u0259 l"
+  },
+  {
+    "prediction": "s k \u0279 \u00e6 t\u0361\u0283 i",
+    "target": "s k \u0279 \u00e6 t\u0361\u0283 i"
+  },
+  {
+    "prediction": "d\u0361\u0292 \u00e6 b \u026a \u014b",
+    "target": "d\u0361\u0292 \u00e6 b \u026a \u014b"
+  },
+  {
+    "prediction": "s k \u00e6 l \u0259 p",
+    "target": "s k \u0252 l \u0259 p"
+  },
+  {
+    "prediction": "d \u00e6 z i b a \u028a",
+    "target": "d \u0251\u02d0 d z \u0259 b a \u028a"
+  },
+  {
+    "prediction": "b \u00e6 l \u0259 n \u0252 f \u0259 \u0261 \u0259 s",
+    "target": "b \u00e6 l \u0259 n \u0252 f \u0259 \u0261 \u0259 s"
+  },
+  {
+    "prediction": "b u\u02d0 t \u0251\u02d0 n",
+    "target": "b u\u02d0 t \u00e6 n"
+  },
+  {
+    "prediction": "k \u0252 n s \u00e6 \u014b \u0261 w \u026a n \u026a t i",
+    "target": "k \u0252 n s a \u014b \u0261 w \u026a n \u0259 t i"
+  },
+  {
+    "prediction": "\u0259 f \u0254\u02d0 \u03b8 \u0254\u02d0 t",
+    "target": "\u0259 f \u0254\u02d0 \u03b8 \u0254\u02d0 t"
+  },
+  {
+    "prediction": "k \u0259 \u0279 \u0251\u02d0 t \u0259",
+    "target": "k \u00e6 \u0279 \u00e6 t \u0259"
+  },
+  {
+    "prediction": "s \u025b d \u0259 n t \u0279 i",
+    "target": "s \u025b d \u0259 n t \u0259 \u0279 i"
+  },
+  {
+    "prediction": "\u026a \u014b k \u0259 n i",
+    "target": "\u026a \u014b k \u028c n i"
+  },
+  {
+    "prediction": "\u028c n s \u026a n",
+    "target": "\u028c n s \u026a n"
+  },
+  {
+    "prediction": "s k \u0279 \u00e6 b \u0259 l",
+    "target": "s k \u0279 \u00e6 b \u0259 l"
+  },
+  {
+    "prediction": "\u0279 i\u02d0 d \u026a z a \u026a n",
+    "target": "\u0279 i\u02d0 d \u026a z a \u026a n"
+  },
+  {
+    "prediction": "h j u\u02d0 m \u0259 \u0279 \u0259 s",
+    "target": "h j u\u02d0 m \u0259 \u0279 \u0259 s"
+  },
+  {
+    "prediction": "v \u0259 \u028a",
+    "target": "v \u0259 \u028a"
+  },
+  {
+    "prediction": "\u03b8 \u0279 \u026a f t i",
+    "target": "\u03b8 \u0279 \u026a f t i"
+  },
+  {
+    "prediction": "s i\u02d0 \u0261 f \u0279 i\u02d0 d",
+    "target": "s \u026a \u0261 f \u0279 i\u02d0 d"
+  },
+  {
+    "prediction": "l \u026a n i\u02d0 \u0259 n",
+    "target": "l \u026a n e \u026a \u0259 n"
+  },
+  {
+    "prediction": "k a \u028a n t \u0259 \u0279 \u0259 t \u0279 \u00e6 k t \u026a d",
+    "target": "k a \u028a n t \u0259 \u0279 \u0259 t \u0279 a k t \u026a d"
+  },
+  {
+    "prediction": "f \u0279 i\u02d0 k \u0259 z \u0254 \u026a d",
+    "target": "f \u0279 i\u02d0 k \u0259 z \u0254 \u026a d"
+  },
+  {
+    "prediction": "b a \u026a j \u00e6 \u014b",
+    "target": "b a \u026a j \u00e6 \u014b"
+  },
+  {
+    "prediction": "d \u026a s b \u0259 \u028a d i d",
+    "target": "d \u026a s b \u0252 d i\u02d0 d"
+  },
+  {
+    "prediction": "b a \u028a t \u026a d",
+    "target": "b a \u028a t \u026a d"
+  },
+  {
+    "prediction": "p e \u026a v i \u0259",
+    "target": "p \u0259 v i \u0259"
+  },
+  {
+    "prediction": "\u0279 \u026a k \u0279 \u0259 \u028a l",
+    "target": "\u0279 \u026a k \u0279 \u0259 \u028a l"
+  },
+  {
+    "prediction": "d \u025b k \u0259 p \u025b n t \u0259 p l i\u02d0 d\u0361\u0292 \u026a k",
+    "target": "d \u025b k \u0259 p \u025b n t \u0259 p l i\u02d0 d \u0292 \u026a k"
+  },
+  {
+    "prediction": "j \u025b s t \u0259 \u0279 j \u026a \u0259",
+    "target": "j \u025b s t \u0259 j \u026a \u0259"
+  },
+  {
+    "prediction": "s \u026a s t \u0259 z",
+    "target": "s \u026a s t \u0259 z"
+  },
+  {
+    "prediction": "\u0279 a \u026a n \u0252 s k \u0259 p \u026a s t",
+    "target": "\u0279 a \u026a n \u0252 s k \u0259 p \u026a s t"
+  },
+  {
+    "prediction": "d\u0361\u0292 u\u02d0 s",
+    "target": "d\u0361\u0292 \u026a \u028a\u032f s"
+  },
+  {
+    "prediction": "b \u028a l i",
+    "target": "b \u028a l i"
+  },
+  {
+    "prediction": "d \u025b m \u0259 n s t \u0279 e \u026a t \u026a d",
+    "target": "d \u025b m \u0259 n s t \u0279 e \u026a t \u026a d"
+  },
+  {
+    "prediction": "j i\u02d0 s t",
+    "target": "j i\u02d0 s t"
+  },
+  {
+    "prediction": "d a \u026a \u0259 l \u0252 \u0261",
+    "target": "d a \u026a \u0259 l \u0252 \u0261"
+  },
+  {
+    "prediction": "\u0279 u\u02d0 n",
+    "target": "\u0279 i\u02d0 j u\u02d0 n"
+  },
+  {
+    "prediction": "\u0279 \u025b z \u0259 \u0279 \u025b k \u0283 \u0259 n",
+    "target": "\u0279 \u025b z \u0259 \u0279 \u025b k \u0283 n\u0329"
+  },
+  {
+    "prediction": "f \u026a l b \u026a n",
+    "target": "f \u026a l b \u026a n"
+  },
+  {
+    "prediction": "s l \u0259 \u028a d",
+    "target": "s l \u0259 \u028a d"
+  },
+  {
+    "prediction": "l \u0259 w i\u02d0 z i \u0251\u02d0 n \u0259",
+    "target": "l u\u02d0 i\u02d0 z i \u00e6 n \u0259"
+  },
+  {
+    "prediction": "\u0259 k e \u026a t",
+    "target": "\u00e6 k \u0259 t"
+  },
+  {
+    "prediction": "p l e \u026a t",
+    "target": "p l \u00e6 t"
+  },
+  {
+    "prediction": "l \u00e6 \u014b \u0261 w \u026a d\u0361\u0292",
+    "target": "l \u00e6 \u014b \u0261 w \u026a d\u0361\u0292"
+  },
+  {
+    "prediction": "\u0259 d\u0361\u0292 \u0252 \u0261",
+    "target": "\u0259 d\u0361\u0292 \u0252 \u0261"
+  },
+  {
+    "prediction": "m \u026a l z",
+    "target": "m \u026a l z"
+  },
+  {
+    "prediction": "s t \u025b \u0259",
+    "target": "s t \u025b \u0259 \u0279"
+  },
+  {
+    "prediction": "s k \u026a m",
+    "target": "s k \u026a m"
+  },
+  {
+    "prediction": "\u03b8 u\u02d0 z i",
+    "target": "\u03b8 u\u02d0 z i"
+  },
+  {
+    "prediction": "p \u0259 s \u025b v \u0259 \u0279 \u0259 n s",
+    "target": "p \u025c\u02d0 s \u0259 v \u026a \u0259 \u0279 \u0259 n s"
+  },
+  {
+    "prediction": "m \u00e6 l \u026a s",
+    "target": "m \u00e6 l \u026a s"
+  },
+  {
+    "prediction": "\u0259 d s \u0254\u02d0 b",
+    "target": "\u0259 d s \u0254\u02d0 b"
+  },
+  {
+    "prediction": "\u0259 \u028a l \u026a v \u026a \u0259 \u0279 i \u0259 n",
+    "target": "\u0252 l \u026a v \u026a \u0259 \u0279 i \u0259 n"
+  },
+  {
+    "prediction": "n i\u02d0 \u0259 \u028a p l e \u026a t \u0259 n \u026a s t",
+    "target": "n i\u02d0 \u0259 \u028a p l e \u026a t \u0259 n \u026a s t"
+  },
+  {
+    "prediction": "v \u025b n d \u0259 s",
+    "target": "v \u025b n d \u026a s"
+  },
+  {
+    "prediction": "p \u0251\u02d0 p",
+    "target": "p \u0251\u02d0 \u0279 p"
+  },
+  {
+    "prediction": "k \u025b \u0279 \u026a l",
+    "target": "\u0283 \u025b \u0279 \u0259 l"
+  },
+  {
+    "prediction": "h \u026a \u0259 \u0279 \u026a \u014b",
+    "target": "h \u026a \u0259 \u0279 \u026a \u014b"
+  },
+  {
+    "prediction": "f \u0279 a \u026a t f \u0259 l",
+    "target": "f \u0279 a \u026a t f \u0259 l"
+  },
+  {
+    "prediction": "s \u0259 p \u0279 \u025b \u0283 \u0259 n",
+    "target": "s \u0259 p \u0279 \u025b \u0283 \u0259 n"
+  },
+  {
+    "prediction": "d \u026a k \u0283 \u0259 n \u0259 \u0279 i",
+    "target": "d \u026a k \u0283 \u0259 n \u0279 i"
+  },
+  {
+    "prediction": "\u026a n s t \u0259 n s \u026a z",
+    "target": "\u026a n s t \u0259 n s \u026a z"
+  },
+  {
+    "prediction": "h a \u026a d\u0361\u0292 \u00e6 k \u0259 \u0279",
+    "target": "h a \u026a d\u0361\u0292 \u00e6 k \u0259 \u0279"
+  },
+  {
+    "prediction": "t \u0279 \u00e6 n z l \u0259 k e \u026a t",
+    "target": "t r a n s l \u0259 \u028a k e \u026a t"
+  },
+  {
+    "prediction": "\u025b n t \u0279 i\u02d0 t",
+    "target": "\u026a n t \u0279 i\u02d0 t"
+  },
+  {
+    "prediction": "k \u0259 m p \u025b n s e \u026a t",
+    "target": "k \u0252 m p \u0259 n s e \u026a t"
+  },
+  {
+    "prediction": "k \u0254\u02d0 t l i",
+    "target": "k \u0254\u02d0 t l i"
+  },
+  {
+    "prediction": "t \u025b k t \u026a f \u0254\u02d0 m",
+    "target": "t \u025b k t \u026a f \u0254\u02d0 m"
+  },
+  {
+    "prediction": "t w \u026a d l i",
+    "target": "t w \u026a d \u0259 l i"
+  },
+  {
+    "prediction": "\u0279 \u0259 \u028a d",
+    "target": "\u0279 \u0259 \u028a d"
+  },
+  {
+    "prediction": "n j u\u02d0 m \u0259 \u028a n i \u0259",
+    "target": "n j u m \u0259 \u028a n i \u0259"
+  },
+  {
+    "prediction": "\u026a m p \u0279 \u026a m \u0259 t \u028a \u0259",
+    "target": "\u026a m p \u0279 \u026a m e \u026a t \u0259"
+  },
+  {
+    "prediction": "d\u0361\u0292 \u025b \u0279 \u026a k \u0259 n",
+    "target": "d\u0361\u0292 \u025b \u0279 i k \u00e6 n"
+  },
+  {
+    "prediction": "k \u0252 m p \u0251\u02d0 t m \u025b n t \u0259 l a \u026a z e \u026a \u0283 \u0259 n",
+    "target": "k \u0252 m p \u0251\u02d0 \u0279 t m \u025b n t l\u0329 a \u026a z e \u026a \u0283 \u0259 n"
+  },
+  {
+    "prediction": "f \u026a n \u0252 m \u026a n \u0252 n",
+    "target": "f \u0259 n \u0252 m \u026a n \u0259 n"
+  },
+  {
+    "prediction": "t\u0361\u0283 i\u02d0 f \u025b s",
+    "target": "t \u0283 i\u02d0 f \u025b s"
+  },
+  {
+    "prediction": "h \u026a k \u028c p s",
+    "target": "h \u026a k \u0259 p s"
+  },
+  {
+    "prediction": "s \u026a t w \u025b l",
+    "target": "s \u026a t w \u025b l"
+  },
+  {
+    "prediction": "\u0259 s \u025b s \u026a z",
+    "target": "\u0259 s \u025b s \u026a z"
+  },
+  {
+    "prediction": "\u00e6 n d \u0279 \u0252 d \u0292 \u026a n",
+    "target": "\u00e6 n d \u0279 \u0259 d\u0361\u0292 a \u026a n"
+  },
+  {
+    "prediction": "d \u0279 i\u02d0 z \u0259 n",
+    "target": "d \u0279 e \u026a s \u0259 n"
+  },
+  {
+    "prediction": "\u0279 a \u026a v \u0259 n",
+    "target": "\u0279 \u026a v \u0259 n"
+  },
+  {
+    "prediction": "s \u00e6 l p \u026a \u014b k s",
+    "target": "s \u00e6 l p \u026a \u014b k s"
+  },
+  {
+    "prediction": "d \u0279 \u025b d f \u0259 l",
+    "target": "d \u0279 \u025b d f \u028a l"
+  },
+  {
+    "prediction": "s p \u0251\u02d0",
+    "target": "s p \u0251\u02d0"
+  },
+  {
+    "prediction": "h \u025b n d",
+    "target": "h \u025b n d"
+  },
+  {
+    "prediction": "d \u026a k \u00e6 p \u026a t e \u026a t",
+    "target": "d \u026a k a p \u026a t e \u026a t"
+  },
+  {
+    "prediction": "f \u026a s t \u026a \u014b",
+    "target": "f \u026a s t \u026a \u014b"
+  },
+  {
+    "prediction": "k \u0279 u\u02d0 z \u0259 d \u0259",
+    "target": "k \u0279 u\u02d0 s e \u026a d \u0259"
+  },
+  {
+    "prediction": "\u03b8 \u025c\u02d0 s \u0259 \u028a",
+    "target": "\u03b8 \u025c\u02d0 \u0279 s o \u028a"
+  },
+  {
+    "prediction": "l \u026a s n \u0259 \u0283 \u026a p",
+    "target": "l \u026a s n \u0259 \u0283 \u026a p"
+  },
+  {
+    "prediction": "b \u00e6 t\u0361\u0283 k \u0259",
+    "target": "b \u0251\u02d0 t\u0361\u0283 k \u0259"
+  },
+  {
+    "prediction": "\u028c n p \u0251\u02d0 t\u0361\u0283 t",
+    "target": "\u028c n p \u0251\u02d0 \u0279 t\u0361\u0283 t"
+  },
+  {
+    "prediction": "\u0279 i\u02d0 l \u00e6 k s",
+    "target": "\u0279 \u026a l \u00e6 k s"
+  },
+  {
+    "prediction": "t \u0279 \u026a p t \u0259 f \u00e6 n",
+    "target": "t \u0279 \u026a p t \u0259 \u028a f \u00e6 n"
+  },
+  {
+    "prediction": "v \u026a n e \u026a",
+    "target": "v \u026a n e \u026a"
+  },
+  {
+    "prediction": "\u025b m p \u0259 \u0279 \u0259",
+    "target": "\u025b m p \u0279 \u0259"
+  },
+  {
+    "prediction": "\u0279 a \u028a n d \u026a \u014b",
+    "target": "\u0279 a \u028a n d \u026a \u014b"
+  },
+  {
+    "prediction": "w \u025b \u0259 \u0279 \u0259 b a \u028a t",
+    "target": "h w \u025b \u0259 \u0279 \u0259 b a \u028a t"
+  },
+  {
+    "prediction": "p \u025b n t \u026a m \u025b n t i",
+    "target": "p \u025b n t \u026a m \u025b n t i"
+  },
+  {
+    "prediction": "t w i\u02d0 \u0261",
+    "target": "t w i\u02d0 \u0261"
+  },
+  {
+    "prediction": "w \u0252 t\u0361\u0283 t",
+    "target": "w \u0252 t \u0283 t"
+  },
+  {
+    "prediction": "\u00e6 d \u0259 l \u025b s \u0259 n t",
+    "target": "\u00e6 d \u0259 l \u025b s \u0259 n t"
+  },
+  {
+    "prediction": "p \u0279 \u025b d \u026a k \u0259 n t",
+    "target": "p \u0279 \u025b d \u026a k a n t"
+  },
+  {
+    "prediction": "\u025b s p \u0259 \u0279 \u0259 n t \u026a z \u0259 m",
+    "target": "\u025b s p \u0259 \u0279 \u00e6 n t \u026a z m"
+  },
+  {
+    "prediction": "\u0283 \u0279 i\u02d0 v",
+    "target": "\u0283 \u0279 i\u02d0 v"
+  },
+  {
+    "prediction": "s e \u026a z j \u028a \u0259",
+    "target": "s i \u0292 \u025a"
+  },
+  {
+    "prediction": "m \u025b s \u0259 n d\u0361\u0292 \u0259",
+    "target": "m \u025b s n\u0329 d\u0361\u0292 \u0259"
+  },
+  {
+    "prediction": "p \u0279 \u025b d \u0259 s t a \u026a n",
+    "target": "p \u0279 i d \u025b s t \u026a n"
+  },
+  {
+    "prediction": "\u00e6 m p \u0259 l",
+    "target": "\u00e6 m p \u0259 l"
+  },
+  {
+    "prediction": "m \u0259 t\u0361\u0283 a \u026a n z",
+    "target": "m \u0259 \u0283 i\u02d0 n z"
+  },
+  {
+    "prediction": "t w \u026a k \u0259 n \u0259 m",
+    "target": "t w \u026a k \u0259 n \u0259 m"
+  },
+  {
+    "prediction": "\u0261 \u026a f t l \u0259 t",
+    "target": "\u0261 \u026a f t l \u0259 t"
+  },
+  {
+    "prediction": "s j u\u02d0 z \u0259 \u0279 \u0259 n t i",
+    "target": "s j u z \u0259 \u0279 e \u026a\u032f n t i"
+  },
+  {
+    "prediction": "\u026a n t \u0259 \u0279 \u0252 k j \u028a l \u0259",
+    "target": "\u026a n t \u0259 \u0279 \u0252 k j \u0259 l \u0259 \u0279"
+  },
+  {
+    "prediction": "t \u0279 \u00e6 n s \u025b n d \u025b n t \u0259 l",
+    "target": "t \u0279 \u00e6 n z \u025b n d \u025b n t \u0259 l"
+  },
+  {
+    "prediction": "h a \u026a p \u0252 \u03b8 \u0259 s \u026a s",
+    "target": "h \u0259 p \u0252 \u03b8 \u026a s \u026a s"
+  },
+  {
+    "prediction": "\u0261 l \u026a m \u0259 \u0279",
+    "target": "\u0261 l \u026a m \u0259 \u0279"
+  },
+  {
+    "prediction": "k \u0259 n f a \u026a d i\u02d0 z",
+    "target": "k \u0259 n f a \u026a d z"
+  },
+  {
+    "prediction": "k u\u02d0 d u\u02d0",
+    "target": "k u\u02d0 d u\u02d0"
+  },
+  {
+    "prediction": "\u0259 \u028a v \u0259 f a \u026a \u0259 d",
+    "target": "\u0259 \u028a v \u0259 f a \u026a \u0259 d"
+  },
+  {
+    "prediction": "b \u025c\u02d0 \u0261",
+    "target": "b \u025c\u02d0 \u0279"
+  },
+  {
+    "prediction": "d \u025c\u02d0 d \u0259 \u028a \u026a \u014b",
+    "target": "d \u025c\u02d0 \u0279 d u\u02d0 \u026a \u014b"
+  },
+  {
+    "prediction": "p \u0279 i\u02d0 z \u0259 \u028a",
+    "target": "p \u0279 i\u02d0 z \u0259 \u028a"
+  },
+  {
+    "prediction": "\u026a m j u\u02d0 n \u026a t i",
+    "target": "\u026a m j u\u02d0 n \u0259 t i"
+  },
+  {
+    "prediction": "s \u00e6 k \u0259 \u0279 a \u026a d",
+    "target": "s \u00e6 k \u0259 \u0279 a \u026a d"
+  },
+  {
+    "prediction": "v \u026a n \u026a t s i \u0259",
+    "target": "v \u026a n \u026a t s j \u0259"
+  },
+  {
+    "prediction": "k \u0259 m p l e \u026a n \u026a \u014b",
+    "target": "k \u0259 m p l e \u026a n \u026a \u014b"
+  },
+  {
+    "prediction": "s w e \u026a l",
+    "target": "s w e \u026a l"
+  },
+  {
+    "prediction": "p \u0279 \u025b m j \u0259",
+    "target": "p \u0279 \u025b m j \u025b\u02d0"
+  },
+  {
+    "prediction": "\u00e6 s \u026a k l \u0259 \u028a v \u026a \u0259 \u0279",
+    "target": "e \u026a s \u028c \u026a k l \u0259 \u028a v \u026a \u0259"
+  },
+  {
+    "prediction": "\u025b s t\u0361\u0283 \u028a \u0259 \u0279 i",
+    "target": "\u025b s t\u0361\u0283 \u028a \u0259 \u0279 i"
+  },
+  {
+    "prediction": "v \u025c\u02d0 \u0261 \u0259",
+    "target": "v \u025c\u02d0 \u0261 \u0259"
+  },
+  {
+    "prediction": "f l \u00e6 p t",
+    "target": "f l \u00e6 p t"
+  },
+  {
+    "prediction": "\u03b8 \u0254\u02d0 t f \u0259 l",
+    "target": "\u03b8 \u0254\u02d0 t f \u0259 l"
+  },
+  {
+    "prediction": "\u0261 \u026a d i",
+    "target": "\u0261 \u026a d i"
+  },
+  {
+    "prediction": "p \u025b l t",
+    "target": "p \u025b l t"
+  },
+  {
+    "prediction": "\u0261 w \u026a n",
+    "target": "\u0261 w \u026a n"
+  },
+  {
+    "prediction": "\u026a k \u0252 n \u0259 m \u026a s t",
+    "target": "i\u02d0 k \u0252 n \u0259 m \u026a s t"
+  },
+  {
+    "prediction": "d \u026a p l \u0259 \u028a m \u0259 s i",
+    "target": "d \u026a p l \u0259 \u028a m \u0259 s i"
+  },
+  {
+    "prediction": "m \u0252 n \u0259 k \u028c l t\u0361\u0283 \u0259 \u0279",
+    "target": "m \u0252 n o \u028a k \u028c l t\u0361\u0283 \u0259 \u0279"
+  },
+  {
+    "prediction": "\u025b s e \u026a z",
+    "target": "\u025b s e \u026a z"
+  },
+  {
+    "prediction": "\u0259 k w \u026a v \u0259",
+    "target": "\u0259 k w \u026a v \u0259 \u0279"
+  },
+  {
+    "prediction": "h \u028c d \u0259 z f i\u02d0 l d",
+    "target": "h \u028a d \u0259 s f i\u02d0 \u0259 l d"
+  },
+  {
+    "prediction": "h a \u026a p \u0259 k e \u026a n",
+    "target": "h a \u026a p \u0259 \u0279 k \u0259 n"
+  },
+  {
+    "prediction": "p \u00e6 n \u0259 n d i\u02d0 \u026a s t",
+    "target": "p \u00e6 n e n d e \u026a \u026a s t"
+  },
+  {
+    "prediction": "s \u026a \u0259 \u0279 i \u0259 s",
+    "target": "s \u026a \u0259 \u0279 \u026a \u0259 s"
+  },
+  {
+    "prediction": "b l e \u026a m",
+    "target": "b l e \u026a m"
+  },
+  {
+    "prediction": "b \u026a l \u0259 \u028a",
+    "target": "b \u026a l \u0259 \u028a"
+  },
+  {
+    "prediction": "p \u00e6 n d \u0254\u02d0",
+    "target": "p \u00e6 n d \u0254\u02d0 \u0279"
+  },
+  {
+    "prediction": "t \u0279 \u00e6 v \u0259 l \u026a \u014b",
+    "target": "t \u0279 \u00e6 v \u0259 l \u026a \u014b"
+  },
+  {
+    "prediction": "s e \u026a l d",
+    "target": "s e \u026a l d"
+  },
+  {
+    "prediction": "\u0259 s \u025b t",
+    "target": "\u00e6 s \u026a t"
+  },
+  {
+    "prediction": "i\u02d0 \u0283 \u0259 l e \u026a t",
+    "target": "i\u02d0 t i \u0259 l e \u026a t"
+  },
+  {
+    "prediction": "m \u0251\u02d0 k i",
+    "target": "m \u0251\u02d0 \u0279 k i"
+  },
+  {
+    "prediction": "k w \u0252 t j \u028a \u0259 d \u026a s \u026a l j \u0259 n",
+    "target": "k w \u0252 t j u \u0254\u02d0 \u0279 d \u0259 s \u026a l i \u0259 n"
+  },
+  {
+    "prediction": "\u026a n s t \u0259 \u0261 \u0279 \u00e6 m",
+    "target": "\u026a n s t \u0259 \u0261 \u0279 \u00e6 m"
+  },
+  {
+    "prediction": "k \u00e6 n z",
+    "target": "k \u00e6 n"
+  },
+  {
+    "prediction": "s \u026a n \u026a k",
+    "target": "s \u026a n \u026a k"
+  },
+  {
+    "prediction": "d a \u026a l u\u02d0 s \u026a d e \u026a \u0283 \u0259 n",
+    "target": "d \u026a l j u\u02d0 s \u026a d e \u026a \u0283 \u0259 n"
+  },
+  {
+    "prediction": "\u0259 \u028a l \u0259 n t",
+    "target": "\u0259 \u028a l \u0259 n t"
+  },
+  {
+    "prediction": "\u025b v i\u02d0 n",
+    "target": "\u026a v i\u02d0 n"
+  },
+  {
+    "prediction": "h \u025b z \u026a k \u00e6 s t",
+    "target": "h \u025b s \u026a k \u00e6 s t"
+  },
+  {
+    "prediction": "\u0259 b \u0279 i\u02d0",
+    "target": "\u0251\u02d0 b \u0279 i\u02d0"
+  },
+  {
+    "prediction": "s k e \u026a t \u0259 \u0279",
+    "target": "s k e \u026a t \u0259 \u0279"
+  },
+  {
+    "prediction": "\u0279 e \u026a t s",
+    "target": "\u0279 e \u026a t s"
+  },
+  {
+    "prediction": "f l \u00e6 v \u0259 n \u0254 \u026a d",
+    "target": "f l e \u026a v \u0259 n \u0254 \u026a d"
+  },
+  {
+    "prediction": "i\u02d0 t \u00e6 t",
+    "target": "a \u026a t a t"
+  },
+  {
+    "prediction": "t \u0254\u02d0 s \u0259 \u028a",
+    "target": "t \u0254\u02d0 s \u0259 \u028a"
+  },
+  {
+    "prediction": "b \u028c k \u0259 \u028a \u00e6 p \u026a k \u0259 l",
+    "target": "b \u028c k o \u028a e \u026a p \u0268 k l\u0329"
+  },
+  {
+    "prediction": "d \u026a s k \u0279 \u026a p t \u026a v \u026a s t",
+    "target": "d \u026a s k \u0279 \u026a p t \u026a v \u026a s t"
+  },
+  {
+    "prediction": "d\u0361\u0292 \u0259 \u028a t \u028a n",
+    "target": "j o \u028a t \u0259 n"
+  },
+  {
+    "prediction": "d i\u02d0 \u0261 \u0279 e \u026a d",
+    "target": "d \u026a \u0261 \u0279 e \u026a d"
+  },
+  {
+    "prediction": "p \u0279 \u026a z \u025b n t \u0259 b \u0259 l",
+    "target": "p \u0279 \u0259 z \u025b n t \u0259 b \u0259 l"
+  },
+  {
+    "prediction": "h \u028c m p",
+    "target": "h \u028c m p"
+  },
+  {
+    "prediction": "\u026a n d\u0361\u0292 \u028a \u0259 \u0279 i \u0259 s",
+    "target": "\u026a n d \u0292 \u0254\u02d0 \u0279 \u026a \u0259 s"
+  },
+  {
+    "prediction": "v \u026a s k \u0259 s",
+    "target": "v \u026a s k \u0259 s"
+  },
+  {
+    "prediction": "\u0252 s t \u0259 n t",
+    "target": "\u0252 s t \u025b n t"
+  },
+  {
+    "prediction": "l e \u026a s \u026a \u014b",
+    "target": "l e \u026a s \u026a \u014b"
+  },
+  {
+    "prediction": "f \u026a z i",
+    "target": "f \u026a z i"
+  },
+  {
+    "prediction": "m \u00e6 k \u0279 \u0259 \u028a \u0261 \u0259 m \u025b t \u0259 f a \u026a t",
+    "target": "m \u00e6 k \u0279 \u0259 \u028a \u0261 \u0259 m i\u02d0 t \u0259 \u028a f a \u026a t"
+  },
+  {
+    "prediction": "\u0261 \u0279 e \u026a v l i",
+    "target": "\u0261 \u0279 e \u026a v l i"
+  },
+  {
+    "prediction": "t \u025c\u02d0 n a \u028a t",
+    "target": "t \u025c\u02d0 \u0279 n a \u028a t"
+  },
+  {
+    "prediction": "m \u00e6 \u0261 n e \u026a t",
+    "target": "m \u00e6 \u0261 n e \u026a t"
+  },
+  {
+    "prediction": "\u00e6 n \u0252 f \u026a l i\u02d0 z",
+    "target": "\u0259 n \u0252 f \u026a l i\u02d0 z"
+  },
+  {
+    "prediction": "l \u0252 d\u0361\u0292 b \u0251\u02d0 n",
+    "target": "l o \u028a \u0292 b \u00e6 n"
+  },
+  {
+    "prediction": "p j \u0254 \u014b j \u00e6 \u014b",
+    "target": "p j \u0252 \u014b j \u00e6 \u014b"
+  },
+  {
+    "prediction": "d\u0361\u0292 \u026a n d\u0361\u0292 \u026a z",
+    "target": "d\u0361\u0292 \u026a n d\u0361\u0292 \u026a z"
+  },
+  {
+    "prediction": "d \u026a s k \u028c v \u0259 \u0279 \u0259 b \u0259 l",
+    "target": "d \u026a s k \u028c v \u0279 \u0259 b \u0259 \u026b"
+  },
+  {
+    "prediction": "t\u0361\u0283 \u00e6 l \u0259 n d\u0361\u0292 \u026a \u014b",
+    "target": "t\u0361\u0283 \u00e6 l \u026a n d\u0361\u0292 \u026a \u014b"
+  },
+  {
+    "prediction": "f \u0252 n d l \u026a \u014b",
+    "target": "f \u0252 n d \u0259 l \u026a \u014b"
+  },
+  {
+    "prediction": "b \u026a l t",
+    "target": "b \u026a l t"
+  },
+  {
+    "prediction": "s \u025b f \u026a z \u0259 m",
+    "target": "s i\u02d0 f \u026a z \u0259 m"
+  },
+  {
+    "prediction": "k \u0252 m b \u026a n \u0259 t \u026a v",
+    "target": "k \u0252 m b \u026a n e \u026a t \u026a v"
+  },
+  {
+    "prediction": "b \u028c s \u026a n",
+    "target": "b \u028c s \u026a n"
+  },
+  {
+    "prediction": "b l u\u02d0 t\u0361\u0283 \u0259 \u0279",
+    "target": "b l u\u02d0 k \u0259"
+  },
+  {
+    "prediction": "k \u0252 n d\u0361\u0292 \u0259 \u0279 e \u026a \u0283 \u0259 n",
+    "target": "k \u0252 n d\u0361\u0292 \u0259 \u0279 e \u026a \u0283 \u0259 n"
+  },
+  {
+    "prediction": "p a \u026a b \u0279 \u0252 k",
+    "target": "p i\u02d0 b \u0279 \u0252 k"
+  },
+  {
+    "prediction": "\u025b n i b \u0252 d i z",
+    "target": "\u025b n i b \u0259 d i z"
+  },
+  {
+    "prediction": "e \u026a z \u0259 l w e \u026a",
+    "target": "a \u026a l w e \u026a"
+  },
+  {
+    "prediction": "w \u026a k \u026a k \u0259 \u028a d",
+    "target": "w \u026a k \u026a k \u0259 \u028a d"
+  },
+  {
+    "prediction": "k \u00e6 p \u026a t e \u026a \u0283 \u0259 n",
+    "target": "k a p \u026a t e \u026a \u0283 \u0259 n"
+  },
+  {
+    "prediction": "v \u00e6 k",
+    "target": "v \u00e6 k"
+  },
+  {
+    "prediction": "p \u028a d j u\u02d0 t\u0361\u0283 \u025b \u0279 i",
+    "target": "p \u028a d \u028a t\u0361\u0283 \u025b \u0279 i"
+  },
+  {
+    "prediction": "m \u025b n \u0259 s",
+    "target": "m \u025b n \u026a s"
+  },
+  {
+    "prediction": "p e \u026a s t \u0279 i",
+    "target": "p e \u026a s t \u0279 i"
+  },
+  {
+    "prediction": "\u0259 d \u028c s k",
+    "target": "\u0259 d \u028c s k"
+  },
+  {
+    "prediction": "w \u025b \u0259 \u0279 \u0251\u02d0 f t \u0259",
+    "target": "w \u025b \u0259 \u0279 \u00e6 f t \u0259 \u0279"
+  },
+  {
+    "prediction": "s \u026a d \u00e6 z j \u028a \u0259 \u0279 \u026a d i\u02d0 n",
+    "target": "s i\u02d0 d \u0259 z j \u028a \u0259 \u0279 \u026a d i\u02d0 n"
+  },
+  {
+    "prediction": "b a \u026a t",
+    "target": "b a \u026a t"
+  },
+  {
+    "prediction": "k \u025b \u0259 l \u0259 s l i",
+    "target": "k \u025b \u0259 l \u0259 s l i"
+  },
+  {
+    "prediction": "h \u0259 \u028a z \u026a z",
+    "target": "h \u0259 \u028a z \u026a z"
+  },
+  {
+    "prediction": "k \u00e6 z m \u0259 f a \u026a t",
+    "target": "k \u00e6 z m \u0259 \u028a f a \u026a t"
+  },
+  {
+    "prediction": "k \u0251\u02d0 \u0279 \u0259 h i",
+    "target": "k \u0259 \u0279 a \u026a"
+  },
+  {
+    "prediction": "p \u025b \u0279 \u026a t \u0259 \u028a n i \u0259 l",
+    "target": "p \u025b r \u026a t \u0259 n i\u02d0 \u0259 l"
+  },
+  {
+    "prediction": "k \u00e6 \u0279 \u0259 k \u0251\u02d0 l p \u00e6 k",
+    "target": "k \u00e6 \u0279 \u0259 k \u00e6 l p \u00e6 k"
+  },
+  {
+    "prediction": "h i\u02d0 l d",
+    "target": "h i\u02d0 l d"
+  },
+  {
+    "prediction": "\u0261 \u0259 \u0279 \u026a l \u0259",
+    "target": "\u0261 \u0259 \u0279 \u026a l \u0259"
+  },
+  {
+    "prediction": "j u\u02d0 \u026a s t",
+    "target": "j u\u02d0 \u026a s t"
+  },
+  {
+    "prediction": "n \u026a p \u0259",
+    "target": "n \u026a p \u0259 \u0279"
+  },
+  {
+    "prediction": "\u0259 \u0279 \u0252 n \u026a k",
+    "target": "\u025b\u02d0 \u0279 \u0252 n \u026a k"
+  },
+  {
+    "prediction": "f i\u02d0 l",
+    "target": "f i\u02d0 l"
+  },
+  {
+    "prediction": "l a \u026a f \u0259",
+    "target": "l a \u026a f \u0259 \u0279"
+  },
+  {
+    "prediction": "m \u0259 \u028a \u0259",
+    "target": "m \u0259 \u028a \u0259"
+  },
+  {
+    "prediction": "f l e \u026a n d\u0361\u0292",
+    "target": "f l \u00e6 n d\u0361\u0292"
+  },
+  {
+    "prediction": "\u026a n s t \u0279 u\u02d0 m \u0259 n t s",
+    "target": "\u026a n s t \u0279 \u0259 m \u0259 n t s"
+  },
+  {
+    "prediction": "\u00e6 m b \u026a v \u025c\u02d0 \u0292 \u0259 n",
+    "target": "\u00e6 m b \u026a v \u025c\u02d0 \u0283 \u0259 n"
+  },
+  {
+    "prediction": "p \u0252 m f \u0279 \u025b t",
+    "target": "p \u0252 m f \u0279 \u026a t"
+  },
+  {
+    "prediction": "d i\u02d0 k \u0259 m p a \u028a n d \u0259 b \u0259 l",
+    "target": "d i\u02d0 k \u0259 m p a \u028a n d \u0259 b \u0259 \u026b"
+  },
+  {
+    "prediction": "m \u026a s \u0279 \u025b k \u0259 n",
+    "target": "m \u026a s \u0279 \u025b k \u0259 n"
+  },
+  {
+    "prediction": "b \u0279 \u0259 t \u025b s",
+    "target": "b \u0279 \u025b t \u025b s"
+  },
+  {
+    "prediction": "\u0254\u02d0 t",
+    "target": "\u0254\u02d0 t"
+  },
+  {
+    "prediction": "l i\u02d0 z \u0259",
+    "target": "l i\u02d0 s \u0259"
+  },
+  {
+    "prediction": "\u03b8 \u025c\u02d0 z d e \u026a",
+    "target": "\u03b8 \u025c\u02d0 z d i"
+  },
+  {
+    "prediction": "b \u0259 \u0279 \u0252 m \u026a t \u0279 i",
+    "target": "b \u0259 \u0279 \u0252 m e t \u0279 i"
+  },
+  {
+    "prediction": "s \u025b d \u0259 n t \u0279 i",
+    "target": "s \u025b d \u0259 n t \u0279 i"
+  },
+  {
+    "prediction": "m \u025b l \u026a l \u0259 t",
+    "target": "m \u025b l \u026a l \u0252 t"
+  },
+  {
+    "prediction": "k \u0279 \u0252 s k \u028c t",
+    "target": "k \u0279 \u0252 s k \u028c t"
+  },
+  {
+    "prediction": "k \u0259 m \u025b l i \u0259",
+    "target": "k \u0259 m \u025b l \u026a \u0259"
+  },
+  {
+    "prediction": "e \u026a l \u0251\u02d0 n",
+    "target": "e \u026a l \u0251\u02d0 n"
+  },
+  {
+    "prediction": "h u\u02d0 p i",
+    "target": "\u028d \u028a p i"
+  },
+  {
+    "prediction": "t\u0361\u0283 \u025b l z",
+    "target": "t\u0361\u0283 \u025b l s"
+  },
+  {
+    "prediction": "\u0259 \u028a v \u0259 d \u0259 \u028a n",
+    "target": "\u0259 \u028a v \u0259 \u0279 d \u028c n"
+  },
+  {
+    "prediction": "p \u0251\u02d0 l i",
+    "target": "p \u0251\u02d0 l e \u026a"
+  },
+  {
+    "prediction": "k \u0279 \u026a s \u0259 n",
+    "target": "k \u0279 \u026a s \u0259 n"
+  },
+  {
+    "prediction": "k w \u0251\u02d0 m \u0259 \u0283",
+    "target": "k w \u0251 m \u00e6 \u0283"
+  },
+  {
+    "prediction": "\u0261 w \u026a n \u0259 \u03b8",
+    "target": "\u0261 w \u026a n \u0259 \u03b8"
+  },
+  {
+    "prediction": "n i\u02d0 \u0252 t \u026a n \u0259 s",
+    "target": "n i \u0252 t \u0259 n \u0259 s"
+  },
+  {
+    "prediction": "t \u0279 \u00e6 n z \u0283 \u026a p",
+    "target": "t \u0279 \u00e6 n z \u0283 \u026a p"
+  },
+  {
+    "prediction": "f \u025b z \u0259 n",
+    "target": "f \u0259 z \u00e6 n"
+  },
+  {
+    "prediction": "t \u0259 \u0279 i\u02d0 \u0283 \u0259 l",
+    "target": "t \u0259 \u0279 i\u02d0 \u0283 \u0259 l"
+  },
+  {
+    "prediction": "v \u025c\u02d0 m \u026a n \u0259 s",
+    "target": "v \u025c\u02d0 m \u026a n \u0259 s"
+  },
+  {
+    "prediction": "d\u0361\u0292 \u026a \u014b \u0261 \u0259 \u028a \u026a s t \u026a k",
+    "target": "d\u0361\u0292 \u026a \u014b \u0261 \u0259 \u028a \u026a s t \u026a k"
+  },
+  {
+    "prediction": "d \u00e6 k t \u026a l \u0252 l \u0259 d\u0361\u0292 i",
+    "target": "d \u00e6 k t \u026a l \u0252 l \u0259 d \u0292 i"
+  },
+  {
+    "prediction": "\u0279 \u00e6 t e \u026a l",
+    "target": "\u0279 \u00e6 t t e \u026a l"
+  },
+  {
+    "prediction": "\u0279 \u028c b \u0259 n \u025b k \u0259",
+    "target": "r \u028c b \u0259 n \u025b k \u0259"
+  },
+  {
+    "prediction": "\u025b n k l e \u026a v",
+    "target": "\u025b \u014b k l e \u026a v"
+  },
+  {
+    "prediction": "\u026a m p a \u028a \u0259",
+    "target": "\u025b m p a \u028a \u0259 \u0279"
+  },
+  {
+    "prediction": "\u025b l e \u026a n",
+    "target": "i\u02d0 l e \u026a n"
+  },
+  {
+    "prediction": "t \u028a \u0259",
+    "target": "t \u025d"
+  },
+  {
+    "prediction": "d w i\u02d0 m \u0259",
+    "target": "d w i\u02d0 m \u0259 \u0279"
+  },
+  {
+    "prediction": "d \u025b t j \u028a m \u025b s",
+    "target": "d i\u02d0 t j u\u02d0 m \u025b s"
+  },
+  {
+    "prediction": "s t \u0251\u02d0 t l\u0329 d",
+    "target": "s t \u0251\u02d0 t l\u0329 d"
+  },
+  {
+    "prediction": "z \u025b n \u0259 s a \u026a t \u0252 l \u0259 d\u0361\u0292 i",
+    "target": "z \u025b n \u0259 s a \u026a t \u0251 l \u0259 d\u0361\u0292 i"
+  },
+  {
+    "prediction": "k \u0279 a \u028a",
+    "target": "k \u0279 \u0259 \u028a"
+  },
+  {
+    "prediction": "s k \u0279 a \u026a n",
+    "target": "s k \u0279 a \u026a n"
+  },
+  {
+    "prediction": "\u025b p i\u02d0",
+    "target": "\u025b p e \u026a"
+  },
+  {
+    "prediction": "\u028c n m \u025b z m \u0259 \u0279 a \u026a z d",
+    "target": "\u028c n m \u025b z m \u0259 \u0279 a \u026a z d"
+  },
+  {
+    "prediction": "f \u0279 e \u026a m d",
+    "target": "f \u0279 e \u026a m d"
+  },
+  {
+    "prediction": "\u0254\u02d0 l p \u025c\u02d0 f \u026a k t",
+    "target": "\u0254\u02d0 l p \u025c\u02d0 f \u025b k t"
+  },
+  {
+    "prediction": "w \u026a k t",
+    "target": "w \u026a k \u026a d"
+  },
+  {
+    "prediction": "s t \u00e6 k",
+    "target": "s t \u00e6 k"
+  },
+  {
+    "prediction": "\u026a f i\u02d0 b",
+    "target": "\u025b f i\u02d0 b"
+  },
+  {
+    "prediction": "p \u0279 \u026a d\u0361\u0292 u\u02d0 d \u026a k e \u026a t",
+    "target": "p \u0279 i\u02d0 d \u0292 u\u02d0 d \u026a k \u0259 t"
+  },
+  {
+    "prediction": "m \u00e6 k \u0279 \u0259 \u028a \u025b k \u0259 n \u0252 m \u026a k",
+    "target": "m \u00e6 k \u0279 \u0259 \u028a i\u02d0 k \u0259 n \u0252 m \u026a k"
+  },
+  {
+    "prediction": "a \u028a \u0259 z",
+    "target": "\u0251\u02d0 z"
+  },
+  {
+    "prediction": "t \u00e6 k \u0259 n \u0251\u02d0 w \u0259",
+    "target": "t \u0251 k \u0259 n \u0251 w \u0259"
+  },
+  {
+    "prediction": "d i\u02d0 b l \u025b n d",
+    "target": "d i\u02d0 b l \u025b n d"
+  },
+  {
+    "prediction": "n j u\u02d0 m \u0259 n",
+    "target": "n j u\u02d0 m \u0259 n"
+  },
+  {
+    "prediction": "\u0279 u\u02d0 z \u0259 v \u0259 l t",
+    "target": "\u0279 o \u028a z \u0259 v \u025b l t"
+  },
+  {
+    "prediction": "\u0261 \u0279 \u0254\u02d0 l \u026a k s",
+    "target": "\u0261 \u0279 \u0254\u02d0 l \u026a k s"
+  },
+  {
+    "prediction": "p \u0279 a \u028a d",
+    "target": "p \u0279 a \u028a d"
+  },
+  {
+    "prediction": "k \u0279 \u0251\u02d0 f t",
+    "target": "k \u0279 \u0251\u02d0 f t"
+  },
+  {
+    "prediction": "d\u0361\u0292 \u025b s \u0259 p",
+    "target": "d\u0361\u0292 \u025b s \u0259 p"
+  },
+  {
+    "prediction": "d \u026a z \u0279 \u028c p t",
+    "target": "d \u026a z \u0279 \u028a p t"
+  },
+  {
+    "prediction": "k \u028c l \u0259 f \u0259 l",
+    "target": "k \u028c l \u0259 f \u0259 l"
+  },
+  {
+    "prediction": "\u0259 k \u0279 u\u02d0",
+    "target": "\u0259 k \u0279 u\u02d0"
+  },
+  {
+    "prediction": "\u00e6 t \u0279 \u0259 b \u026a l i \u0259 \u0279 i",
+    "target": "\u00e6 t \u0279 \u0259 b \u026a l i \u025b \u0259 \u0279 i"
+  },
+  {
+    "prediction": "d \u0279 \u0259 \u028a l",
+    "target": "d \u0279 \u0259 \u028a l"
+  },
+  {
+    "prediction": "h \u028c n \u026a k",
+    "target": "h \u028c n \u026a k"
+  },
+  {
+    "prediction": "z \u0251\u02d0 \u0279 d \u0259 \u028a z i",
+    "target": "z \u0251\u02d0 d \u0259 \u028a z i"
+  },
+  {
+    "prediction": "s \u025c\u02d0 s",
+    "target": "s \u025c \u0279 s i"
+  },
+  {
+    "prediction": "\u0279 \u026a z \u025b t",
+    "target": "\u0279 \u0259 s \u025b t"
+  },
+  {
+    "prediction": "\u026a n k l \u0259 \u028a \u0292 \u0259",
+    "target": "\u026a n k l \u0259 \u028a \u0292 \u0259"
+  },
+  {
+    "prediction": "\u03b8 a \u028a z \u0259 n d \u03b8",
+    "target": "\u03b8 a \u028a z \u0259 n \u03b8"
+  },
+  {
+    "prediction": "t \u025b l m \u026a s \u0251\u02d0 t \u0259 n",
+    "target": "t \u025b l m \u026a s \u0251 \u0279 t \u0259 n"
+  },
+  {
+    "prediction": "\u0259 s p \u0251\u02d0 t \u0259 m i\u02d0 n",
+    "target": "\u00e6 s p \u0251\u02d0 \u0279 t \u0259 m i\u02d0 n"
+  },
+  {
+    "prediction": "\u0261 \u026a z l e \u026a n",
+    "target": "\u0261 \u026a l e \u026a n"
+  },
+  {
+    "prediction": "k l \u025b \u0259 v \u0254 \u026a \u0259 n s",
+    "target": "k l \u025b \u0259 v \u0254 \u026a \u0259 n s"
+  },
+  {
+    "prediction": "\u0251\u02d0 \u0279 s f \u025b n \u0259 m i\u02d0 n",
+    "target": "\u0251\u02d0 s f \u025b n \u0259 m i\u02d0 n"
+  },
+  {
+    "prediction": "m \u0251\u02d0 l b \u0279 \u0259",
+    "target": "m \u0254\u02d0 l b \u0279 \u0259"
+  },
+  {
+    "prediction": "\u026a n d \u0259 s a \u026a l",
+    "target": "\u026a n d \u0252 s \u026a l"
+  },
+  {
+    "prediction": "d\u0361\u0292 \u00e6 k \u0259 \u0279",
+    "target": "d\u0361\u0292 \u00e6 k \u0259 \u0279"
+  },
+  {
+    "prediction": "\u0279 \u00e6 \u0283 i",
+    "target": "\u0279 \u00e6 \u0283 i"
+  },
+  {
+    "prediction": "k \u00e6 l \u0259 n d \u0259",
+    "target": "k \u00e6 l \u0259 n d \u0259"
+  },
+  {
+    "prediction": "b \u0254\u02d0 \u0279 i \u0259 l",
+    "target": "b \u0254\u02d0 \u0279 \u026a \u0259 l"
+  },
+  {
+    "prediction": "\u0279 \u00e6 \u014b",
+    "target": "\u0279 \u00e6 \u014b"
+  },
+  {
+    "prediction": "d \u0251\u02d0 l \u025b k",
+    "target": "d \u0251\u02d0 l \u025b k"
+  },
+  {
+    "prediction": "\u00e6 b s \u026a s t",
+    "target": "\u00e6 b s \u026a s t"
+  },
+  {
+    "prediction": "d \u026a f \u025b m \u026a n a \u026a z",
+    "target": "d i\u02d0 f \u025b m \u026a n a \u026a z"
+  },
+  {
+    "prediction": "d \u025b m \u026a d\u0361\u0292 \u0259 n",
+    "target": "d \u025b m \u026a d \u0292 \u0252 n"
+  },
+  {
+    "prediction": "\u026a k s p l \u026a s \u026a t a \u026a z",
+    "target": "\u026a k s p l \u026a s \u026a t a \u026a z"
+  },
+  {
+    "prediction": "\u0279 \u0252 l \u026a p \u0279 \u00e6 m",
+    "target": "\u0279 o \u028a l \u026a p \u0279 \u00e6 m"
+  },
+  {
+    "prediction": "s a \u026a k \u026a k",
+    "target": "s a \u026a k \u026a k"
+  },
+  {
+    "prediction": "l i\u02d0 d \u0259 f \u028a t",
+    "target": "l \u025b d \u0259 \u0279 f \u028a t"
+  },
+  {
+    "prediction": "s i\u02d0 l \u0259 m",
+    "target": "s i\u02d0 l \u0259 m"
+  },
+  {
+    "prediction": "f \u025b l \u03b8 \u0259 m",
+    "target": "f \u025b l t \u0259 m"
+  },
+  {
+    "prediction": "b e \u026a k \u026a \u014b",
+    "target": "b e \u026a k \u026a \u014b \u0261"
+  },
+  {
+    "prediction": "h e \u026a v \u0259 b \u0259 l",
+    "target": "h \u00e6 v \u0259 b l\u0329"
+  },
+  {
+    "prediction": "l i\u02d0 m \u0259 n",
+    "target": "l \u025b m \u0259 n"
+  },
+  {
+    "prediction": "p \u026a t \u026a f \u0259 l",
+    "target": "p \u026a t \u026a f l\u0329"
+  },
+  {
+    "prediction": "\u028c p \u0283 \u0252 t",
+    "target": "\u028c p \u0283 \u0252 t"
+  },
+  {
+    "prediction": "p \u0259 m \u026a \u0259 \u0279 i \u0259 m",
+    "target": "p \u0259 \u028a\u0306 m \u026a \u0259 \u0279 \u026a \u0259 m"
+  },
+  {
+    "prediction": "d \u0254\u02d0 z",
+    "target": "d \u0254\u02d0 z"
+  },
+  {
+    "prediction": "p \u026a \u0279 \u0252 \u0292 k i",
+    "target": "p \u026a \u0279 \u0252 \u0283 k \u026a"
+  },
+  {
+    "prediction": "d j u\u02d0 d \u025b t",
+    "target": "d j u\u02d0 d \u025b t"
+  },
+  {
+    "prediction": "\u0279 i\u02d0 p",
+    "target": "\u0279 i\u02d0 p"
+  },
+  {
+    "prediction": "s n \u00e6 \u0261 i",
+    "target": "s n \u00e6 \u0261 i"
+  },
+  {
+    "prediction": "d\u0361\u0292 a \u026a \u0279 \u0259 \u028a",
+    "target": "d\u0361\u0292 a \u026a \u0279 o \u028a"
+  },
+  {
+    "prediction": "k \u025c\u02d0 z",
+    "target": "k \u025c\u02d0 \u0279 z"
+  },
+  {
+    "prediction": "l \u0254\u02d0 n d \u0259 \u0279 \u025b t",
+    "target": "l \u0254\u02d0 n d \u0279 \u025b t"
+  },
+  {
+    "prediction": "\u025b s k \u0259 n \u0251\u02d0 b \u0259",
+    "target": "\u025b s k \u0259 n \u0251\u02d0 b \u0259"
+  },
+  {
+    "prediction": "l a \u026a e \u026a z \u0259 n",
+    "target": "l a \u026a e \u026a z \u0259 n"
+  },
+  {
+    "prediction": "\u0259 t e \u026a n m \u0259 n t",
+    "target": "\u0259 t e \u026a n m \u0259 n t"
+  },
+  {
+    "prediction": "n \u026a \u0261 \u0259 \u028a \u0283 i e \u026a t \u0259",
+    "target": "n \u026a \u0261 \u0259 \u028a \u0283 i e \u026a t \u0259"
+  },
+  {
+    "prediction": "w \u00e6 m b j \u028a l \u0259 n s",
+    "target": "w \u00e6 m b j \u0259 l \u0259 n s"
+  },
+  {
+    "prediction": "f \u0254\u02d0 h \u025b d",
+    "target": "f \u0252 \u0279 \u025b d"
+  },
+  {
+    "prediction": "s \u025b p \u0259 \u0279 e \u026a t \u0279 \u026a k s",
+    "target": "s \u025b p \u0259 \u0279 e \u026a t \u0279 \u026a k s"
+  },
+  {
+    "prediction": "s \u026a s t \u0259 m z",
+    "target": "s \u026a s t \u0259 m z"
+  },
+  {
+    "prediction": "t \u0279 \u00e6 n \u0283 \u026a p",
+    "target": "t \u0279 \u00e6 n z \u0283 \u026a p"
+  },
+  {
+    "prediction": "b \u0254\u02d0 l",
+    "target": "b \u0254\u02d0 l"
+  },
+  {
+    "prediction": "s \u028c l i \u026a d\u0361\u0292",
+    "target": "s \u028c l i \u0259 d\u0361\u0292"
+  },
+  {
+    "prediction": "\u026a n t \u0279 \u026a k i",
+    "target": "\u026a n t \u0279 i\u02d0 k i\u02d0"
+  },
+  {
+    "prediction": "l e \u026a k",
+    "target": "l e \u026a k"
+  },
+  {
+    "prediction": "b \u0279 \u00e6 \u0261 \u0259 d \u0259 \u028a \u0283 \u0259 s",
+    "target": "b \u0279 \u00e6 \u0261 \u0259 d \u0259 \u028a t\u0361\u0283 \u026a \u0259 \u028a z"
+  }
+]

@@ -1,0 +1,4 @@
+inflect
+nltk
+onnxruntime
+optimum
