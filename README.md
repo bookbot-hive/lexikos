@@ -99,24 +99,24 @@ To get a lexicon where phonemes are normalized (diacritics removed, digraphs spl
 
 ### English `(en-CA)`
 
-| Language       | Dictionary | Phone Set | Corpus                                                 | G2P Model |
-| -------------- | ---------- | --------- | ------------------------------------------------------ | --------- |
-| en-CA (Broad)  | Wikipron   | IPA       | [Link](./lexikos/dict/wikipron/eng_latn_ca_broad.tsv)  |           |
-| en-CA (Narrow) | Wikipron   | IPA       | [Link](./lexikos/dict/wikipron/eng_latn_ca_narrow.tsv) |           |
+| Language       | Dictionary | Phone Set | Corpus                                                 | G2P Model                                                                                                             |
+| -------------- | ---------- | --------- | ------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- |
+| en-CA (Broad)  | Wikipron   | IPA       | [Link](./lexikos/dict/wikipron/eng_latn_ca_broad.tsv)  | [bookbot/byt5-small-wikipron-eng-latn-ca-broad](https://huggingface.co/bookbot/byt5-small-wikipron-eng-latn-ca-broad) |
+| en-CA (Narrow) | Wikipron   | IPA       | [Link](./lexikos/dict/wikipron/eng_latn_ca_narrow.tsv) |                                                                                                                       |
 
 ### English `(en-NZ)`
 
-| Language       | Dictionary | Phone Set | Corpus                                                 | G2P Model |
-| -------------- | ---------- | --------- | ------------------------------------------------------ | --------- |
-| en-NZ (Broad)  | Wikipron   | IPA       | [Link](./lexikos/dict/wikipron/eng_latn_nz_broad.tsv)  |           |
-| en-NZ (Narrow) | Wikipron   | IPA       | [Link](./lexikos/dict/wikipron/eng_latn_nz_narrow.tsv) |           |
+| Language       | Dictionary | Phone Set | Corpus                                                 | G2P Model                                                                                                             |
+| -------------- | ---------- | --------- | ------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- |
+| en-NZ (Broad)  | Wikipron   | IPA       | [Link](./lexikos/dict/wikipron/eng_latn_nz_broad.tsv)  | [bookbot/byt5-small-wikipron-eng-latn-nz-broad](https://huggingface.co/bookbot/byt5-small-wikipron-eng-latn-nz-broad) |
+| en-NZ (Narrow) | Wikipron   | IPA       | [Link](./lexikos/dict/wikipron/eng_latn_nz_narrow.tsv) |                                                                                                                       |
 
 ### English `(en-IN)`
 
-| Language       | Dictionary | Phone Set | Corpus                                                 | G2P Model |
-| -------------- | ---------- | --------- | ------------------------------------------------------ | --------- |
-| en-IN (Broad)  | Wikipron   | IPA       | [Link](./lexikos/dict/wikipron/eng_latn_in_broad.tsv)  |           |
-| en-IN (Narrow) | Wikipron   | IPA       | [Link](./lexikos/dict/wikipron/eng_latn_in_narrow.tsv) |           |
+| Language       | Dictionary | Phone Set | Corpus                                                 | G2P Model                                                                                                             |
+| -------------- | ---------- | --------- | ------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- |
+| en-IN (Broad)  | Wikipron   | IPA       | [Link](./lexikos/dict/wikipron/eng_latn_in_broad.tsv)  | [bookbot/byt5-small-wikipron-eng-latn-in-broad](https://huggingface.co/bookbot/byt5-small-wikipron-eng-latn-in-broad) |
+| en-IN (Narrow) | Wikipron   | IPA       | [Link](./lexikos/dict/wikipron/eng_latn_in_narrow.tsv) |                                                                                                                       |
 
 
 ## Training G2P Model
@@ -220,11 +220,11 @@ python eval.py \
 | East Asian English     | en-CN, en-HK, en-JP, en-KR, en-TW | China, Hong Kong, Japan, South Korea, Taiwan          |        |           |
 | European English       | en-UK, en-HU, en-IE               | United Kingdom, Hungary, Ireland                      |   🚧    |     🚧     |
 | Mexican English        | en-MX                             | Mexico                                                |        |           |
-| New Zealand English    | en-NZ                             | New Zealand                                           |   ✅    |           |
-| North American         | en-CA, en-US                      | Canada, United States                                 |   ✅    |     🚧     |
+| New Zealand English    | en-NZ                             | New Zealand                                           |   ✅    |     ✅     |
+| North American         | en-CA, en-US                      | Canada, United States                                 |   ✅    |     ✅     |
 | Middle Eastern English | en-EG, en-IL                      | Egypt, Israel                                         |        |           |
 | Southeast Asian        | en-TH, en-ID, en-MY, en-PH, en-SG | Thailand, Indonesia, Malaysia, Philippines, Singapore |        |           |
-| South Asian English    | en-IN                             | India                                                 |   ✅    |           |
+| South Asian English    | en-IN                             | India                                                 |   ✅    |     ✅     |
   
 ## Resources
 
