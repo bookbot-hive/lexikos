@@ -44,12 +44,8 @@ class Lexicon(UserDict):
                 phonemes = phonemes.replace(" . ", " ")
                 if normalize_phonemes:
                     phonemes = self._normalize_phonemes(phonemes)
-                phonemes = [phonemes]
                 word = word.lower()
-                if word in lex:
-                    lex[word] = lex[word].union(phonemes)
-                else:
-                    lex[word] = set(phonemes)
+                lex[word] = lex.get(word, set()) | set([phonemes])
         return lex
 
     def _merge_dicts(self, dicts: List[Dict[Any, Set]]):
@@ -69,7 +65,7 @@ class Lexicon(UserDict):
         diacritics = ["ː", "ˑ", "̆", "̯", "͡", "‿", "͜", "̩", "ˈ", "ˌ"]
         for d in diacritics:
             phonemes = phonemes.replace(d, "")
-        phonemes = " ".join([p for p in phonemes if p != " "]).strip()
+        phonemes = phonemes.strip()
         return phonemes
 
 
