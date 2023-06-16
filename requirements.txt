@@ -1,4 +1,5 @@
 inflect
 nltk
+onnx
 onnxruntime
 optimum[onnxruntime]
