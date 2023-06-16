@@ -49,6 +49,15 @@ To get a lexicon where phonemes are normalized (diacritics removed, digraphs spl
 {'w o ɾ ə', 'w ɔ t ə', 'ʋ ɔ ʈ ə r', 'w a ʈ ə r ɯ', 'w ɔ t ə ɹ', 'ʋ a ʈ ə r ɯ', 'w ɑ ɾ ɚ', 'w o t ə', 'w ɔ t ɝ', 'w ɔ ʈ ə r', 'w ɔ ɾ ɚ', 'w ɑ t ə ɹ'}
 ```
 
+To include synthetic (non-dictionary-based) pronunciations:
+
+```py
+>>> from lexikos import Lexicon
+>>> lexicon = Lexicon(include_synthetic=True)
+>>> print(lexicon["athletic"])
+{'æ t l ɛ t ɪ k', 'æ θ ˈl ɛ t ɪ k', 'æ θ l ɛ t ɪ k'}
+```
+
 ### Phonemization
 
 ```py
@@ -65,9 +74,9 @@ To get a lexicon where phonemes are normalized (diacritics removed, digraphs spl
 
 ### English `(en)`
 
-| Language | Dictionary | Phone Set | Corpus                                       | G2P Model |
-| -------- | ---------- | --------- | -------------------------------------------- | --------- |
-| en       | Wikipron   | IPA       | [Link](./lexikos/dict/wikipron/eng_latn.tsv) |           |
+| Language | Dictionary | Phone Set | Corpus                                       | G2P Model                                                                                           |
+| -------- | ---------- | --------- | -------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| en       | Wikipron   | IPA       | [Link](./lexikos/dict/wikipron/eng_latn.tsv) | [bookbot/byt5-small-wikipron-eng-latn](https://huggingface.co/bookbot/byt5-small-wikipron-eng-latn) |
 
 ### English `(en-US)`
 
@@ -90,12 +99,12 @@ To get a lexicon where phonemes are normalized (diacritics removed, digraphs spl
 
 ### English `(en-AU)`
 
-| Language       | Dictionary  | Phone Set | Corpus                                                 | G2P Model                                                                                                             |
-| -------------- | ----------- | --------- | ------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- |
-| en-AU (Broad)  | Wikipron    | IPA       | [Link](./lexikos/dict/wikipron/eng_latn_au_broad.tsv)  | [bookbot/byt5-small-wikipron-eng-latn-au-broad](https://huggingface.co/bookbot/byt5-small-wikipron-eng-latn-au-broad) |
-| en-AU (Narrow) | Wikipron    | IPA       | [Link](./lexikos/dict/wikipron/eng_latn_au_narrow.tsv) |                                                                                                                       |
-| en-AU          | AusTalk (§) | IPA       | [Link](./lexikos/dict/synthetic/austalk_en_au.tsv)     |                                                                                                                       |
-| en-AU          | SC-CW (§)   | IPA       | [Link](./lexikos/dict/synthetic/sc_cw_en_au.tsv)       |                                                                                                                       |
+| Language       | Dictionary | Phone Set | Corpus                                                 | G2P Model                                                                                                             |
+| -------------- | ---------- | --------- | ------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- |
+| en-AU (Broad)  | Wikipron   | IPA       | [Link](./lexikos/dict/wikipron/eng_latn_au_broad.tsv)  | [bookbot/byt5-small-wikipron-eng-latn-au-broad](https://huggingface.co/bookbot/byt5-small-wikipron-eng-latn-au-broad) |
+| en-AU (Narrow) | Wikipron   | IPA       | [Link](./lexikos/dict/wikipron/eng_latn_au_narrow.tsv) |                                                                                                                       |
+| en-AU          | AusTalk    | IPA       | [Link](./lexikos/dict/asr-data/austalk_en_au.tsv)      |                                                                                                                       |
+| en-AU          | SC-CW      | IPA       | [Link](./lexikos/dict/asr-data/sc_cw_en_au.tsv)        |                                                                                                                       |
 
 ### English `(en-CA)`
 

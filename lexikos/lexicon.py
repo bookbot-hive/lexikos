@@ -17,19 +17,18 @@ from pathlib import Path
 from typing import Any, Dict, List, Set, Union
 import os
 
-DICTIONARIES = os.path.join(os.path.dirname(__file__), "dict")
-
 
 class Lexicon(UserDict):
     def __init__(
         self,
         normalize_phonemes: bool = False,
-        dictionaries_dir: Union[Path, str] = DICTIONARIES,
+        include_synthetic: bool = False,
     ):
-        if isinstance(dictionaries_dir, str):
-            dictionaries_dir = Path(dictionaries_dir)
-
+        dictionaries_dir = Path(os.path.join(os.path.dirname(__file__), "dict"))
         files = list(dictionaries_dir.rglob("*/*.tsv"))
+        synthetic_files = list(dictionaries_dir.rglob("synthetic/*.tsv"))
+        if not include_synthetic:
+            files = filter(lambda x: x not in synthetic_files, files)
         dicts = [self._parse_tsv(file, normalize_phonemes) for file in files]
         mapping: Dict[str, Set[str]] = self._merge_dicts(dicts)
         super().__init__(mapping)
