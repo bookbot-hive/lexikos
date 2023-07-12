@@ -57,13 +57,17 @@ class Lexicon(UserDict):
                     output_dict[k] = v
         return output_dict
 
-    def _normalize_phonemes(self, phonemes: str) -> str:
+    @staticmethod
+    def _normalize_phonemes(phonemes: str) -> str:
         """
         Modified from: [Michael McAuliffe](https://memcauliffe.com/speaker-dictionaries-and-multilingual-ipa.html#multilingual-ipa-mode)
         """
         diacritics = ["ː", "ˑ", "̆", "̯", "͡", "‿", "͜", "̩", "ˈ", "ˌ"]
+        digraphs = ["o ʊ", "e ɪ", "a ʊ", "ɑ ɪ", "a ɪ", "ɔ ɪ"]
         for d in diacritics:
             phonemes = phonemes.replace(d, "")
+        for dg in digraphs:
+            phonemes = phonemes.replace(dg, dg.replace(" ", ""))
         phonemes = phonemes.strip()
         return phonemes
 

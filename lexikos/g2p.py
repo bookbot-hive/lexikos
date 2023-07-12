@@ -19,6 +19,7 @@ import os
 
 from nltk.tokenize import TweetTokenizer
 
+from .lexicon import Lexicon
 from .utils import logger
 from .normalizer import normalize_numbers
 from .t5 import T5
@@ -33,10 +34,12 @@ class G2p:
         lang: str = "en-us",
         backend: str = "wikipron",
         narrow: Optional[bool] = None,
+        normalize_phonemes: Optional[bool] = False,
     ):
         self.lexicon = self._get_dictionary(lang, backend, narrow)
         self.t5 = self._get_t5_model(lang, backend, narrow)
         self.tokenizer = TweetTokenizer()
+        self.normalize_phonemes = normalize_phonemes
 
     def __call__(self, text: str, keep_punctuations: bool = False) -> List[str]:
         text = self._normalize_text(text)
@@ -44,6 +47,8 @@ class G2p:
         phonemes = [self._phonemize(token) for token in tokens]
         if not keep_punctuations:
             phonemes = list(filter(lambda x: not self._is_punctuation(x), phonemes))
+        if self.normalize_phonemes:
+            phonemes = list(map(Lexicon._normalize_phonemes, phonemes))
 
         return phonemes
 
@@ -149,5 +154,5 @@ class G2p:
 
 
 if __name__ == "__main__":
-    g2p = G2p(lang="en-us")
+    g2p = G2p(lang="en-us", normalize_phonemes=True)
     print(g2p("Hello there! $100 is not a lot of money in 2023."))
