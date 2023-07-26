@@ -15,6 +15,7 @@ from datasets import load_dataset, Dataset, DatasetDict, interleave_datasets, lo
 from dataclasses import dataclass, field
 from typing import Optional, List
 
+import evaluate
 from transformers import (
     AutoConfig,
     AutoModelForSeq2SeqLM,
@@ -537,8 +538,8 @@ def main():
 
         return preds, labels
 
-    cer_metric = load_metric("cer")
-    wer_metric = load_metric('wer')
+    cer_metric = evaluate.load("cer")
+    wer_metric = evaluate.load("wer")
 
     def compute_metrics(eval_preds):
         preds, labels = eval_preds
