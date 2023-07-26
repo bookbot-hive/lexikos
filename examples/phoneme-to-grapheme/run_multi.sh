@@ -14,10 +14,10 @@ run_translation.py \
     --eval_split_names None dev validation validation validation validation validation validation validation \
     --source_text_column_name transcript \
     --target_text_column_name text \
-    --per_device_train_batch_size 64 \
+    --per_device_train_batch_size 32 \
     --gradient_accumulation_steps 1 \
     --per_device_eval_batch_size 32 \
-    --learning_rate 1e-4 \
+    --learning_rate 1e-3 \
     --lr_scheduler_type cosine \
     --warmup_ratio 0.1 \
     --num_train_epochs 20 \
@@ -35,7 +35,10 @@ run_translation.py \
     --predict_with_generate \
     --report_to tensorboard \
     --use_auth_token \
+    --push_to_hub \
     --save_total_limit 10 \
     --metric_for_best_model wer \
     --load_best_model_at_end True \
+    --hub_private_repo True \
+    --hub_model_id bookbot/p2g_charsiu_byt5_tiny_12_layers_100_multi \
     --chars_to_ignore , ? . ! \\- \; \: \" “ % ‘ ” �
