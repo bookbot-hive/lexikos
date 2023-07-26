@@ -31,7 +31,7 @@ python run_translation.py \
     --use_auth_token \
     --push_to_hub \
     --save_total_limit 10 \
-    --metric_for_best_model = 'wer' \
+    --metric_for_best_model wer \
     --load_best_model_at_end True \
     --hub_private_repo True \
     --hub_model_id bookbot/p2g_charsiu_byt5_tiny_12_layers_100_multi \
