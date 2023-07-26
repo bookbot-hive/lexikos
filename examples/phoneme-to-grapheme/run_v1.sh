@@ -15,7 +15,7 @@ python run_translation.py \
     --lr_scheduler_type cosine \
     --warmup_ratio 0.1 \
     --num_train_epochs 15 \
-    --evaluation_strategy steps \
+    --evaluation_strategy epoch \
     --save_strategy epoch \
     --logging_strategy epoch \
     --max_source_length 512 \
