@@ -8,7 +8,7 @@ SCRIPT = Path(__file__).parents[1] / "scripts" / "prepare_charsiu_g2p.py"
 SPLITS = ("train", "dev", "test")
 
 
-def _run(source, output, language="es-mx"):
+def _run(source, output, language="es-419"):
     return subprocess.run(
         [
             sys.executable,
@@ -55,8 +55,12 @@ def test_preparation_is_deterministic_and_keeps_words_in_one_split(tmp_path):
     pronunciations_by_word = {}
     pronunciation_count = 0
     for split in SPLITS:
-        first_data = (first_output / split / "spa-me.tsv").read_text(encoding="utf-8")
-        second_data = (second_output / split / "spa-me.tsv").read_text(encoding="utf-8")
+        first_data = (first_output / split / "spa-latin.tsv").read_text(
+            encoding="utf-8"
+        )
+        second_data = (second_output / split / "spa-latin.tsv").read_text(
+            encoding="utf-8"
+        )
         assert first_data == second_data
         for line in first_data.splitlines():
             word, pronunciation = line.split("\t", 1)
@@ -72,8 +76,8 @@ def test_preparation_is_deterministic_and_keeps_words_in_one_split(tmp_path):
 
     manifest = json.loads((first_output / "manifest.json").read_text(encoding="utf-8"))
     assert manifest["format"] == "charsiu-g2p-tsv-v1"
-    assert manifest["language"] == "es-mx"
-    assert manifest["charsiu_language"] == "spa-me"
+    assert manifest["language"] == "es-419"
+    assert manifest["charsiu_language"] == "spa-latin"
     assert sum(split["words"] for split in manifest["splits"].values()) == 44
     assert sum(split["pronunciations"] for split in manifest["splits"].values()) == 46
 
