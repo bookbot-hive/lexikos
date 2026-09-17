@@ -1,7 +1,7 @@
 # Structured Lexicon Storage Design
 
 **Date:** 2026-09-17  
-**Status:** Proposed; approved in chat for written review  
+**Status:** Approved; implementation pending
 **Scope:** Lexicon ingestion, curation, provenance, runtime snapshots, and migration from TSV
 
 ## Problem
@@ -391,24 +391,24 @@ normalizer continues to raise `ValueError`.
 
 One row per unique accepted attribution record for a runtime pronunciation:
 
-| Column | Type |
-| --- | --- |
+| Column | Type | Constraint |
+| --- | --- | --- |
 | `id` | TEXT | PRIMARY KEY |
-| `pronunciation_id` | INTEGER NOT NULL REFERENCES `pronunciation(id)` |
-| `source_id` | TEXT |
-| `source_name` | TEXT |
-| `language` | TEXT |
-| `source_language` | TEXT |
-| `source_language_raw` | TEXT |
-| `observation_ids_json` | TEXT |
-| `source_url` | TEXT |
-| `source_revision` | TEXT |
-| `license_id` | TEXT |
-| `license_url` | TEXT |
-| `evidence_status` | TEXT |
-| `dialect_json` | TEXT |
-| `transcription` | TEXT |
-| `synthetic` | INTEGER |
+| `pronunciation_id` | INTEGER | NOT NULL REFERENCES `pronunciation(id)` |
+| `source_id` | TEXT | NOT NULL |
+| `source_name` | TEXT | NOT NULL |
+| `language` | TEXT | NOT NULL |
+| `source_language` | TEXT | NULL allowed |
+| `source_language_raw` | TEXT | NULL allowed |
+| `observation_ids_json` | TEXT | NOT NULL, valid non-empty JSON array |
+| `source_url` | TEXT | NULL allowed |
+| `source_revision` | TEXT | NOT NULL |
+| `license_id` | TEXT | NULL allowed |
+| `license_url` | TEXT | NULL allowed |
+| `evidence_status` | TEXT | NOT NULL |
+| `dialect_json` | TEXT | NULL or valid JSON object |
+| `transcription` | TEXT | NOT NULL |
+| `synthetic` | INTEGER | NOT NULL, CHECK value is 0 or 1 |
 
 `id` is a deterministic SHA-256 over the pronunciation identity, canonical
 attribution metadata, and sorted observation IDs. This prevents duplicate
@@ -534,12 +534,41 @@ normalizer. This preserves the return shape without inventing a pronunciation.
 A configured model that fails to load remains an error; it is not treated as
 an intentionally model-less profile.
 
-`G2p(lang)` selects the pack's declared default profile, including a
-dictionary-only default. Existing explicit backend and broad/narrow selectors
-continue to select an exact matching profile and raise `ValueError` when none
-exists. `G2p.supported_languages()` without profile filters returns every pack
-with a default profile; filtered discovery returns exact matches. No G2P code
-reads packaged TSV files after cutover.
+The selection API uses `None` to distinguish default-profile resolution from
+the existing explicit filters:
+
+```python
+G2p(
+    lang: str,
+    *,
+    backend: str | None = None,
+    narrow: bool | None = None,
+    normalize_phonemes: bool = False,
+)
+
+G2p.supported_languages(
+    backend: str | None = None,
+    narrow: bool | None = None,
+) -> tuple[str, ...]
+```
+
+The combinations are:
+
+| `backend` | `narrow` | Selection |
+| --- | --- | --- |
+| `None` | `None` | Pack default profile |
+| non-`None` | `None` | That backend's broad profile |
+| non-`None` | `False` | That backend's broad profile |
+| non-`None` | `True` | That backend's narrow profile |
+| `None` | `False` | WikiPron broad, preserving the explicit legacy call |
+| `None` | `True` | WikiPron narrow, preserving the explicit legacy call |
+
+`G2p(lang)` therefore selects the declared default even when it is
+non-WikiPron or non-broad. Explicit selectors require an exact matching
+profile and raise `ValueError` when none exists.
+`G2p.supported_languages()` applies the same table: the no-argument call lists
+packs with defaults, while any supplied filter lists exact matches. No G2P
+code reads packaged TSV files after cutover.
 
 ## Deterministic snapshot generation
 
@@ -642,6 +671,9 @@ GitHub permits authorized replacement or deletion of release assets, so immutabi
 - Unfiltered supported-language discovery includes every pack's required
   default profile; filtered discovery includes exact matching model-backed or
   dictionary-only profiles.
+- Bare `G2p(lang)` and unfiltered discovery use a non-WikiPron, non-broad
+  default profile when configured; explicit selector combinations follow the
+  selection table and never silently fall back to the default.
 - Known English and Spanish lexicon lookups preserve IPA and provenance
   behavior.
 - Both `normalize_phonemes=False` and `True` preserve IPA results; normalized
