@@ -219,7 +219,9 @@ RUNTIME_SCHEMA_SQL = RUNTIME_SCHEMA
 PathLike = Union[str, os.PathLike, Path]
 
 
-def _connect(path: PathLike, *, readonly: bool = False) -> sqlite3.Connection:
+def _connect(
+    path: PathLike, *, readonly: bool = False, create: bool = True
+) -> sqlite3.Connection:
     """Open a SQLite path and enable the invariants required by both stores."""
     database_path = Path(path).expanduser()
     if readonly:
@@ -230,10 +232,14 @@ def _connect(path: PathLike, *, readonly: bool = False) -> sqlite3.Connection:
         uri_path = quote(str(database_path.resolve()), safe="/")
         connection = sqlite3.connect("file:{}?mode=ro".format(uri_path), uri=True)
     else:
+        if not create and not database_path.exists():
+            raise FileNotFoundError(str(database_path))
         database_path.parent.mkdir(parents=True, exist_ok=True)
         connection = sqlite3.connect(str(database_path))
     connection.row_factory = sqlite3.Row
     connection.execute("PRAGMA foreign_keys = ON")
+    if readonly:
+        connection.execute("PRAGMA query_only = ON")
     return connection
 
 
@@ -247,6 +253,8 @@ def _set_schema_version(connection: sqlite3.Connection, version: int) -> None:
 
 def _ensure_tables(connection: sqlite3.Connection, schema: str, version: int) -> None:
     current = _schema_version(connection)
+    if current == version:
+        return
     if current not in (0, version):
         raise sqlite3.DatabaseError(
             "unsupported SQLite schema version {}; expected {}".format(current, version)
@@ -274,11 +282,15 @@ def open_curation_database(
     path: PathLike, *, readonly: bool = False, create: bool = True
 ) -> sqlite3.Connection:
     """Open a curation database, optionally creating its schema."""
-    connection = _connect(path, readonly=readonly)
-    if create and not readonly:
-        create_curation_schema(connection)
-    else:
-        check_schema_version(connection, CURATION_SCHEMA_VERSION)
+    connection = _connect(path, readonly=readonly, create=create)
+    try:
+        if create and not readonly:
+            create_curation_schema(connection)
+        else:
+            check_schema_version(connection, CURATION_SCHEMA_VERSION)
+    except Exception:
+        connection.close()
+        raise
     return connection
 
 
@@ -292,11 +304,15 @@ def open_runtime_database(
     consumers that keep a snapshot outside the wheel.
     """
     database_path = RUNTIME_DATABASE if path is None else path
-    connection = _connect(database_path, readonly=readonly)
-    if create and not readonly:
-        create_runtime_schema(connection)
-    else:
-        check_schema_version(connection, RUNTIME_SCHEMA_VERSION)
+    connection = _connect(database_path, readonly=readonly, create=create)
+    try:
+        if create and not readonly:
+            create_runtime_schema(connection)
+        else:
+            check_schema_version(connection, RUNTIME_SCHEMA_VERSION)
+    except Exception:
+        connection.close()
+        raise
     return connection
 
 

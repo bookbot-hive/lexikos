@@ -89,7 +89,12 @@ class G2pProfile:
     backend: str
     transcription: str
     dictionary: DictionarySource
+    dictionary_import_run_id: str
     model: Optional[str]
+    extraction_rule: str
+    order: Tuple[str, str]
+    duplicate_word_policy: str
+    lookup_selection: str
 
 
 @dataclass(frozen=True)
@@ -211,6 +216,46 @@ _EN_IN_WIKIPRON_NARROW = _dictionary(
     "wikipron/eng_latn_in_narrow.tsv", "wikipron", _IN, "narrow"
 )
 
+
+_G2P_IMPORT_RUNS = {
+    "charsiu/spa-latin.tsv": "legacy-charsiu-g2p-4709d1959abb9a8512109b43ca21ef9f",
+    "charsiu/spa-me.tsv": "legacy-charsiu-g2p-80c55fc9cce07e383771a52eb5e3b9a5",
+    "charsiu/spa.tsv": "legacy-charsiu-g2p-2605e0a582aadf738650a556da643b7f",
+    "wikipron/eng_latn.tsv": "legacy-wikipron-8dff0b6b0d3f5e8935cdc47bd5bff4ff",
+    "wikipron/eng_latn_au_broad.tsv": "legacy-wikipron-c428641b000395b1f19e677c0a995e43",
+    "wikipron/eng_latn_ca_broad.tsv": "legacy-wikipron-7ba470e43103ef91bb6cdb324e5aca36",
+    "wikipron/eng_latn_in_broad.tsv": "legacy-wikipron-32219138b40b1bea9ceff3851c9bcb80",
+    "wikipron/eng_latn_nz_broad.tsv": "legacy-wikipron-deaab8b41697b1e7915db9338f416861",
+    "wikipron/eng_latn_uk_broad.tsv": "legacy-wikipron-57c1cdda8061efbb05e4ab3b41ba8a37",
+    "wikipron/eng_latn_us_broad.tsv": "legacy-wikipron-3083e6d90b80a132c039ffeda21b6957",
+    "wikipron/spa_latn_ca_broad.tsv": "legacy-wikipron-21975a53b463f9bb6cc85f746e12b7a2",
+    "wikipron/spa_latn_ca_narrow.tsv": "legacy-wikipron-ef9004ec4b8442736394dd9372701c39",
+    "wikipron/spa_latn_la_broad.tsv": "legacy-wikipron-65585d8f470f0f459408a657101161e5",
+    "wikipron/spa_latn_la_narrow.tsv": "legacy-wikipron-f7d4935ace6ff56f2b84a6481e7ad0f1",
+}
+
+
+def _g2p_profile(
+    id: str,
+    backend: str,
+    transcription: str,
+    dictionary: DictionarySource,
+    model: Optional[str],
+) -> G2pProfile:
+    return G2pProfile(
+        id=id,
+        backend=backend,
+        transcription=transcription,
+        dictionary=dictionary,
+        dictionary_import_run_id=_G2P_IMPORT_RUNS[dictionary.path],
+        model=model,
+        extraction_rule="legacy-g2p-v1",
+        order=("source_occurrence", "variant_occurrence"),
+        duplicate_word_policy="append",
+        lookup_selection="last",
+    )
+
+
 _ENGLISH_PACKS = (
     LanguagePack(
         id="en",
@@ -281,7 +326,7 @@ _ENGLISH_PACKS = (
             ),
         ),
         g2p_profiles=(
-            G2pProfile(
+            _g2p_profile(
                 id="en-wikipron-broad",
                 backend="wikipron",
                 transcription="broad",
@@ -329,7 +374,7 @@ _ENGLISH_PACKS = (
             ),
         ),
         g2p_profiles=(
-            G2pProfile(
+            _g2p_profile(
                 id="en-us-wikipron-broad",
                 backend="wikipron",
                 transcription="broad",
@@ -365,7 +410,7 @@ _ENGLISH_PACKS = (
             ),
         ),
         g2p_profiles=(
-            G2pProfile(
+            _g2p_profile(
                 id="en-uk-wikipron-broad",
                 backend="wikipron",
                 transcription="broad",
@@ -403,7 +448,7 @@ _ENGLISH_PACKS = (
             ),
         ),
         g2p_profiles=(
-            G2pProfile(
+            _g2p_profile(
                 id="en-au-wikipron-broad",
                 backend="wikipron",
                 transcription="broad",
@@ -439,7 +484,7 @@ _ENGLISH_PACKS = (
             ),
         ),
         g2p_profiles=(
-            G2pProfile(
+            _g2p_profile(
                 id="en-nz-wikipron-broad",
                 backend="wikipron",
                 transcription="broad",
@@ -468,7 +513,7 @@ _ENGLISH_PACKS = (
             ),
         ),
         g2p_profiles=(
-            G2pProfile(
+            _g2p_profile(
                 id="en-ca-wikipron-broad",
                 backend="wikipron",
                 transcription="broad",
@@ -497,7 +542,7 @@ _ENGLISH_PACKS = (
             ),
         ),
         g2p_profiles=(
-            G2pProfile(
+            _g2p_profile(
                 id="en-in-wikipron-broad",
                 backend="wikipron",
                 transcription="broad",
@@ -524,21 +569,21 @@ _SPANISH_PACKS = (
             _ES_WIKIPRON_CA_NARROW,
         ),
         g2p_profiles=(
-            G2pProfile(
+            _g2p_profile(
                 id="es-charsiu-phonetic",
                 backend="charsiu-g2p",
                 transcription="phonetic",
                 dictionary=_ES_CHARSIU,
                 model=None,
             ),
-            G2pProfile(
+            _g2p_profile(
                 id="es-wikipron-broad",
                 backend="wikipron",
                 transcription="broad",
                 dictionary=_ES_WIKIPRON_CA_BROAD,
                 model=None,
             ),
-            G2pProfile(
+            _g2p_profile(
                 id="es-wikipron-narrow",
                 backend="wikipron",
                 transcription="narrow",
@@ -562,21 +607,21 @@ _SPANISH_PACKS = (
             _ES_WIKIPRON_CA_NARROW,
         ),
         g2p_profiles=(
-            G2pProfile(
+            _g2p_profile(
                 id="es-es-charsiu-phonetic",
                 backend="charsiu-g2p",
                 transcription="phonetic",
                 dictionary=_ES_CHARSIU,
                 model=None,
             ),
-            G2pProfile(
+            _g2p_profile(
                 id="es-es-wikipron-broad",
                 backend="wikipron",
                 transcription="broad",
                 dictionary=_ES_WIKIPRON_CA_BROAD,
                 model=None,
             ),
-            G2pProfile(
+            _g2p_profile(
                 id="es-es-wikipron-narrow",
                 backend="wikipron",
                 transcription="narrow",
@@ -600,21 +645,21 @@ _SPANISH_PACKS = (
             _ES_WIKIPRON_LA_NARROW,
         ),
         g2p_profiles=(
-            G2pProfile(
+            _g2p_profile(
                 id="es-419-charsiu-phonetic",
                 backend="charsiu-g2p",
                 transcription="phonetic",
                 dictionary=_ES_LATIN_CHARSIU,
                 model=None,
             ),
-            G2pProfile(
+            _g2p_profile(
                 id="es-419-wikipron-broad",
                 backend="wikipron",
                 transcription="broad",
                 dictionary=_ES_WIKIPRON_LA_BROAD,
                 model=None,
             ),
-            G2pProfile(
+            _g2p_profile(
                 id="es-419-wikipron-narrow",
                 backend="wikipron",
                 transcription="narrow",
@@ -634,7 +679,7 @@ _SPANISH_PACKS = (
         macroregion="latin-america",
         dictionaries=(_ES_MX_CHARSIU,),
         g2p_profiles=(
-            G2pProfile(
+            _g2p_profile(
                 id="es-mx-charsiu-phonetic",
                 backend="charsiu-g2p",
                 transcription="phonetic",
@@ -658,21 +703,21 @@ _SPANISH_PACKS = (
             _ES_WIKIPRON_LA_NARROW,
         ),
         g2p_profiles=(
-            G2pProfile(
+            _g2p_profile(
                 id="es-co-charsiu-phonetic",
                 backend="charsiu-g2p",
                 transcription="phonetic",
                 dictionary=_ES_LATIN_CHARSIU,
                 model=None,
             ),
-            G2pProfile(
+            _g2p_profile(
                 id="es-co-wikipron-broad",
                 backend="wikipron",
                 transcription="broad",
                 dictionary=_ES_WIKIPRON_LA_BROAD,
                 model=None,
             ),
-            G2pProfile(
+            _g2p_profile(
                 id="es-co-wikipron-narrow",
                 backend="wikipron",
                 transcription="narrow",

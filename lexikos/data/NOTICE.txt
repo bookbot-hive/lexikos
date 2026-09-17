@@ -11,11 +11,14 @@ WikiPron / Wiktionary
 
 WikiPron software is Apache-2.0. WikiPron pronunciation data is mined from
 Wiktionary and remains subject to the applicable Wiktionary/Wikimedia content
-terms, attribution requirements, and share-alike requirements. The Spanish
-source snapshot is pinned to CUNY-CL/wikipron commit
-`d282e848a211ea31cfd730f0ced8bc8cdab9e83d` and comprises the unfiltered
-Castilian/Spain and Latin America broad and narrow datasets. Source TSVs remain
-external build artifacts and are not included in the wheel.
+terms, attribution requirements, and share-alike requirements. The runtime
+contains retained English WikiPron snapshots and Spanish WikiPron data pinned
+to CUNY-CL/wikipron commit
+`d282e848a211ea31cfd730f0ced8bc8cdab9e83d`. The Spanish data comprises the
+unfiltered Castilian/Spain and Latin America broad and narrow datasets. Source
+TSVs remain external build artifacts and are not included in the wheel. Exact
+input hashes and revisions, including the retained English snapshots, are in
+the release manifest.
 
 Project: https://github.com/CUNY-CL/wikipron
 Wiktionary terms: https://en.wiktionary.org/wiki/Wiktionary:Copyrights
@@ -25,12 +28,17 @@ CharsiuG2P / Santiago Spanish Lexicon
 -------------------------------------
 
 Spanish CharsiuG2P dictionaries are pinned to commit
-`0c929390759fb94f8ecdfc05cc0bc5f2ff2dc0f4`. CharsiuG2P declares the MIT
-License. Its `spa-latin` dictionary is attributed upstream to the Santiago
-Spanish Lexicon (OpenSLR SLR34), which the official OpenSLR record declares
-Apache-2.0.
+`0c929390759fb94f8ecdfc05cc0bc5f2ff2dc0f4`. CharsiuG2P software is MIT
+licensed; the dictionary rights are recorded separately. CharsiuG2P's pinned
+per-file records identify `spa` and `spa-me` as ipa-dict derivatives under MIT,
+and `spa-latin` as a Santiago Spanish Lexicon (OpenSLR SLR34) derivative under
+Apache-2.0. Lexikos carries those verified upstream declarations forward; it
+does not imply an independent audit of the source vocabulary provenance.
 
 CharsiuG2P: https://github.com/lingjzhu/CharsiuG2P
+spa rights record: https://raw.githubusercontent.com/lingjzhu/CharsiuG2P/0c929390759fb94f8ecdfc05cc0bc5f2ff2dc0f4/sources/info/others/es-es_info.txt
+spa-me rights record: https://raw.githubusercontent.com/lingjzhu/CharsiuG2P/0c929390759fb94f8ecdfc05cc0bc5f2ff2dc0f4/sources/info/others/es-mx_info.txt
+spa-latin rights record: https://raw.githubusercontent.com/lingjzhu/CharsiuG2P/0c929390759fb94f8ecdfc05cc0bc5f2ff2dc0f4/sources/info/others/es-la_info.txt
 OpenSLR SLR34: https://www.openslr.org/34/
 
 Other legacy sources

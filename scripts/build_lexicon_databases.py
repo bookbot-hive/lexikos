@@ -33,7 +33,7 @@ from lexikos.storage import (
 )
 
 
-COMPILER_VERSION = "legacy-tsv-runtime-v1"
+COMPILER_VERSION = "legacy-tsv-runtime-v2"
 PARSER_NAME = "legacy-tsv"
 PARSER_VERSION = "legacy-tsv-v1"
 MAPPING_VERSION = "legacy-tsv-v1"
@@ -181,6 +181,13 @@ def _pack_config(pack: Any) -> Dict[str, Any]:
                 "backend": getattr(profile, "backend", ""),
                 "transcription": getattr(profile, "transcription", ""),
                 "model": getattr(profile, "model", None),
+                "dictionary_import_run_id": getattr(
+                    profile, "dictionary_import_run_id", ""
+                ),
+                "extraction_rule": getattr(profile, "extraction_rule", ""),
+                "order": list(getattr(profile, "order", ())),
+                "duplicate_word_policy": getattr(profile, "duplicate_word_policy", ""),
+                "lookup_selection": getattr(profile, "lookup_selection", ""),
                 "dictionary": {
                     "path": _path_key(getattr(dictionary, "path", "")),
                     "source": getattr(dictionary, "source", ""),
@@ -347,6 +354,32 @@ def _collect_declarations(
             if not profile_id or dictionary is None or not path:
                 raise BuildError(
                     "pack {!r} contains an incomplete G2P profile".format(pack_id)
+                )
+            if not getattr(profile, "dictionary_import_run_id", ""):
+                raise BuildError(
+                    "G2P profile {!r} has no pinned import run".format(profile_id)
+                )
+            if getattr(profile, "extraction_rule", "") != EXTRACTION_RULE:
+                raise BuildError(
+                    "G2P profile {!r} has an unsupported extraction rule".format(
+                        profile_id
+                    )
+                )
+            if tuple(getattr(profile, "order", ())) != (
+                "source_occurrence",
+                "variant_occurrence",
+            ):
+                raise BuildError(
+                    "G2P profile {!r} has an unsupported order".format(profile_id)
+                )
+            if (
+                getattr(profile, "duplicate_word_policy", "") != "append"
+                or getattr(profile, "lookup_selection", "") != "last"
+            ):
+                raise BuildError(
+                    "G2P profile {!r} has an unsupported duplicate policy".format(
+                        profile_id
+                    )
                 )
             prior_pack = profile_ids.get(profile_id)
             if prior_pack is not None and prior_pack != pack_id:
@@ -649,7 +682,14 @@ def _insert_observation_and_review(
     variant_occurrence: int,
     pronunciation_variant_raw: str,
     retrieved_at: str,
+    *,
+    decision: str = "accepted",
+    reason: Optional[str] = None,
 ) -> Tuple[str, str]:
+    if decision not in {"accepted", "rejected"}:
+        raise BuildError("unsupported legacy review decision {!r}".format(decision))
+    if decision == "rejected" and not reason:
+        raise BuildError("rejected legacy review requires a reason")
     metadata_raw_json = _canonical_json({"metadata_origin": "dataset-declaration"})
     source_row_reference = "{}:{}".format(declaration.path, line_number)
     record = {
@@ -712,9 +752,14 @@ def _insert_observation_and_review(
     ):
         raise BuildError("observation {!r} has conflicting data".format(observation_id))
 
-    language_normalized = declaration.language
-    word_normalized = word_raw.lower()
-    ipa_normalized = _canonical_legacy_ipa(pronunciation_variant_raw)
+    if decision == "accepted":
+        language_normalized = declaration.language
+        word_normalized = word_raw.lower()
+        ipa_normalized = _canonical_legacy_ipa(pronunciation_variant_raw)
+    else:
+        language_normalized = None
+        word_normalized = None
+        ipa_normalized = None
     review_values_for_id = {
         "parser_version": run.parser_version,
         "language_normalized": language_normalized,
@@ -722,8 +767,8 @@ def _insert_observation_and_review(
         "ipa_normalized": ipa_normalized,
         "metadata_normalized_json": _legacy_review_metadata(),
         "mapping_version": MAPPING_VERSION,
-        "decision": "accepted",
-        "reason": None,
+        "decision": decision,
+        "reason": reason,
         "reviewer": "legacy-migration",
         "created_at": retrieved_at,
         "supersedes_review_id": None,
@@ -738,8 +783,8 @@ def _insert_observation_and_review(
         ipa_normalized,
         review_values_for_id["metadata_normalized_json"],
         MAPPING_VERSION,
-        "accepted",
-        None,
+        decision,
+        reason,
         "legacy-migration",
         retrieved_at,
         None,
@@ -780,6 +825,8 @@ def _insert_observation_and_review(
         != review_values
     ):
         raise BuildError("review {!r} has conflicting data".format(review_id))
+    if decision == "rejected":
+        return observation_id, review_id
     pronunciation_id = _sha256_json(
         {
             "language": language_normalized,
@@ -826,21 +873,57 @@ def _ingest_dictionary(
                 if not text.strip():
                     continue
                 fields = text.split("\t")
-                if len(fields) != 2 or not fields[0] or not fields[1]:
-                    raise BuildError(
-                        "malformed TSV row {}:{}; expected non-empty word and IPA".format(
-                            declaration.path, line_number
-                        )
+                if len(fields) == 1:
+                    word_raw = fields[0]
+                    pronunciation_raw = ""
+                else:
+                    word_raw = fields[0]
+                    pronunciation_raw = (
+                        fields[1] if len(fields) == 2 else "\t".join(fields[1:])
                     )
-                word_raw, pronunciation_raw = fields
+                rejection_reason = None
+                if len(fields) != 2:
+                    rejection_reason = "expected exactly two TSV fields"
+                elif not word_raw or not pronunciation_raw:
+                    rejection_reason = "expected non-empty word and IPA"
+                if rejection_reason is not None:
+                    _insert_observation_and_review(
+                        connection,
+                        run,
+                        declaration,
+                        line_number,
+                        source_occurrence,
+                        word_raw,
+                        pronunciation_raw,
+                        0,
+                        pronunciation_raw,
+                        build_timestamp,
+                        decision="rejected",
+                        reason=rejection_reason,
+                    )
+                    count += 1
+                    source_occurrence += 1
+                    continue
                 try:
                     variants = split_pronunciation_variants(pronunciation_raw)
                 except ValueError as error:
-                    raise BuildError(
-                        "malformed pronunciation at {}:{}: {}".format(
-                            declaration.path, line_number, error
-                        )
-                    ) from error
+                    _insert_observation_and_review(
+                        connection,
+                        run,
+                        declaration,
+                        line_number,
+                        source_occurrence,
+                        word_raw,
+                        pronunciation_raw,
+                        0,
+                        pronunciation_raw,
+                        build_timestamp,
+                        decision="rejected",
+                        reason=str(error),
+                    )
+                    count += 1
+                    source_occurrence += 1
+                    continue
                 for variant_occurrence, pronunciation_variant_raw in enumerate(
                     variants
                 ):
@@ -1002,6 +1085,39 @@ def _runtime_attribution(
     }
 
 
+def _runtime_profile_policy(
+    profile: Any, dictionary: Any, import_run_id: str
+) -> Dict[str, Any]:
+    declared_run_id = str(getattr(profile, "dictionary_import_run_id", ""))
+    if declared_run_id != import_run_id:
+        raise BuildError(
+            "G2P profile {!r} pins import run {!r}, not {!r}".format(
+                getattr(profile, "id", ""), declared_run_id, import_run_id
+            )
+        )
+    extraction_rule = getattr(profile, "extraction_rule", "")
+    order = tuple(getattr(profile, "order", ()))
+    duplicate_word_policy = getattr(profile, "duplicate_word_policy", "")
+    lookup_selection = getattr(profile, "lookup_selection", "")
+    if extraction_rule != EXTRACTION_RULE:
+        raise BuildError("unsupported G2P extraction rule {!r}".format(extraction_rule))
+    if order != ("source_occurrence", "variant_occurrence"):
+        raise BuildError("unsupported G2P dictionary order {!r}".format(order))
+    if duplicate_word_policy != "append" or lookup_selection != "last":
+        raise BuildError("unsupported G2P duplicate/lookup policy")
+    return {
+        "review_filter": "terminal-accepted",
+        "include_synthetic": bool(getattr(dictionary, "synthetic", False)),
+        "extraction_rule": extraction_rule,
+        "order": list(order),
+        "duplicate_word_policy": duplicate_word_policy,
+        "lookup_selection": lookup_selection,
+        "source_id": getattr(dictionary, "source", ""),
+        "import_run_id": declared_run_id,
+        "transcription": getattr(profile, "transcription", ""),
+    }
+
+
 def _runtime_pronunciation_ipa(pack: Any, ipa: str) -> Optional[str]:
     normalizer = getattr(pack, "phoneme_normalizer", None)
     if normalizer is None:
@@ -1026,34 +1142,6 @@ def _insert_runtime_metadata(
         connection.execute(
             "INSERT INTO snapshot_metadata(key, value) VALUES (?, ?)", (key, value)
         )
-
-
-def _runtime_profile_policy(
-    profile: Any, dictionary: Any, import_run_id: str
-) -> Dict[str, Any]:
-    extraction_rule = getattr(profile, "extraction_rule", EXTRACTION_RULE)
-    order = tuple(
-        getattr(profile, "order", ("source_occurrence", "variant_occurrence"))
-    )
-    duplicate_word_policy = getattr(profile, "duplicate_word_policy", "append")
-    lookup_selection = getattr(profile, "lookup_selection", "last")
-    if extraction_rule != EXTRACTION_RULE:
-        raise BuildError("unsupported G2P extraction rule {!r}".format(extraction_rule))
-    if order != ("source_occurrence", "variant_occurrence"):
-        raise BuildError("unsupported G2P dictionary order {!r}".format(order))
-    if duplicate_word_policy != "append" or lookup_selection != "last":
-        raise BuildError("unsupported G2P duplicate/lookup policy")
-    return {
-        "review_filter": "terminal-accepted",
-        "include_synthetic": bool(getattr(dictionary, "synthetic", False)),
-        "extraction_rule": extraction_rule,
-        "order": list(order),
-        "duplicate_word_policy": duplicate_word_policy,
-        "lookup_selection": lookup_selection,
-        "source_id": getattr(dictionary, "source", ""),
-        "import_run_id": import_run_id,
-        "transcription": getattr(profile, "transcription", ""),
-    }
 
 
 def _runtime_database(
@@ -1290,7 +1378,7 @@ def _runtime_database(
                         is_default,
                         str(getattr(dictionary, "source", "")),
                         run.id,
-                        EXTRACTION_RULE,
+                        str(getattr(profile, "extraction_rule", "")),
                         str(
                             getattr(
                                 pack,
