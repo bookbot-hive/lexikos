@@ -1,30 +1,71 @@
-# Lexikos - λεξικός /lek.si.kós/
+# Lexikos
 
-A collection of pronunciation dictionaries and neural grapheme-to-phoneme models.
+Lexikos is a provenance-preserving pronunciation lexicon and
+grapheme-to-phoneme (G2P) package. It serves immutable pronunciation records
+from a deterministic, read-only SQLite runtime and keeps every IPA value linked
+to its source, revision, dialect, transcription type, and observation IDs.
 
 <p align="center">
-    <img src="https://github.com/bookbot-hive/lexikos/raw/main/assets/lexikos.png" alt="logo" width="300"/>
+  <img src="https://github.com/bookbot-hive/lexikos/raw/main/assets/lexikos.png" alt="Lexikos logo" width="300"/>
 </p>
 
-## Install Lexikos
+## Current release boundary
 
-Install from PyPI
+The current data edition is **`2026.09.3`**. Code and data artifacts have
+different distribution boundaries:
+
+- Source code, configuration, tests, and the release manifest are tracked in
+  Git.
+- `lexikos/data/runtime.sqlite3` is generated, ignored by Git, and bundled into
+  release wheels.
+- The append-only curation database and raw source TSVs remain external.
+- The verified wheel is approximately 950 MB, so it is not suitable for
+  ordinary PyPI distribution.
+
+No data-backed `2026.09.3` wheel is currently published. The existing
+`v0.0.1rc7` GitHub release has no matching data asset. Do not assume
+`pip install lexikos` provides this edition.
+
+### Installing a release wheel
+
+When a matching wheel is published as a GitHub Release asset, download the
+wheel and its checksum from the same release, verify it, and install the local
+file:
 
 ```sh
-pip install lexikos
+sha256sum lexikos-0.0.1rc7-py3-none-any.whl
+python -m pip install ./lexikos-0.0.1rc7-py3-none-any.whl
 ```
 
-Editable install from Source
+Use the checksum in the release notes or accompanying checksum file. The
+README is embedded into wheel metadata, so it cannot be the authoritative
+record of the wheel's own hash.
+
+### Development checkout
 
 ```sh
 git clone https://github.com/bookbot-hive/lexikos.git
-pip install -e lexikos
+cd lexikos
+python -m pip install -e .
 ```
 
-## Usage
+An editable checkout does not contain `runtime.sqlite3`. Runtime-backed
+`Lexicon` and `G2p` calls require either a generated snapshot at
+`lexikos/data/runtime.sqlite3` or an installed release wheel containing it.
+See [Rebuilding the data edition](#rebuilding-the-data-edition).
 
-Language selection is explicit. Language IDs are exact, lowercase identifiers;
-for example, use `en-us`, not `en_US` or `EN-US`.
+## Explicit language selection
+
+The multilingual revamp made language selection mandatory:
+
+```py
+Lexicon(language_id)
+G2p(language_id)
+```
+
+Calling `Lexicon()` or `G2p()` without a language ID raises `TypeError`.
+Language IDs are exact lowercase BCP-47-style identifiers such as `en-us`,
+`es-419`, and `es-mx`; aliases such as `EN-US` or `en_US` are not accepted.
 
 ```py
 >>> from lexikos import G2p, Lexicon
@@ -32,359 +73,284 @@ for example, use `en-us`, not `en_US` or `EN-US`.
 ('en', 'en-au', 'en-ca', 'en-in', 'en-nz', 'en-uk', 'en-us', 'es', 'es-419', 'es-co', 'es-es', 'es-mx')
 >>> G2p.supported_languages()
 ('en', 'en-au', 'en-ca', 'en-in', 'en-nz', 'en-uk', 'en-us', 'es', 'es-419', 'es-es', 'es-mx')
+
 ```
 
-### Lexicon
+`es-co` appears in lexicon discovery because the locale is reserved, but it is
+currently empty and has no G2P profile.
 
-`Lexicon` is an indexed, read-only SQLite-backed mapping. `Lexicon[word]`
-returns one immutable `Pronunciation` per unique IPA value. Each pronunciation
-retains every source ID, observation ID, source revision, language, dialect,
-transcription classification, license reference, and synthetic-data marker
-that supplies that IPA.
+## Lexicon API
+
+`Lexicon` is a language-specific, read-only mapping:
+
+```py
+Lexicon(
+    language_id,
+    normalize_phonemes=False,
+    include_synthetic=False,
+)
+```
+
+`lexicon[word]` returns one immutable `Pronunciation` for each distinct IPA
+value. Each pronunciation has an immutable `sources` tuple. When multiple
+observations provide the same IPA, Lexikos returns the IPA once and preserves
+all contributing sources instead of selecting one winner.
 
 ```py
 >>> from lexikos import Lexicon
->>> lexicon = Lexicon("en-us")
->>> pronunciation = next(p for p in lexicon["a"] if p.ipa == "ə")
->>> pronunciation.ipa
-'ə'
->>> [(source.source, source.language, source.dialect.group) for source in pronunciation.sources]
-[('cmudict', 'en-us', 'american'), ('librispeech', 'en-us', 'american'), ('wikipron', 'en-us', 'american')]
+>>> pronunciations = Lexicon("es-419")["corazón"]
+>>> for item in pronunciations:
+...     print(
+...         item.ipa,
+...         [(source.source, source.transcription) for source in item.sources],
+...     )
+k o ɾ a s o n [('wikipron', 'broad')]
+k o ɾ a s õ n [('wikipron', 'narrow')]
+korason [('charsiu-g2p', 'phonetic')]
+
 ```
 
-Spanish lexical packs are available for generic Spanish, Spain, Latin America,
-Mexico, and Colombia. Generic `es` and `es-es` use explicitly peninsular
-CharsiuG2P and WikiPron Castilian evidence, so generic `es` is not
-dialect-neutral. `es-419` combines Latin-American CharsiuG2P and WikiPron
-evidence, while `es-mx` retains its Mexican-specific CharsiuG2P source.
+Every `PronunciationSource` also carries:
 
-`es-co` is reserved but empty: it accepts only evidence explicitly sourced as
-Colombian Spanish. Pooled Latin-American evidence is not copied into the pack.
+- the exact Lexikos language pack;
+- structured territory, macroregion, group, locality, and dialect features;
+- stable source and observation IDs;
+- source revision and source URL when available;
+- license references and evidence status;
+- whether the evidence is synthetic.
+
+Synthetic evidence is excluded by default:
 
 ```py
->>> lexicon = Lexicon("es-co")
->>> len(lexicon)
-0
+lexicon = Lexicon("en-us", include_synthetic=True)
 ```
 
-When normalization collapses multiple IPA strings, their source records are
-unioned rather than discarded:
+Phoneme normalization is opt-in and available only for packs that declare a
+phoneme normalizer:
 
 ```py
->>> lexicon = Lexicon("en-us", normalize_phonemes=True)
+lexicon = Lexicon("en-us", normalize_phonemes=True)
 ```
 
-Synthetic pronunciations remain opt-in and are limited to datasets explicitly
-assigned to the selected language pack:
+## G2P API
+
+`G2p` also requires an explicit language ID:
 
 ```py
->>> lexicon = Lexicon("en-us", include_synthetic=True)
+G2p(
+    language_id,
+    backend=None,
+    narrow=None,
+    normalize_phonemes=False,
+)
 ```
 
-### Phonemization
-
-`G2p` also requires an explicit language. `G2p(lang)` selects the pack's
-declared default dictionary profile. English defaults have neural fallback;
-Spanish defaults are dictionary-only.
+With no filters, `G2p(language_id)` selects that pack's declared default
+profile. English defaults can use neural fallback. Current Spanish profiles are
+dictionary-only: an out-of-vocabulary token emits `OOVWarning` and passes
+through unchanged rather than inventing a pronunciation.
 
 ```py
 >>> from lexikos import G2p
->>> g2p = G2p("en-us")
->>> g2p("Hello there! $100 is not a lot of money in 2023.")
-['h ɛ l o ʊ', 'ð ɛ ə ɹ', 'w ʌ n', 'h ʌ n d ɹ ɪ d', 'd ɑ l ɚ z', 'ɪ z', 'n ɒ t', 'ə', 'l ɑ t', 'ʌ v', 'm ʌ n i', 'ɪ n', 't w ɛ n t i', 't w ɛ n t i', 'θ ɹ iː']
 >>> G2p("es-419")("corazón")
 ['korason']
+>>> G2p("es-419", backend="wikipron", narrow=False)("corazón")
+['k o ɾ a s o n']
+>>> G2p("es-419", backend="wikipron", narrow=True)("corazón")
+['k o ɾ a s õ n']
+
 ```
 
-A dictionary-only profile emits `OOVWarning` for an unknown word and returns
-the normalized token unchanged; it never invents a pronunciation. Explicit
-`backend` and `narrow` filters select an exact profile. Use `charsiu_prompt` to
-construct multilingual CharsiuG2P input when training or serving a Spanish
-model:
+Backend and width filters select an exact configured profile; they do not
+silently fall back to another source.
+
+## Spanish packs
+
+| Language ID | Lexicon evidence | G2P profiles | Default |
+| --- | --- | --- | --- |
+| `es` | Charsiu `spa`; WikiPron Castilian broad/narrow | Charsiu phonetic; WikiPron broad/narrow | Charsiu phonetic |
+| `es-es` | Charsiu `spa`; WikiPron Castilian broad/narrow | Charsiu phonetic; WikiPron broad/narrow | Charsiu phonetic |
+| `es-419` | Charsiu `spa-latin`; WikiPron Latin-American broad/narrow | Charsiu phonetic; WikiPron broad/narrow | Charsiu phonetic |
+| `es-mx` | Charsiu `spa-me` | Charsiu phonetic | Charsiu phonetic |
+| `es-co` | None yet | None | None |
+
+Important boundaries:
+
+- Generic `es` is backed by peninsular evidence; it is not dialect-neutral.
+- `es-419` preserves the union of pooled Latin-American Charsiu and WikiPron
+  evidence.
+- `es-mx` uses the Mexican-specific Charsiu source.
+- `es-co` is reserved but empty. It will accept only reviewed,
+  explicitly Colombian evidence; pooled Latin-American rows are not relabeled
+  as Colombian.
+
+Charsiu's pinned language registry contains `spa`, `spa-latin`, and `spa-me`,
+but not `spa-co`. Accordingly, the prompt helper rejects `es-co`:
 
 ```py
 >>> from lexikos import charsiu_prompt
 >>> charsiu_prompt("es-419", "CORAZÓN")
 '<spa-latin>: corazón'
+
 ```
 
-## Dictionaries & Models
+`charsiu_prompt` only constructs input for external Charsiu training or model
+serving. Runtime dictionary-backed `G2p` does not call it.
 
-### English `(en)`
+## Storage and provenance architecture
 
-| Language | Dictionary | Phone Set | Corpus                                       | G2P Model                                                                                           |
-| -------- | ---------- | --------- | -------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| en       | Wikipron   | IPA       | Runtime snapshot | [bookbot/byt5-small-wikipron-eng-latn](https://huggingface.co/bookbot/byt5-small-wikipron-eng-latn) |
+Lexikos uses two SQLite artifacts.
 
-### English `(en-US)`
+### Curation database
 
-| Language       | Dictionary   | Phone Set | Corpus                                                                                                                     | G2P Model                                                                                                             |
-| -------------- | ------------ | --------- | -------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| en-US          | CMU Dict IPA | IPA       | [External Link](https://github.com/menelik3/cmudict-ipa/blob/master/cmudict-0.7b-ipa.txt)                                  |                                                                                                                       |
-| en-US (Broad)  | Wikipron     | IPA       | [External Link](https://github.com/CUNY-CL/wikipron/blob/master/data/scrape/tsv/eng_latn_us_broad.tsv)                     | [bookbot/byt5-small-wikipron-eng-latn-us-broad](https://huggingface.co/bookbot/byt5-small-wikipron-eng-latn-us-broad) |
-| en-US (Narrow) | Wikipron     | IPA       | [External Link](https://github.com/CUNY-CL/wikipron/blob/master/data/scrape/tsv/eng_latn_us_narrow.tsv)                    |
-| en-US          | LibriSpeech  | IPA       | Runtime snapshot | |
+The external curation database is append-only. It records:
 
-### English `(en-UK)`
+- source and import-run identities;
+- exact raw payload URIs, revisions, and SHA-256 hashes;
+- immutable raw observations;
+- accepted, rejected, and superseded reviews;
+- canonical pronunciation-to-evidence links.
 
-| Language       | Dictionary | Phone Set | Corpus                                                                                                  | G2P Model                                                                                                             |
-| -------------- | ---------- | --------- | ------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| en-UK (Broad)  | Wikipron   | IPA       | [External Link](https://github.com/CUNY-CL/wikipron/blob/master/data/scrape/tsv/eng_latn_uk_broad.tsv)  | [bookbot/byt5-small-wikipron-eng-latn-uk-broad](https://huggingface.co/bookbot/byt5-small-wikipron-eng-latn-uk-broad) |
-| en-UK (Narrow) | Wikipron   | IPA       | [External Link](https://github.com/CUNY-CL/wikipron/blob/master/data/scrape/tsv/eng_latn_uk_narrow.tsv) |                                                                                                                       |
+Rejected but capturable source rows remain available for audit. Re-importing
+the same pinned source is idempotent.
 
-### English `(en-AU)`
+### Runtime database
 
-| Language       | Dictionary | Phone Set | Corpus                                                 | G2P Model                                                                                                             |
-| -------------- | ---------- | --------- | ------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- |
-| en-AU (Broad)  | Wikipron   | IPA       | Runtime snapshot | [bookbot/byt5-small-wikipron-eng-latn-au-broad](https://huggingface.co/bookbot/byt5-small-wikipron-eng-latn-au-broad) |
-| en-AU (Narrow) | Wikipron   | IPA       | Runtime snapshot | |
-| en-AU          | AusTalk    | IPA       | Runtime snapshot | |
-| en-AU          | SC-CW      | IPA       | Runtime snapshot | |
+The wheel contains a deterministic runtime snapshot with:
 
-### English `(en-CA)`
+- unique pronunciations grouped by language pack, word, and IPA;
+- immutable grouped evidence for every pronunciation;
+- exact G2P profiles and dictionary rows;
+- build, configuration, parser, source, and count metadata.
 
-| Language       | Dictionary | Phone Set | Corpus                                                 | G2P Model                                                                                                             |
-| -------------- | ---------- | --------- | ------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- |
-| en-CA (Broad)  | Wikipron   | IPA       | Runtime snapshot | [bookbot/byt5-small-wikipron-eng-latn-ca-broad](https://huggingface.co/bookbot/byt5-small-wikipron-eng-latn-ca-broad) |
-| en-CA (Narrow) | Wikipron   | IPA       | Runtime snapshot | |
+Runtime connections use SQLite read-only mode and `PRAGMA query_only = ON`.
+Source TSVs are not packaged in the wheel.
 
-### English `(en-NZ)`
+### Edition `2026.09.3`
 
-| Language       | Dictionary | Phone Set | Corpus                                                 | G2P Model                                                                                                             |
-| -------------- | ---------- | --------- | ------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- |
-| en-NZ (Broad)  | Wikipron   | IPA       | Runtime snapshot | [bookbot/byt5-small-wikipron-eng-latn-nz-broad](https://huggingface.co/bookbot/byt5-small-wikipron-eng-latn-nz-broad) |
-| en-NZ (Narrow) | Wikipron   | IPA       | Runtime snapshot | |
+| Artifact | SHA-256 | Size |
+| --- | --- | ---: |
+| Curation SQLite | `68dcc8e6442419a38a2e8d8ec9c0027d640f1b4fc06d2c52d908932157d7a5da` | 5,632,610,304 bytes |
+| Runtime SQLite | `e0f6c491f1a9121345d6659b0d6d8f046c629d9639e2e7601daa2c2f4e0d2100` | 3,106,291,712 bytes |
 
-### English `(en-IN)`
+The tracked
+[`release-manifest.json`](./lexikos/data/release-manifest.json) is the
+machine-readable source of truth for source revisions, payload hashes, licenses,
+build environment, configuration revision, and runtime identity.
 
-| Language       | Dictionary | Phone Set | Corpus                                                 | G2P Model                                                                                                             |
-| -------------- | ---------- | --------- | ------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- |
-| en-IN (Broad)  | Wikipron   | IPA       | Runtime snapshot | [bookbot/byt5-small-wikipron-eng-latn-in-broad](https://huggingface.co/bookbot/byt5-small-wikipron-eng-latn-in-broad) |
-| en-IN (Narrow) | Wikipron   | IPA       | Runtime snapshot | |
+## Rebuilding the data edition
 
-
-### Spanish
-
-| Lexikos language | CharsiuG2P source | WikiPron source |
-| ---------------- | ----------------- | ---------------- |
-| `es`             | `spa`             | Castilian broad + narrow |
-| `es-es`          | `spa`             | Castilian broad + narrow |
-| `es-419`         | `spa-latin`       | Latin America broad + narrow |
-| `es-mx`          | `spa-me`          | — |
-| `es-co`          | —                   | — |
-
-`es-co` remains empty until a reviewed Colombian-specific dictionary is added.
-It has no G2P profile because CharsiuG2P's pinned language registry does not
-define a `spa-co` tag.
-
-CharsiuG2P data is pinned to revision
-`0c929390759fb94f8ecdfc05cc0bc5f2ff2dc0f4`. Spanish WikiPron data is pinned
-to revision `d282e848a211ea31cfd730f0ced8bc8cdab9e83d`. The source TSVs remain
-external build artifacts. Runtime snapshot hashes and the scoped
-[`NOTICE.txt`](./lexikos/data/NOTICE.txt) preserve source and licensing
-boundaries; the repository Apache license does not relicense third-party data.
-
-### Rebuilding the SQLite snapshots
-
-Keep raw TSVs and the append-only curation database outside the package tree.
-Build the wheel's deterministic runtime snapshot from a complete, pinned source
-root:
+Raw dictionaries and the curation database are external build inputs. The
+source root must contain every path declared by `lexikos/languages.py` and
+`release-manifest.json`.
 
 ```sh
 python scripts/build_lexicon_databases.py \
-    --source-root /path/to/source-snapshot/dict \
+    --source-root /path/to/source-snapshot \
     --curation-db /path/to/curation.sqlite3 \
     --runtime-db lexikos/data/runtime.sqlite3 \
-    --release-manifest /path/to/release-manifest.json
+    --release-manifest lexikos/data/release-manifest.json
 ```
 
-The tracked release manifest pins source revisions, raw payload hashes,
-licenses, retrieval timestamps, parser metadata, the configuration commit, and
-the Python/SQLite build environment. The compiler refuses missing manifest
-entries, hash mismatches, or non-public active import runs and checks SQLite
-integrity before publishing the runtime snapshot.
+The compiler:
 
-`runtime.sqlite3` and the curation database are generated release artifacts,
-not ordinary Git objects. A data edition publishes their hashes in the tracked
-manifest; the runtime asset is then included in the distributed wheel.
+1. verifies the pinned Python and SQLite build environment;
+2. verifies every raw payload hash and active import run;
+3. preserves malformed-but-capturable rows as rejected observations;
+4. compiles deterministic pronunciation, evidence, and G2P tables;
+5. runs foreign-key and SQLite integrity checks;
+6. refuses publication when the rebuilt runtime hash differs from the
+   manifest.
 
-## Preparing external Spanish data for CharsiuG2P
+The current manifest pins Python `3.13.2` and SQLite `3.45.3`.
 
-Raw source dictionaries are build inputs, not wheel contents. The preparation
-CLI accepts Lexikos `word<TAB>IPA` files from an external source snapshot,
-expands both ` ~ ` and comma-separated pronunciation variants, normalizes
-Unicode to NFC, deduplicates exact pairs, and assigns every pronunciation of a
-word to one deterministic split:
+## Preparing Charsiu training data
+
+The preparation CLI converts external `word<TAB>IPA` dictionaries into
+deterministic, word-disjoint Charsiu train/dev/test files:
 
 ```sh
 python scripts/prepare_charsiu_g2p.py \
-    /path/to/source-snapshot/dict/charsiu/spa-latin.tsv \
+    /path/to/source-snapshot/charsiu/spa-latin.tsv \
     --language es-419 \
     --output-dir prepared/es-419
 ```
 
-This writes headerless CharsiuG2P inputs at
-`prepared/es-419/{train,dev,test}/spa-latin.tsv` plus a manifest containing
-source and output SHA-256 hashes. Fine-tune with the upstream trainer:
+It writes:
+
+```text
+prepared/es-419/train/spa-latin.tsv
+prepared/es-419/dev/spa-latin.tsv
+prepared/es-419/test/spa-latin.tsv
+prepared/es-419/manifest.json
+```
+
+The manifest records source and output hashes. The CLI rejects `es-co` because
+the pinned Charsiu model contract has no `spa-co` language code.
 
 The pinned upstream trainer omits the required space after its language prefix.
-Before training, update both prefix expressions in its `src/data_utils.py` from
-`'<'+language+'>:' + word` to `'<'+language+'>: ' + word`. Without this fix,
-the checkpoint is trained on a different input format from `charsiu_prompt`.
+Before training, change both prefix expressions in CharsiuG2P
+`src/data_utils.py` from:
+
+```py
+'<' + language + '>:' + word
+```
+
+to:
+
+```py
+'<' + language + '>: ' + word
+```
+
+Without this correction, training and `charsiu_prompt` use different input
+formats.
+
+## Data rights
+
+The repository Apache-2.0 license covers Lexikos software; it does not
+relicense third-party pronunciation data.
+
+- WikiPron data is derived from Wiktionary and retains applicable attribution
+  and share-alike obligations.
+- Charsiu's pinned per-file records identify `spa` and `spa-me` as MIT
+  ipa-dict derivatives and `spa-latin` as an Apache-2.0 Santiago Spanish
+  Lexicon derivative.
+- Other English sources retain their own terms and synthetic-status markers.
+
+See [`lexikos/data/NOTICE.txt`](./lexikos/data/NOTICE.txt) and the release
+manifest for exact source revisions and rights records.
+
+## Development
+
+Run the regression suite:
 
 ```sh
-python /path/to/CharsiuG2P/src/train.py \
-    --train \
-    --language spa-latin \
-    --train_data prepared/es-419/train/spa-latin.tsv \
-    --dev_data prepared/es-419/dev/spa-latin.tsv \
-    --model byt5 \
-    --model_name charsiu/g2p_multilingual_byT5_small_100 \
-    --pretrained_model True \
-    --output_dir models/spanish-latin
+python -m pytest
 ```
 
-## Training G2P Model
-
-We modified the sequence-to-sequence training script of [🤗 HuggingFace](https://github.com/huggingface/transformers/blob/main/examples/pytorch/translation/run_translation.py) for the purpose of training G2P models. Refer to their [installation requirements](https://github.com/huggingface/transformers/tree/main/examples/pytorch/translation) for more details.
-
-Training a new G2P model generally follow this recipe:
-
-```diff
-python run_translation.py \
-+   --model_name_or_path $PRETRAINED_MODEL \
-+   --dataset_name $DATASET_NAME \
-    --output_dir $OUTPUT_DIR \
-    --per_device_train_batch_size 128 \
-    --per_device_eval_batch_size 32 \
-    --learning_rate 2e-4 \
-    --lr_scheduler_type linear \
-    --warmup_ratio 0.1 \
-    --num_train_epochs 10 \
-    --evaluation_strategy epoch \
-    --save_strategy epoch \
-    --logging_strategy epoch \
-    --max_source_length 64 \
-    --max_target_length 64 \
-    --val_max_target_length 64 \
-    --pad_to_max_length True \
-    --overwrite_output_dir \
-    --do_train --do_eval \
-    --bf16 \
-    --predict_with_generate \
-    --report_to tensorboard \
-    --push_to_hub \
-+   --hub_model_id $HUB_MODEL_ID \
-    --use_auth_token
-```
-
-### Example: Fine-tune ByT5 on CMU Dict
+Check the maintained Python surface:
 
 ```sh
-python run_translation.py \
-    --model_name_or_path google/byt5-small \
-    --dataset_name bookbot/cmudict-0.7b \
-    --output_dir ./byt5-small-cmudict \
-    --per_device_train_batch_size 128 \
-    --per_device_eval_batch_size 32 \
-    --learning_rate 2e-4 \
-    --lr_scheduler_type linear \
-    --warmup_ratio 0.1 \
-    --num_train_epochs 10 \
-    --evaluation_strategy epoch \
-    --save_strategy epoch \
-    --logging_strategy epoch \
-    --max_source_length 64 \
-    --max_target_length 64 \
-    --val_max_target_length 64 \
-    --pad_to_max_length True \
-    --overwrite_output_dir \
-    --do_train --do_eval \
-    --bf16 \
-    --predict_with_generate \
-    --report_to tensorboard \
-    --push_to_hub \
-    --hub_model_id bookbot/byt5-small-cmudict \
-    --use_auth_token
+python -m ruff check \
+    lexikos/languages.py \
+    lexikos/charsiu.py \
+    lexikos/lexicon.py \
+    lexikos/g2p.py \
+    lexikos/storage.py \
+    scripts/build_lexicon_databases.py \
+    scripts/prepare_charsiu_g2p.py \
+    tests
 ```
 
-## Evaluating G2P Model
-
-Then to evaluate:
-
-```diff
-python eval.py \
-+   --model $PRETRAINED_MODEL \
-+   --dataset_name $DATASET_NAME \
-    --source_text_column_name source \
-    --target_text_column_name target \
-    --max_length 64 \
-    --batch_size 64
-```
-
-### Example: Evaluate ByT5 on CMU Dict
-
-```sh
-python eval.py \
-    --model bookbot/byt5-small-cmudict \
-    --dataset_name bookbot/cmudict-0.7b \
-    --source_text_column_name source \
-    --target_text_column_name target \
-    --max_length 64 \
-    --batch_size 64
-```
-
-## Corpus Roadmap
-
-### Wikipron
-
-| Language Family        | Code                              | Region                                                | Corpus | G2P Model |
-| ---------------------- | --------------------------------- | ----------------------------------------------------- | :----: | :-------: |
-| African English        | en-ZA                             | South Africa                                          |        |           |
-| Australian English     | en-AU                             | Australia                                             |   ✅    |     ✅     |
-| East Asian English     | en-CN, en-HK, en-JP, en-KR, en-TW | China, Hong Kong, Japan, South Korea, Taiwan          |        |           |
-| European English       | en-UK, en-HU, en-IE               | United Kingdom, Hungary, Ireland                      |   🚧    |     🚧     |
-| Mexican English        | en-MX                             | Mexico                                                |        |           |
-| New Zealand English    | en-NZ                             | New Zealand                                           |   ✅    |     ✅     |
-| North American         | en-CA, en-US                      | Canada, United States                                 |   ✅    |     ✅     |
-| Middle Eastern English | en-EG, en-IL                      | Egypt, Israel                                         |        |           |
-| Southeast Asian        | en-TH, en-ID, en-MY, en-PH, en-SG | Thailand, Indonesia, Malaysia, Philippines, Singapore |        |           |
-| South Asian English    | en-IN                             | India                                                 |   ✅    |     ✅     |
-  
 ## Resources
 
 - [CharsiuG2P](https://github.com/lingjzhu/CharsiuG2P)
-- [Microsoft CNTK](https://github.com/microsoft/CNTK/tree/master)
-- [CMU Pronouncing Dictionary - IPA](https://github.com/menelik3/cmudict-ipa)
-- [Wikipron](https://github.com/CUNY-CL/wikipron/tree/master)
+- [WikiPron](https://github.com/CUNY-CL/wikipron)
+- [CMU Pronouncing Dictionary IPA](https://github.com/menelik3/cmudict-ipa)
+- [OpenSLR SLR34](https://www.openslr.org/34/)
 
-## References
+## License
 
-```bibtex
-@inproceedings{lee-etal-2020-massively,
-    title = "Massively Multilingual Pronunciation Modeling with {W}iki{P}ron",
-    author = "Lee, Jackson L.  and
-      Ashby, Lucas F.E.  and
-      Garza, M. Elizabeth  and
-      Lee-Sikka, Yeonju  and
-      Miller, Sean  and
-      Wong, Alan  and
-      McCarthy, Arya D.  and
-      Gorman, Kyle",
-    booktitle = "Proceedings of LREC",
-    year = "2020",
-    publisher = "European Language Resources Association",
-    pages = "4223--4228",
-}
-```
-
-```bibtex
-@misc{zhu2022byt5,
-    title={ByT5 model for massively multilingual grapheme-to-phoneme conversion}, 
-    author={Jian Zhu and Cong Zhang and David Jurgens},
-    year={2022},
-    eprint={2204.03067},
-    archivePrefix={arXiv},
-    primaryClass={cs.CL}
-}
-```
+Lexikos software is licensed under Apache-2.0. Bundled pronunciation data
+retains the source-specific terms documented in `NOTICE.txt` and the release
+manifest.
