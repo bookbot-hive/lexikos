@@ -20,6 +20,7 @@
 
 import inflect
 import re
+import unicodedata
 
 
 _inflect = inflect.engine()
@@ -89,3 +90,19 @@ def normalize_numbers(text):
     text = re.sub(_ordinal_re, _expand_ordinal, text)
     text = re.sub(_number_re, _expand_number, text)
     return text
+
+
+def normalize_spanish_text(text):
+    """Normalize Spanish text without expanding numbers into English words."""
+    return unicodedata.normalize("NFC", text)
+
+
+def normalize_english_phonemes(phonemes):
+    """Normalize the English IPA variants used by the bundled dictionaries."""
+    diacritics = ["ː", "ˑ", "̆", "̯", "͡", "‿", "͜", "̩", "ˈ", "ˌ"]
+    digraphs = ["o ʊ", "e ɪ", "a ʊ", "ɑ ɪ", "a ɪ", "ɔ ɪ"]
+    for diacritic in diacritics:
+        phonemes = phonemes.replace(diacritic, "")
+    for digraph in digraphs:
+        phonemes = phonemes.replace(digraph, digraph.replace(" ", ""))
+    return phonemes.strip()

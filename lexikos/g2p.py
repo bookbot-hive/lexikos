@@ -12,147 +12,135 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from typing import Dict, List, Optional
 from pathlib import Path
+from typing import Dict, List, Optional, Tuple, TYPE_CHECKING
 import string
-import os
 
 from nltk.tokenize import TweetTokenizer
 
-from .lexicon import Lexicon
+from .languages import (
+    DictionarySource,
+    get_language_pack,
+    supported_g2p_languages,
+)
+from .pronunciations import split_pronunciation_variants
 from .utils import logger
-from .normalizer import normalize_numbers
-from .t5 import T5
 
-_SUPPORTED_BACKENDS = ["wikipron"]
-_SUPPORTED_LANGUAGES = ["en", "en-au", "en-ca", "en-in", "en-nz", "en-uk", "en-us"]
+if TYPE_CHECKING:
+    from .t5 import T5
+
+
+_DICTIONARIES = Path(__file__).parent / "dict"
 
 
 class G2p:
     def __init__(
         self,
-        lang: str = "en-us",
+        lang: str,
+        *,
         backend: str = "wikipron",
         narrow: Optional[bool] = None,
-        normalize_phonemes: Optional[bool] = False,
+        normalize_phonemes: bool = False,
     ):
-        self.lexicon = self._get_dictionary(lang, backend, narrow)
-        self.t5 = self._get_t5_model(lang, backend, narrow)
+        pack = get_language_pack(lang)
+        if narrow is None:
+            logger.info(
+                "Neither narrow nor broad pronunciation was specified, "
+                "defaulting to broad pronunciation."
+            )
+            narrow = False
+
+        transcription = "narrow" if narrow else "broad"
+        profile = pack.g2p_profile(backend, transcription)
+        if (
+            profile is None
+            or not profile.dictionary.path
+            or not profile.model
+            or pack.text_normalizer is None
+        ):
+            choices = ", ".join(supported_g2p_languages(backend, transcription))
+            raise ValueError(
+                "Language {!r} does not support {} G2P with backend {!r}. "
+                "Supported languages: {}".format(
+                    lang, transcription, backend, choices or "none"
+                )
+            )
+        if normalize_phonemes and pack.phoneme_normalizer is None:
+            raise ValueError(
+                "Language {!r} does not define a phoneme normalizer.".format(lang)
+            )
+
+        self.lang = lang
+        self.backend = backend
+        self.transcription = transcription
+        self.lexicon = self._get_dictionary(profile.dictionary)
         self.tokenizer = TweetTokenizer()
         self.normalize_phonemes = normalize_phonemes
+        self._text_normalizer = pack.text_normalizer
+        self._phoneme_normalizer = pack.phoneme_normalizer
+        self._model_path = profile.model
+        self._t5: Optional["T5"] = None
+
+    @classmethod
+    def supported_languages(
+        cls, backend: str = "wikipron", narrow: bool = False
+    ) -> Tuple[str, ...]:
+        transcription = "narrow" if narrow else "broad"
+        return supported_g2p_languages(backend, transcription)
 
     def __call__(self, text: str, keep_punctuations: bool = False) -> List[str]:
         text = self._normalize_text(text)
         tokens = self.tokenizer.tokenize(text)
         phonemes = [self._phonemize(token) for token in tokens]
         if not keep_punctuations:
-            phonemes = list(filter(lambda x: not self._is_punctuation(x), phonemes))
+            phonemes = [
+                phoneme for phoneme in phonemes if not self._is_punctuation(phoneme)
+            ]
         if self.normalize_phonemes:
-            phonemes = list(map(Lexicon._normalize_phonemes, phonemes))
-
+            phonemes = [self._phoneme_normalizer(phoneme) for phoneme in phonemes]
         return phonemes
 
     def _is_punctuation(self, token: str) -> bool:
-        return all(t in string.punctuation for t in token)
+        return all(character in string.punctuation for character in token)
 
     def _phonemize(self, token: str) -> str:
-        # return punctuation as is
         if self._is_punctuation(token):
             return token
 
         try:
-            # NOTE: this returns last pronunciation found
-            phoneme = self.lexicon[token][-1]
-            return phoneme
+            return self.lexicon[token][-1]
         except KeyError:
-            phoneme = self.t5(token)
-            return phoneme
+            if self._t5 is None:
+                self._t5 = self._get_t5_model()
+            return self._t5(token)
 
     def _normalize_text(self, text: str) -> str:
-        text = normalize_numbers(text)
+        text = self._text_normalizer(text)
         text = text.replace("-", " - ")
-        text = text.lower()
-        return text
+        return text.lower()
 
-    def _get_dictionary(
-        self, lang: str, backend: str, narrow: Optional[bool] = None
-    ) -> Dict[str, List[str]]:
-        _DICTIONARIES = Path(os.path.join(os.path.dirname(__file__), "dict"))
-
-        if backend not in _SUPPORTED_BACKENDS:
-            raise ValueError(f"Backend {backend} is not supported!")
-
-        if lang not in _SUPPORTED_LANGUAGES:
-            raise ValueError(f"Language {lang} is not supported!")
-
-        if lang == "en":
-            fname = "eng_latn.tsv"
-        else:
-            if narrow is None:
-                logger.info(
-                    "Neither narrow nor broad pronunciation was specified, defaulting to broad pronunciation."
-                )
-                narrow = False
-
-            _, region = lang.split("-")
-            fname = f"eng_latn_{region}_{'narrow' if narrow else 'broad'}.tsv"
-
-        path = _DICTIONARIES / backend / fname
-        lexicon = {}
-
-        with open(path, "r") as f:
-            for line in f.readlines():
-                word, phonemes = line.strip().split("\t")
-                phonemes = [phonemes.replace(" . ", " ")]
+    def _get_dictionary(self, dictionary: DictionarySource) -> Dict[str, List[str]]:
+        path = _DICTIONARIES / dictionary.path
+        lexicon: Dict[str, List[str]] = {}
+        with path.open("r", encoding="utf-8") as file:
+            for line in file:
+                if not line.strip():
+                    continue
+                word, phonemes = line.rstrip("\r\n").split("\t", 1)
+                pronunciations = [
+                    pronunciation.replace(" . ", " ")
+                    for pronunciation in split_pronunciation_variants(phonemes)
+                ]
                 word = word.lower()
-                if word not in lexicon:
-                    lexicon[word] = phonemes
-                else:
-                    lexicon[word] += phonemes
-
+                lexicon.setdefault(word, []).extend(pronunciations)
         return lexicon
 
-    def _get_t5_model(self, lang: str, backend: str, narrow: bool) -> T5:
-        _MODELS = {
-            "wikipron": {
-                "en": {
-                    "broad": "bookbot/onnx-byt5-small-wikipron-eng-latn-quantized-avx512_vnni",
-                },
-                "en-uk": {
-                    "broad": "bookbot/onnx-byt5-small-wikipron-eng-latn-uk-broad-quantized-avx512_vnni",
-                },
-                "en-us": {
-                    "broad": "bookbot/onnx-byt5-small-wikipron-eng-latn-us-broad-quantized-avx512_vnni",
-                },
-                "en-au": {
-                    "broad": "bookbot/onnx-byt5-small-wikipron-eng-latn-au-broad-quantized-avx512_vnni",
-                },
-                "en-ca": {
-                    "broad": "bookbot/onnx-byt5-small-wikipron-eng-latn-ca-broad-quantized-avx512_vnni",
-                },
-                "en-nz": {
-                    "broad": "bookbot/onnx-byt5-small-wikipron-eng-latn-nz-broad-quantized-avx512_vnni",
-                },
-                "en-in": {
-                    "broad": "bookbot/onnx-byt5-small-wikipron-eng-latn-in-broad-quantized-avx512_vnni",
-                },
-            }
-        }
+    def _get_t5_model(self) -> "T5":
+        from .t5 import T5
 
-        if backend not in _SUPPORTED_BACKENDS:
-            raise ValueError(f"Backend {backend} is not supported!")
-
-        if lang not in _SUPPORTED_LANGUAGES:
-            raise ValueError(f"Language {lang} is not supported!")
-
-        if narrow:
-            raise ValueError("Narrow model is not supported!")
-
-        t5 = T5(_MODELS[backend][lang]["narrow" if narrow else "broad"])
-
-        return t5
+        return T5(self._model_path)
 
 
 if __name__ == "__main__":
-    g2p = G2p(lang="en-us", normalize_phonemes=True)
+    g2p = G2p("en-us", normalize_phonemes=True)
     print(g2p("Hello there! $100 is not a lot of money in 2023."))

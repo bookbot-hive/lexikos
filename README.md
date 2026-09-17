@@ -23,51 +23,81 @@ pip install -e lexikos
 
 ## Usage
 
+Language selection is explicit. Language IDs are exact, lowercase identifiers;
+for example, use `en-us`, not `en_US` or `EN-US`.
+
+```py
+>>> from lexikos import G2p, Lexicon
+>>> Lexicon.supported_languages()
+('en', 'en-au', 'en-ca', 'en-in', 'en-nz', 'en-uk', 'en-us', 'es', 'es-419', 'es-co', 'es-es', 'es-mx')
+>>> G2p.supported_languages()
+('en', 'en-au', 'en-ca', 'en-in', 'en-nz', 'en-uk', 'en-us')
+```
+
 ### Lexicon
 
+`Lexicon[word]` returns one immutable `Pronunciation` per unique IPA value.
+Each pronunciation retains every dictionary, language, dialect, transcription
+width, and synthetic-data source that supplies that IPA.
+
 ```py
 >>> from lexikos import Lexicon
->>> lexicon = Lexicon()
->>> print(lexicon["added"])
-{'ˈæ d ɪ d', 'ˈæ ɾ ə d', 'æ ɾ ɪ d', 'a d ɪ d', 'ˈa d ɪ d', 'æ ɾ ə d', 'ˈa d ə d', 'a d ə d', 'ˈæ d ə d', 'æ d ə d', 'æ d ɪ d', 'ˈæ ɾ ɪ d'}
->>> print(lexicon["runner"])
-{'ɹ ʌ n ɚ', 'ɹ ʌ n ə', 'ɹ ʌ n ɝ', 'ˈr ʌ n ɝ'}
->>> print(lexicon["water"])
-{'ˈʋ aː ʈ ə r ɯ', 'ˈw oː t ə', 'w ɑ t ə ɹ', 'ˈw aː ʈ ə r ɯ', 'ˈw ɔ t ɝ', 'w ɔ t ə ɹ', 'ˈw ɑ t ə ɹ', 'w ɔ t ɝ', 'w ɑ ɾ ɚ', 'ˈw ɑ ɾ ɚ', 'ˈʋ ɔ ʈ ə r', 'w ɔ ɾ ɚ', 'w ɔː t ə', 'ˈw oː ɾ ə', 'ˈw ɔ ʈ ə r'}
+>>> lexicon = Lexicon("en-us")
+>>> pronunciation = next(p for p in lexicon["a"] if p.ipa == "ə")
+>>> pronunciation.ipa
+'ə'
+>>> [(source.source, source.language, source.dialect.group) for source in pronunciation.sources]
+[('cmudict', 'en-us', 'american'), ('librispeech', 'en-us', 'american'), ('wikipron', 'en-us', 'american')]
 ```
 
-To get a lexicon where phonemes are normalized (diacritics removed, digraphs split):
+Spanish lexical packs are available for generic Spanish, Spain, Latin America,
+Mexico, and Colombia. The Colombia pack currently uses the explicitly
+Latin-American CharsiuG2P source rather than relabeling it as
+country-specific evidence:
 
 ```py
->>> from lexikos import Lexicon
->>> lexicon = Lexicon(normalize_phonemes=True)
->>> print(lexicon["added"])
-{'æ ɾ ɪ d', 'a d ɪ d', 'a d ə d', 'æ ɾ ə d', 'æ d ə d', 'æ d ɪ d'}
->>> print(lexicon["runner"])
-{'ɹ ʌ n ɚ', 'ɹ ʌ n ə', 'r ʌ n ɝ', 'ɹ ʌ n ɝ'}
->>> print(lexicon["water"])
-{'w o ɾ ə', 'w ɔ t ə', 'ʋ ɔ ʈ ə r', 'w a ʈ ə r ɯ', 'w ɔ t ə ɹ', 'ʋ a ʈ ə r ɯ', 'w ɑ ɾ ɚ', 'w o t ə', 'w ɔ t ɝ', 'w ɔ ʈ ə r', 'w ɔ ɾ ɚ', 'w ɑ t ə ɹ'}
+>>> lexicon = Lexicon("es-co")
+>>> [(p.ipa, p.sources[0].dialect.macroregion) for p in lexicon["niño"]]
+[('niɲo', 'latin-america')]
 ```
 
-To include synthetic (non-dictionary-based) pronunciations:
+When normalization collapses multiple IPA strings, their source records are
+unioned rather than discarded:
 
 ```py
->>> from lexikos import Lexicon
->>> lexicon = Lexicon(include_synthetic=True)
->>> print(lexicon["athletic"])
-{'æ t l ɛ t ɪ k', 'æ θ ˈl ɛ t ɪ k', 'æ θ l ɛ t ɪ k'}
+>>> lexicon = Lexicon("en-us", normalize_phonemes=True)
+```
+
+Synthetic pronunciations remain opt-in and are limited to datasets explicitly
+assigned to the selected language pack:
+
+```py
+>>> lexicon = Lexicon("en-us", include_synthetic=True)
 ```
 
 ### Phonemization
 
+`G2p` also requires an explicit language. Only complete language packs with a
+dictionary, broad G2P model, and text normalizer are selectable.
+
 ```py
 >>> from lexikos import G2p
->>> g2p = G2p(lang="en-us")
+>>> g2p = G2p("en-us")
 >>> g2p("Hello there! $100 is not a lot of money in 2023.")
 ['h ɛ l o ʊ', 'ð ɛ ə ɹ', 'w ʌ n', 'h ʌ n d ɹ ɪ d', 'd ɑ l ɚ z', 'ɪ z', 'n ɒ t', 'ə', 'l ɑ t', 'ʌ v', 'm ʌ n i', 'ɪ n', 't w ɛ n t i', 't w ɛ n t i', 'θ ɹ iː']
->>> g2p = G2p(lang="en-au")
+>>> g2p = G2p("en-au")
 >>> g2p("Hi there mate! Have a g'day!")
 ['h a ɪ', 'θ ɛ ə ɹ', 'm e ɪ t', 'h e ɪ v', 'ə', 'ɡ ə ˈd æ ɪ']
+```
+
+Spanish neural G2P is not advertised by `G2p.supported_languages()` until a
+compatible model artifact exists. Use `charsiu_prompt` to construct the exact
+multilingual CharsiuG2P input when fine-tuning or serving such a model:
+
+```py
+>>> from lexikos import charsiu_prompt
+>>> charsiu_prompt("es-co", "NIÑO")
+'<spa-co>: niño'
 ```
 
 ## Dictionaries & Models
@@ -127,6 +157,55 @@ To include synthetic (non-dictionary-based) pronunciations:
 | en-IN (Broad)  | Wikipron   | IPA       | [Link](./lexikos/dict/wikipron/eng_latn_in_broad.tsv)  | [bookbot/byt5-small-wikipron-eng-latn-in-broad](https://huggingface.co/bookbot/byt5-small-wikipron-eng-latn-in-broad) |
 | en-IN (Narrow) | Wikipron   | IPA       | [Link](./lexikos/dict/wikipron/eng_latn_in_narrow.tsv) |                                                                                                                       |
 
+
+### Spanish
+
+| Lexikos language | CharsiuG2P tag | Dictionary |
+| ---------------- | -------------- | ---------- |
+| `es`             | `spa`          | `spa.tsv` |
+| `es-es`          | `spa`          | `spa.tsv` |
+| `es-419`         | `spa-latin`    | `spa-latin.tsv` |
+| `es-mx`          | `spa-me`       | `spa-me.tsv` |
+| `es-co`          | `spa-co`       | `spa-latin.tsv` (Latin-American source) |
+
+The dictionaries are pinned to CharsiuG2P revision
+`0c929390759fb94f8ecdfc05cc0bc5f2ff2dc0f4`; provenance and licensing are in
+[`lexikos/dict/charsiu`](./lexikos/dict/charsiu/).
+
+## Preparing Spanish data for CharsiuG2P
+
+The preparation CLI accepts Lexikos `word<TAB>IPA` files, expands both ` ~ `
+and comma-separated pronunciation variants, normalizes Unicode to NFC,
+deduplicates exact pairs, and assigns every pronunciation of a word to one
+deterministic split:
+
+```sh
+python scripts/prepare_charsiu_g2p.py \
+    lexikos/dict/charsiu/spa-latin.tsv \
+    --language es-419 \
+    --output-dir prepared/es-419
+```
+
+This writes headerless CharsiuG2P inputs at
+`prepared/es-419/{train,dev,test}/spa-latin.tsv` plus a manifest containing
+source and output SHA-256 hashes. Fine-tune with the upstream trainer:
+
+The pinned upstream trainer omits the required space after its language prefix.
+Before training, update both prefix expressions in its `src/data_utils.py` from
+`'<'+language+'>:' + word` to `'<'+language+'>: ' + word`. Without this fix,
+the checkpoint is trained on a different input format from `charsiu_prompt`.
+
+```sh
+python /path/to/CharsiuG2P/src/train.py \
+    --train \
+    --language spa-latin \
+    --train_data prepared/es-419/train/spa-latin.tsv \
+    --dev_data prepared/es-419/dev/spa-latin.tsv \
+    --model byt5 \
+    --model_name charsiu/g2p_multilingual_byT5_small_100 \
+    --pretrained_model True \
+    --output_dir models/spanish-latin
+```
 
 ## Training G2P Model
 

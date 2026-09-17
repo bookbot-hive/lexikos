@@ -1,2 +1,3 @@
 include requirements.txt
-include dict/*/*
+include scripts/*.py
+recursive-include lexikos/dict *.tsv *.txt

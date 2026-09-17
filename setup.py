@@ -11,7 +11,9 @@ long_description = readme_path.read_text(encoding="utf-8")
 
 data_dir = module_dir / "dict"
 data_files = [
-    str(f.relative_to(module_dir)) for f in data_dir.rglob("*.tsv") if f.is_file()
+    str(f.relative_to(module_dir))
+    for f in data_dir.rglob("*")
+    if f.is_file() and f.suffix in {".tsv", ".txt"}
 ]
 
 with open(requirements_path, "r", encoding="utf-8") as requirements_file:

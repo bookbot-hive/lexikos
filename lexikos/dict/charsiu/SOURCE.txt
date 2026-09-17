@@ -1,0 +1,7 @@
+Files copied from CharsiuG2P at revision 0c929390759fb94f8ecdfc05cc0bc5f2ff2dc0f4:
+
+- spa.tsv: https://github.com/lingjzhu/CharsiuG2P/blob/0c929390759fb94f8ecdfc05cc0bc5f2ff2dc0f4/dicts/spa.tsv
+- spa-latin.tsv: https://github.com/lingjzhu/CharsiuG2P/blob/0c929390759fb94f8ecdfc05cc0bc5f2ff2dc0f4/dicts/spa-latin.tsv
+- spa-me.tsv: https://github.com/lingjzhu/CharsiuG2P/blob/0c929390759fb94f8ecdfc05cc0bc5f2ff2dc0f4/dicts/spa-me.tsv
+
+The upstream README attributes spa-latin to the Santiago Spanish Lexicon (OpenSLR SLR34), licensed under Apache-2.0: https://openslr.org/34/
