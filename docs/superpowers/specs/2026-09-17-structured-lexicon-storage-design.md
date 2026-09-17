@@ -80,6 +80,7 @@ A scraper or importer emits one JSONL row per source occurrence before database 
   "source_revision": "upstream-revision-or-snapshot-id",
   "source_url": "https://example.test/entry",
   "source_row_reference": "page-or-row-identifier",
+  "source_occurrence": 42,
   "word_raw": "niño",
   "pronunciation_raw": "/ˈniɲo/",
   "metadata_raw": {
@@ -142,12 +143,18 @@ Immutable source evidence.
 | `import_run_id` | TEXT | NOT NULL REFERENCES `import_run(id)` |
 | `source_url` | TEXT | NULL allowed |
 | `source_row_reference` | TEXT | NOT NULL |
+| `source_occurrence` | INTEGER | NOT NULL, unique within one import run and row reference |
 | `word_raw` | TEXT | NOT NULL |
 | `pronunciation_raw` | TEXT | NOT NULL |
 | `metadata_raw_json` | TEXT | NOT NULL, valid JSON object |
 | `retrieved_at` | TEXT | NOT NULL ISO-8601 UTC |
 
-The observation ID is SHA-256 over the import-run ID, source row reference, and canonical bytes of the raw record. Including the row reference preserves repeated identical occurrences within one source snapshot.
+The observation ID is SHA-256 over the import-run ID, source row reference,
+source occurrence, and canonical bytes of the raw record. Importers assign a
+stable ordinal or byte offset to `source_occurrence`. This preserves duplicate
+identical rows even when the upstream source repeats the same row reference.
+
+Unique constraint: `(import_run_id, source_row_reference, source_occurrence)`.
 
 Observation rows are never updated or deleted. Re-importing the same immutable row is idempotent.
 
@@ -271,6 +278,7 @@ A pack file declares:
 - Accepted transcription classifications.
 - Explicit evidence-selection rules.
 - Synthetic-data inclusion policy.
+- Optional G2P backend, transcription, model, and dictionary ordering.
 
 Pack configuration selects accepted evidence; it never changes its dialect metadata. `es-co` may select pooled Latin-American evidence only when the pack explicitly declares that fallback. The resulting `PronunciationSource.dialect` remains pooled Latin-American, not Colombian.
 
@@ -313,6 +321,9 @@ One row per unique accepted attribution record for a runtime pronunciation:
 | `pronunciation_id` | INTEGER REFERENCES `pronunciation(id)` |
 | `source_id` | TEXT |
 | `source_name` | TEXT |
+| `language` | TEXT |
+| `source_language` | TEXT |
+| `source_language_raw` | TEXT |
 | `observation_ids_json` | TEXT |
 | `source_url` | TEXT |
 | `source_revision` | TEXT |
@@ -328,9 +339,42 @@ Rows with identical accepted attribution metadata are grouped, while
 order.
 
 `source_name` supplies the existing human-readable `PronunciationSource.source`
-field; `source_id` is the stable machine identifier. The existing
-`PronunciationSource.language` field is derived from the runtime row's
-`pack_id`.
+field; `source_id` is the stable machine identifier. `language` is the runtime
+pack context and preserves the existing `PronunciationSource.language`
+contract. `source_language` and `source_language_raw` retain, respectively,
+the normalized and exact source-evidence language. One accepted observation
+may therefore appear under multiple pack-context `language` values without
+changing its source-language evidence.
+
+### `g2p_profile`
+
+Model-profile metadata compiled from Git-reviewed pack configuration:
+
+| Column | Type | Constraint |
+| --- | --- | --- |
+| `id` | TEXT | PRIMARY KEY |
+| `pack_id` | TEXT | NOT NULL |
+| `backend` | TEXT | NOT NULL |
+| `transcription` | TEXT | NOT NULL |
+| `model` | TEXT | NOT NULL |
+
+Unique constraint: `(pack_id, backend, transcription)`.
+
+### `g2p_dictionary`
+
+The exact dictionary view used before neural fallback:
+
+| Column | Type | Constraint |
+| --- | --- | --- |
+| `profile_id` | TEXT | REFERENCES `g2p_profile(id)` |
+| `normalized_word` | TEXT | NOT NULL |
+| `ordinal` | INTEGER | NOT NULL |
+| `normalized_ipa` | TEXT | NOT NULL |
+
+Primary key: `(profile_id, normalized_word, ordinal)`. A lookup index covers
+`(profile_id, normalized_word)`. `ordinal` preserves the configured source
+ordering needed for behavioral parity with the current dictionary loader; the
+highest matching ordinal is the selected dictionary pronunciation.
 
 ## Runtime API
 
@@ -351,6 +395,8 @@ license_id
 license_url
 source_revision
 evidence_status
+source_language
+source_language_raw
 ```
 
 Existing fields remain:
@@ -367,6 +413,14 @@ synthetic
 
 The runtime opens the packaged database read-only. It exposes accepted provenance only. Curation history requires the separate curation artifact and tooling.
 
+`G2p` reads its profile, dictionary hits, and model identifier from
+`g2p_profile` and `g2p_dictionary` in the same runtime snapshot. A known-word
+hit returns the configured final pronunciation by `ordinal`; an unknown word
+uses the profile's model. No G2P code reads packaged TSV files after cutover.
+Locale packs without a configured model, including all Spanish packs in the
+initial cutover, have no `g2p_profile` row and are not advertised as G2P
+profiles.
+
 ## Deterministic snapshot generation
 
 The compiler:
@@ -376,11 +430,13 @@ The compiler:
 3. Resolves terminal accepted reviews.
 4. Applies the locale-pack configuration at the recorded Git commit.
 5. Groups canonical pronunciations and attribution-equivalent evidence.
-6. Creates a new runtime database from scratch.
-7. Uses fixed schema, PRAGMAs, and sorted insertion order.
-8. Runs foreign-key and integrity checks.
-9. Builds under a pinned Python and SQLite environment.
-10. Emits database size, row counts, source counts, and SHA-256.
+6. Compiles reviewed G2P profile metadata and ordered dictionary views.
+7. Creates a new runtime database from scratch.
+8. Uses fixed schema, PRAGMAs, and sorted insertion order.
+9. Runs foreign-key and integrity checks.
+10. Builds under a pinned Python and SQLite environment.
+11. Emits database size, row counts, source counts, G2P profile counts, and
+    SHA-256.
 
 The build does not claim byte determinism across arbitrary SQLite versions. Reproducibility requires the pinned build environment recorded in the manifest.
 
@@ -416,9 +472,13 @@ GitHub permits authorized replacement or deletion of release assets, so immutabi
 5. Mark migrated file-level metadata with `metadata_origin = "dataset-declaration"`; do not present it as scraped row-level evidence.
 6. Leave absent source URL, locality, accent, dialect feature, and license values unknown unless the existing provenance file establishes them.
 7. Import each physical Spanish source once. `spa.tsv` can feed `es` and `es-es`; `spa-latin.tsv` can feed `es-419` and explicitly configured `es-co`; pack assignment must not duplicate or relabel evidence.
-8. Generate the runtime snapshot and compare supported packs, words, IPA values, source multiplicity, and documented sample lookups against the TSV implementation.
-9. Switch the runtime and package manifest to SQLite in one cutover.
-10. Remove the TSV runtime loader and packaged TSV copies after parity passes. Do not retain a fallback path.
+8. Generate the runtime snapshot and compare supported packs, words, IPA
+   values, source multiplicity, G2P profile dictionaries, and documented
+   sample lookups against the TSV implementation.
+9. Switch both `Lexicon` lookup and `G2p` dictionary/profile lookup to SQLite in
+   one cutover.
+10. Remove all TSV runtime loaders and packaged TSV copies after parity passes.
+    Do not retain a fallback path.
 
 ## Failure handling
 
@@ -454,6 +514,10 @@ GitHub permits authorized replacement or deletion of release assets, so immutabi
 
 - Existing supported-language discovery remains stable unless deliberately changed by pack configuration.
 - Known English and Spanish lookups preserve IPA and provenance behavior.
+- Every advertised English G2P profile returns the same dictionary-hit IPA
+  before and after cutover.
+- English G2P unknown-word fallback loads the same model profile and preserves
+  observable output for a fixed smoke input.
 - Missing words raise `KeyError`.
 - Mapping methods query the database without loading the complete lexicon.
 - Wheel inspection confirms the runtime database and dependency metadata.
@@ -466,9 +530,11 @@ GitHub permits authorized replacement or deletion of release assets, so immutabi
 3. Generate and verify the first runtime snapshot.
 4. Compare complete pack-level counts and targeted provenance samples.
 5. Publish a data release with hashes and licensing boundaries.
-6. Replace the TSV runtime loader with SQLite-backed lookup.
+6. Replace both the Lexicon and G2P TSV loaders with SQLite-backed lookup.
 7. Update package data and public documentation.
 8. Remove obsolete TSV runtime assets and code.
-9. Build and install the final wheel, then rerun the complete test and runtime smoke suite.
+9. Build and install the final wheel, then rerun the complete test suite,
+   every advertised English G2P profile smoke, and representative English and
+   Spanish lexicon lookups.
 
 The implementation is complete only after the clean cutover; a compiler or database added beside the existing TSV runtime is not considered completion.
