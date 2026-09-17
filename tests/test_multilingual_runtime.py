@@ -21,9 +21,6 @@ def es_419_lexicon():
     return Lexicon("es-419")
 
 
-@pytest.fixture(scope="module")
-def es_co_lexicon():
-    return Lexicon("es-co")
 
 
 def test_language_is_required_for_both_public_apis():
@@ -58,8 +55,8 @@ def test_supported_languages_are_discoverable():
         "es-es",
         "es-mx",
     )
-    expected_g2p = expected_lexicons
-    expected_narrow_g2p = ("es", "es-419", "es-co", "es-es")
+    expected_g2p = tuple(lang for lang in expected_lexicons if lang != "es-co")
+    expected_narrow_g2p = ("es", "es-419", "es-es")
     assert Lexicon.supported_languages() == expected_lexicons
     assert G2p.supported_languages() == expected_g2p
     assert G2p.supported_languages(narrow=True) == expected_narrow_g2p
@@ -69,7 +66,6 @@ def test_explicit_g2p_filters_select_exact_profiles():
     assert G2p.supported_languages(backend="wikipron", narrow=True) == (
         "es",
         "es-419",
-        "es-co",
         "es-es",
     )
     assert G2p("es-419").backend == "charsiu-g2p"
@@ -93,6 +89,9 @@ def test_language_pack_carries_locale_metadata():
     assert colombia.base_language == "es"
     assert colombia.territory == "CO"
     assert colombia.macroregion == "latin-america"
+    assert colombia.dictionaries == ()
+    assert colombia.g2p_profiles == ()
+    assert colombia.default_g2p_profile_id == ""
 
 
 def test_spanish_text_normalization_preserves_numbers_and_accents():
@@ -132,18 +131,16 @@ def test_sqlite_lexicon_retains_mapping_behavior(es_419_lexicon):
     }
 
 
-def test_colombian_pack_uses_latin_american_data_without_relabeling_dialect(
-    es_co_lexicon,
-):
-    pronunciation = next(
-        pronunciation
-        for pronunciation in es_co_lexicon["niño"]
-        if pronunciation.ipa == "niɲo"
-    )
-    source = pronunciation.sources[0]
-    assert source.language == "es-co"
-    assert source.dialect.territory is None
-    assert source.dialect.macroregion == "latin-america"
+def test_colombian_pack_is_empty_until_specific_evidence_is_available():
+    lexicon = Lexicon("es-co")
+
+    assert len(lexicon) == 0
+    assert "niño" not in lexicon
+    with pytest.raises(KeyError):
+        lexicon["niño"]
+
+    with pytest.raises(ValueError, match="does not support default G2P"):
+        G2p("es-co")
 
 
 def test_spanish_dictionary_only_g2p_warns_for_oov():
@@ -166,7 +163,8 @@ def test_charsiu_prompt_uses_locale_tag_normalization_and_required_spacing():
     assert charsiu_prompt("es", " AÑO ") == "<spa>: año"
     assert charsiu_prompt("es-419", "CORAZO\u0301N") == "<spa-latin>: corazón"
     assert charsiu_prompt("es-mx", "NIÑO") == "<spa-me>: niño"
-    assert charsiu_prompt("es-co", "NIÑO") == "<spa-co>: niño"
+    with pytest.raises(ValueError, match="Unsupported CharsiuG2P language 'es-co'"):
+        charsiu_prompt("es-co", "NIÑO")
 
     with pytest.raises(ValueError, match="Unsupported CharsiuG2P language 'en'"):
         charsiu_prompt("en", "hello")

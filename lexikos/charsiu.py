@@ -10,7 +10,6 @@ CHARSIU_LANGUAGE_TAGS: Dict[str, str] = {
     "es-es": "spa",
     "es-419": "spa-latin",
     "es-mx": "spa-me",
-    "es-co": "spa-co",
 }
 
 

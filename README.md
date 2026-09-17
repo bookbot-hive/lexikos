@@ -31,7 +31,7 @@ for example, use `en-us`, not `en_US` or `EN-US`.
 >>> Lexicon.supported_languages()
 ('en', 'en-au', 'en-ca', 'en-in', 'en-nz', 'en-uk', 'en-us', 'es', 'es-419', 'es-co', 'es-es', 'es-mx')
 >>> G2p.supported_languages()
-('en', 'en-au', 'en-ca', 'en-in', 'en-nz', 'en-uk', 'en-us', 'es', 'es-419', 'es-co', 'es-es', 'es-mx')
+('en', 'en-au', 'en-ca', 'en-in', 'en-nz', 'en-uk', 'en-us', 'es', 'es-419', 'es-es', 'es-mx')
 ```
 
 ### Lexicon
@@ -55,14 +55,16 @@ that supplies that IPA.
 Spanish lexical packs are available for generic Spanish, Spain, Latin America,
 Mexico, and Colombia. Generic `es` and `es-es` use explicitly peninsular
 CharsiuG2P and WikiPron Castilian evidence, so generic `es` is not
-dialect-neutral. `es-419` and `es-co` use pooled Latin-American CharsiuG2P and
-WikiPron evidence without relabeling it as Colombian. `es-mx` retains its
-Mexican-specific CharsiuG2P source.
+dialect-neutral. `es-419` combines Latin-American CharsiuG2P and WikiPron
+evidence, while `es-mx` retains its Mexican-specific CharsiuG2P source.
+
+`es-co` is reserved but empty: it accepts only evidence explicitly sourced as
+Colombian Spanish. Pooled Latin-American evidence is not copied into the pack.
 
 ```py
 >>> lexicon = Lexicon("es-co")
->>> [(p.ipa, p.sources[0].dialect.macroregion) for p in lexicon["niño"]]
-[('niɲo', 'latin-america')]
+>>> len(lexicon)
+0
 ```
 
 When normalization collapses multiple IPA strings, their source records are
@@ -102,8 +104,8 @@ model:
 
 ```py
 >>> from lexikos import charsiu_prompt
->>> charsiu_prompt("es-co", "NIÑO")
-'<spa-co>: niño'
+>>> charsiu_prompt("es-419", "CORAZÓN")
+'<spa-latin>: corazón'
 ```
 
 ## Dictionaries & Models
@@ -169,7 +171,11 @@ model:
 | `es-es`          | `spa`             | Castilian broad + narrow |
 | `es-419`         | `spa-latin`       | Latin America broad + narrow |
 | `es-mx`          | `spa-me`          | — |
-| `es-co`          | `spa-latin`       | Latin America broad + narrow |
+| `es-co`          | —                   | — |
+
+`es-co` remains empty until a reviewed Colombian-specific dictionary is added.
+It has no G2P profile because CharsiuG2P's pinned language registry does not
+define a `spa-co` tag.
 
 CharsiuG2P data is pinned to revision
 `0c929390759fb94f8ecdfc05cc0bc5f2ff2dc0f4`. Spanish WikiPron data is pinned

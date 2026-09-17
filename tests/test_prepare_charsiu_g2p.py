@@ -8,14 +8,14 @@ SCRIPT = Path(__file__).parents[1] / "scripts" / "prepare_charsiu_g2p.py"
 SPLITS = ("train", "dev", "test")
 
 
-def _run(source, output):
+def _run(source, output, language="es-mx"):
     return subprocess.run(
         [
             sys.executable,
             str(SCRIPT),
             str(source),
             "--language",
-            "es-co",
+            language,
             "--output-dir",
             str(output),
             "--seed",
@@ -55,8 +55,8 @@ def test_preparation_is_deterministic_and_keeps_words_in_one_split(tmp_path):
     pronunciations_by_word = {}
     pronunciation_count = 0
     for split in SPLITS:
-        first_data = (first_output / split / "spa-co.tsv").read_text(encoding="utf-8")
-        second_data = (second_output / split / "spa-co.tsv").read_text(encoding="utf-8")
+        first_data = (first_output / split / "spa-me.tsv").read_text(encoding="utf-8")
+        second_data = (second_output / split / "spa-me.tsv").read_text(encoding="utf-8")
         assert first_data == second_data
         for line in first_data.splitlines():
             word, pronunciation = line.split("\t", 1)
@@ -72,8 +72,8 @@ def test_preparation_is_deterministic_and_keeps_words_in_one_split(tmp_path):
 
     manifest = json.loads((first_output / "manifest.json").read_text(encoding="utf-8"))
     assert manifest["format"] == "charsiu-g2p-tsv-v1"
-    assert manifest["language"] == "es-co"
-    assert manifest["charsiu_language"] == "spa-co"
+    assert manifest["language"] == "es-mx"
+    assert manifest["charsiu_language"] == "spa-me"
     assert sum(split["words"] for split in manifest["splits"].values()) == 44
     assert sum(split["pronunciations"] for split in manifest["splits"].values()) == 46
 
@@ -86,4 +86,15 @@ def test_preparation_rejects_malformed_dictionary_rows(tmp_path):
 
     assert result.returncode != 0
     assert "expected word<TAB>pronunciation" in result.stderr
+    assert not (tmp_path / "output" / "manifest.json").exists()
+
+
+def test_preparation_rejects_unsourced_colombian_locale(tmp_path):
+    source = tmp_path / "source.tsv"
+    source.write_text("niño\tniɲo\n", encoding="utf-8")
+
+    result = _run(source, tmp_path / "output", language="es-co")
+
+    assert result.returncode != 0
+    assert "invalid choice: 'es-co'" in result.stderr
     assert not (tmp_path / "output" / "manifest.json").exists()
