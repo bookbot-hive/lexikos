@@ -72,7 +72,9 @@ The curation database is not shipped to application users. The runtime database 
 
 ## Raw ingestion records
 
-A scraper or importer emits one JSONL row per source occurrence before database import. The transport schema includes:
+A scraper or importer emits one JSONL row per extracted pronunciation variant
+from each physical source row before database import. The transport schema
+includes:
 
 ```json
 {
@@ -81,8 +83,10 @@ A scraper or importer emits one JSONL row per source occurrence before database 
   "source_url": "https://example.test/entry",
   "source_row_reference": "page-or-row-identifier",
   "source_occurrence": 42,
+  "variant_occurrence": 0,
   "word_raw": "niño",
   "pronunciation_raw": "/ˈniɲo/",
+  "pronunciation_variant_raw": "/ˈniɲo/",
   "metadata_raw": {
     "language": "Spanish",
     "region": "Colombia",
@@ -143,18 +147,28 @@ Immutable source evidence.
 | `import_run_id` | TEXT | NOT NULL REFERENCES `import_run(id)` |
 | `source_url` | TEXT | NULL allowed |
 | `source_row_reference` | TEXT | NOT NULL |
-| `source_occurrence` | INTEGER | NOT NULL, unique within one import run and row reference |
+| `source_occurrence` | INTEGER | NOT NULL, unique physical-row ordinal within one import run |
+| `variant_occurrence` | INTEGER | NOT NULL, zero-based variant ordinal within the source row |
 | `word_raw` | TEXT | NOT NULL |
 | `pronunciation_raw` | TEXT | NOT NULL |
+| `pronunciation_variant_raw` | TEXT | NOT NULL |
 | `metadata_raw_json` | TEXT | NOT NULL, valid JSON object |
 | `retrieved_at` | TEXT | NOT NULL ISO-8601 UTC |
 
 The observation ID is SHA-256 over the import-run ID, source row reference,
-source occurrence, and canonical bytes of the raw record. Importers assign a
-stable ordinal or byte offset to `source_occurrence`. This preserves duplicate
-identical rows even when the upstream source repeats the same row reference.
+source occurrence, variant occurrence, and canonical bytes of the raw record.
+Importers assign a stable physical-row ordinal or byte offset to
+`source_occurrence` and preserve extracted variant order in
+`variant_occurrence`. Duplicate identical physical rows therefore remain
+distinct, as do multiple pronunciations in one source row.
 
-Unique constraint: `(import_run_id, source_row_reference, source_occurrence)`.
+Unique constraint: `(import_run_id, source_occurrence, variant_occurrence)`.
+
+`pronunciation_raw` preserves the complete source field unchanged.
+`pronunciation_variant_raw` preserves the exact trimmed variant selected by
+`variant_occurrence`. A review interprets that selected variant. The importer
+must be able to reproduce the variant from the complete field under its
+recorded parser version.
 
 Observation rows are never updated or deleted. Re-importing the same immutable row is idempotent.
 
@@ -278,7 +292,46 @@ A pack file declares:
 - Accepted transcription classifications.
 - Explicit evidence-selection rules.
 - Synthetic-data inclusion policy.
-- Optional G2P backend, transcription, model, and dictionary ordering.
+- Optional G2P profiles. Each profile declares a stable ID, backend,
+  transcription, model, exact dictionary source/import run, accepted-review
+  filter, extraction-rule version, row/variant ordering, duplicate-word
+  policy, and lookup-selection policy.
+
+For example:
+
+```yaml
+g2p_profiles:
+  - id: en-us-wikipron-broad
+    backend: wikipron
+    transcription: broad
+    model: bookbot/onnx-byt5-small-wikipron-eng-latn-us-broad-quantized-avx512_vnni
+    dictionary:
+      source_id: wikipron
+      import_run_id: wikipron-eng-latn-us-broad-2026-09-17
+      review_filter: terminal-accepted
+      extraction_rule: legacy-g2p-v1
+      order: [source_occurrence, variant_occurrence]
+      duplicate_word_policy: append
+      lookup_selection: last
+```
+
+The named import run must appear in the release manifest and belong to the
+declared source. `legacy-g2p-v1` reproduces the current loader exactly:
+
+1. Lowercase the raw word without other word normalization.
+2. Split the complete `pronunciation_raw` field first on exact `" ~ "`, then
+   on every comma, trim each variant, and reject empty variants.
+3. Validate that each `pronunciation_variant_raw` equals the split variant at
+   its `variant_occurrence`; emit each physical row's variants exactly once.
+4. Replace exact `" . "` substrings in the selected variant with one space;
+   perform no other period or whitespace normalization.
+5. Preserve physical-row order and within-row variant order.
+6. Append variants from repeated words and select the last appended value on
+   lookup.
+
+Other extraction rules require their own versioned, tested contract. The
+compiler rejects profiles with an unpinned import run, source mismatch,
+unsupported extraction rule, or ordering/selection policy it cannot execute.
 
 Pack configuration selects accepted evidence; it never changes its dialect metadata. `es-co` may select pooled Latin-American evidence only when the pack explicitly declares that fallback. The resulting `PronunciationSource.dialect` remains pooled Latin-American, not Colombian.
 
@@ -308,9 +361,16 @@ Key/value records for:
 | `pack_id` | TEXT | NOT NULL |
 | `language` | TEXT | NOT NULL |
 | `normalized_word` | TEXT | NOT NULL |
-| `normalized_ipa` | TEXT | NOT NULL |
+| `ipa` | TEXT | NOT NULL |
+| `phoneme_normalized_ipa` | TEXT | NULL allowed |
 
-Unique constraint: `(pack_id, normalized_word, normalized_ipa)`. Lookup index: `(pack_id, normalized_word)`.
+Unique constraint: `(pack_id, normalized_word, ipa)`. Lookup index:
+`(pack_id, normalized_word)`. `ipa` is the representation returned when
+`normalize_phonemes=False`. When the pack has a phoneme normalizer,
+`phoneme_normalized_ipa` stores its output. A normalized lookup groups rows by
+that output and unions their evidence, preserving the current collapse of
+distinct base pronunciations. Requesting normalization for a pack without a
+normalizer continues to raise `ValueError`.
 
 ### `evidence`
 
@@ -357,6 +417,12 @@ Model-profile metadata compiled from Git-reviewed pack configuration:
 | `backend` | TEXT | NOT NULL |
 | `transcription` | TEXT | NOT NULL |
 | `model` | TEXT | NOT NULL |
+| `dictionary_source_id` | TEXT | NOT NULL |
+| `dictionary_import_run_id` | TEXT | NOT NULL |
+| `extraction_rule` | TEXT | NOT NULL |
+| `config_path` | TEXT | NOT NULL |
+| `config_sha256` | TEXT | NOT NULL |
+| `dictionary_policy_json` | TEXT | NOT NULL, canonical JSON |
 
 Unique constraint: `(pack_id, backend, transcription)`.
 
@@ -367,14 +433,18 @@ The exact dictionary view used before neural fallback:
 | Column | Type | Constraint |
 | --- | --- | --- |
 | `profile_id` | TEXT | REFERENCES `g2p_profile(id)` |
-| `normalized_word` | TEXT | NOT NULL |
+| `lookup_word` | TEXT | NOT NULL |
 | `ordinal` | INTEGER | NOT NULL |
-| `normalized_ipa` | TEXT | NOT NULL |
+| `output_ipa` | TEXT | NOT NULL |
+| `observation_id` | TEXT | NOT NULL |
+| `accepted_review_id` | TEXT | NOT NULL |
 
-Primary key: `(profile_id, normalized_word, ordinal)`. A lookup index covers
-`(profile_id, normalized_word)`. `ordinal` preserves the configured source
-ordering needed for behavioral parity with the current dictionary loader; the
-highest matching ordinal is the selected dictionary pronunciation.
+Primary key: `(profile_id, lookup_word, ordinal)`. A lookup index covers
+`(profile_id, lookup_word)`. Rows are derived only from terminal accepted
+reviews in the profile's declared import run. `ordinal` is assigned from the
+declared row/variant ordering. `observation_id` and `accepted_review_id`
+preserve the exact curation evidence for each output. The highest matching
+ordinal is selected because the declared compatibility policy is `last`.
 
 ## Runtime API
 
@@ -385,38 +455,44 @@ lexicon = Lexicon("es-mx")
 pronunciations = lexicon["niño"]
 ```
 
-`Pronunciation` remains an immutable IPA plus sources. `PronunciationSource` gains:
+`Pronunciation` remains an immutable IPA plus sources.
+`PronunciationSource` gains these typed fields:
 
-```text
-source_id
-observation_ids
-source_url
-license_id
-license_url
-source_revision
-evidence_status
-source_language
-source_language_raw
+```python
+source_id: str
+observation_ids: tuple[str, ...]
+source_url: str | None
+license_id: str | None
+license_url: str | None
+source_revision: str
+evidence_status: str
+source_language: str | None
+source_language_raw: str | None
 ```
+
+`observation_ids` is constructed from the sorted runtime JSON array as an
+immutable tuple. Unknown source languages, source URLs, and license values
+remain `None`; empty strings are not substitutes for unknown values.
 
 Existing fields remain:
 
-```text
-source
-language
-dialect
-transcription
-synthetic
+```python
+source: str
+language: str
+dialect: Dialect | None
+transcription: str
+synthetic: bool
 ```
 
 `Lexicon` becomes a read-only mapping backed by indexed SQLite queries rather than loading every row into a `UserDict`. `__getitem__`, `__contains__`, `__iter__`, and `__len__` preserve mapping behavior. Missing words continue to raise `KeyError`.
 
 The runtime opens the packaged database read-only. It exposes accepted provenance only. Curation history requires the separate curation artifact and tooling.
 
-`G2p` reads its profile, dictionary hits, and model identifier from
-`g2p_profile` and `g2p_dictionary` in the same runtime snapshot. A known-word
-hit returns the configured final pronunciation by `ordinal`; an unknown word
-uses the profile's model. No G2P code reads packaged TSV files after cutover.
+`G2p` reads its profile, ordered dictionary outputs, and model identifier from
+`g2p_profile` and `g2p_dictionary` in the same runtime snapshot. Its normalized
+token queries `lookup_word`; a known-word hit returns the `output_ipa` at the
+highest ordinal, while an unknown word uses the profile's model. No G2P code
+reads packaged TSV files after cutover.
 Locale packs without a configured model, including all Spanish packs in the
 initial cutover, have no `g2p_profile` row and are not advertised as G2P
 profiles.
@@ -430,7 +506,8 @@ The compiler:
 3. Resolves terminal accepted reviews.
 4. Applies the locale-pack configuration at the recorded Git commit.
 5. Groups canonical pronunciations and attribution-equivalent evidence.
-6. Compiles reviewed G2P profile metadata and ordered dictionary views.
+6. Compiles each G2P profile from its exact source/import-run declaration and
+   versioned extraction rule, retaining observation provenance and order.
 7. Creates a new runtime database from scratch.
 8. Uses fixed schema, PRAGMAs, and sorted insertion order.
 9. Runs foreign-key and integrity checks.
@@ -458,7 +535,6 @@ GitHub permits authorized replacement or deletion of release assets, so immutabi
 
 - Never overwrite a hash-named asset.
 - Retain published data releases.
-- Reject any asset whose bytes differ from the Git-tracked hash.
 - Keep ordinary machine or NAS backups of unreleased curation work.
 - Exclude or privately publish source payloads whose licenses prohibit public redistribution.
 - Split compressed artifacts before GitHub's per-asset size limit when necessary.
@@ -467,7 +543,8 @@ GitHub permits authorized replacement or deletion of release assets, so immutabi
 
 1. Register every current dictionary as a `source` and one or more `import_run` rows.
 2. Record each original TSV file hash, path, parser version `legacy-tsv-v1`, and documented source revision.
-3. Import every original row and pronunciation variant as an immutable observation.
+3. Import every original physical row and each pronunciation variant as an
+   immutable observation with stable row and variant ordinals.
 4. Create accepted reviews using the current normalization behavior.
 5. Mark migrated file-level metadata with `metadata_origin = "dataset-declaration"`; do not present it as scraped row-level evidence.
 6. Leave absent source URL, locality, accent, dialect feature, and license values unknown unless the existing provenance file establishes them.
@@ -514,10 +591,15 @@ GitHub permits authorized replacement or deletion of release assets, so immutabi
 
 - Existing supported-language discovery remains stable unless deliberately changed by pack configuration.
 - Known English and Spanish lookups preserve IPA and provenance behavior.
+- Both `normalize_phonemes=False` and `True` preserve IPA results; normalized
+  collisions union every contributing source.
 - Every advertised English G2P profile returns the same dictionary-hit IPA
   before and after cutover.
 - English G2P unknown-word fallback loads the same model profile and preserves
   observable output for a fixed smoke input.
+- G2P compatibility fixtures cover exact `" ~ "` and comma splitting,
+  trimming, `" . "` replacement, repeated-word append order, and last-value
+  selection.
 - Missing words raise `KeyError`.
 - Mapping methods query the database without loading the complete lexicon.
 - Wheel inspection confirms the runtime database and dependency metadata.
