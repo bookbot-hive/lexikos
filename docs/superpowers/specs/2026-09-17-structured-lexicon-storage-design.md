@@ -293,8 +293,10 @@ A pack file declares:
 - Accepted transcription classifications.
 - Explicit evidence-selection rules.
 - Synthetic-data inclusion policy.
-- Optional G2P profiles. Each profile declares a stable ID, backend,
-  transcription, optional model, exact dictionary source/import run,
+- Default G2P profile ID. Every pack with at least one runtime dictionary and a
+  text normalizer must name exactly one default profile.
+- One or more G2P profiles for such packs. Each profile declares a stable ID,
+  backend, transcription, optional model, exact dictionary source/import run,
   accepted-review filter, extraction-rule version, row/variant ordering,
   synthetic-evidence policy, duplicate-word policy, and lookup-selection
   policy.
@@ -302,6 +304,7 @@ A pack file declares:
 For example:
 
 ```yaml
+default_g2p_profile_id: en-us-wikipron-broad
 g2p_profiles:
   - id: en-us-wikipron-broad
     backend: wikipron
@@ -319,9 +322,11 @@ g2p_profiles:
 ```
 
 The named import run must appear in the release manifest and belong to the
-declared source. A profile's `model` may be `null`. Such a dictionary-only
-profile remains supported and advertised; absence of a neural fallback does
-not exclude the pack.
+declared source. Pack validation rejects a dictionary-plus-normalizer pack
+without exactly one valid default profile; dictionary choice is never inferred
+when several sources exist. A profile's `model` may be `null`. Such a
+dictionary-only default remains supported and advertised; absence of a neural
+fallback does not exclude the pack.
 
 `legacy-g2p-v1` reproduces the current loader exactly:
 
@@ -432,6 +437,7 @@ Model-profile metadata compiled from Git-reviewed pack configuration:
 | `backend` | TEXT | NOT NULL |
 | `transcription` | TEXT | NOT NULL |
 | `model` | TEXT | NULL allowed |
+| `is_default` | INTEGER | NOT NULL, CHECK value is 0 or 1 |
 | `dictionary_source_id` | TEXT | NOT NULL |
 | `dictionary_import_run_id` | TEXT | NOT NULL |
 | `extraction_rule` | TEXT | NOT NULL |
@@ -439,7 +445,9 @@ Model-profile metadata compiled from Git-reviewed pack configuration:
 | `config_sha256` | TEXT | NOT NULL |
 | `dictionary_policy_json` | TEXT | NOT NULL, canonical JSON |
 
-Unique constraint: `(pack_id, backend, transcription)`.
+Unique constraint: `(pack_id, backend, transcription)`. A partial unique index
+on `pack_id WHERE is_default = 1` permits exactly one default row per pack; the
+compiler separately rejects a required pack with no default row.
 
 ### `g2p_dictionary`
 
@@ -526,8 +534,11 @@ normalizer. This preserves the return shape without inventing a pronunciation.
 A configured model that fails to load remains an error; it is not treated as
 an intentionally model-less profile.
 
-`G2p.supported_languages()` includes declared dictionary-only profiles.
-Only packs without a matching G2P profile remain unsupported. No G2P code
+`G2p(lang)` selects the pack's declared default profile, including a
+dictionary-only default. Existing explicit backend and broad/narrow selectors
+continue to select an exact matching profile and raise `ValueError` when none
+exists. `G2p.supported_languages()` without profile filters returns every pack
+with a default profile; filtered discovery returns exact matches. No G2P code
 reads packaged TSV files after cutover.
 
 ## Deterministic snapshot generation
@@ -581,13 +592,17 @@ GitHub permits authorized replacement or deletion of release assets, so immutabi
 4. Create accepted reviews using the current normalization behavior.
 5. Mark migrated file-level metadata with `metadata_origin = "dataset-declaration"`; do not present it as scraped row-level evidence.
 6. Leave absent source URL, locality, accent, dialect feature, and license values unknown unless the existing provenance file establishes them.
-7. Import each physical Spanish source once. `spa.tsv` can feed `es` and `es-es`; `spa-latin.tsv` can feed `es-419` and explicitly configured `es-co`; pack assignment must not duplicate or relabel evidence.
-8. Generate the runtime snapshot and compare supported packs, words, IPA
+7. Import each physical Spanish source once. `spa.tsv` can feed `es` and
+   `es-es`; `spa-latin.tsv` can feed `es-419` and explicitly configured
+   `es-co`; pack assignment must not duplicate or relabel evidence.
+8. Declare one default G2P profile per dictionary-plus-normalizer pack. Use a
+   nullable model for Spanish and any other dictionary-only pack.
+9. Generate the runtime snapshot and compare supported packs, words, IPA
    values, source multiplicity, G2P profile dictionaries, and documented
    sample lookups against the TSV implementation.
-9. Switch both `Lexicon` lookup and `G2p` dictionary/profile lookup to SQLite in
-   one cutover.
-10. Remove all TSV runtime loaders and packaged TSV copies after parity passes.
+10. Switch both `Lexicon` lookup and `G2p` dictionary/profile lookup to SQLite
+    in one cutover.
+11. Remove all TSV runtime loaders and packaged TSV copies after parity passes.
     Do not retain a fallback path.
 
 ## Failure handling
@@ -624,8 +639,9 @@ GitHub permits authorized replacement or deletion of release assets, so immutabi
 
 ### Runtime behavior
 
-- Supported-language discovery includes every matching model-backed or
-  dictionary-only profile declared by pack configuration.
+- Unfiltered supported-language discovery includes every pack's required
+  default profile; filtered discovery includes exact matching model-backed or
+  dictionary-only profiles.
 - Known English and Spanish lexicon lookups preserve IPA and provenance
   behavior.
 - Both `normalize_phonemes=False` and `True` preserve IPA results; normalized
@@ -637,6 +653,7 @@ GitHub permits authorized replacement or deletion of release assets, so immutabi
 - A dictionary-only profile returns dictionary hits normally; an OOV emits
   `OOVWarning` and passes through the normalized token without phoneme
   normalization.
+- `G2p(lang)` succeeds for every migrated dictionary-plus-normalizer pack.
 - G2P compatibility fixtures cover exact `" ~ "` and comma splitting,
   trimming, `" . "` replacement, repeated-word append order, and last-value
   selection.
