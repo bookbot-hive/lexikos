@@ -253,14 +253,13 @@ def _set_schema_version(connection: sqlite3.Connection, version: int) -> None:
 
 def _ensure_tables(connection: sqlite3.Connection, schema: str, version: int) -> None:
     current = _schema_version(connection)
-    if current == version:
-        return
     if current not in (0, version):
         raise sqlite3.DatabaseError(
             "unsupported SQLite schema version {}; expected {}".format(current, version)
         )
     connection.executescript(schema)
-    _set_schema_version(connection, version)
+    if current != version:
+        _set_schema_version(connection, version)
     connection.commit()
 
 

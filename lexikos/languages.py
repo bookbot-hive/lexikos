@@ -91,6 +91,8 @@ class G2pProfile:
     dictionary: DictionarySource
     dictionary_import_run_id: str
     model: Optional[str]
+    review_filter: str
+    include_synthetic: bool
     extraction_rule: str
     order: Tuple[str, str]
     duplicate_word_policy: str
@@ -218,20 +220,20 @@ _EN_IN_WIKIPRON_NARROW = _dictionary(
 
 
 _G2P_IMPORT_RUNS = {
-    "charsiu/spa-latin.tsv": "legacy-charsiu-g2p-4709d1959abb9a8512109b43ca21ef9f",
-    "charsiu/spa-me.tsv": "legacy-charsiu-g2p-80c55fc9cce07e383771a52eb5e3b9a5",
-    "charsiu/spa.tsv": "legacy-charsiu-g2p-2605e0a582aadf738650a556da643b7f",
-    "wikipron/eng_latn.tsv": "legacy-wikipron-8dff0b6b0d3f5e8935cdc47bd5bff4ff",
-    "wikipron/eng_latn_au_broad.tsv": "legacy-wikipron-c428641b000395b1f19e677c0a995e43",
-    "wikipron/eng_latn_ca_broad.tsv": "legacy-wikipron-7ba470e43103ef91bb6cdb324e5aca36",
-    "wikipron/eng_latn_in_broad.tsv": "legacy-wikipron-32219138b40b1bea9ceff3851c9bcb80",
-    "wikipron/eng_latn_nz_broad.tsv": "legacy-wikipron-deaab8b41697b1e7915db9338f416861",
-    "wikipron/eng_latn_uk_broad.tsv": "legacy-wikipron-57c1cdda8061efbb05e4ab3b41ba8a37",
-    "wikipron/eng_latn_us_broad.tsv": "legacy-wikipron-3083e6d90b80a132c039ffeda21b6957",
-    "wikipron/spa_latn_ca_broad.tsv": "legacy-wikipron-21975a53b463f9bb6cc85f746e12b7a2",
-    "wikipron/spa_latn_ca_narrow.tsv": "legacy-wikipron-ef9004ec4b8442736394dd9372701c39",
-    "wikipron/spa_latn_la_broad.tsv": "legacy-wikipron-65585d8f470f0f459408a657101161e5",
-    "wikipron/spa_latn_la_narrow.tsv": "legacy-wikipron-f7d4935ace6ff56f2b84a6481e7ad0f1",
+    "charsiu/spa-latin.tsv": "legacy-charsiu-g2p-f6a8a1c84d986855d4fc504ed0ab9798",
+    "charsiu/spa-me.tsv": "legacy-charsiu-g2p-d299ef944057cfc6691c9cffd153ab78",
+    "charsiu/spa.tsv": "legacy-charsiu-g2p-f8c18ff5a9eeb03994b5ad8c72be7e09",
+    "wikipron/eng_latn.tsv": "legacy-wikipron-9a4ce61912a304ccec5ca0993789c717",
+    "wikipron/eng_latn_au_broad.tsv": "legacy-wikipron-82f6189175dad39b28fdadd96034a347",
+    "wikipron/eng_latn_ca_broad.tsv": "legacy-wikipron-57e696c4f7f270f3bed75438a2d47aa6",
+    "wikipron/eng_latn_in_broad.tsv": "legacy-wikipron-09f5fd4506002579ea54e97cf0c860ba",
+    "wikipron/eng_latn_nz_broad.tsv": "legacy-wikipron-87e53d5ebc99c84817fd965091021550",
+    "wikipron/eng_latn_uk_broad.tsv": "legacy-wikipron-35e76ab4400a25bcf85adf29b1f5a6bd",
+    "wikipron/eng_latn_us_broad.tsv": "legacy-wikipron-06934609a9918aba76a66e151caf39c8",
+    "wikipron/spa_latn_ca_broad.tsv": "legacy-wikipron-80b4202d5865857cc202e5912a409ce8",
+    "wikipron/spa_latn_ca_narrow.tsv": "legacy-wikipron-66166ec8b0b51ac36df55246c027b24d",
+    "wikipron/spa_latn_la_broad.tsv": "legacy-wikipron-9eec69822f5eca4b0a6c68dcf9eb9a54",
+    "wikipron/spa_latn_la_narrow.tsv": "legacy-wikipron-5e7876669eae64850c426b24c1083b9b",
 }
 
 
@@ -249,6 +251,8 @@ def _g2p_profile(
         dictionary=dictionary,
         dictionary_import_run_id=_G2P_IMPORT_RUNS[dictionary.path],
         model=model,
+        review_filter="terminal-accepted",
+        include_synthetic=dictionary.synthetic,
         extraction_rule="legacy-g2p-v1",
         order=("source_occurrence", "variant_occurrence"),
         duplicate_word_policy="append",

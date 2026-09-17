@@ -44,6 +44,24 @@ def test_reopening_existing_schema_does_not_mutate_database(tmp_path):
     assert database.read_bytes() == original
 
 
+def test_current_version_schema_recreates_missing_tables(tmp_path):
+    database = tmp_path / "runtime.sqlite3"
+    connection = sqlite3.connect(database)
+    connection.execute("PRAGMA user_version = 1")
+    connection.close()
+
+    repaired = open_runtime_database(database, readonly=False, create=True)
+    try:
+        assert (
+            repaired.execute(
+                "SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = 'g2p_profile'"
+            ).fetchone()
+            is not None
+        )
+    finally:
+        repaired.close()
+
+
 def test_readonly_database_enforces_query_only(tmp_path):
     database = tmp_path / "runtime.sqlite3"
     writable = open_runtime_database(database, readonly=False, create=True)

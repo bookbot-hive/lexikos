@@ -35,7 +35,7 @@ from lexikos.storage import (
 
 COMPILER_VERSION = "legacy-tsv-runtime-v2"
 PARSER_NAME = "legacy-tsv"
-PARSER_VERSION = "legacy-tsv-v1"
+PARSER_VERSION = "legacy-tsv-v2"
 MAPPING_VERSION = "legacy-tsv-v1"
 EXTRACTION_RULE = "legacy-g2p-v1"
 DEFAULT_CONFIG_PATH = "lexikos/languages.py"
@@ -184,6 +184,8 @@ def _pack_config(pack: Any) -> Dict[str, Any]:
                 "dictionary_import_run_id": getattr(
                     profile, "dictionary_import_run_id", ""
                 ),
+                "review_filter": getattr(profile, "review_filter", ""),
+                "include_synthetic": getattr(profile, "include_synthetic", None),
                 "extraction_rule": getattr(profile, "extraction_rule", ""),
                 "order": list(getattr(profile, "order", ())),
                 "duplicate_word_policy": getattr(profile, "duplicate_word_policy", ""),
@@ -358,6 +360,20 @@ def _collect_declarations(
             if not getattr(profile, "dictionary_import_run_id", ""):
                 raise BuildError(
                     "G2P profile {!r} has no pinned import run".format(profile_id)
+                )
+            if getattr(profile, "review_filter", "") != "terminal-accepted":
+                raise BuildError(
+                    "G2P profile {!r} has an unsupported review filter".format(
+                        profile_id
+                    )
+                )
+            if getattr(profile, "include_synthetic", None) != bool(
+                getattr(dictionary, "synthetic", False)
+            ):
+                raise BuildError(
+                    "G2P profile {!r} has an invalid synthetic policy".format(
+                        profile_id
+                    )
                 )
             if getattr(profile, "extraction_rule", "") != EXTRACTION_RULE:
                 raise BuildError(
@@ -1095,6 +1111,8 @@ def _runtime_profile_policy(
                 getattr(profile, "id", ""), declared_run_id, import_run_id
             )
         )
+    review_filter = getattr(profile, "review_filter", "")
+    include_synthetic = getattr(profile, "include_synthetic", None)
     extraction_rule = getattr(profile, "extraction_rule", "")
     order = tuple(getattr(profile, "order", ()))
     duplicate_word_policy = getattr(profile, "duplicate_word_policy", "")
@@ -1105,9 +1123,13 @@ def _runtime_profile_policy(
         raise BuildError("unsupported G2P dictionary order {!r}".format(order))
     if duplicate_word_policy != "append" or lookup_selection != "last":
         raise BuildError("unsupported G2P duplicate/lookup policy")
+    if review_filter != "terminal-accepted":
+        raise BuildError("unsupported G2P review filter {!r}".format(review_filter))
+    if include_synthetic != bool(getattr(dictionary, "synthetic", False)):
+        raise BuildError("unsupported G2P synthetic policy")
     return {
-        "review_filter": "terminal-accepted",
-        "include_synthetic": bool(getattr(dictionary, "synthetic", False)),
+        "review_filter": review_filter,
+        "include_synthetic": include_synthetic,
         "extraction_rule": extraction_rule,
         "order": list(order),
         "duplicate_word_policy": duplicate_word_policy,
