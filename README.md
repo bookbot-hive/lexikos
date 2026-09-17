@@ -70,14 +70,12 @@ Language IDs are exact lowercase BCP-47-style identifiers such as `en-us`,
 ```py
 >>> from lexikos import G2p, Lexicon
 >>> Lexicon.supported_languages()
-('en', 'en-au', 'en-ca', 'en-in', 'en-nz', 'en-uk', 'en-us', 'es', 'es-419', 'es-co', 'es-es', 'es-mx')
+('en', 'en-au', 'en-ca', 'en-in', 'en-nz', 'en-uk', 'en-us', 'es', 'es-419', 'es-es', 'es-mx')
 >>> G2p.supported_languages()
 ('en', 'en-au', 'en-ca', 'en-in', 'en-nz', 'en-uk', 'en-us', 'es', 'es-419', 'es-es', 'es-mx')
 
 ```
 
-`es-co` appears in lexicon discovery because the locale is reserved, but it is
-currently empty and has no G2P profile.
 
 ## Lexicon API
 
@@ -172,7 +170,6 @@ silently fall back to another source.
 | `es-es` | Charsiu `spa`; WikiPron Castilian broad/narrow | Charsiu phonetic; WikiPron broad/narrow | Charsiu phonetic |
 | `es-419` | Charsiu `spa-latin`; WikiPron Latin-American broad/narrow | Charsiu phonetic; WikiPron broad/narrow | Charsiu phonetic |
 | `es-mx` | Charsiu `spa-me` | Charsiu phonetic | Charsiu phonetic |
-| `es-co` | None yet | None | None |
 
 Important boundaries:
 
@@ -180,12 +177,9 @@ Important boundaries:
 - `es-419` preserves the union of pooled Latin-American Charsiu and WikiPron
   evidence.
 - `es-mx` uses the Mexican-specific Charsiu source.
-- `es-co` is reserved but empty. It will accept only reviewed,
-  explicitly Colombian evidence; pooled Latin-American rows are not relabeled
-  as Colombian.
 
-Charsiu's pinned language registry contains `spa`, `spa-latin`, and `spa-me`,
-but not `spa-co`. Accordingly, the prompt helper rejects `es-co`:
+Charsiu's pinned language registry contains `spa`, `spa-latin`, and `spa-me`.
+The prompt helper uses the exact locale-to-model mapping:
 
 ```py
 >>> from lexikos import charsiu_prompt
@@ -285,8 +279,8 @@ prepared/es-419/test/spa-latin.tsv
 prepared/es-419/manifest.json
 ```
 
-The manifest records source and output hashes. The CLI rejects `es-co` because
-the pinned Charsiu model contract has no `spa-co` language code.
+The manifest records source and output hashes. The language choice is
+constrained to locales backed by the pinned Charsiu model contract.
 
 The pinned upstream trainer omits the required space after its language prefix.
 Before training, change both prefix expressions in CharsiuG2P

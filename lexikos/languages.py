@@ -695,18 +695,6 @@ _SPANISH_PACKS = (
         text_normalizer=normalize_spanish_text,
         phoneme_normalizer=None,
     ),
-    LanguagePack(
-        id="es-co",
-        display_name="Spanish (Colombia)",
-        base_language="es",
-        territory="CO",
-        macroregion="latin-america",
-        dictionaries=(),
-        g2p_profiles=(),
-        default_g2p_profile_id="",
-        text_normalizer=normalize_spanish_text,
-        phoneme_normalizer=None,
-    ),
 )
 
 
