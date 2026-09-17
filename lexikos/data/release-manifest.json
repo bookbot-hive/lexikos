@@ -4,11 +4,11 @@
     "sqlite_version": "3.45.3"
   },
   "build_timestamp": "2026-09-17T00:00:00Z",
-  "compiler_version": "legacy-tsv-runtime-v1",
-  "config_commit": "d693f21d00766a9c14dc0545d6dd8359234bfc32",
+  "compiler_version": "legacy-tsv-runtime-v2",
+  "config_commit": "018cb774ef77e5e26d0f8a04e27b3dde04bc356a",
   "config_path": "lexikos/languages.py",
-  "curation_sha256": "b3f1d0006da08d3e8aa0ad5ab0111a5752dbd0d2b7f614a156792d012258a043",
-  "curation_size_bytes": 5638823936,
+  "curation_sha256": "1a680f97456f7d7c8e3076b7c123dbf5b9b1f49d9161e91998dcc46eac8a7fb2",
+  "curation_size_bytes": 8086016000,
   "data_edition": "2026.09.1",
   "files": {
     "asr-data/austalk_en_au.tsv": {
@@ -26,27 +26,27 @@
       "source_revision": "sha256:b58e196c4d29cda12e722fc49a1396ae08818f1cd079de52f8b1df42d0cf206f"
     },
     "charsiu/spa-latin.tsv": {
-      "id": "legacy-charsiu-g2p-481a6a888f688bf4758cd77a9f5c79d7",
+      "id": "legacy-charsiu-g2p-4709d1959abb9a8512109b43ca21ef9f",
       "license_id": "Apache-2.0",
-      "license_url": "https://www.openslr.org/34/",
+      "license_url": "https://raw.githubusercontent.com/lingjzhu/CharsiuG2P/0c929390759fb94f8ecdfc05cc0bc5f2ff2dc0f4/sources/info/others/es-la_info.txt",
       "raw_payload_sha256": "4af9a80219d320dbf31946a2c585adeb6a5562c3ab0cc95303dc3688c8ac1a8a",
       "raw_payload_uri": "https://raw.githubusercontent.com/lingjzhu/CharsiuG2P/0c929390759fb94f8ecdfc05cc0bc5f2ff2dc0f4/dict/spa-latin.tsv",
       "redistribution_policy": "public",
       "source_revision": "0c929390759fb94f8ecdfc05cc0bc5f2ff2dc0f4"
     },
     "charsiu/spa-me.tsv": {
-      "id": "legacy-charsiu-g2p-7cb7c4067dce57643674e37a241bf7dc",
+      "id": "legacy-charsiu-g2p-80c55fc9cce07e383771a52eb5e3b9a5",
       "license_id": "MIT",
-      "license_url": "https://github.com/lingjzhu/CharsiuG2P/blob/0c929390759fb94f8ecdfc05cc0bc5f2ff2dc0f4/LICENSE",
+      "license_url": "https://raw.githubusercontent.com/lingjzhu/CharsiuG2P/0c929390759fb94f8ecdfc05cc0bc5f2ff2dc0f4/sources/info/others/es-mx_info.txt",
       "raw_payload_sha256": "e8590fa88791f1218130a3617f81379425adee51510f55d5984677210051a88b",
       "raw_payload_uri": "https://raw.githubusercontent.com/lingjzhu/CharsiuG2P/0c929390759fb94f8ecdfc05cc0bc5f2ff2dc0f4/dict/spa-me.tsv",
       "redistribution_policy": "public",
       "source_revision": "0c929390759fb94f8ecdfc05cc0bc5f2ff2dc0f4"
     },
     "charsiu/spa.tsv": {
-      "id": "legacy-charsiu-g2p-d7debca7ad1f36bf36520bc43c4bd206",
+      "id": "legacy-charsiu-g2p-2605e0a582aadf738650a556da643b7f",
       "license_id": "MIT",
-      "license_url": "https://github.com/lingjzhu/CharsiuG2P/blob/0c929390759fb94f8ecdfc05cc0bc5f2ff2dc0f4/LICENSE",
+      "license_url": "https://raw.githubusercontent.com/lingjzhu/CharsiuG2P/0c929390759fb94f8ecdfc05cc0bc5f2ff2dc0f4/sources/info/others/es-es_info.txt",
       "raw_payload_sha256": "e399b75e340b3fc0663717654684a6a0d0ecbd8ddce6ffb251a4a826a998c550",
       "raw_payload_uri": "https://raw.githubusercontent.com/lingjzhu/CharsiuG2P/0c929390759fb94f8ecdfc05cc0bc5f2ff2dc0f4/dict/spa.tsv",
       "redistribution_policy": "public",
@@ -398,7 +398,7 @@
   "manifest_version": 1,
   "parser_name": "legacy-tsv",
   "parser_version": "legacy-tsv-v1",
-  "rights_review": "Legacy public inputs retain their prior publication status; explicit license identifiers are recorded only where verified.",
-  "runtime_sha256": "cff1769875fc51ba23cb24fb43769124b37057b30f8a295641fc4a6554390012",
-  "runtime_size_bytes": 3326672896
+  "rights_review": "Public status is carried forward from pinned upstream records; explicit license identifiers are recorded only where those records verify them. No independent audit of upstream content provenance is implied.",
+  "runtime_sha256": "082eda0ad370be65f6187b2ab0b1bf75d4fb787c41bf06d0744e14c3671f335a",
+  "runtime_size_bytes": 3425366016
 }
