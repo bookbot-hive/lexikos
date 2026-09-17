@@ -38,7 +38,7 @@ for example, use `en-us`, not `en_US` or `EN-US`.
 
 `Lexicon[word]` returns one immutable `Pronunciation` per unique IPA value.
 Each pronunciation retains every dictionary, language, dialect, transcription
-width, and synthetic-data source that supplies that IPA.
+classification, and synthetic-data source that supplies that IPA.
 
 ```py
 >>> from lexikos import Lexicon
@@ -51,9 +51,10 @@ width, and synthetic-data source that supplies that IPA.
 ```
 
 Spanish lexical packs are available for generic Spanish, Spain, Latin America,
-Mexico, and Colombia. The Colombia pack currently uses the explicitly
-Latin-American CharsiuG2P source rather than relabeling it as
-country-specific evidence:
+Mexico, and Colombia. Generic `es` currently uses the same explicitly
+peninsular source as `es-es`, so it is not dialect-neutral. The Colombia pack
+uses the explicitly Latin-American CharsiuG2P source rather than relabeling it
+as country-specific evidence:
 
 ```py
 >>> lexicon = Lexicon("es-co")

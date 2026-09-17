@@ -46,7 +46,11 @@ class Dialect:
 
 @dataclass(frozen=True)
 class PronunciationSource:
-    """Provenance for one occurrence of a pronunciation in a dataset."""
+    """Provenance for one pronunciation occurrence.
+
+    ``transcription`` records the source classification, such as ``broad``,
+    ``narrow``, ``phonetic``, or ``unspecified``.
+    """
 
     source: str
     language: str
