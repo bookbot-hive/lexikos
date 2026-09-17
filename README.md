@@ -198,6 +198,10 @@ the Python/SQLite build environment. The compiler refuses missing manifest
 entries, hash mismatches, or non-public active import runs and checks SQLite
 integrity before publishing the runtime snapshot.
 
+`runtime.sqlite3` and the curation database are generated release artifacts,
+not ordinary Git objects. A data edition publishes their hashes in the tracked
+manifest; the runtime asset is then included in the distributed wheel.
+
 ## Preparing external Spanish data for CharsiuG2P
 
 Raw source dictionaries are build inputs, not wheel contents. The preparation
