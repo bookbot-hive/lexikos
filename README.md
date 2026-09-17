@@ -11,7 +11,7 @@ to its source, revision, dialect, transcription type, and observation IDs.
 
 ## Current release boundary
 
-The current data edition is **`2026.09.3`**. Code and data artifacts have
+The current data edition is **`2026.09.4`**. Code and data artifacts have
 different distribution boundaries:
 
 - Source code, configuration, tests, and the release manifest are tracked in
@@ -22,7 +22,7 @@ different distribution boundaries:
 - The verified wheel is approximately 950 MB, so it is not suitable for
   ordinary PyPI distribution.
 
-No data-backed `2026.09.3` wheel is currently published. The existing
+No data-backed `2026.09.4` wheel is currently published. The existing
 `v0.0.1rc7` GitHub release has no matching data asset. Do not assume
 `pip install lexikos` provides this edition.
 
@@ -220,12 +220,12 @@ The wheel contains a deterministic runtime snapshot with:
 Runtime connections use SQLite read-only mode and `PRAGMA query_only = ON`.
 Source TSVs are not packaged in the wheel.
 
-### Edition `2026.09.3`
+### Edition `2026.09.4`
 
 | Artifact | SHA-256 | Size |
 | --- | --- | ---: |
 | Curation SQLite | `68dcc8e6442419a38a2e8d8ec9c0027d640f1b4fc06d2c52d908932157d7a5da` | 5,632,610,304 bytes |
-| Runtime SQLite | `e0f6c491f1a9121345d6659b0d6d8f046c629d9639e2e7601daa2c2f4e0d2100` | 3,106,291,712 bytes |
+| Runtime SQLite | `e89ea17a904b856a00cdf3705c46ce3324280282780cb2277dcfe65ae357655e` | 3,106,291,712 bytes |
 
 The tracked
 [`release-manifest.json`](./lexikos/data/release-manifest.json) is the
