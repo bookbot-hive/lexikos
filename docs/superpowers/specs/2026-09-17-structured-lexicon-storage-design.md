@@ -331,14 +331,18 @@ fallback does not exclude the pack.
 `legacy-g2p-v1` reproduces the current loader exactly:
 
 1. Lowercase the raw word without other word normalization.
-2. Split the complete `pronunciation_raw` field first on exact `" ~ "`, then
-   on every comma, trim each variant, and reject empty variants.
-3. Validate that each `pronunciation_variant_raw` equals the split variant at
-   its `variant_occurrence`; emit each physical row's variants exactly once.
+2. For each variant observation, split its complete `pronunciation_raw` field
+   first on exact `" ~ "`, then on every comma, trim each variant, and reject
+   empty variants.
+3. Validate that `pronunciation_variant_raw` equals the split variant at that
+   observation's `variant_occurrence`.
 4. Replace exact `" . "` substrings in the selected variant with one space;
    perform no other period or whitespace normalization.
-5. Preserve physical-row order and within-row variant order.
-6. Append variants from repeated words and select the last appended value on
+5. Emit only that observation's selected variant. The compiler consumes each
+   variant observation once and never re-emits the complete split list for
+   every sibling observation.
+6. Preserve physical-row order and within-row variant order.
+7. Append variants from repeated words and select the last appended value on
    lookup.
 
 Other extraction rules require their own versioned, tested contract. The
