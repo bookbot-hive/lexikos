@@ -253,8 +253,8 @@ Many-to-many provenance between canonical pronunciations and accepted reviews.
 
 | Column | Type | Constraint |
 | --- | --- | --- |
-| `pronunciation_id` | TEXT | REFERENCES `pronunciation(id)` |
-| `accepted_review_id` | TEXT | REFERENCES `review(id)` |
+| `pronunciation_id` | TEXT | NOT NULL REFERENCES `pronunciation(id)` |
+| `accepted_review_id` | TEXT | NOT NULL REFERENCES `review(id)` |
 
 Primary key: `(pronunciation_id, accepted_review_id)`.
 
@@ -263,7 +263,8 @@ Historical links remain in curation. The snapshot compiler includes only evidenc
 ## Curation invariants and merge semantics
 
 1. Raw payloads, JSONL rows, observations, and reviews are append-only.
-2. Normalization never changes `word_raw`, `pronunciation_raw`, or `metadata_raw_json`.
+2. Normalization never changes `word_raw`, `pronunciation_raw`,
+   `pronunciation_variant_raw`, or `metadata_raw_json`.
 3. Canonical identity is exact normalized language, word, and IPA.
 4. Multiple source occurrences of the same canonical pronunciation remain separate evidence.
 5. Conflicting dialect claims remain separate evidence; the compiler does not silently resolve them.
@@ -293,9 +294,10 @@ A pack file declares:
 - Explicit evidence-selection rules.
 - Synthetic-data inclusion policy.
 - Optional G2P profiles. Each profile declares a stable ID, backend,
-  transcription, model, exact dictionary source/import run, accepted-review
-  filter, extraction-rule version, row/variant ordering, duplicate-word
-  policy, and lookup-selection policy.
+  transcription, optional model, exact dictionary source/import run,
+  accepted-review filter, extraction-rule version, row/variant ordering,
+  synthetic-evidence policy, duplicate-word policy, and lookup-selection
+  policy.
 
 For example:
 
@@ -309,6 +311,7 @@ g2p_profiles:
       source_id: wikipron
       import_run_id: wikipron-eng-latn-us-broad-2026-09-17
       review_filter: terminal-accepted
+      include_synthetic: false
       extraction_rule: legacy-g2p-v1
       order: [source_occurrence, variant_occurrence]
       duplicate_word_policy: append
@@ -316,7 +319,11 @@ g2p_profiles:
 ```
 
 The named import run must appear in the release manifest and belong to the
-declared source. `legacy-g2p-v1` reproduces the current loader exactly:
+declared source. A profile's `model` may be `null`. Such a dictionary-only
+profile remains supported and advertised; absence of a neural fallback does
+not exclude the pack.
+
+`legacy-g2p-v1` reproduces the current loader exactly:
 
 1. Lowercase the raw word without other word normalization.
 2. Split the complete `pronunciation_raw` field first on exact `" ~ "`, then
@@ -338,6 +345,9 @@ Pack configuration selects accepted evidence; it never changes its dialect metad
 ## Runtime SQLite schema
 
 The package ships one database containing all locale packs to avoid duplicating shared evidence.
+
+Every runtime connection enables `PRAGMA foreign_keys = ON`. The compiler runs
+`PRAGMA foreign_key_check` and `PRAGMA integrity_check` before publication.
 
 ### `snapshot_metadata`
 
@@ -378,7 +388,8 @@ One row per unique accepted attribution record for a runtime pronunciation:
 
 | Column | Type |
 | --- | --- |
-| `pronunciation_id` | INTEGER REFERENCES `pronunciation(id)` |
+| `id` | TEXT | PRIMARY KEY |
+| `pronunciation_id` | INTEGER NOT NULL REFERENCES `pronunciation(id)` |
 | `source_id` | TEXT |
 | `source_name` | TEXT |
 | `language` | TEXT |
@@ -393,6 +404,10 @@ One row per unique accepted attribution record for a runtime pronunciation:
 | `dialect_json` | TEXT |
 | `transcription` | TEXT |
 | `synthetic` | INTEGER |
+
+`id` is a deterministic SHA-256 over the pronunciation identity, canonical
+attribution metadata, and sorted observation IDs. This prevents duplicate
+grouped evidence even when nullable attribution fields are present.
 
 Rows with identical accepted attribution metadata are grouped, while
 `observation_ids_json` retains every contributing occurrence ID in sorted
@@ -416,7 +431,7 @@ Model-profile metadata compiled from Git-reviewed pack configuration:
 | `pack_id` | TEXT | NOT NULL |
 | `backend` | TEXT | NOT NULL |
 | `transcription` | TEXT | NOT NULL |
-| `model` | TEXT | NOT NULL |
+| `model` | TEXT | NULL allowed |
 | `dictionary_source_id` | TEXT | NOT NULL |
 | `dictionary_import_run_id` | TEXT | NOT NULL |
 | `extraction_rule` | TEXT | NOT NULL |
@@ -432,7 +447,7 @@ The exact dictionary view used before neural fallback:
 
 | Column | Type | Constraint |
 | --- | --- | --- |
-| `profile_id` | TEXT | REFERENCES `g2p_profile(id)` |
+| `profile_id` | TEXT | NOT NULL REFERENCES `g2p_profile(id)` |
 | `lookup_word` | TEXT | NOT NULL |
 | `ordinal` | INTEGER | NOT NULL |
 | `output_ipa` | TEXT | NOT NULL |
@@ -484,18 +499,36 @@ transcription: str
 synthetic: bool
 ```
 
-`Lexicon` becomes a read-only mapping backed by indexed SQLite queries rather than loading every row into a `UserDict`. `__getitem__`, `__contains__`, `__iter__`, and `__len__` preserve mapping behavior. Missing words continue to raise `KeyError`.
+`Lexicon` becomes a read-only mapping backed by indexed SQLite queries rather
+than loading every row into a `UserDict`. `__getitem__`, `__contains__`,
+`__iter__`, and `__len__` preserve mapping behavior. Missing words continue to
+raise `KeyError`.
+
+With `include_synthetic=False`, the evidence query excludes synthetic rows
+before IPA grouping and omits any pronunciation left without evidence. With
+`include_synthetic=True`, synthetic and non-synthetic evidence participate,
+then sources are deduplicated and sorted normally. This filtering precedes
+both base-IPA and phoneme-normalized grouping.
 
 The runtime opens the packaged database read-only. It exposes accepted provenance only. Curation history requires the separate curation artifact and tooling.
 
-`G2p` reads its profile, ordered dictionary outputs, and model identifier from
-`g2p_profile` and `g2p_dictionary` in the same runtime snapshot. Its normalized
-token queries `lookup_word`; a known-word hit returns the `output_ipa` at the
-highest ordinal, while an unknown word uses the profile's model. No G2P code
+`G2p` reads its profile, ordered dictionary outputs, and optional model
+identifier from `g2p_profile` and `g2p_dictionary` in the same runtime
+snapshot. Its normalized token queries `lookup_word`; a known-word hit returns
+the `output_ipa` at the highest ordinal. When a model is configured, an unknown
+word uses that model as before.
+
+For a dictionary-only profile, an unknown word emits
+`OOVWarning(UserWarning)` with the language, token, and “no G2P model
+available” reason, then returns the normalized token unchanged in the
+`List[str]` result. The pass-through token is not processed by the phoneme
+normalizer. This preserves the return shape without inventing a pronunciation.
+A configured model that fails to load remains an error; it is not treated as
+an intentionally model-less profile.
+
+`G2p.supported_languages()` includes declared dictionary-only profiles.
+Only packs without a matching G2P profile remain unsupported. No G2P code
 reads packaged TSV files after cutover.
-Locale packs without a configured model, including all Spanish packs in the
-initial cutover, have no `g2p_profile` row and are not advertised as G2P
-profiles.
 
 ## Deterministic snapshot generation
 
@@ -566,6 +599,8 @@ GitHub permits authorized replacement or deletion of release assets, so immutabi
 - Ambiguous mappings remain explicit and are excluded unless a pack policy deliberately permits them.
 - Snapshot generation aborts on foreign-key failures, integrity failures, unknown pack references, active evidence with prohibited redistribution, or nondeterministic duplicate output keys.
 - Runtime database format mismatches raise a clear initialization error; there is no silent TSV fallback.
+- A dictionary-only G2P miss emits `OOVWarning` and passes the normalized token
+  through; it is not a snapshot or model-loading failure.
 
 ## Verification strategy
 
@@ -589,18 +624,23 @@ GitHub permits authorized replacement or deletion of release assets, so immutabi
 
 ### Runtime behavior
 
-- Existing supported-language discovery remains stable unless deliberately changed by pack configuration.
-- Known English and Spanish lookups preserve IPA and provenance behavior.
+- Supported-language discovery includes every matching model-backed or
+  dictionary-only profile declared by pack configuration.
+- Known English and Spanish lexicon lookups preserve IPA and provenance
+  behavior.
 - Both `normalize_phonemes=False` and `True` preserve IPA results; normalized
   collisions union every contributing source.
-- Every advertised English G2P profile returns the same dictionary-hit IPA
-  before and after cutover.
-- English G2P unknown-word fallback loads the same model profile and preserves
-  observable output for a fixed smoke input.
+- Both `include_synthetic=False` and `True` preserve current filtering,
+  pronunciation removal, evidence union, and source ordering.
+- Every advertised model-backed G2P profile returns the same dictionary-hit
+  IPA and unknown-word model output before and after cutover.
+- A dictionary-only profile returns dictionary hits normally; an OOV emits
+  `OOVWarning` and passes through the normalized token without phoneme
+  normalization.
 - G2P compatibility fixtures cover exact `" ~ "` and comma splitting,
   trimming, `" . "` replacement, repeated-word append order, and last-value
   selection.
-- Missing words raise `KeyError`.
+- Missing `Lexicon` words raise `KeyError`.
 - Mapping methods query the database without loading the complete lexicon.
 - Wheel inspection confirms the runtime database and dependency metadata.
 - A clean wheel installation successfully performs representative English and Spanish lookups.
@@ -616,7 +656,7 @@ GitHub permits authorized replacement or deletion of release assets, so immutabi
 7. Update package data and public documentation.
 8. Remove obsolete TSV runtime assets and code.
 9. Build and install the final wheel, then rerun the complete test suite,
-   every advertised English G2P profile smoke, and representative English and
-   Spanish lexicon lookups.
+   every advertised G2P profile smoke—including dictionary-only OOV
+   behavior—and representative English and Spanish lexicon lookups.
 
 The implementation is complete only after the clean cutover; a compiler or database added beside the existing TSV runtime is not considered completion.
