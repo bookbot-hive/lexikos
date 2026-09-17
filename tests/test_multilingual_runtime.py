@@ -2,7 +2,7 @@ from dataclasses import FrozenInstanceError
 
 import pytest
 
-from lexikos import G2p, Lexicon, charsiu_prompt
+from lexikos import G2p, Lexicon, OOVWarning, charsiu_prompt
 from lexikos.languages import get_language_pack
 
 
@@ -58,10 +58,24 @@ def test_supported_languages_are_discoverable():
         "es-es",
         "es-mx",
     )
-    expected_g2p = ("en", "en-au", "en-ca", "en-in", "en-nz", "en-uk", "en-us")
+    expected_g2p = expected_lexicons
+    expected_narrow_g2p = ("es", "es-419", "es-co", "es-es")
     assert Lexicon.supported_languages() == expected_lexicons
     assert G2p.supported_languages() == expected_g2p
-    assert G2p.supported_languages(narrow=True) == ()
+    assert G2p.supported_languages(narrow=True) == expected_narrow_g2p
+
+
+def test_explicit_g2p_filters_select_exact_profiles():
+    assert G2p.supported_languages(backend="wikipron", narrow=True) == (
+        "es",
+        "es-419",
+        "es-co",
+        "es-es",
+    )
+    assert G2p("es-419").backend == "charsiu-g2p"
+    assert G2p("es-419").transcription == "phonetic"
+    assert G2p("es-419", narrow=False).transcription == "broad"
+    assert G2p("es-419", backend="wikipron", narrow=True).transcription == "narrow"
 
 
 def test_language_pack_carries_locale_metadata():
@@ -99,6 +113,18 @@ def test_latin_american_spanish_lookup_has_source_metadata(es_419_lexicon):
     assert source.dialect.macroregion == "latin-america"
     assert source.transcription == "phonetic"
     assert not source.synthetic
+    assert source.source_id
+    assert source.observation_ids
+    assert isinstance(source.observation_ids, tuple)
+    assert source.source_revision
+    assert source.evidence_status == "accepted"
+
+
+def test_sqlite_lexicon_retains_mapping_behavior(es_419_lexicon):
+    assert "corazón" in es_419_lexicon
+    assert "zzzzlexikos" not in es_419_lexicon
+    assert len(es_419_lexicon) > 0
+    assert isinstance(next(iter(es_419_lexicon)), str)
 
     assert {item.ipa for item in es_419_lexicon["ayúdenme"]} == {
         "ajudɛn",
@@ -120,10 +146,20 @@ def test_colombian_pack_uses_latin_american_data_without_relabeling_dialect(
     assert source.dialect.macroregion == "latin-america"
 
 
-def test_spanish_lexicons_do_not_advertise_an_unavailable_g2p_model():
-    assert "es-419" not in G2p.supported_languages()
-    with pytest.raises(ValueError, match="does not support broad G2P"):
-        G2p("es-419")
+def test_spanish_dictionary_only_g2p_warns_for_oov():
+    g2p = G2p("es-419")
+    assert g2p("corazón") == ["korason"]
+
+    with pytest.warns(OOVWarning, match="no G2P model is available"):
+        assert g2p("zzzzlexikos") == ["zzzzlexikos"]
+
+
+def test_spanish_wikipron_broad_and_narrow_profiles_are_distinct():
+    broad = G2p("es-419", backend="wikipron", narrow=False)
+    narrow = G2p("es-419", backend="wikipron", narrow=True)
+
+    assert broad("corazón") == ["k o ɾ a s o n"]
+    assert narrow("corazón") == ["k o ɾ a s õ n"]
 
 
 def test_charsiu_prompt_uses_locale_tag_normalization_and_required_spacing():

@@ -1,3 +1,3 @@
 include requirements.txt
 include scripts/*.py
-recursive-include lexikos/dict *.tsv *.txt
+recursive-include lexikos/data *.sqlite3 *.txt *.json

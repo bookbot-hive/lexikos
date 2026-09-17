@@ -1,0 +1,44 @@
+Lexikos bundled data notice
+===========================
+
+The repository-level Apache License 2.0 applies to Lexikos software. It does
+not relicense third-party pronunciation data embedded in runtime.sqlite3.
+Runtime records retain source identifiers, source revisions, and observation
+identifiers; build input hashes are recorded in snapshot metadata.
+
+WikiPron / Wiktionary
+---------------------
+
+WikiPron software is Apache-2.0. WikiPron pronunciation data is mined from
+Wiktionary and remains subject to the applicable Wiktionary/Wikimedia content
+terms, attribution requirements, and share-alike requirements. The Spanish
+source snapshot is pinned to CUNY-CL/wikipron commit
+`d282e848a211ea31cfd730f0ced8bc8cdab9e83d` and comprises the unfiltered
+Castilian/Spain and Latin America broad and narrow datasets. Source TSVs remain
+external build artifacts and are not included in the wheel.
+
+Project: https://github.com/CUNY-CL/wikipron
+Wiktionary terms: https://en.wiktionary.org/wiki/Wiktionary:Copyrights
+Wikimedia terms: https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use
+
+CharsiuG2P / Santiago Spanish Lexicon
+-------------------------------------
+
+Spanish CharsiuG2P dictionaries are pinned to commit
+`0c929390759fb94f8ecdfc05cc0bc5f2ff2dc0f4`. CharsiuG2P declares the MIT
+License. Its `spa-latin` dictionary is attributed upstream to the Santiago
+Spanish Lexicon (OpenSLR SLR34), which the official OpenSLR record declares
+Apache-2.0.
+
+CharsiuG2P: https://github.com/lingjzhu/CharsiuG2P
+OpenSLR SLR34: https://www.openslr.org/34/
+
+Other legacy sources
+--------------------
+
+The runtime snapshot also contains the English pronunciation sources listed in
+the project README, including WikiPron, CMU-derived, LibriSpeech-derived,
+AusTalk, SC-CW, MFA-derived, Common Voice-derived, L2-ARCTIC-derived, and
+Bookbot-generated records. Each record's source identity and synthetic status
+remain separate. This notice does not grant additional rights in those source
+datasets; redistribution must comply with each upstream source's terms.

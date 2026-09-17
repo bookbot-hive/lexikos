@@ -31,14 +31,16 @@ for example, use `en-us`, not `en_US` or `EN-US`.
 >>> Lexicon.supported_languages()
 ('en', 'en-au', 'en-ca', 'en-in', 'en-nz', 'en-uk', 'en-us', 'es', 'es-419', 'es-co', 'es-es', 'es-mx')
 >>> G2p.supported_languages()
-('en', 'en-au', 'en-ca', 'en-in', 'en-nz', 'en-uk', 'en-us')
+('en', 'en-au', 'en-ca', 'en-in', 'en-nz', 'en-uk', 'en-us', 'es', 'es-419', 'es-co', 'es-es', 'es-mx')
 ```
 
 ### Lexicon
 
-`Lexicon[word]` returns one immutable `Pronunciation` per unique IPA value.
-Each pronunciation retains every dictionary, language, dialect, transcription
-classification, and synthetic-data source that supplies that IPA.
+`Lexicon` is an indexed, read-only SQLite-backed mapping. `Lexicon[word]`
+returns one immutable `Pronunciation` per unique IPA value. Each pronunciation
+retains every source ID, observation ID, source revision, language, dialect,
+transcription classification, license reference, and synthetic-data marker
+that supplies that IPA.
 
 ```py
 >>> from lexikos import Lexicon
@@ -51,10 +53,11 @@ classification, and synthetic-data source that supplies that IPA.
 ```
 
 Spanish lexical packs are available for generic Spanish, Spain, Latin America,
-Mexico, and Colombia. Generic `es` currently uses the same explicitly
-peninsular source as `es-es`, so it is not dialect-neutral. The Colombia pack
-uses the explicitly Latin-American CharsiuG2P source rather than relabeling it
-as country-specific evidence:
+Mexico, and Colombia. Generic `es` and `es-es` use explicitly peninsular
+CharsiuG2P and WikiPron Castilian evidence, so generic `es` is not
+dialect-neutral. `es-419` and `es-co` use pooled Latin-American CharsiuG2P and
+WikiPron evidence without relabeling it as Colombian. `es-mx` retains its
+Mexican-specific CharsiuG2P source.
 
 ```py
 >>> lexicon = Lexicon("es-co")
@@ -78,22 +81,24 @@ assigned to the selected language pack:
 
 ### Phonemization
 
-`G2p` also requires an explicit language. Only complete language packs with a
-dictionary, broad G2P model, and text normalizer are selectable.
+`G2p` also requires an explicit language. `G2p(lang)` selects the pack's
+declared default dictionary profile. English defaults have neural fallback;
+Spanish defaults are dictionary-only.
 
 ```py
 >>> from lexikos import G2p
 >>> g2p = G2p("en-us")
 >>> g2p("Hello there! $100 is not a lot of money in 2023.")
 ['h ɛ l o ʊ', 'ð ɛ ə ɹ', 'w ʌ n', 'h ʌ n d ɹ ɪ d', 'd ɑ l ɚ z', 'ɪ z', 'n ɒ t', 'ə', 'l ɑ t', 'ʌ v', 'm ʌ n i', 'ɪ n', 't w ɛ n t i', 't w ɛ n t i', 'θ ɹ iː']
->>> g2p = G2p("en-au")
->>> g2p("Hi there mate! Have a g'day!")
-['h a ɪ', 'θ ɛ ə ɹ', 'm e ɪ t', 'h e ɪ v', 'ə', 'ɡ ə ˈd æ ɪ']
+>>> G2p("es-419")("corazón")
+['korason']
 ```
 
-Spanish neural G2P is not advertised by `G2p.supported_languages()` until a
-compatible model artifact exists. Use `charsiu_prompt` to construct the exact
-multilingual CharsiuG2P input when fine-tuning or serving such a model:
+A dictionary-only profile emits `OOVWarning` for an unknown word and returns
+the normalized token unchanged; it never invents a pronunciation. Explicit
+`backend` and `narrow` filters select an exact profile. Use `charsiu_prompt` to
+construct multilingual CharsiuG2P input when training or serving a Spanish
+model:
 
 ```py
 >>> from lexikos import charsiu_prompt
@@ -107,24 +112,21 @@ multilingual CharsiuG2P input when fine-tuning or serving such a model:
 
 | Language | Dictionary | Phone Set | Corpus                                       | G2P Model                                                                                           |
 | -------- | ---------- | --------- | -------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| en       | Wikipron   | IPA       | [Link](./lexikos/dict/wikipron/eng_latn.tsv) | [bookbot/byt5-small-wikipron-eng-latn](https://huggingface.co/bookbot/byt5-small-wikipron-eng-latn) |
+| en       | Wikipron   | IPA       | Runtime snapshot | [bookbot/byt5-small-wikipron-eng-latn](https://huggingface.co/bookbot/byt5-small-wikipron-eng-latn) |
 
 ### English `(en-US)`
 
 | Language       | Dictionary   | Phone Set | Corpus                                                                                                                     | G2P Model                                                                                                             |
 | -------------- | ------------ | --------- | -------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| en-US          | CMU Dict     | ARPA      | [External Link](https://github.com/microsoft/CNTK/blob/master/Examples/SequenceToSequence/CMUDict/Data/cmudict-0.7b.train) | [bookbot/byt5-small-cmudict](https://huggingface.co/bookbot/byt5-small-cmudict)                                       |
 | en-US          | CMU Dict IPA | IPA       | [External Link](https://github.com/menelik3/cmudict-ipa/blob/master/cmudict-0.7b-ipa.txt)                                  |                                                                                                                       |
-| en-US          | CharsiuG2P   | IPA       | [External Link](https://github.com/lingjzhu/CharsiuG2P/blob/main/dicts/eng-us.tsv)                                         | [charsiu/g2p_multilingual_byT5_small_100](https://huggingface.co/charsiu/g2p_multilingual_byT5_small_100)             |
 | en-US (Broad)  | Wikipron     | IPA       | [External Link](https://github.com/CUNY-CL/wikipron/blob/master/data/scrape/tsv/eng_latn_us_broad.tsv)                     | [bookbot/byt5-small-wikipron-eng-latn-us-broad](https://huggingface.co/bookbot/byt5-small-wikipron-eng-latn-us-broad) |
 | en-US (Narrow) | Wikipron     | IPA       | [External Link](https://github.com/CUNY-CL/wikipron/blob/master/data/scrape/tsv/eng_latn_us_narrow.tsv)                    |
-| en-US          | LibriSpeech  | IPA       | [Link](./lexikos/dict/cmudict-ipa/librispeech-lexicon-200k-allothers-g2p-ipa.tsv)                                          |                                                                                                                       |
+| en-US          | LibriSpeech  | IPA       | Runtime snapshot | |
 
 ### English `(en-UK)`
 
 | Language       | Dictionary | Phone Set | Corpus                                                                                                  | G2P Model                                                                                                             |
 | -------------- | ---------- | --------- | ------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| en-UK          | CharsiuG2P | IPA       | [External Link](https://github.com/lingjzhu/CharsiuG2P/blob/main/dicts/eng-uk.tsv)                      | [charsiu/g2p_multilingual_byT5_small_100](https://huggingface.co/charsiu/g2p_multilingual_byT5_small_100)             |
 | en-UK (Broad)  | Wikipron   | IPA       | [External Link](https://github.com/CUNY-CL/wikipron/blob/master/data/scrape/tsv/eng_latn_uk_broad.tsv)  | [bookbot/byt5-small-wikipron-eng-latn-uk-broad](https://huggingface.co/bookbot/byt5-small-wikipron-eng-latn-uk-broad) |
 | en-UK (Narrow) | Wikipron   | IPA       | [External Link](https://github.com/CUNY-CL/wikipron/blob/master/data/scrape/tsv/eng_latn_uk_narrow.tsv) |                                                                                                                       |
 
@@ -132,57 +134,81 @@ multilingual CharsiuG2P input when fine-tuning or serving such a model:
 
 | Language       | Dictionary | Phone Set | Corpus                                                 | G2P Model                                                                                                             |
 | -------------- | ---------- | --------- | ------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- |
-| en-AU (Broad)  | Wikipron   | IPA       | [Link](./lexikos/dict/wikipron/eng_latn_au_broad.tsv)  | [bookbot/byt5-small-wikipron-eng-latn-au-broad](https://huggingface.co/bookbot/byt5-small-wikipron-eng-latn-au-broad) |
-| en-AU (Narrow) | Wikipron   | IPA       | [Link](./lexikos/dict/wikipron/eng_latn_au_narrow.tsv) |                                                                                                                       |
-| en-AU          | AusTalk    | IPA       | [Link](./lexikos/dict/asr-data/austalk_en_au.tsv)      |                                                                                                                       |
-| en-AU          | SC-CW      | IPA       | [Link](./lexikos/dict/asr-data/sc_cw_en_au.tsv)        |                                                                                                                       |
+| en-AU (Broad)  | Wikipron   | IPA       | Runtime snapshot | [bookbot/byt5-small-wikipron-eng-latn-au-broad](https://huggingface.co/bookbot/byt5-small-wikipron-eng-latn-au-broad) |
+| en-AU (Narrow) | Wikipron   | IPA       | Runtime snapshot | |
+| en-AU          | AusTalk    | IPA       | Runtime snapshot | |
+| en-AU          | SC-CW      | IPA       | Runtime snapshot | |
 
 ### English `(en-CA)`
 
 | Language       | Dictionary | Phone Set | Corpus                                                 | G2P Model                                                                                                             |
 | -------------- | ---------- | --------- | ------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- |
-| en-CA (Broad)  | Wikipron   | IPA       | [Link](./lexikos/dict/wikipron/eng_latn_ca_broad.tsv)  | [bookbot/byt5-small-wikipron-eng-latn-ca-broad](https://huggingface.co/bookbot/byt5-small-wikipron-eng-latn-ca-broad) |
-| en-CA (Narrow) | Wikipron   | IPA       | [Link](./lexikos/dict/wikipron/eng_latn_ca_narrow.tsv) |                                                                                                                       |
+| en-CA (Broad)  | Wikipron   | IPA       | Runtime snapshot | [bookbot/byt5-small-wikipron-eng-latn-ca-broad](https://huggingface.co/bookbot/byt5-small-wikipron-eng-latn-ca-broad) |
+| en-CA (Narrow) | Wikipron   | IPA       | Runtime snapshot | |
 
 ### English `(en-NZ)`
 
 | Language       | Dictionary | Phone Set | Corpus                                                 | G2P Model                                                                                                             |
 | -------------- | ---------- | --------- | ------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- |
-| en-NZ (Broad)  | Wikipron   | IPA       | [Link](./lexikos/dict/wikipron/eng_latn_nz_broad.tsv)  | [bookbot/byt5-small-wikipron-eng-latn-nz-broad](https://huggingface.co/bookbot/byt5-small-wikipron-eng-latn-nz-broad) |
-| en-NZ (Narrow) | Wikipron   | IPA       | [Link](./lexikos/dict/wikipron/eng_latn_nz_narrow.tsv) |                                                                                                                       |
+| en-NZ (Broad)  | Wikipron   | IPA       | Runtime snapshot | [bookbot/byt5-small-wikipron-eng-latn-nz-broad](https://huggingface.co/bookbot/byt5-small-wikipron-eng-latn-nz-broad) |
+| en-NZ (Narrow) | Wikipron   | IPA       | Runtime snapshot | |
 
 ### English `(en-IN)`
 
 | Language       | Dictionary | Phone Set | Corpus                                                 | G2P Model                                                                                                             |
 | -------------- | ---------- | --------- | ------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- |
-| en-IN (Broad)  | Wikipron   | IPA       | [Link](./lexikos/dict/wikipron/eng_latn_in_broad.tsv)  | [bookbot/byt5-small-wikipron-eng-latn-in-broad](https://huggingface.co/bookbot/byt5-small-wikipron-eng-latn-in-broad) |
-| en-IN (Narrow) | Wikipron   | IPA       | [Link](./lexikos/dict/wikipron/eng_latn_in_narrow.tsv) |                                                                                                                       |
+| en-IN (Broad)  | Wikipron   | IPA       | Runtime snapshot | [bookbot/byt5-small-wikipron-eng-latn-in-broad](https://huggingface.co/bookbot/byt5-small-wikipron-eng-latn-in-broad) |
+| en-IN (Narrow) | Wikipron   | IPA       | Runtime snapshot | |
 
 
 ### Spanish
 
-| Lexikos language | CharsiuG2P tag | Dictionary |
-| ---------------- | -------------- | ---------- |
-| `es`             | `spa`          | `spa.tsv` |
-| `es-es`          | `spa`          | `spa.tsv` |
-| `es-419`         | `spa-latin`    | `spa-latin.tsv` |
-| `es-mx`          | `spa-me`       | `spa-me.tsv` |
-| `es-co`          | `spa-co`       | `spa-latin.tsv` (Latin-American source) |
+| Lexikos language | CharsiuG2P source | WikiPron source |
+| ---------------- | ----------------- | ---------------- |
+| `es`             | `spa`             | Castilian broad + narrow |
+| `es-es`          | `spa`             | Castilian broad + narrow |
+| `es-419`         | `spa-latin`       | Latin America broad + narrow |
+| `es-mx`          | `spa-me`          | — |
+| `es-co`          | `spa-latin`       | Latin America broad + narrow |
 
-The dictionaries are pinned to CharsiuG2P revision
-`0c929390759fb94f8ecdfc05cc0bc5f2ff2dc0f4`; provenance and licensing are in
-[`lexikos/dict/charsiu`](./lexikos/dict/charsiu/).
+CharsiuG2P data is pinned to revision
+`0c929390759fb94f8ecdfc05cc0bc5f2ff2dc0f4`. Spanish WikiPron data is pinned
+to revision `d282e848a211ea31cfd730f0ced8bc8cdab9e83d`. The source TSVs remain
+external build artifacts. Runtime snapshot hashes and the scoped
+[`NOTICE.txt`](./lexikos/data/NOTICE.txt) preserve source and licensing
+boundaries; the repository Apache license does not relicense third-party data.
 
-## Preparing Spanish data for CharsiuG2P
+### Rebuilding the SQLite snapshots
 
-The preparation CLI accepts Lexikos `word<TAB>IPA` files, expands both ` ~ `
-and comma-separated pronunciation variants, normalizes Unicode to NFC,
-deduplicates exact pairs, and assigns every pronunciation of a word to one
-deterministic split:
+Keep raw TSVs and the append-only curation database outside the package tree.
+Build the wheel's deterministic runtime snapshot from a complete, pinned source
+root:
+
+```sh
+python scripts/build_lexicon_databases.py \
+    --source-root /path/to/source-snapshot/dict \
+    --curation-db /path/to/curation.sqlite3 \
+    --runtime-db lexikos/data/runtime.sqlite3 \
+    --release-manifest /path/to/release-manifest.json
+```
+
+The tracked release manifest pins source revisions, raw payload hashes,
+licenses, retrieval timestamps, parser metadata, the configuration commit, and
+the Python/SQLite build environment. The compiler refuses missing manifest
+entries, hash mismatches, or non-public active import runs and checks SQLite
+integrity before publishing the runtime snapshot.
+
+## Preparing external Spanish data for CharsiuG2P
+
+Raw source dictionaries are build inputs, not wheel contents. The preparation
+CLI accepts Lexikos `word<TAB>IPA` files from an external source snapshot,
+expands both ` ~ ` and comma-separated pronunciation variants, normalizes
+Unicode to NFC, deduplicates exact pairs, and assigns every pronunciation of a
+word to one deterministic split:
 
 ```sh
 python scripts/prepare_charsiu_g2p.py \
-    lexikos/dict/charsiu/spa-latin.tsv \
+    /path/to/source-snapshot/dict/charsiu/spa-latin.tsv \
     --language es-419 \
     --output-dir prepared/es-419
 ```

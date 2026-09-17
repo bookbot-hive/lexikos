@@ -46,17 +46,22 @@ class Dialect:
 
 @dataclass(frozen=True)
 class PronunciationSource:
-    """Provenance for one pronunciation occurrence.
-
-    ``transcription`` records the source classification, such as ``broad``,
-    ``narrow``, ``phonetic``, or ``unspecified``.
-    """
+    """Immutable provenance for one runtime pronunciation."""
 
     source: str
     language: str
     dialect: Optional[Dialect]
     transcription: str
     synthetic: bool
+    source_id: str
+    observation_ids: Tuple[str, ...]
+    source_url: Optional[str]
+    license_id: Optional[str]
+    license_url: Optional[str]
+    source_revision: str
+    evidence_status: str
+    source_language: Optional[str]
+    source_language_raw: Optional[str]
 
 
 @dataclass(frozen=True)
@@ -69,28 +74,22 @@ class Pronunciation:
 
 @dataclass(frozen=True)
 class DictionarySource:
+    """Build-time source declaration for one legacy dictionary artifact."""
+
     path: str
     source: str
     dialect: Optional[Dialect] = None
     transcription: str = "unspecified"
     synthetic: bool = False
 
-    def pronunciation_source(self, language: str) -> PronunciationSource:
-        return PronunciationSource(
-            source=self.source,
-            language=language,
-            dialect=self.dialect,
-            transcription=self.transcription,
-            synthetic=self.synthetic,
-        )
-
 
 @dataclass(frozen=True)
 class G2pProfile:
+    id: str
     backend: str
     transcription: str
     dictionary: DictionarySource
-    model: str
+    model: Optional[str]
 
 
 @dataclass(frozen=True)
@@ -102,8 +101,17 @@ class LanguagePack:
     macroregion: Optional[str]
     dictionaries: Tuple[DictionarySource, ...]
     g2p_profiles: Tuple[G2pProfile, ...]
+    default_g2p_profile_id: str
     text_normalizer: Optional[Normalizer]
     phoneme_normalizer: Optional[Normalizer]
+
+    def default_g2p_profile(self) -> G2pProfile:
+        for profile in self.g2p_profiles:
+            if profile.id == self.default_g2p_profile_id:
+                return profile
+        raise ValueError(
+            "Language {!r} has no valid default G2P profile.".format(self.id)
+        )
 
     def g2p_profile(self, backend: str, transcription: str) -> Optional[G2pProfile]:
         for profile in self.g2p_profiles:
@@ -151,6 +159,18 @@ _ES_LATIN_CHARSIU = _dictionary(
     "charsiu/spa-latin.tsv", "charsiu-g2p", _LATIN_AMERICA, "phonetic"
 )
 _ES_MX_CHARSIU = _dictionary("charsiu/spa-me.tsv", "charsiu-g2p", _MX, "phonetic")
+_ES_WIKIPRON_CA_BROAD = _dictionary(
+    "wikipron/spa_latn_ca_broad.tsv", "wikipron", _ES, "broad"
+)
+_ES_WIKIPRON_CA_NARROW = _dictionary(
+    "wikipron/spa_latn_ca_narrow.tsv", "wikipron", _ES, "narrow"
+)
+_ES_WIKIPRON_LA_BROAD = _dictionary(
+    "wikipron/spa_latn_la_broad.tsv", "wikipron", _LATIN_AMERICA, "broad"
+)
+_ES_WIKIPRON_LA_NARROW = _dictionary(
+    "wikipron/spa_latn_la_narrow.tsv", "wikipron", _LATIN_AMERICA, "narrow"
+)
 
 
 _EN_WIKIPRON = _dictionary("wikipron/eng_latn.tsv", "wikipron")
@@ -262,12 +282,14 @@ _ENGLISH_PACKS = (
         ),
         g2p_profiles=(
             G2pProfile(
+                id="en-wikipron-broad",
                 backend="wikipron",
                 transcription="broad",
                 dictionary=_EN_WIKIPRON,
                 model="bookbot/onnx-byt5-small-wikipron-eng-latn-quantized-avx512_vnni",
             ),
         ),
+        default_g2p_profile_id="en-wikipron-broad",
         text_normalizer=normalize_numbers,
         phoneme_normalizer=normalize_english_phonemes,
     ),
@@ -308,12 +330,14 @@ _ENGLISH_PACKS = (
         ),
         g2p_profiles=(
             G2pProfile(
+                id="en-us-wikipron-broad",
                 backend="wikipron",
                 transcription="broad",
                 dictionary=_EN_US_WIKIPRON_BROAD,
                 model="bookbot/onnx-byt5-small-wikipron-eng-latn-us-broad-quantized-avx512_vnni",
             ),
         ),
+        default_g2p_profile_id="en-us-wikipron-broad",
         text_normalizer=normalize_numbers,
         phoneme_normalizer=normalize_english_phonemes,
     ),
@@ -342,12 +366,14 @@ _ENGLISH_PACKS = (
         ),
         g2p_profiles=(
             G2pProfile(
+                id="en-uk-wikipron-broad",
                 backend="wikipron",
                 transcription="broad",
                 dictionary=_EN_UK_WIKIPRON_BROAD,
                 model="bookbot/onnx-byt5-small-wikipron-eng-latn-uk-broad-quantized-avx512_vnni",
             ),
         ),
+        default_g2p_profile_id="en-uk-wikipron-broad",
         text_normalizer=normalize_numbers,
         phoneme_normalizer=normalize_english_phonemes,
     ),
@@ -378,12 +404,14 @@ _ENGLISH_PACKS = (
         ),
         g2p_profiles=(
             G2pProfile(
+                id="en-au-wikipron-broad",
                 backend="wikipron",
                 transcription="broad",
                 dictionary=_EN_AU_WIKIPRON_BROAD,
                 model="bookbot/onnx-byt5-small-wikipron-eng-latn-au-broad-quantized-avx512_vnni",
             ),
         ),
+        default_g2p_profile_id="en-au-wikipron-broad",
         text_normalizer=normalize_numbers,
         phoneme_normalizer=normalize_english_phonemes,
     ),
@@ -412,12 +440,14 @@ _ENGLISH_PACKS = (
         ),
         g2p_profiles=(
             G2pProfile(
+                id="en-nz-wikipron-broad",
                 backend="wikipron",
                 transcription="broad",
                 dictionary=_EN_NZ_WIKIPRON_BROAD,
                 model="bookbot/onnx-byt5-small-wikipron-eng-latn-nz-broad-quantized-avx512_vnni",
             ),
         ),
+        default_g2p_profile_id="en-nz-wikipron-broad",
         text_normalizer=normalize_numbers,
         phoneme_normalizer=normalize_english_phonemes,
     ),
@@ -439,12 +469,14 @@ _ENGLISH_PACKS = (
         ),
         g2p_profiles=(
             G2pProfile(
+                id="en-ca-wikipron-broad",
                 backend="wikipron",
                 transcription="broad",
                 dictionary=_EN_CA_WIKIPRON_BROAD,
                 model="bookbot/onnx-byt5-small-wikipron-eng-latn-ca-broad-quantized-avx512_vnni",
             ),
         ),
+        default_g2p_profile_id="en-ca-wikipron-broad",
         text_normalizer=normalize_numbers,
         phoneme_normalizer=normalize_english_phonemes,
     ),
@@ -466,12 +498,14 @@ _ENGLISH_PACKS = (
         ),
         g2p_profiles=(
             G2pProfile(
+                id="en-in-wikipron-broad",
                 backend="wikipron",
                 transcription="broad",
                 dictionary=_EN_IN_WIKIPRON_BROAD,
                 model="bookbot/onnx-byt5-small-wikipron-eng-latn-in-broad-quantized-avx512_vnni",
             ),
         ),
+        default_g2p_profile_id="en-in-wikipron-broad",
         text_normalizer=normalize_numbers,
         phoneme_normalizer=normalize_english_phonemes,
     ),
@@ -484,8 +518,35 @@ _SPANISH_PACKS = (
         base_language="es",
         territory=None,
         macroregion=None,
-        dictionaries=(_ES_CHARSIU,),
-        g2p_profiles=(),
+        dictionaries=(
+            _ES_CHARSIU,
+            _ES_WIKIPRON_CA_BROAD,
+            _ES_WIKIPRON_CA_NARROW,
+        ),
+        g2p_profiles=(
+            G2pProfile(
+                id="es-charsiu-phonetic",
+                backend="charsiu-g2p",
+                transcription="phonetic",
+                dictionary=_ES_CHARSIU,
+                model=None,
+            ),
+            G2pProfile(
+                id="es-wikipron-broad",
+                backend="wikipron",
+                transcription="broad",
+                dictionary=_ES_WIKIPRON_CA_BROAD,
+                model=None,
+            ),
+            G2pProfile(
+                id="es-wikipron-narrow",
+                backend="wikipron",
+                transcription="narrow",
+                dictionary=_ES_WIKIPRON_CA_NARROW,
+                model=None,
+            ),
+        ),
+        default_g2p_profile_id="es-charsiu-phonetic",
         text_normalizer=normalize_spanish_text,
         phoneme_normalizer=None,
     ),
@@ -495,8 +556,35 @@ _SPANISH_PACKS = (
         base_language="es",
         territory="ES",
         macroregion="europe",
-        dictionaries=(_ES_CHARSIU,),
-        g2p_profiles=(),
+        dictionaries=(
+            _ES_CHARSIU,
+            _ES_WIKIPRON_CA_BROAD,
+            _ES_WIKIPRON_CA_NARROW,
+        ),
+        g2p_profiles=(
+            G2pProfile(
+                id="es-es-charsiu-phonetic",
+                backend="charsiu-g2p",
+                transcription="phonetic",
+                dictionary=_ES_CHARSIU,
+                model=None,
+            ),
+            G2pProfile(
+                id="es-es-wikipron-broad",
+                backend="wikipron",
+                transcription="broad",
+                dictionary=_ES_WIKIPRON_CA_BROAD,
+                model=None,
+            ),
+            G2pProfile(
+                id="es-es-wikipron-narrow",
+                backend="wikipron",
+                transcription="narrow",
+                dictionary=_ES_WIKIPRON_CA_NARROW,
+                model=None,
+            ),
+        ),
+        default_g2p_profile_id="es-es-charsiu-phonetic",
         text_normalizer=normalize_spanish_text,
         phoneme_normalizer=None,
     ),
@@ -506,8 +594,35 @@ _SPANISH_PACKS = (
         base_language="es",
         territory=None,
         macroregion="latin-america",
-        dictionaries=(_ES_LATIN_CHARSIU,),
-        g2p_profiles=(),
+        dictionaries=(
+            _ES_LATIN_CHARSIU,
+            _ES_WIKIPRON_LA_BROAD,
+            _ES_WIKIPRON_LA_NARROW,
+        ),
+        g2p_profiles=(
+            G2pProfile(
+                id="es-419-charsiu-phonetic",
+                backend="charsiu-g2p",
+                transcription="phonetic",
+                dictionary=_ES_LATIN_CHARSIU,
+                model=None,
+            ),
+            G2pProfile(
+                id="es-419-wikipron-broad",
+                backend="wikipron",
+                transcription="broad",
+                dictionary=_ES_WIKIPRON_LA_BROAD,
+                model=None,
+            ),
+            G2pProfile(
+                id="es-419-wikipron-narrow",
+                backend="wikipron",
+                transcription="narrow",
+                dictionary=_ES_WIKIPRON_LA_NARROW,
+                model=None,
+            ),
+        ),
+        default_g2p_profile_id="es-419-charsiu-phonetic",
         text_normalizer=normalize_spanish_text,
         phoneme_normalizer=None,
     ),
@@ -518,7 +633,16 @@ _SPANISH_PACKS = (
         territory="MX",
         macroregion="latin-america",
         dictionaries=(_ES_MX_CHARSIU,),
-        g2p_profiles=(),
+        g2p_profiles=(
+            G2pProfile(
+                id="es-mx-charsiu-phonetic",
+                backend="charsiu-g2p",
+                transcription="phonetic",
+                dictionary=_ES_MX_CHARSIU,
+                model=None,
+            ),
+        ),
+        default_g2p_profile_id="es-mx-charsiu-phonetic",
         text_normalizer=normalize_spanish_text,
         phoneme_normalizer=None,
     ),
@@ -528,8 +652,35 @@ _SPANISH_PACKS = (
         base_language="es",
         territory="CO",
         macroregion="latin-america",
-        dictionaries=(_ES_LATIN_CHARSIU,),
-        g2p_profiles=(),
+        dictionaries=(
+            _ES_LATIN_CHARSIU,
+            _ES_WIKIPRON_LA_BROAD,
+            _ES_WIKIPRON_LA_NARROW,
+        ),
+        g2p_profiles=(
+            G2pProfile(
+                id="es-co-charsiu-phonetic",
+                backend="charsiu-g2p",
+                transcription="phonetic",
+                dictionary=_ES_LATIN_CHARSIU,
+                model=None,
+            ),
+            G2pProfile(
+                id="es-co-wikipron-broad",
+                backend="wikipron",
+                transcription="broad",
+                dictionary=_ES_WIKIPRON_LA_BROAD,
+                model=None,
+            ),
+            G2pProfile(
+                id="es-co-wikipron-narrow",
+                backend="wikipron",
+                transcription="narrow",
+                dictionary=_ES_WIKIPRON_LA_NARROW,
+                model=None,
+            ),
+        ),
+        default_g2p_profile_id="es-co-charsiu-phonetic",
         text_normalizer=normalize_spanish_text,
         phoneme_normalizer=None,
     ),
@@ -544,14 +695,26 @@ def supported_lexicon_languages() -> Tuple[str, ...]:
 
 
 def supported_g2p_languages(
-    backend: str = "wikipron", transcription: str = "broad"
+    backend: Optional[str] = None,
+    transcription: Optional[str] = None,
 ) -> Tuple[str, ...]:
+    if backend is None and transcription is None:
+        return tuple(
+            sorted(
+                pack.id
+                for pack in _LANGUAGE_PACKS.values()
+                if pack.text_normalizer is not None and pack.g2p_profiles
+            )
+        )
+
+    selected_backend = backend or "wikipron"
+    selected_transcription = transcription or "broad"
     return tuple(
         sorted(
             pack.id
             for pack in _LANGUAGE_PACKS.values()
             if pack.text_normalizer is not None
-            and pack.g2p_profile(backend, transcription) is not None
+            and pack.g2p_profile(selected_backend, selected_transcription) is not None
         )
     )
 

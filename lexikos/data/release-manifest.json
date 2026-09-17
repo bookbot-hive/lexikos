@@ -1,0 +1,400 @@
+{
+  "build_environment": {
+    "python_version": "3.13.2",
+    "sqlite_version": "3.45.3"
+  },
+  "build_timestamp": "2026-09-17T00:00:00Z",
+  "compiler_version": "legacy-tsv-runtime-v1",
+  "config_commit": "PENDING-IMPLEMENTATION-COMMIT",
+  "config_path": "lexikos/languages.py",
+  "data_edition": "2026.09.1",
+  "files": {
+    "asr-data/austalk_en_au.tsv": {
+      "id": "legacy-austalk-844aecd887ee8e8483c0704aa919fccc",
+      "raw_payload_sha256": "dca1236e14d6fa9a1d12003b47509e30ca84283288083a8236db95f34c379923",
+      "raw_payload_uri": "legacy-tsv://asr-data/austalk_en_au.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "sha256:dca1236e14d6fa9a1d12003b47509e30ca84283288083a8236db95f34c379923"
+    },
+    "asr-data/sc_cw_en_au.tsv": {
+      "id": "legacy-sc-cw-322c123053b3650ddf29f00b08b458fe",
+      "raw_payload_sha256": "b58e196c4d29cda12e722fc49a1396ae08818f1cd079de52f8b1df42d0cf206f",
+      "raw_payload_uri": "legacy-tsv://asr-data/sc_cw_en_au.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "sha256:b58e196c4d29cda12e722fc49a1396ae08818f1cd079de52f8b1df42d0cf206f"
+    },
+    "charsiu/spa-latin.tsv": {
+      "id": "legacy-charsiu-g2p-481a6a888f688bf4758cd77a9f5c79d7",
+      "license_id": "Apache-2.0",
+      "license_url": "https://www.openslr.org/34/",
+      "raw_payload_sha256": "4af9a80219d320dbf31946a2c585adeb6a5562c3ab0cc95303dc3688c8ac1a8a",
+      "raw_payload_uri": "https://raw.githubusercontent.com/lingjzhu/CharsiuG2P/0c929390759fb94f8ecdfc05cc0bc5f2ff2dc0f4/dict/spa-latin.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "0c929390759fb94f8ecdfc05cc0bc5f2ff2dc0f4"
+    },
+    "charsiu/spa-me.tsv": {
+      "id": "legacy-charsiu-g2p-7cb7c4067dce57643674e37a241bf7dc",
+      "license_id": "MIT",
+      "license_url": "https://github.com/lingjzhu/CharsiuG2P/blob/0c929390759fb94f8ecdfc05cc0bc5f2ff2dc0f4/LICENSE",
+      "raw_payload_sha256": "e8590fa88791f1218130a3617f81379425adee51510f55d5984677210051a88b",
+      "raw_payload_uri": "https://raw.githubusercontent.com/lingjzhu/CharsiuG2P/0c929390759fb94f8ecdfc05cc0bc5f2ff2dc0f4/dict/spa-me.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "0c929390759fb94f8ecdfc05cc0bc5f2ff2dc0f4"
+    },
+    "charsiu/spa.tsv": {
+      "id": "legacy-charsiu-g2p-d7debca7ad1f36bf36520bc43c4bd206",
+      "license_id": "MIT",
+      "license_url": "https://github.com/lingjzhu/CharsiuG2P/blob/0c929390759fb94f8ecdfc05cc0bc5f2ff2dc0f4/LICENSE",
+      "raw_payload_sha256": "e399b75e340b3fc0663717654684a6a0d0ecbd8ddce6ffb251a4a826a998c550",
+      "raw_payload_uri": "https://raw.githubusercontent.com/lingjzhu/CharsiuG2P/0c929390759fb94f8ecdfc05cc0bc5f2ff2dc0f4/dict/spa.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "0c929390759fb94f8ecdfc05cc0bc5f2ff2dc0f4"
+    },
+    "cmudict-ipa/cmudict-0.7b-ipa-segmented.tsv": {
+      "id": "legacy-cmudict-d8d0c27ca731b5b7517f4147d4c4f020",
+      "raw_payload_sha256": "6f893898e4acfb85db1775d251b737959d0cb4f5d27c3f19895c334f64acdb82",
+      "raw_payload_uri": "legacy-tsv://cmudict-ipa/cmudict-0.7b-ipa-segmented.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "sha256:6f893898e4acfb85db1775d251b737959d0cb4f5d27c3f19895c334f64acdb82"
+    },
+    "cmudict-ipa/librispeech-lexicon-200k-allothers-g2p-ipa.tsv": {
+      "id": "legacy-librispeech-cf45e1be9541f13e3f89e4fa7a21f7fd",
+      "raw_payload_sha256": "45f96d6448dca71f46b6d991e95af35cd3e0f7e6ae13e3cde07951ede7848b0c",
+      "raw_payload_uri": "legacy-tsv://cmudict-ipa/librispeech-lexicon-200k-allothers-g2p-ipa.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "sha256:45f96d6448dca71f46b6d991e95af35cd3e0f7e6ae13e3cde07951ede7848b0c"
+    },
+    "synthetic/bookbot_en_v1-v2_lexicon.tsv": {
+      "id": "legacy-bookbot-1368f2d379cb26554c2f4d9e21d77756",
+      "raw_payload_sha256": "ff60607a7c55de41c023b7ced1fb671d453d3c77a70e92ca14601ddec2d4d3a5",
+      "raw_payload_uri": "legacy-tsv://synthetic/bookbot_en_v1-v2_lexicon.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "sha256:ff60607a7c55de41c023b7ced1fb671d453d3c77a70e92ca14601ddec2d4d3a5"
+    },
+    "synthetic/bookbot_en_v1-v2_lexicon_zipformer.tsv": {
+      "id": "legacy-bookbot-d46dbcca940bb8fbd3511507a6ec102e",
+      "raw_payload_sha256": "312745557016b63fcffbac992184fad2c3d419575e26619ba4094d272a41f445",
+      "raw_payload_uri": "legacy-tsv://synthetic/bookbot_en_v1-v2_lexicon_zipformer.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "sha256:312745557016b63fcffbac992184fad2c3d419575e26619ba4094d272a41f445"
+    },
+    "synthetic/common-voice-accent-au_lexicon.tsv": {
+      "id": "legacy-common-voice-bcc88ec46573daded44e4a35f373cf33",
+      "raw_payload_sha256": "c07934f62373b461b725cdb254211c86ca7fa23687ccc35d0a64da27f87eb15c",
+      "raw_payload_uri": "legacy-tsv://synthetic/common-voice-accent-au_lexicon.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "sha256:c07934f62373b461b725cdb254211c86ca7fa23687ccc35d0a64da27f87eb15c"
+    },
+    "synthetic/common-voice-accent-ca_lexicon.tsv": {
+      "id": "legacy-common-voice-180541645b2ffc9c57d58c82920a2e30",
+      "raw_payload_sha256": "4d7d6a708f6699087c183c63b0ff09df9224297a3246f19af8d63fc44ed123f9",
+      "raw_payload_uri": "legacy-tsv://synthetic/common-voice-accent-ca_lexicon.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "sha256:4d7d6a708f6699087c183c63b0ff09df9224297a3246f19af8d63fc44ed123f9"
+    },
+    "synthetic/common-voice-accent-gb_lexicon.tsv": {
+      "id": "legacy-common-voice-713ec0f3f76e08744ea4ea37929af575",
+      "raw_payload_sha256": "4ee01838af4410faa5230e2bbc55f37a3a2cd3e57621e70fce95b75364ca5b19",
+      "raw_payload_uri": "legacy-tsv://synthetic/common-voice-accent-gb_lexicon.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "sha256:4ee01838af4410faa5230e2bbc55f37a3a2cd3e57621e70fce95b75364ca5b19"
+    },
+    "synthetic/common-voice-accent-id_lexicon.tsv": {
+      "id": "legacy-common-voice-c64ff025c92414562680a7d06f1ef1f0",
+      "raw_payload_sha256": "4698d6b9f7a8f26b9d7f6ac3bcbe2984ac39353e5d99883699ecec2c4b573b96",
+      "raw_payload_uri": "legacy-tsv://synthetic/common-voice-accent-id_lexicon.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "sha256:4698d6b9f7a8f26b9d7f6ac3bcbe2984ac39353e5d99883699ecec2c4b573b96"
+    },
+    "synthetic/common-voice-accent-in_lexicon.tsv": {
+      "id": "legacy-common-voice-cae6d227b8b794aa0540d19310a3edd1",
+      "raw_payload_sha256": "53ad5a05a087aafaa68f3944cc4539ac990a8a0a5869148f9dc81ad5e53d77f1",
+      "raw_payload_uri": "legacy-tsv://synthetic/common-voice-accent-in_lexicon.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "sha256:53ad5a05a087aafaa68f3944cc4539ac990a8a0a5869148f9dc81ad5e53d77f1"
+    },
+    "synthetic/common-voice-accent-nz_lexicon.tsv": {
+      "id": "legacy-common-voice-98673078f801d5e6413349cbcc828c79",
+      "raw_payload_sha256": "465d24a58ffc4980ec0bf51559558db1ab37e9c73ee195e0e5882e196f33e02a",
+      "raw_payload_uri": "legacy-tsv://synthetic/common-voice-accent-nz_lexicon.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "sha256:465d24a58ffc4980ec0bf51559558db1ab37e9c73ee195e0e5882e196f33e02a"
+    },
+    "synthetic/common-voice-accent-us_lexicon.tsv": {
+      "id": "legacy-common-voice-03a4b964d38f61a7d18f984d706780ba",
+      "raw_payload_sha256": "eec7799e290beb5bd3af84384866938ac60301815d1d692785eb171d08f6c86b",
+      "raw_payload_uri": "legacy-tsv://synthetic/common-voice-accent-us_lexicon.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "sha256:eec7799e290beb5bd3af84384866938ac60301815d1d692785eb171d08f6c86b"
+    },
+    "synthetic/l2-arctic-en-cn_lexicon.tsv": {
+      "id": "legacy-l2-arctic-93958b5d7c2ae1f2d41dc798a7c71900",
+      "raw_payload_sha256": "dd43b3fd586896a8451b4451167095f8a2d6e47f9c4aec94c5b6101dbfb0c07a",
+      "raw_payload_uri": "legacy-tsv://synthetic/l2-arctic-en-cn_lexicon.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "sha256:dd43b3fd586896a8451b4451167095f8a2d6e47f9c4aec94c5b6101dbfb0c07a"
+    },
+    "synthetic/l2-arctic-en-eg_lexicon.tsv": {
+      "id": "legacy-l2-arctic-b261c5b1484396763286e57a60a946c8",
+      "raw_payload_sha256": "7b56b41c815a0ecf4777fd29cbe33826361a71545d0f722d42ed461a73f82202",
+      "raw_payload_uri": "legacy-tsv://synthetic/l2-arctic-en-eg_lexicon.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "sha256:7b56b41c815a0ecf4777fd29cbe33826361a71545d0f722d42ed461a73f82202"
+    },
+    "synthetic/l2-arctic-en-es_lexicon.tsv": {
+      "id": "legacy-l2-arctic-b877a81be9ca16a1a5326eb3b6abbca6",
+      "raw_payload_sha256": "f20277cdbd65c670711e5300700fb65c264070eb663ee78a5100b94e7682db67",
+      "raw_payload_uri": "legacy-tsv://synthetic/l2-arctic-en-es_lexicon.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "sha256:f20277cdbd65c670711e5300700fb65c264070eb663ee78a5100b94e7682db67"
+    },
+    "synthetic/l2-arctic-en-in_lexicon.tsv": {
+      "id": "legacy-l2-arctic-619886957ce154a6153e6b11c69f3581",
+      "raw_payload_sha256": "173cfb3481537dad13338cf50bef4e29c1c1703473ad2fcd0853c3b60639b35c",
+      "raw_payload_uri": "legacy-tsv://synthetic/l2-arctic-en-in_lexicon.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "sha256:173cfb3481537dad13338cf50bef4e29c1c1703473ad2fcd0853c3b60639b35c"
+    },
+    "synthetic/l2-arctic-en-kr_lexicon.tsv": {
+      "id": "legacy-l2-arctic-ba5b38c20722c34998cca8c022f72e6b",
+      "raw_payload_sha256": "cfe8fc8ad595369da58537b0d6debc87af139e5e999eac15b202e1ceb2eb3b8c",
+      "raw_payload_uri": "legacy-tsv://synthetic/l2-arctic-en-kr_lexicon.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "sha256:cfe8fc8ad595369da58537b0d6debc87af139e5e999eac15b202e1ceb2eb3b8c"
+    },
+    "synthetic/l2-arctic-en-vn_lexicon.tsv": {
+      "id": "legacy-l2-arctic-51c352afce34897f04376d5874f90344",
+      "raw_payload_sha256": "d6be1012ebcc03e702b484ffed38f4f2d4e4864272076116602554cd29585f4b",
+      "raw_payload_uri": "legacy-tsv://synthetic/l2-arctic-en-vn_lexicon.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "sha256:d6be1012ebcc03e702b484ffed38f4f2d4e4864272076116602554cd29585f4b"
+    },
+    "synthetic/librispeech-lexicon-en-id.tsv": {
+      "id": "legacy-librispeech-e3e2a845e9e30619081e87ad4aa5da15",
+      "raw_payload_sha256": "40a98b1013b9dfe65852279f4f8863dae0b2d6134dd7f1c0c32053fdafa4f2d6",
+      "raw_payload_uri": "legacy-tsv://synthetic/librispeech-lexicon-en-id.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "sha256:40a98b1013b9dfe65852279f4f8863dae0b2d6134dd7f1c0c32053fdafa4f2d6"
+    },
+    "synthetic/mfa_wu_au.tsv": {
+      "id": "legacy-mfa-wu-4f69e9f3e35d6743346aea4333c60a72",
+      "raw_payload_sha256": "c1c1e7d13732d2cde5f82e18e985a18c8981fde7bcf6327e61f1cff88e87f73f",
+      "raw_payload_uri": "legacy-tsv://synthetic/mfa_wu_au.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "sha256:c1c1e7d13732d2cde5f82e18e985a18c8981fde7bcf6327e61f1cff88e87f73f"
+    },
+    "synthetic/mfa_wu_au_numbers.tsv": {
+      "id": "legacy-mfa-wu-9f3e40aa02295f93b8439d0315dc4969",
+      "raw_payload_sha256": "e65bdb01f9a782d6020995b3e518829038a535d8f2a88cd19014f26e5d173116",
+      "raw_payload_uri": "legacy-tsv://synthetic/mfa_wu_au_numbers.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "sha256:e65bdb01f9a782d6020995b3e518829038a535d8f2a88cd19014f26e5d173116"
+    },
+    "synthetic/mfa_wu_nz.tsv": {
+      "id": "legacy-mfa-wu-f8dd5aacb338d58ae1983ad6803ad18c",
+      "raw_payload_sha256": "b69eee35ddd99241fd11d449077f84e188e83618ee75a00afeb9d43e38a1008b",
+      "raw_payload_uri": "legacy-tsv://synthetic/mfa_wu_nz.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "sha256:b69eee35ddd99241fd11d449077f84e188e83618ee75a00afeb9d43e38a1008b"
+    },
+    "synthetic/mfa_wu_nz_numbers.tsv": {
+      "id": "legacy-mfa-wu-951444b514a7561f6214bc973eacb0e2",
+      "raw_payload_sha256": "251ab33be30c3a04f7257f2ccfdae373b9066b11adb443caa3fc1039b078f975",
+      "raw_payload_uri": "legacy-tsv://synthetic/mfa_wu_nz_numbers.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "sha256:251ab33be30c3a04f7257f2ccfdae373b9066b11adb443caa3fc1039b078f975"
+    },
+    "synthetic/mfa_wu_uk.tsv": {
+      "id": "legacy-mfa-wu-ff3ed3d8e63b19b60d832fd47ad3abfb",
+      "raw_payload_sha256": "97bd7dedbe4d29928914e46fd3cc1354d3bbb7eccc6b01e632c4da42d0ea163b",
+      "raw_payload_uri": "legacy-tsv://synthetic/mfa_wu_uk.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "sha256:97bd7dedbe4d29928914e46fd3cc1354d3bbb7eccc6b01e632c4da42d0ea163b"
+    },
+    "synthetic/mfa_wu_uk_numbers.tsv": {
+      "id": "legacy-mfa-wu-bb19e5d5214d1cfe3e812de67f66a61c",
+      "raw_payload_sha256": "5ef43628a5708e1134ccfe126c9c15366896d029a9afa97af1bd65094800db44",
+      "raw_payload_uri": "legacy-tsv://synthetic/mfa_wu_uk_numbers.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "sha256:5ef43628a5708e1134ccfe126c9c15366896d029a9afa97af1bd65094800db44"
+    },
+    "synthetic/mfa_wu_us.tsv": {
+      "id": "legacy-mfa-wu-2bd7d815a78e7a6c05bea7332e8d20a5",
+      "raw_payload_sha256": "ccbcb25d44bc42891795adb38adef1147a55926857711aa65a87f98319b288a4",
+      "raw_payload_uri": "legacy-tsv://synthetic/mfa_wu_us.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "sha256:ccbcb25d44bc42891795adb38adef1147a55926857711aa65a87f98319b288a4"
+    },
+    "synthetic/mfa_wu_us_numbers.tsv": {
+      "id": "legacy-mfa-wu-94ef6f384b9fe3005d32f51a00e0dbd8",
+      "raw_payload_sha256": "b0de75d34e371261c588845e0e4274cb04f027d4575fe950577bd6176b77cca3",
+      "raw_payload_uri": "legacy-tsv://synthetic/mfa_wu_us_numbers.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "sha256:b0de75d34e371261c588845e0e4274cb04f027d4575fe950577bd6176b77cca3"
+    },
+    "synthetic/wu_lexicon.tsv": {
+      "id": "legacy-wu-lexicon-32e14317fbb413e8409be344202bae3e",
+      "raw_payload_sha256": "63f432c4c70774ad861f43436f5b3ee10feb9997879052219da2a9f81ef175af",
+      "raw_payload_uri": "legacy-tsv://synthetic/wu_lexicon.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "sha256:63f432c4c70774ad861f43436f5b3ee10feb9997879052219da2a9f81ef175af"
+    },
+    "wikipron/eng_latn.tsv": {
+      "id": "legacy-wikipron-8dff0b6b0d3f5e8935cdc47bd5bff4ff",
+      "license_id": "CC-BY-SA-4.0 OR GFDL-1.3-or-later",
+      "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+      "raw_payload_sha256": "19d94931bb44ea4775207cc47561b4c51942196aa714449708dec17ac3c1b729",
+      "raw_payload_uri": "legacy-tsv://wikipron/eng_latn.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "sha256:19d94931bb44ea4775207cc47561b4c51942196aa714449708dec17ac3c1b729"
+    },
+    "wikipron/eng_latn_au_broad.tsv": {
+      "id": "legacy-wikipron-c428641b000395b1f19e677c0a995e43",
+      "license_id": "CC-BY-SA-4.0 OR GFDL-1.3-or-later",
+      "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+      "raw_payload_sha256": "f97345072705a4c06367e3b59c25ab9c154ebd15eefbb09d0779548a700fea78",
+      "raw_payload_uri": "legacy-tsv://wikipron/eng_latn_au_broad.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "sha256:f97345072705a4c06367e3b59c25ab9c154ebd15eefbb09d0779548a700fea78"
+    },
+    "wikipron/eng_latn_au_narrow.tsv": {
+      "id": "legacy-wikipron-1cc6ab4a85367c483391a40e9d152a08",
+      "license_id": "CC-BY-SA-4.0 OR GFDL-1.3-or-later",
+      "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+      "raw_payload_sha256": "f81c239161a02f7ef5d05b00357a589fe47cb777ffda136c26857168a1aa436e",
+      "raw_payload_uri": "legacy-tsv://wikipron/eng_latn_au_narrow.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "sha256:f81c239161a02f7ef5d05b00357a589fe47cb777ffda136c26857168a1aa436e"
+    },
+    "wikipron/eng_latn_ca_broad.tsv": {
+      "id": "legacy-wikipron-7ba470e43103ef91bb6cdb324e5aca36",
+      "license_id": "CC-BY-SA-4.0 OR GFDL-1.3-or-later",
+      "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+      "raw_payload_sha256": "b1fc8e0ee1ab05d6fb85f1347990f207216cc2e32c6d29d672ff6d84551542e1",
+      "raw_payload_uri": "legacy-tsv://wikipron/eng_latn_ca_broad.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "sha256:b1fc8e0ee1ab05d6fb85f1347990f207216cc2e32c6d29d672ff6d84551542e1"
+    },
+    "wikipron/eng_latn_ca_narrow.tsv": {
+      "id": "legacy-wikipron-7293dcc12dc7e16b268c552f138fe86e",
+      "license_id": "CC-BY-SA-4.0 OR GFDL-1.3-or-later",
+      "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+      "raw_payload_sha256": "b317842d306571ae4b18cefb71b2b1968fa0be0ec4795f89fbf1db87fb47c7e3",
+      "raw_payload_uri": "legacy-tsv://wikipron/eng_latn_ca_narrow.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "sha256:b317842d306571ae4b18cefb71b2b1968fa0be0ec4795f89fbf1db87fb47c7e3"
+    },
+    "wikipron/eng_latn_in_broad.tsv": {
+      "id": "legacy-wikipron-32219138b40b1bea9ceff3851c9bcb80",
+      "license_id": "CC-BY-SA-4.0 OR GFDL-1.3-or-later",
+      "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+      "raw_payload_sha256": "933b37f2a139edde22791f86fdcdff4e99db4cbf3a4f4838bdd962be64e1c45c",
+      "raw_payload_uri": "legacy-tsv://wikipron/eng_latn_in_broad.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "sha256:933b37f2a139edde22791f86fdcdff4e99db4cbf3a4f4838bdd962be64e1c45c"
+    },
+    "wikipron/eng_latn_in_narrow.tsv": {
+      "id": "legacy-wikipron-54a517a81baceed653c5e4de692b8617",
+      "license_id": "CC-BY-SA-4.0 OR GFDL-1.3-or-later",
+      "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+      "raw_payload_sha256": "da26ad82861011d53b028c7454fe48a9ceda2bcab80848f8699f932fefa22eb3",
+      "raw_payload_uri": "legacy-tsv://wikipron/eng_latn_in_narrow.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "sha256:da26ad82861011d53b028c7454fe48a9ceda2bcab80848f8699f932fefa22eb3"
+    },
+    "wikipron/eng_latn_nz_broad.tsv": {
+      "id": "legacy-wikipron-deaab8b41697b1e7915db9338f416861",
+      "license_id": "CC-BY-SA-4.0 OR GFDL-1.3-or-later",
+      "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+      "raw_payload_sha256": "a7664e01eb5e75ddc462f21fb9795152d89712f980ed680c8fcbafabd764ab8a",
+      "raw_payload_uri": "legacy-tsv://wikipron/eng_latn_nz_broad.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "sha256:a7664e01eb5e75ddc462f21fb9795152d89712f980ed680c8fcbafabd764ab8a"
+    },
+    "wikipron/eng_latn_nz_narrow.tsv": {
+      "id": "legacy-wikipron-9e76ecccd7d76cdda626f7172bb2150c",
+      "license_id": "CC-BY-SA-4.0 OR GFDL-1.3-or-later",
+      "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+      "raw_payload_sha256": "887b56e4783b1fd18ee6b7bed6acba9153d9c7a611c0d2d6a6ac7d41c6cd1d10",
+      "raw_payload_uri": "legacy-tsv://wikipron/eng_latn_nz_narrow.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "sha256:887b56e4783b1fd18ee6b7bed6acba9153d9c7a611c0d2d6a6ac7d41c6cd1d10"
+    },
+    "wikipron/eng_latn_uk_broad.tsv": {
+      "id": "legacy-wikipron-57c1cdda8061efbb05e4ab3b41ba8a37",
+      "license_id": "CC-BY-SA-4.0 OR GFDL-1.3-or-later",
+      "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+      "raw_payload_sha256": "f4e065283814781e1cda8291e62c804d9a241ab2772db5f62164d7d361dacd43",
+      "raw_payload_uri": "legacy-tsv://wikipron/eng_latn_uk_broad.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "sha256:f4e065283814781e1cda8291e62c804d9a241ab2772db5f62164d7d361dacd43"
+    },
+    "wikipron/eng_latn_uk_narrow.tsv": {
+      "id": "legacy-wikipron-336b2943678b6e328bb4d430d2cb190c",
+      "license_id": "CC-BY-SA-4.0 OR GFDL-1.3-or-later",
+      "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+      "raw_payload_sha256": "263703306690a4ca90d67f13680f66b8b287c188fe779b7c387159052d2205b6",
+      "raw_payload_uri": "legacy-tsv://wikipron/eng_latn_uk_narrow.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "sha256:263703306690a4ca90d67f13680f66b8b287c188fe779b7c387159052d2205b6"
+    },
+    "wikipron/eng_latn_us_broad.tsv": {
+      "id": "legacy-wikipron-3083e6d90b80a132c039ffeda21b6957",
+      "license_id": "CC-BY-SA-4.0 OR GFDL-1.3-or-later",
+      "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+      "raw_payload_sha256": "2f0114ffcb6fd8f14ac54f80c214e55dc63c8ed8c2b680afb56e14521427acc9",
+      "raw_payload_uri": "legacy-tsv://wikipron/eng_latn_us_broad.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "sha256:2f0114ffcb6fd8f14ac54f80c214e55dc63c8ed8c2b680afb56e14521427acc9"
+    },
+    "wikipron/eng_latn_us_narrow.tsv": {
+      "id": "legacy-wikipron-eaa9a77ce689554d9e68d4d75a84d340",
+      "license_id": "CC-BY-SA-4.0 OR GFDL-1.3-or-later",
+      "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+      "raw_payload_sha256": "870308ee823aab1419438cb637d675b5b149380be0bb8ae64df0c94c48efad25",
+      "raw_payload_uri": "legacy-tsv://wikipron/eng_latn_us_narrow.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "sha256:870308ee823aab1419438cb637d675b5b149380be0bb8ae64df0c94c48efad25"
+    },
+    "wikipron/spa_latn_ca_broad.tsv": {
+      "id": "legacy-wikipron-21975a53b463f9bb6cc85f746e12b7a2",
+      "license_id": "CC-BY-SA-4.0 OR GFDL-1.3-or-later",
+      "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+      "raw_payload_sha256": "0438a76e2465cd94022d177d6be4385963b9d5e310359fe97d06a19f2bd92469",
+      "raw_payload_uri": "https://raw.githubusercontent.com/CUNY-CL/wikipron/d282e848a211ea31cfd730f0ced8bc8cdab9e83d/data/scrape/tsv/spa_latn_ca_broad.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "d282e848a211ea31cfd730f0ced8bc8cdab9e83d"
+    },
+    "wikipron/spa_latn_ca_narrow.tsv": {
+      "id": "legacy-wikipron-ef9004ec4b8442736394dd9372701c39",
+      "license_id": "CC-BY-SA-4.0 OR GFDL-1.3-or-later",
+      "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+      "raw_payload_sha256": "88040d9632f7bbace364cc4286527408930d9dc25345f68fecaff9cf5775b896",
+      "raw_payload_uri": "https://raw.githubusercontent.com/CUNY-CL/wikipron/d282e848a211ea31cfd730f0ced8bc8cdab9e83d/data/scrape/tsv/spa_latn_ca_narrow.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "d282e848a211ea31cfd730f0ced8bc8cdab9e83d"
+    },
+    "wikipron/spa_latn_la_broad.tsv": {
+      "id": "legacy-wikipron-65585d8f470f0f459408a657101161e5",
+      "license_id": "CC-BY-SA-4.0 OR GFDL-1.3-or-later",
+      "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+      "raw_payload_sha256": "6e962eb2f51f9780a3648bd3fdebbd261c6d999d4902832abeeef14c71a033d9",
+      "raw_payload_uri": "https://raw.githubusercontent.com/CUNY-CL/wikipron/d282e848a211ea31cfd730f0ced8bc8cdab9e83d/data/scrape/tsv/spa_latn_la_broad.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "d282e848a211ea31cfd730f0ced8bc8cdab9e83d"
+    },
+    "wikipron/spa_latn_la_narrow.tsv": {
+      "id": "legacy-wikipron-f7d4935ace6ff56f2b84a6481e7ad0f1",
+      "license_id": "CC-BY-SA-4.0 OR GFDL-1.3-or-later",
+      "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+      "raw_payload_sha256": "0c0a4d8aba6ae7944a58ce32070dac343bd071ccd67538f2ba7696cc2c25be3e",
+      "raw_payload_uri": "https://raw.githubusercontent.com/CUNY-CL/wikipron/d282e848a211ea31cfd730f0ced8bc8cdab9e83d/data/scrape/tsv/spa_latn_la_narrow.tsv",
+      "redistribution_policy": "public",
+      "source_revision": "d282e848a211ea31cfd730f0ced8bc8cdab9e83d"
+    }
+  },
+  "manifest_version": 1,
+  "parser_name": "legacy-tsv",
+  "parser_version": "legacy-tsv-v1",
+  "rights_review": "Legacy public inputs retain their prior publication status; explicit license identifiers are recorded only where verified."
+}

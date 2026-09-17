@@ -1,5 +1,5 @@
 from .charsiu import charsiu_prompt
-from .g2p import G2p
+from .g2p import G2p, OOVWarning
 from .languages import (
     Dialect,
     DialectFeature,
@@ -16,5 +16,6 @@ __all__ = [
     "G2p",
     "Lexicon",
     "Pronunciation",
+    "OOVWarning",
     "PronunciationSource",
 ]

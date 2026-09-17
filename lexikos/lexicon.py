@@ -12,23 +12,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from collections import UserDict
-from pathlib import Path
+from collections.abc import Iterator, Mapping
+from contextlib import closing
+import json
 from typing import Dict, List, Set, Tuple
-import re
 
 from .languages import (
-    DictionarySource,
-    LanguagePack,
+    Dialect,
+    DialectFeature,
     Pronunciation,
     PronunciationSource,
     get_language_pack,
     supported_lexicon_languages,
 )
-from .pronunciations import split_pronunciation_variants
-
-
-_DICTIONARIES = Path(__file__).parent / "dict"
+from .storage import open_runtime_database
 
 
 def _source_sort_key(source: PronunciationSource) -> Tuple:
@@ -49,50 +46,47 @@ def _source_sort_key(source: PronunciationSource) -> Tuple:
         dialect_key,
         source.transcription,
         source.synthetic,
+        source.source_id,
+        source.observation_ids,
     )
 
 
-def _load_pronunciations(
-    pack: LanguagePack,
-    sources: Tuple[DictionarySource, ...],
-    normalize_phonemes: bool,
-) -> Dict[str, List[Pronunciation]]:
-    phoneme_normalizer = pack.phoneme_normalizer
-    if normalize_phonemes and phoneme_normalizer is None:
-        raise ValueError(
-            "Language {!r} does not define a phoneme normalizer.".format(pack.id)
-        )
-
-    merged: Dict[str, Dict[str, Set[PronunciationSource]]] = {}
-    for dictionary in sources:
-        provenance = dictionary.pronunciation_source(pack.id)
-        path = _DICTIONARIES / dictionary.path
-        with path.open("r", encoding="utf-8") as file:
-            for line in file:
-                if not line.strip():
-                    continue
-                word, raw_phonemes = line.rstrip("\r\n").split("\t", 1)
-                for phonemes in split_pronunciation_variants(raw_phonemes):
-                    phonemes = re.sub(r"\s+", " ", phonemes.replace(".", " ")).strip()
-                    if normalize_phonemes:
-                        phonemes = phoneme_normalizer(phonemes)
-                    pronunciations = merged.setdefault(word.lower(), {})
-                    pronunciations.setdefault(phonemes, set()).add(provenance)
-
-    return {
-        word: [
-            Pronunciation(
-                ipa=ipa,
-                sources=tuple(sorted(provenance, key=_source_sort_key)),
-            )
-            for ipa, provenance in sorted(pronunciations.items())
-        ]
-        for word, pronunciations in merged.items()
-    }
+def _dialect(value: str) -> Dialect:
+    data = json.loads(value)
+    return Dialect(
+        territory=data.get("territory"),
+        macroregion=data.get("macroregion"),
+        group=data.get("group"),
+        locality=data.get("locality"),
+        features=tuple(
+            DialectFeature(name=feature["name"], value=feature["value"])
+            for feature in data.get("features", ())
+        ),
+    )
 
 
-class Lexicon(UserDict):
-    """A language-specific dictionary of IPA pronunciations and provenance."""
+def _source(row) -> PronunciationSource:
+    dialect_json = row["dialect_json"]
+    return PronunciationSource(
+        source=row["source_name"],
+        language=row["language"],
+        dialect=_dialect(dialect_json) if dialect_json is not None else None,
+        transcription=row["transcription"],
+        synthetic=bool(row["synthetic"]),
+        source_id=row["source_id"],
+        observation_ids=tuple(json.loads(row["observation_ids_json"])),
+        source_url=row["source_url"],
+        license_id=row["license_id"],
+        license_url=row["license_url"],
+        source_revision=row["source_revision"],
+        evidence_status=row["evidence_status"],
+        source_language=row["source_language"],
+        source_language_raw=row["source_language_raw"],
+    )
+
+
+class Lexicon(Mapping):
+    """A language-specific, SQLite-backed mapping of IPA pronunciations."""
 
     def __init__(
         self,
@@ -102,21 +96,120 @@ class Lexicon(UserDict):
         include_synthetic: bool = False,
     ):
         pack = get_language_pack(lang)
-        sources = tuple(
-            source
-            for source in pack.dictionaries
-            if include_synthetic or not source.synthetic
-        )
-        mapping = _load_pronunciations(pack, sources, normalize_phonemes)
-        super().__init__(mapping)
+        if normalize_phonemes and pack.phoneme_normalizer is None:
+            raise ValueError(
+                "Language {!r} does not define a phoneme normalizer.".format(lang)
+            )
+        self.lang = lang
+        self.normalize_phonemes = normalize_phonemes
+        self.include_synthetic = include_synthetic
+
+    def __getitem__(self, word: str) -> List[Pronunciation]:
+        synthetic_clause = "" if self.include_synthetic else "AND e.synthetic = 0"
+        with closing(open_runtime_database()) as connection:
+            rows = connection.execute(
+                """
+                SELECT
+                    p.ipa,
+                    p.phoneme_normalized_ipa,
+                    e.source_id,
+                    e.source_name,
+                    e.language,
+                    e.source_language,
+                    e.source_language_raw,
+                    e.observation_ids_json,
+                    e.source_url,
+                    e.source_revision,
+                    e.license_id,
+                    e.license_url,
+                    e.evidence_status,
+                    e.dialect_json,
+                    e.transcription,
+                    e.synthetic
+                FROM pronunciation AS p
+                JOIN evidence AS e ON e.pronunciation_id = p.id
+                WHERE p.pack_id = ? AND p.normalized_word = ?
+                {}
+                ORDER BY p.ipa, e.id
+                """.format(synthetic_clause),
+                (self.lang, word),
+            ).fetchall()
+
+        if not rows:
+            raise KeyError(word)
+
+        grouped: Dict[str, Set[PronunciationSource]] = {}
+        for row in rows:
+            ipa = (
+                row["phoneme_normalized_ipa"] if self.normalize_phonemes else row["ipa"]
+            )
+            if ipa is None:
+                raise RuntimeError(
+                    "Runtime snapshot lacks normalized IPA for {!r}.".format(self.lang)
+                )
+            grouped.setdefault(ipa, set()).add(_source(row))
+
+        return [
+            Pronunciation(
+                ipa=ipa,
+                sources=tuple(sorted(sources, key=_source_sort_key)),
+            )
+            for ipa, sources in sorted(grouped.items())
+        ]
+
+    def __iter__(self) -> Iterator[str]:
+        synthetic_clause = "" if self.include_synthetic else "AND e.synthetic = 0"
+        connection = open_runtime_database()
+        try:
+            rows = connection.execute(
+                """
+                SELECT DISTINCT p.normalized_word
+                FROM pronunciation AS p
+                JOIN evidence AS e ON e.pronunciation_id = p.id
+                WHERE p.pack_id = ?
+                {}
+                ORDER BY p.normalized_word
+                """.format(synthetic_clause),
+                (self.lang,),
+            )
+            for row in rows:
+                yield row["normalized_word"]
+        finally:
+            connection.close()
+
+    def __len__(self) -> int:
+        synthetic_clause = "" if self.include_synthetic else "AND e.synthetic = 0"
+        with closing(open_runtime_database()) as connection:
+            row = connection.execute(
+                """
+                SELECT COUNT(DISTINCT p.normalized_word)
+                FROM pronunciation AS p
+                JOIN evidence AS e ON e.pronunciation_id = p.id
+                WHERE p.pack_id = ?
+                {}
+                """.format(synthetic_clause),
+                (self.lang,),
+            ).fetchone()
+        return int(row[0])
+
+    def __contains__(self, word: object) -> bool:
+        if not isinstance(word, str):
+            return False
+        synthetic_clause = "" if self.include_synthetic else "AND e.synthetic = 0"
+        with closing(open_runtime_database()) as connection:
+            row = connection.execute(
+                """
+                SELECT 1
+                FROM pronunciation AS p
+                JOIN evidence AS e ON e.pronunciation_id = p.id
+                WHERE p.pack_id = ? AND p.normalized_word = ?
+                {}
+                LIMIT 1
+                """.format(synthetic_clause),
+                (self.lang, word),
+            ).fetchone()
+        return row is not None
 
     @classmethod
     def supported_languages(cls) -> Tuple[str, ...]:
         return supported_lexicon_languages()
-
-
-if __name__ == "__main__":
-    lexicon = Lexicon("en-us")
-    print(lexicon["added"])
-    print(lexicon["runner"])
-    print(lexicon["water"])

@@ -9,11 +9,11 @@ requirements_path = this_path / "requirements.txt"
 
 long_description = readme_path.read_text(encoding="utf-8")
 
-data_dir = module_dir / "dict"
+data_dir = module_dir / "data"
 data_files = [
-    str(f.relative_to(module_dir))
-    for f in data_dir.rglob("*")
-    if f.is_file() and f.suffix in {".tsv", ".txt"}
+    str(file.relative_to(module_dir))
+    for file in data_dir.rglob("*")
+    if file.is_file() and file.suffix in {".sqlite3", ".txt", ".json"}
 ]
 
 with open(requirements_path, "r", encoding="utf-8") as requirements_file:
@@ -28,7 +28,7 @@ if __name__ == "__main__":
         author="w11wo",
         author_email="wilson@bookbotkids.com",
         url="https://github.com/bookbot-hive/lexikos",
-        license="Apache License",
+        license="Apache-2.0",
         packages=find_packages(),
         install_requires=requirements,
         package_data={"lexikos": data_files},
