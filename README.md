@@ -22,9 +22,9 @@ different distribution boundaries:
 - The verified wheel is approximately 950 MB, so it is not suitable for
   ordinary PyPI distribution.
 
-No data-backed `2026.09.4` wheel is currently published. The existing
-`v0.0.1rc7` GitHub release has no matching data asset. Do not assume
-`pip install lexikos` provides this edition.
+The data-backed `2026.09.4` wheel is published as an asset of the
+[`v1.0.0` GitHub release](https://github.com/bookbot-hive/lexikos/releases/tag/v1.0.0).
+It is not published on PyPI; download and verify the release asset explicitly.
 
 ### Installing a release wheel
 
@@ -33,8 +33,8 @@ wheel and its checksum from the same release, verify it, and install the local
 file:
 
 ```sh
-sha256sum lexikos-0.0.1rc7-py3-none-any.whl
-python -m pip install ./lexikos-0.0.1rc7-py3-none-any.whl
+sha256sum lexikos-1.0.0-py3-none-any.whl
+python -m pip install ./lexikos-1.0.0-py3-none-any.whl
 ```
 
 Use the checksum in the release notes or accompanying checksum file. The

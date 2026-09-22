@@ -8,7 +8,7 @@ from .languages import (
 )
 from .lexicon import Lexicon
 
-__version__ = "0.0.1rc7"
+__version__ = "1.0.0"
 __all__ = [
     "Dialect",
     "DialectFeature",
