@@ -93,12 +93,3 @@ def test_preparation_rejects_malformed_dictionary_rows(tmp_path):
     assert not (tmp_path / "output" / "manifest.json").exists()
 
 
-def test_preparation_rejects_unsourced_colombian_locale(tmp_path):
-    source = tmp_path / "source.tsv"
-    source.write_text("niño\tniɲo\n", encoding="utf-8")
-
-    result = _run(source, tmp_path / "output", language="es-co")
-
-    assert result.returncode != 0
-    assert "invalid choice: 'es-co'" in result.stderr
-    assert not (tmp_path / "output" / "manifest.json").exists()

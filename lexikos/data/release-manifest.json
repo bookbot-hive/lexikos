@@ -5,11 +5,11 @@
   },
   "build_timestamp": "2026-09-17T00:00:00Z",
   "compiler_version": "legacy-tsv-runtime-v2",
-  "config_commit": "c020eda3ad777e820e281405a995ee4632ae931e",
+  "config_commit": "b2a1157d9e0dcf32749c46743544eeb74dbe9ed7",
   "config_path": "lexikos/languages.py",
   "curation_sha256": "68dcc8e6442419a38a2e8d8ec9c0027d640f1b4fc06d2c52d908932157d7a5da",
   "curation_size_bytes": 5632610304,
-  "data_edition": "2026.09.3",
+  "data_edition": "2026.09.4",
   "files": {
     "asr-data/austalk_en_au.tsv": {
       "id": "legacy-austalk-9b603822c95865384182441e8121bdb0",
@@ -399,6 +399,6 @@
   "parser_name": "legacy-tsv",
   "parser_version": "legacy-tsv-v2",
   "rights_review": "Public status is carried forward from pinned upstream records; explicit license identifiers are recorded only where those records verify them. No independent audit of upstream content provenance is implied.",
-  "runtime_sha256": "e0f6c491f1a9121345d6659b0d6d8f046c629d9639e2e7601daa2c2f4e0d2100",
+  "runtime_sha256": "e89ea17a904b856a00cdf3705c46ce3324280282780cb2277dcfe65ae357655e",
   "runtime_size_bytes": 3106291712
 }

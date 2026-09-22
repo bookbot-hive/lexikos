@@ -11,7 +11,7 @@ to its source, revision, dialect, transcription type, and observation IDs.
 
 ## Current release boundary
 
-The current data edition is **`2026.09.3`**. Code and data artifacts have
+The current data edition is **`2026.09.4`**. Code and data artifacts have
 different distribution boundaries:
 
 - Source code, configuration, tests, and the release manifest are tracked in
@@ -22,7 +22,7 @@ different distribution boundaries:
 - The verified wheel is approximately 950 MB, so it is not suitable for
   ordinary PyPI distribution.
 
-No data-backed `2026.09.3` wheel is currently published. The existing
+No data-backed `2026.09.4` wheel is currently published. The existing
 `v0.0.1rc7` GitHub release has no matching data asset. Do not assume
 `pip install lexikos` provides this edition.
 
@@ -70,14 +70,12 @@ Language IDs are exact lowercase BCP-47-style identifiers such as `en-us`,
 ```py
 >>> from lexikos import G2p, Lexicon
 >>> Lexicon.supported_languages()
-('en', 'en-au', 'en-ca', 'en-in', 'en-nz', 'en-uk', 'en-us', 'es', 'es-419', 'es-co', 'es-es', 'es-mx')
+('en', 'en-au', 'en-ca', 'en-in', 'en-nz', 'en-uk', 'en-us', 'es', 'es-419', 'es-es', 'es-mx')
 >>> G2p.supported_languages()
 ('en', 'en-au', 'en-ca', 'en-in', 'en-nz', 'en-uk', 'en-us', 'es', 'es-419', 'es-es', 'es-mx')
 
 ```
 
-`es-co` appears in lexicon discovery because the locale is reserved, but it is
-currently empty and has no G2P profile.
 
 ## Lexicon API
 
@@ -172,7 +170,6 @@ silently fall back to another source.
 | `es-es` | Charsiu `spa`; WikiPron Castilian broad/narrow | Charsiu phonetic; WikiPron broad/narrow | Charsiu phonetic |
 | `es-419` | Charsiu `spa-latin`; WikiPron Latin-American broad/narrow | Charsiu phonetic; WikiPron broad/narrow | Charsiu phonetic |
 | `es-mx` | Charsiu `spa-me` | Charsiu phonetic | Charsiu phonetic |
-| `es-co` | None yet | None | None |
 
 Important boundaries:
 
@@ -180,12 +177,9 @@ Important boundaries:
 - `es-419` preserves the union of pooled Latin-American Charsiu and WikiPron
   evidence.
 - `es-mx` uses the Mexican-specific Charsiu source.
-- `es-co` is reserved but empty. It will accept only reviewed,
-  explicitly Colombian evidence; pooled Latin-American rows are not relabeled
-  as Colombian.
 
-Charsiu's pinned language registry contains `spa`, `spa-latin`, and `spa-me`,
-but not `spa-co`. Accordingly, the prompt helper rejects `es-co`:
+Charsiu's pinned language registry contains `spa`, `spa-latin`, and `spa-me`.
+The prompt helper uses the exact locale-to-model mapping:
 
 ```py
 >>> from lexikos import charsiu_prompt
@@ -226,12 +220,12 @@ The wheel contains a deterministic runtime snapshot with:
 Runtime connections use SQLite read-only mode and `PRAGMA query_only = ON`.
 Source TSVs are not packaged in the wheel.
 
-### Edition `2026.09.3`
+### Edition `2026.09.4`
 
 | Artifact | SHA-256 | Size |
 | --- | --- | ---: |
 | Curation SQLite | `68dcc8e6442419a38a2e8d8ec9c0027d640f1b4fc06d2c52d908932157d7a5da` | 5,632,610,304 bytes |
-| Runtime SQLite | `e0f6c491f1a9121345d6659b0d6d8f046c629d9639e2e7601daa2c2f4e0d2100` | 3,106,291,712 bytes |
+| Runtime SQLite | `e89ea17a904b856a00cdf3705c46ce3324280282780cb2277dcfe65ae357655e` | 3,106,291,712 bytes |
 
 The tracked
 [`release-manifest.json`](./lexikos/data/release-manifest.json) is the
@@ -285,8 +279,8 @@ prepared/es-419/test/spa-latin.tsv
 prepared/es-419/manifest.json
 ```
 
-The manifest records source and output hashes. The CLI rejects `es-co` because
-the pinned Charsiu model contract has no `spa-co` language code.
+The manifest records source and output hashes. The language choice is
+constrained to locales backed by the pinned Charsiu model contract.
 
 The pinned upstream trainer omits the required space after its language prefix.
 Before training, change both prefix expressions in CharsiuG2P

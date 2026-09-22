@@ -282,7 +282,6 @@ lexikos/packs/en-us.yaml
 lexikos/packs/es-es.yaml
 lexikos/packs/es-419.yaml
 lexikos/packs/es-mx.yaml
-lexikos/packs/es-co.yaml
 ```
 
 A pack file declares:
@@ -349,7 +348,7 @@ Other extraction rules require their own versioned, tested contract. The
 compiler rejects profiles with an unpinned import run, source mismatch,
 unsupported extraction rule, or ordering/selection policy it cannot execute.
 
-Pack configuration selects accepted evidence; it never changes its dialect metadata. The reserved `es-co` pack accepts only explicitly Colombian evidence and remains empty until such a source is reviewed; pooled Latin-American evidence belongs to `es-419`.
+Pack configuration selects accepted evidence; it never changes its dialect metadata. Pooled Latin-American evidence belongs to `es-419`; a new country-specific pack requires reviewed country-specific evidence before registration.
 
 ## Runtime SQLite schema
 
@@ -626,8 +625,7 @@ GitHub permits authorized replacement or deletion of release assets, so immutabi
 5. Mark migrated file-level metadata with `metadata_origin = "dataset-declaration"`; do not present it as scraped row-level evidence.
 6. Leave absent source URL, locality, accent, dialect feature, and license values unknown unless the existing provenance file establishes them.
 7. Import each physical Spanish source once. `spa.tsv` can feed `es` and
-   `es-es`; `spa-latin.tsv` feeds `es-419`. It must not feed `es-co`, whose
-   pack remains empty until an explicitly Colombian source is integrated.
+   `es-es`; `spa-latin.tsv` feeds `es-419`.
 8. Declare one default G2P profile per dictionary-plus-normalizer pack. Use a
    nullable model for Spanish and any other dictionary-only pack.
 9. Generate the runtime snapshot and compare supported packs, words, IPA
@@ -665,7 +663,6 @@ GitHub permits authorized replacement or deletion of release assets, so immutabi
 ### Snapshot behavior
 
 - Pack assignment does not relabel source dialects.
-- `es-co` has zero pronunciation, evidence, G2P profile, and G2P dictionary rows until an explicitly Colombian source is configured.
 - Synthetic evidence follows each pack's explicit policy.
 - Fixed inputs in the pinned build environment produce the same manifest counts and SHA-256.
 - Foreign-key and integrity checks pass.
